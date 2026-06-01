@@ -109,6 +109,9 @@ body{font-family:'Segoe UI','Traditional Arabic',Arial,sans-serif;background:var
 .btn-login{width:100%;padding:14px;background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;border:none;border-radius:12px;font-size:16px;font-family:inherit;font-weight:600;cursor:pointer;margin-top:8px;box-shadow:0 8px 24px rgba(42,82,152,.4);transition:all .2s}
 .btn-login:hover{transform:translateY(-1px)}
 .login-err{text-align:center;color:var(--red);font-size:13px;margin-top:12px;display:none;padding:10px;background:#fff5f5;border-radius:8px}
+.login-close-btn{position:absolute;top:16px;right:16px;z-index:2;width:38px;height:34px;background:rgba(220,38,38,.72);border:1px solid rgba(255,255,255,.34);color:#fff;border-radius:9px;font-size:18px;line-height:1;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,.18);transition:all .2s}
+.login-close-btn:hover{background:rgba(220,38,38,.95);transform:translateY(-1px)}
+.login-version-badge{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);z-index:2;min-width:92px;text-align:center;padding:7px 14px;background:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.55);color:#1e3a5f;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.2px;box-shadow:0 8px 22px rgba(0,0,0,.18);backdrop-filter:blur(8px)}
 
 /* LAYOUT */
 #mainPage{display:none}
@@ -564,6 +567,7 @@ input:checked+.slider:before{transform:translateX(-20px)}
 <div id="loginPage">
   
   <button onclick="toggleLang()" style="position:absolute;top:16px;left:16px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:8px;padding:6px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit" id="loginLangBtn">EN</button>
+  <button class="login-close-btn" onclick="closeAppFully()" title="إغلاق البرنامج">⏻</button>
   <div class="login-card">
     <div class="login-hd">
       <div class="login-ico">📋</div>
@@ -589,6 +593,7 @@ input:checked+.slider:before{transform:translateX(-20px)}
       <div id="loginCopyrightText" style="font-size:12px;color:#6b7280;line-height:1.8;white-space:pre-line"></div>
     </div>
   </div>
+  <div class="login-version-badge">v<span id="loginAppVersion">1.6.0</span></div>
 </div>
 
 
@@ -651,6 +656,12 @@ input:checked+.slider:before{transform:translateX(-20px)}
 
       
       <div class="view active" id="view-dashboard">
+
+        
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+          <span style="font-size:12px;color:var(--muted);font-weight:600;background:var(--border);padding:4px 12px;border-radius:20px;letter-spacing:0.5px">v<span id="dashVersionBadge">...</span></span>
+          <button onclick="closeAppFully()" style="background:transparent;border:1.5px solid rgba(220,38,38,.3);color:rgba(220,38,38,.7);border-radius:8px;padding:5px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s" onmouseover="this.style.background='#dc2626';this.style.color='#fff';this.style.borderColor='#dc2626'" onmouseout="this.style.background='transparent';this.style.color='rgba(220,38,38,.7)';this.style.borderColor='rgba(220,38,38,.3)'">⏻ إغلاق</button>
+        </div>
 
         
         <div id="dashWaCard" style="display:none;margin-bottom:20px;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);border:2px solid var(--border)" onclick="showView('settings')" title="انتقل إلى إعدادات واتساب">
@@ -5563,6 +5574,18 @@ function closeAppFully(){
   // متصفح عادي
   window.close();
 }
+async function initLoginVersion(){
+  const el=document.getElementById('loginAppVersion');
+  if(!el)return;
+  let v=APP_VERSION||'1.0.0';
+  try{
+    if(window.electronAPI?.getVersion){
+      const ev=await window.electronAPI.getVersion();
+      if(ev)v=ev;
+    }
+  }catch(_){}
+  el.textContent=v;
+}
 function doLogout(){currentUser=null;document.getElementById('loginPage').style.display='flex';document.getElementById('mainPage').style.display='none';}
 
 // ══ نظام الثيمات والوضع الليلي ══════════════════════════════════
@@ -6567,6 +6590,7 @@ function renderDashboard(){
   document.getElementById('sActive').textContent=act.toLocaleString(loc);
   document.getElementById('sExpired').textContent=exp.toLocaleString(loc);
   document.getElementById('sSoon').textContent=soon.toLocaleString(loc);
+  const _vb=document.getElementById('dashVersionBadge');if(_vb)_vb.textContent=APP_VERSION||'—';
   const soonData=data.filter(r=>{const d=calcDays(r.end);return d!==null&&d>=0&&d<=7;});
   const tb=document.getElementById('soonTable');
   if(!soonData.length){tb.innerHTML=`<tr><td colspan="6" class="no-data"><div class="ndi">🎉</div>${_lang==='en'?'No subscriptions expiring soon':'لا توجد اشتراكات تنتهي قريباً'}</td></tr>`;return;}
@@ -13990,6 +14014,7 @@ async function fpRunTestScan(){
 // init
 async function initApp(){
   await loadServerStore();
+  await initLoginVersion();
   selectTpl('welcome');
   loadRemembered();
   loadRemembered();
