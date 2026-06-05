@@ -3507,7 +3507,7 @@ input:checked+.slider:before{transform:translateX(-20px)}
 //  البريد       : d.llsyanh07@gmail.com
 //  يُحظر نسخ هذا الكود أو توزيعه بدون إذن خطي من المطوّر
 // ══════════════════════════════════════════════════════════════════
-const APP_VERSION = '1.7.0';
+const APP_VERSION = '1.7.1';
 
 // ══ نظام الترجمة ══════════════════════════════════════════════════
 let _lang = 'ar'; // ثابت عربي دائماً
@@ -6586,7 +6586,7 @@ function _zkHandleMemberAtt(member, date, time){
     saveAttendance(att);
     renderAttendance();
     toast('✅ حضور: '+member.name+' — '+time,'tok');
-    if(getSettings().attWaEnabled!==false)
+    if(getSettings().attWaEnabled===true)
       setTimeout(()=>sendAttWa(member,'in',time,null),400);
 
   } else if(rec.in && !rec.out){
@@ -6610,7 +6610,7 @@ function _zkHandleMemberAtt(member, date, time){
     saveAttendance(att);
     renderAttendance();
     toast('🚪 انصراف: '+member.name+' — '+time,'tok');
-    if(getSettings().attWaEnabled!==false)
+    if(getSettings().attWaEnabled===true)
       setTimeout(()=>sendAttWa(member,'out',rec.in,time),400);
 
   } else if(rec.in && rec.out){
@@ -6625,7 +6625,7 @@ async function _sendEmpAttWa(empName, type, inTime, outTime){
   // يكفي أي من التبديلين: الرئيسي أو تبديل القالب
   const enabled = s.empAttWaEnabled===true ||
     (type==='in'  ? s.empAttWaInEnabled===true  : s.empAttWaOutEnabled===true);
-  if(!enabled){ toast('🔕 إشعار الموظفين غير مفعّل','tin'); return; }
+  if(!enabled){ return; }
   const phone=s.clubPhone;
   if(!phone){ toast('⚠️ أدخل رقم هاتف النادي في الإعدادات','ter'); return; }
   if(!fmtPhone(phone)){ toast('⚠️ رقم هاتف النادي غير صحيح: '+phone,'ter'); return; }
@@ -7237,7 +7237,8 @@ const VN={
   get attendance(){ return t('pg_attendance'); },
   get diagnostics(){ return t('pg_diagnostics'); },
   get settings(){ return t('pg_settings'); },
-  get help(){ return t('pg_help'); }
+  get help(){ return t('pg_help'); },
+  'emp-attendance': '👔 حضور وانصراف الموظفين'
 };
 const VIEW_PERMS={customers:'customers_view',whatsapp:'whatsapp',auto:'auto',reports:'reports',attendance:'attendance',diagnostics:'diagnostics',settings:'settings'};
 function showView(v){
@@ -10072,6 +10073,13 @@ function updateAttModeUI(){
   const autoMin=document.getElementById('attAutoMinMins');
   if(manOut)manOut.value=s.attManualMinMins||0;
   if(autoMin)autoMin.value=s.attAutoMinMins||0;
+  // مزامنة أزرار التبديل من القيم المحفوظة
+  const waT=document.getElementById('attWaToggle');
+  if(waT) waT.checked=s.attWaEnabled===true;
+  const trT=document.getElementById('trackCheckoutToggle');
+  if(trT) trT.checked=!!s.trackCheckout;
+  const vT=document.getElementById('voiceToggle');
+  if(vT) vT.checked=!!s.voiceEnabled;
 }
 
 function cancelCheckin(id, date){
@@ -10118,8 +10126,6 @@ async function sendAttWa(rec, type, inTime, outTime){
   if(!canDo('whatsapp')) return;
   const s=getSettings();
   if(s.attWaEnabled!==true) return;
-  if(type==='in'  && s.msgAttInEnabled ===false) return;
-  if(type==='out' && s.msgAttOutEnabled===false) return;
   if(!rec.phone) return;
   const d=getDefaultSettings();
   const club=s.clubName||d.clubName||'النادي الرياضي';
