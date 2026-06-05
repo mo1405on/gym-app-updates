@@ -8624,6 +8624,21 @@ function arrangeAppearanceSettings(){
     if(el&&mount&&el.parentElement!==mount)mount.appendChild(el);
   });
 }
+function loadVoiceSettings(){
+  const s=getSettings();
+  const eng=s.voiceEngine||'edge';
+  const eEdge=document.getElementById('engineEdge');
+  const eSys=document.getElementById('engineSystem');
+  if(eEdge) eEdge.checked=(eng==='edge');
+  if(eSys) eSys.checked=(eng==='system');
+  const ev=document.getElementById('edgeVoice'); if(ev) ev.value=s.edgeVoice||'ar-SA-HaalaNeural';
+  const vg=document.getElementById('voiceGreeting'); if(vg) vg.value=s.voiceGreeting||'أهلاً وسهلاً {الاسم}، مرحباً بك';
+  const vf=document.getElementById('voiceFarewell'); if(vf) vf.value=s.voiceFarewell||'مع السلامة {الاسم}، إلى اللقاء';
+  const vv=document.getElementById('voiceVolume');
+  if(vv){ vv.value=s.voiceVolume||1.0; const lbl=document.getElementById('voiceVolumeLbl'); if(lbl) lbl.textContent=parseFloat(vv.value).toFixed(1); }
+  const er=document.getElementById('edgeVoiceRow'); if(er) er.style.display=(eng==='edge')?'':'none';
+}
+function loadEmployeeSelect(){ buildEmpSelect(); }
 function loadSettings(){
   // عرض الإصدار الحالي في بطاقة التحديث
   const vs = document.getElementById('curVerSpan');
