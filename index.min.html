@@ -3603,7 +3603,7 @@ input:checked+.slider:before{transform:translateX(-20px)}
 //  البريد       : d.llsyanh07@gmail.com
 //  يُحظر نسخ هذا الكود أو توزيعه بدون إذن خطي من المطوّر
 // ══════════════════════════════════════════════════════════════════
-const APP_VERSION = '1.7.8';
+const APP_VERSION = '1.7.9';
 
 // ══ نظام الترجمة ══════════════════════════════════════════════════
 let _lang = 'ar'; // ثابت عربي دائماً
@@ -4631,6 +4631,7 @@ async function passwordMatches(stored,pass){
 }
 function saveUsers(users){localStorage.setItem(KU,JSON.stringify(users));}
 let _dCache=null;
+function getFullName(r){return r.name||[r.first_name,r.second_name,r.third_name,r.family_name].filter(Boolean).join(' ')||'';}
 function getData(){
   if(_dCache!==null)return _dCache;
   const s=localStorage.getItem(KD);
@@ -10816,7 +10817,7 @@ function renderAttendance(){
     return`<div class="att-row" id="att-${r.id}" style="background:${bg}">
       <div class="att-avatar" style="background:${isOut?'#ede9fe':isIn?'#d4f7e7':'#e8f0fe'}">${icon}</div>
       <div style="flex:1">
-        <div class="att-name">${r.name}</div>
+        <div class="att-name">${getFullName(r)||'—'}</div>
         <div class="att-sub">💪 ${r.pkg_name||'—'} &nbsp;|&nbsp; 🪪 ${r.id_num||'—'} &nbsp;|&nbsp; 📱 ${r.phone||'—'}</div>
         ${(inTime||outTime)?`<div style="margin-top:3px">${inTime}${outTime}</div>`:''}
         ${minBadge}
@@ -10835,7 +10836,7 @@ function renderAttendance(){
       <th style="padding:8px;border-bottom:2px solid var(--border);text-align:center">المجموع</th>
     </tr></thead>
     <tbody>${data.map(r=>`<tr>
-      <td style="padding:8px 14px;border-bottom:1px solid #f5f7fa;font-weight:600">${r.name}</td>
+      <td style="padding:8px 14px;border-bottom:1px solid #f5f7fa;font-weight:600">${getFullName(r)||'—'}</td>
       ${days.map(d=>{
         const rec=getAttRec(att[d],r.id);
         if(!rec) return`<td style="text-align:center;padding:8px;border-bottom:1px solid #f5f7fa"><span style="color:#ddd">○</span></td>`;
@@ -11829,7 +11830,7 @@ function renderAttendance(){
     return`<div class="att-row" id="att-${r.id}" style="background:${bg}">
       <div class="att-avatar" style="background:${isOut?'#ede9fe':isIn?'#d4f7e7':'#e8f0fe'}">${icon}</div>
       <div style="flex:1">
-        <div class="att-name">${r.name}</div>
+        <div class="att-name">${getFullName(r)||'—'}</div>
         <div class="att-sub">💪 ${r.pkg_name||'—'} &nbsp;|&nbsp;📱 ${r.phone||'—'}</div>
         ${(inTime||outTime)?`<div style="margin-top:3px">${inTime}${outTime}</div>`:''}
       </div>
@@ -11847,7 +11848,7 @@ function renderAttendance(){
       <th style="padding:8px;border-bottom:2px solid var(--border);text-align:center">المجموع</th>
     </tr></thead>
     <tbody>${data.map(r=>`<tr>
-      <td style="padding:8px 14px;border-bottom:1px solid #f5f7fa;font-weight:600">${r.name}</td>
+      <td style="padding:8px 14px;border-bottom:1px solid #f5f7fa;font-weight:600">${getFullName(r)||'—'}</td>
       ${days.map(d=>{
         const rec=getAttRec(att[d],r.id);
         if(!rec) return`<td style="text-align:center;padding:8px;border-bottom:1px solid #f5f7fa"><span style="color:#ddd">○</span></td>`;
@@ -15483,7 +15484,6 @@ async function initApp(){
   await loadServerStore();
   await initLoginVersion();
   selectTpl('welcome');
-  loadRemembered();
   loadRemembered();
   // اتصال ZKTeco تلقائي قبل الدخول
   _preLoginZkConnect();
