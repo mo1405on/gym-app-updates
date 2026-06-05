@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 ╔══════════════════════════════════════════════════════════════════╗
 ║           نظام إدارة الاشتراكات الرياضية                        ║
 ║                                                                  ║
@@ -284,15 +284,6 @@ tbody tr:hover td{background:#f8faff}
 .dur-builtin{font-size:10px;color:var(--muted);background:#f5f7fa;padding:2px 7px;border-radius:10px}
 .club-logo-box{width:90px;height:90px;border-radius:14px;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;font-size:38px;overflow:hidden;border:3px solid var(--border);flex-shrink:0;cursor:pointer}
 .club-logo-box{width:90px;height:90px;border-radius:14px;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;font-size:38px;overflow:hidden;border:3px solid var(--border);flex-shrink:0;cursor:pointer}
-/* ════ ERROR MONITOR ════ */
-#errMonBtn{position:fixed;bottom:24px;left:24px;z-index:99999;width:44px;height:44px;border-radius:50%;background:#dc2626;color:#fff;border:none;font-size:16px;cursor:pointer;box-shadow:0 4px 16px rgba(220,38,38,.4);display:none;align-items:center;justify-content:center;font-weight:800}
-#errMonBtn:hover{transform:scale(1.1)}
-#errMonPanel{position:fixed;bottom:78px;left:24px;z-index:99998;width:380px;background:#1e293b;color:#e2e8f0;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.6);display:none;border:1px solid #334155;max-height:70vh;overflow-y:auto}
-.err-item{padding:12px 16px;border-bottom:1px solid #334155;font-size:12px;font-family:monospace}
-.err-item:last-child{border-bottom:none}
-.err-msg{color:#fca5a5;font-weight:700;margin-bottom:4px;word-break:break-word}
-.err-where{color:#94a3b8;font-size:10px}
-
 /* ════ CUSTOM DATE PICKER ════ */
 .dp-wrap{position:relative;display:block;width:100%}
 .dp-input{padding:9px 12px;border:2px solid var(--border);border-radius:9px;font-size:13px;font-family:inherit;cursor:pointer;background:#fff;color:var(--text);display:flex;align-items:center;justify-content:space-between;gap:8px;user-select:none;transition:border-color .18s}
@@ -602,37 +593,6 @@ input:checked+.slider:before{transform:translateX(-20px)}
   </div>
 </div>
 
-<!-- ERROR MONITOR -->
-<button id="errMonBtn" title="أخطاء البرنامج" onclick="_errMonToggle()">⚠️</button>
-<div id="errMonPanel">
-  <div style="padding:14px 16px;border-bottom:1px solid #334155;display:flex;justify-content:space-between;align-items:center">
-    <span style="font-weight:700;font-size:13px">🐛 سجل الأخطاء</span>
-    <div style="display:flex;gap:8px">
-      <button onclick="_errMonCopy()" style="background:#334155;color:#e2e8f0;border:none;border-radius:6px;padding:4px 10px;font-size:11px;cursor:pointer">📋 نسخ</button>
-      <button onclick="_errMonClear()" style="background:#450a0a;color:#fca5a5;border:none;border-radius:6px;padding:4px 10px;font-size:11px;cursor:pointer">مسح</button>
-      <button onclick="_errMonToggle()" style="background:#334155;color:#94a3b8;border:none;border-radius:6px;padding:4px 8px;font-size:12px;cursor:pointer">✕</button>
-    </div>
-  </div>
-  <div id="errMonList"><div style="padding:20px;text-align:center;color:#64748b;font-size:13px">لا توجد أخطاء ✅</div></div>
-</div>
-
-<!-- WHATSAPP QR MODAL -->
-<div id="waQrModal" style="display:none;position:fixed;inset:0;z-index:99997;background:rgba(15,23,42,.62);align-items:center;justify-content:center;padding:28px">
-  <div style="width:min(920px,96vw);height:min(820px,92vh);background:#fff;border-radius:18px;box-shadow:0 24px 70px rgba(0,0,0,.35);overflow:hidden;display:flex;flex-direction:column">
-    <div style="padding:14px 18px;background:#f0fdf4;border-bottom:1px solid #bbf7d0;display:flex;align-items:center;justify-content:space-between;gap:12px">
-      <div>
-        <div style="font-weight:800;color:#15803d;font-size:16px">📷 ربط الواتساب</div>
-        <div id="waQrModalStatus" style="font-size:12px;color:#166534;margin-top:2px">امسح QR أو أدخل رقم الربط لتفعيل واتساب</div>
-      </div>
-      <div style="display:flex;gap:8px">
-        <button class="btn bg" style="font-size:12px;padding:7px 12px" onclick="reloadWaQrModalFrame()">🔄 تحديث</button>
-        <button class="btn" style="font-size:12px;padding:7px 12px;background:#fee2e2;color:#991b1b;border:1px solid #fecaca" onclick="hideWhatsAppLinkPanel()">✕ إغلاق</button>
-      </div>
-    </div>
-    <iframe id="waQrModalFrame" src="" style="flex:1;width:100%;border:none;background:#fff" title="ربط الواتساب - QR"></iframe>
-  </div>
-</div>
-
 <!-- LOGIN -->
 <div id="loginPage">
   <!-- زر تبديل اللغة في صفحة الدخول -->
@@ -722,20 +682,20 @@ input:checked+.slider:before{transform:translateX(-20px)}
       <div class="sb-logo-text"><strong id="sbLogoName">إدارة الاشتراكات</strong><small id="sbLogoSub">نظام متكامل</small></div>
     </div>
     <div class="sb-nav">
-      <div class="nav-item active" data-perm="dashboard" onclick="showView('dashboard')"><span class="ni">📊</span> <span data-i18n="nav_dashboard">لوحة التحكم</span></div>
-      <div class="nav-item" data-perm="customers_view" onclick="showView('customers')"><span class="ni">👥</span> <span data-i18n="nav_customers">المشتركون</span></div>
-      <div class="nav-item" id="nav-whatsapp" data-perm="whatsapp" data-feat="feat_whatsapp" onclick="openWhatsAppMessagesNav(event)" style="display:none"><span class="ni">💬</span> <span data-i18n="nav_whatsapp">رسائل واتساب</span>
+      <div class="nav-item active" onclick="showView('dashboard')"><span class="ni">📊</span> <span data-i18n="nav_dashboard">لوحة التحكم</span></div>
+      <div class="nav-item" onclick="showView('customers')"><span class="ni">👥</span> <span data-i18n="nav_customers">المشتركون</span></div>
+      <div class="nav-item" id="nav-whatsapp" onclick="showView('whatsapp')"><span class="ni">💬</span> <span data-i18n="nav_whatsapp">رسائل واتساب</span>
         <span class="nav-badge" id="waBadge">0</span>
       </div>
-      <div class="nav-item" id="nav-auto" data-perm="auto" data-feat="feat_auto" onclick="showView('auto')"><span class="ni">🤖</span> <span data-i18n="nav_auto">الإرسال التلقائي</span>
+      <div class="nav-item" id="nav-auto" onclick="showView('auto')"><span class="ni">🤖</span> <span data-i18n="nav_auto">الإرسال التلقائي</span>
         <span class="nav-badge" id="autoBadge">0</span>
       </div>
-      <div class="nav-item" data-perm="reports" onclick="showView('reports')"><span class="ni">📈</span> <span data-i18n="nav_reports">التقارير</span></div>
-      <div class="nav-item" data-perm="attendance" onclick="showView('attendance')"><span class="ni">📋</span> <span>حضور وانصراف المشتركين</span></div>
-      <div class="nav-item" data-perm="emp_attendance" onclick="showView('emp-attendance')"><span class="ni">👔</span> <span>حضور وانصراف الموظفين</span></div>
-      <div class="nav-item" id="nav-diagnostics" data-perm="diagnostics" onclick="showView('diagnostics')"><span class="ni">🛠️</span> <span data-i18n="nav_diagnostics">التشخيص والإصلاح</span></div>
-      <div class="nav-item" data-perm="help" onclick="showView('help')"><span class="ni">📖</span> <span data-i18n="nav_help">دليل الاستخدام</span></div>
-      <div class="nav-item" data-perm="settings" onclick="showView('settings')"><span class="ni">⚙️</span> <span data-i18n="nav_settings">الإعدادات</span></div>
+      <div class="nav-item" onclick="showView('reports')"><span class="ni">📈</span> <span data-i18n="nav_reports">التقارير</span></div>
+      <div class="nav-item" onclick="showView('attendance')"><span class="ni">📋</span> <span>حضور وانصراف المشتركين</span></div>
+      <div class="nav-item" onclick="showView('emp-attendance')"><span class="ni">👔</span> <span>حضور وانصراف الموظفين</span></div>
+      <div class="nav-item" id="nav-diagnostics" onclick="showView('diagnostics')"><span class="ni">🛠️</span> <span data-i18n="nav_diagnostics">التشخيص والإصلاح</span></div>
+      <div class="nav-item" onclick="showView('help')"><span class="ni">📖</span> <span data-i18n="nav_help">دليل الاستخدام</span></div>
+      <div class="nav-item" onclick="showView('settings')"><span class="ni">⚙️</span> <span data-i18n="nav_settings">الإعدادات</span></div>
     </div>
     <div class="sb-foot">
       <div class="user-info">
@@ -784,7 +744,7 @@ input:checked+.slider:before{transform:translateX(-20px)}
         <div id="dashStatusBar" style="display:none;margin-bottom:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
 
           <!-- حالة واتساب -->
-          <div id="dashWaCard" style="display:none;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);border:2px solid var(--border);cursor:pointer" onclick="openWhatsAppFromSidebar(event)">
+          <div id="dashWaCard" style="display:none;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);border:2px solid var(--border);cursor:pointer" onclick="showView('settings');switchSetTab('comms',document.querySelector('#setTabsBar .set-tab:nth-child(3)'))">
             <div style="padding:13px 18px;display:flex;align-items:center;gap:12px">
               <span id="dashWaIcon" style="font-size:26px">⏳</span>
               <div style="flex:1">
@@ -796,7 +756,7 @@ input:checked+.slider:before{transform:translateX(-20px)}
           </div>
 
           <!-- حالة ZKTeco -->
-          <div id="dashZkCard" style="display:none;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);border:2px solid var(--border);cursor:pointer" onclick="showView('settings');switchSetTab('fingerprint',document.querySelector('#setTabsBar .set-tab[data-tab=&quot;fingerprint&quot;]'))">
+          <div id="dashZkCard" style="display:none;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);border:2px solid var(--border);cursor:pointer" onclick="showView('settings');switchSetTab('voice',document.querySelector('#setTabsBar .set-tab:nth-child(5)'))">
             <div style="padding:13px 18px;display:flex;align-items:center;gap:12px">
               <span id="dashZkIcon" style="font-size:26px">⏳</span>
               <div style="flex:1">
@@ -807,20 +767,6 @@ input:checked+.slider:before{transform:translateX(-20px)}
             </div>
           </div>
 
-        </div>
-
-        <div id="dashWaQrPanel" class="card" style="display:none;margin-bottom:16px;border:2px solid #a7f3d0;overflow:hidden">
-          <div class="card-head" style="background:#f0fdf4;border-bottom:1px solid #bbf7d0">
-            <h3 style="color:#15803d">📷 ربط الواتساب</h3>
-            <div class="cc">
-              <button class="btn bg" style="font-size:12px;padding:7px 12px" onclick="reloadDashBotFrame()">🔄 تحديث</button>
-              <button class="btn" style="font-size:12px;padding:7px 12px;background:#fee2e2;color:#991b1b;border:1px solid #fecaca" onclick="hideWhatsAppLinkPanel()">✕ إغلاق</button>
-            </div>
-          </div>
-          <div style="padding:14px 16px">
-            <div id="dashWaQrStatus" style="margin-bottom:10px;font-size:13px;font-weight:700;color:#15803d">امسح QR أو أدخل رقم الربط لتفعيل واتساب</div>
-            <iframe id="dashBotFrame" src="" style="width:100%;height:620px;border:none;display:block;border-radius:12px;background:#fff" title="ربط الواتساب - QR"></iframe>
-          </div>
         </div>
 
         <div class="stats-row">
@@ -1425,7 +1371,7 @@ input:checked+.slider:before{transform:translateX(-20px)}
         </div>
 
         <div style="text-align:center;padding:20px;color:var(--muted);font-size:13px">
-          ⚙️ إعدادات جهاز ZKTeco موجودة في <strong>الإعدادات ← إعدادات البصمة</strong>
+          ⚙️ إعدادات جهاز ZKTeco موجودة في <strong>الإعدادات ← الصوت والبصمة</strong>
         </div>
       </div>
 
@@ -1519,20 +1465,11 @@ input:checked+.slider:before{transform:translateX(-20px)}
           <button class="set-tab" onclick="switchSetTab('comms',this)">
             <span class="set-tab-ico">📱</span><span>التواصل</span>
           </button>
-          <button class="set-tab" onclick="showView('whatsapp')">
-            <span class="set-tab-ico">💬</span><span>رسائل واتساب</span>
-          </button>
           <button class="set-tab" onclick="switchSetTab('attendance',this)">
             <span class="set-tab-ico">📅</span><span>الحضور</span>
           </button>
-          <button class="set-tab" onclick="switchSetTab('employees',this)">
-            <span class="set-tab-ico">👔</span><span>الموظفين</span>
-          </button>
-          <button class="set-tab" data-tab="fingerprint" onclick="switchSetTab('fingerprint',this)">
-            <span class="set-tab-ico">👆</span><span>إعدادات البصمة</span>
-          </button>
-          <button class="set-tab" data-tab="voice" onclick="switchSetTab('voice',this)">
-            <span class="set-tab-ico">🔊</span><span>إعدادات الصوت</span>
+          <button class="set-tab" onclick="switchSetTab('voice',this)">
+            <span class="set-tab-ico">🔊</span><span>الصوت والبصمة</span>
           </button>
           <button class="set-tab" data-owner="settings_users" onclick="switchSetTab('users',this)">
             <span class="set-tab-ico">👥</span><span>المستخدمون</span>
@@ -1848,7 +1785,7 @@ input:checked+.slider:before{transform:translateX(-20px)}
             <div class="set-hd">
               <div class="set-hd-ico" style="background:#ede9fe">🔊</div>
               <div class="set-hd-txt">
-                <div class="set-hd-label" data-i18n="set_voice_title">إعدادات الصوت</div>
+                <div class="set-hd-label" data-i18n="set_voice_title">إعدادات النطق الصوتي</div>
                 <div class="set-hd-sub" data-i18n="set_voice_sub">محرك الصوت والجمل والتخصيص</div>
               </div>
             </div>
@@ -1863,8 +1800,32 @@ input:checked+.slider:before{transform:translateX(-20px)}
               </div>
               <!-- محرك الصوت -->
               <div style="background:#f0f4f9;border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:14px">
-                <div style="font-size:13px;font-weight:700;margin-bottom:6px">🔧 محرك الصوت</div>
-                <div style="font-size:12px;color:#6b7280">🖥️ Windows TTS (بدون إنترنت)</div>
+                <div style="font-size:13px;font-weight:700;margin-bottom:10px">🔧 Voice Engine</div>
+                <div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:12px">
+                  <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px">
+                    <input type="radio" name="voiceEngine" id="engineEdge" value="edge" onchange="onVoiceEngineChange()">
+                    <span>⚡ Edge TTS <span style="font-size:11px;color:#166534;font-weight:600">(Internet — High Quality)</span></span>
+                  </label>
+                  <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px">
+                    <input type="radio" name="voiceEngine" id="engineSystem" value="system" onchange="onVoiceEngineChange()">
+                    <span>🖥️ Windows TTS <span style="font-size:11px;color:#6b7280">(Offline)</span></span>
+                  </label>
+                </div>
+                <!-- صوت Edge -->
+                <div id="edgeVoiceRow">
+                  <label style="font-size:12px;font-weight:600;display:block;margin-bottom:6px;color:#374151">Arabic Voice:</label>
+                  <select id="edgeVoice" class="set-input" style="margin:0">
+                    <option value="ar-SA-HaalaNeural">🇸🇦 هالة — سعودي نسائي ⭐</option>
+                    <option value="ar-SA-ZariyahNeural">🇸🇦 زارية — سعودي نسائي</option>
+                    <option value="ar-SA-HamedNeural">🇸🇦 حامد — سعودي رجالي</option>
+                    <option value="ar-EG-SalmaNeural">🇪🇬 سلمى — مصري نسائي</option>
+                    <option value="ar-EG-ShakirNeural">🇪🇬 شاكر — مصري رجالي</option>
+                    <option value="ar-AE-FatimaNeural">🇦🇪 فاطمة — خليجي نسائي</option>
+                    <option value="ar-AE-HamdanNeural">🇦🇪 حمدان — خليجي رجالي</option>
+                    <option value="ar-KW-FahedNeural">🇰🇼 فهد — كويتي رجالي</option>
+                    <option value="ar-KW-NouraNeural">🇰🇼 نورة — كويتي نسائي</option>
+                  </select>
+                </div>
               </div>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
                 <div>
@@ -1921,12 +1882,12 @@ input:checked+.slider:before{transform:translateX(-20px)}
             </div>
           </div>
 
-          <!-- ═══ حضور وانصراف المشتركين ═══ -->
+          <!-- ═══ إعدادات الحضور والانصراف ═══ -->
           <div class="set-card" data-set-tab="attendance" style="grid-column:1/-1">
             <div class="set-hd">
-              <div class="set-hd-ico" style="background:#fef3c7">👥</div>
+              <div class="set-hd-ico" style="background:#fef3c7">📋</div>
               <div class="set-hd-txt">
-                <div class="set-hd-label">حضور وانصراف المشتركين</div>
+                <div class="set-hd-label">إعدادات الحضور والانصراف</div>
                 <div class="set-hd-sub">وضع التسجيل، الانصراف، الإشعارات، والصوت</div>
               </div>
             </div>
@@ -2004,93 +1965,8 @@ input:checked+.slider:before{transform:translateX(-20px)}
                   <label class="toggle"><input type="checkbox" id="voiceToggle" onchange="toggleVoice(this)"><span class="slider"></span></label>
                 </div>
               </div>
-            </div>
-          </div>
-
-          <!-- ═══ حضور وانصراف الموظفين ═══ -->
-          <div class="set-card" data-set-tab="employees" style="grid-column:1/-1">
-            <div class="set-hd">
-              <div class="set-hd-ico" style="background:#e0f2fe">👔</div>
-              <div class="set-hd-txt">
-                <div class="set-hd-label">حضور وانصراف الموظفين</div>
-                <div class="set-hd-sub">فترات الدوام، المزامنة، والإجازات الرسمية</div>
-              </div>
-            </div>
-            <div class="set-bd" style="display:flex;flex-direction:column;gap:14px">
-              <!-- إعدادات ZKTeco للموظفين -->
-              <div style="display:flex;flex-direction:column;gap:12px">
-                <div style="display:flex;gap:12px;flex-wrap:wrap">
-                  <div>
-                    <div class="set-label">🚫 السماح بالحضور قبل بداية الدوام</div>
-                    <select id="zkEmpEarlyAllow" class="set-input" onchange="saveZkSettings()" style="width:220px">
-                      <option value="0">لا يسمح قبل البداية</option>
-                      <option value="5">5 دقائق قبل البداية</option>
-                      <option value="10">10 دقائق قبل البداية</option>
-                      <option value="15">15 دقيقة قبل البداية</option>
-                      <option value="30">30 دقيقة قبل البداية</option>
-                      <option value="60">ساعة قبل البداية</option>
-                    </select>
-                  </div>
-                  <div>
-                    <div class="set-label">🚪 مهلة الانصراف بعد نهاية الدوام</div>
-                    <select id="zkEmpOutGrace" class="set-input" onchange="saveZkSettings()" style="width:220px">
-                      <option value="0">لا يسمح بعد النهاية</option>
-                      <option value="5">5 دقائق بعد النهاية</option>
-                      <option value="10">10 دقائق بعد النهاية</option>
-                      <option value="15">15 دقيقة بعد النهاية</option>
-                      <option value="30">30 دقيقة بعد النهاية</option>
-                      <option value="60">ساعة بعد النهاية</option>
-                      <option value="120">ساعتان بعد النهاية</option>
-                      <option value="240">4 ساعات بعد النهاية</option>
-                    </select>
-                  </div>
-                </div>
-                <div>
-                  <div class="set-label">📡 الحد الأدنى للانصراف — الموظفين</div>
-                  <select id="zkMinSessionEmp" class="set-input" onchange="saveZkSettings()" style="width:220px">
-                    <option value="0">بدون حد (فوري)</option>
-                    <option value="30">30 دقيقة</option>
-                    <option value="60">ساعة واحدة</option>
-                    <option value="120">ساعتان</option>
-                    <option value="180">3 ساعات</option>
-                    <option value="240">4 ساعات</option>
-                    <option value="300">5 ساعات</option>
-                    <option value="360">6 ساعات</option>
-                    <option value="420">7 ساعات</option>
-                    <option value="480">8 ساعات</option>
-                    <option value="600">10 ساعات</option>
-                    <option value="720">12 ساعة</option>
-                  </select>
-                </div>
-                <div>
-                  <div class="set-label">🔄 مزامنة تلقائية للموظفين كل</div>
-                  <select id="zkEmpSyncInterval" class="set-input" onchange="saveZkSettings();startZkEmpAutoSync()" style="width:220px">
-                    <option value="0">بدون مزامنة تلقائية</option>
-                    <option value="1">ثانية واحدة</option>
-                    <option value="10">10 ثوانٍ</option>
-                    <option value="30">30 ثانية</option>
-                    <option value="60">دقيقة واحدة</option>
-                    <option value="300">5 دقائق</option>
-                    <option value="600">10 دقائق</option>
-                    <option value="1800">30 دقيقة</option>
-                    <option value="3600">ساعة</option>
-                  </select>
-                  <div id="zkEmpSyncStatus" style="font-size:11px;color:var(--muted);margin-top:4px">⏸ متوقفة</div>
-                </div>
-                <div class="set-row" style="background:#f0fdf4;border-radius:10px;padding:10px 14px">
-                  <div>
-                    <div class="set-label">📱 إشعار واتساب لحضور الموظفين</div>
-                    <div class="set-desc">يُرسَل لرقم النادي عند حضور/انصراف كل موظف</div>
-                  </div>
-                  <label class="toggle"><input type="checkbox" id="empAttWaEnabled" onchange="saveEmpAttWaSetting(this)"><span class="slider"></span></label>
-                </div>
-                <div>
-                  <button class="btn" onclick="saveZkSettings();toast('✅ تم حفظ إعدادات الموظفين','tok')" style="background:#16a34a;color:#fff;border:none">💾 حفظ الإعدادات</button>
-                </div>
-              </div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start">
               <!-- فترات دوام الموظفين -->
-              <div style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:12px;padding:14px">
+              <div style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:12px;padding:14px;margin-top:6px">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
                   <div style="font-weight:700;font-size:13px;color:#0369a1">🕐 فترات دوام الموظفين</div>
                   <button onclick="addShiftPeriod()" style="background:#0369a1;color:#fff;border:none;border-radius:8px;padding:5px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit">+ إضافة فترة</button>
@@ -2103,18 +1979,17 @@ input:checked+.slider:before{transform:translateX(-20px)}
                 </div>
               </div>
               <!-- الإجازات الرسمية -->
-              <div style="background:#fefce8;border:1px solid #fde68a;border-radius:12px;padding:14px">
+              <div style="background:#fefce8;border:1px solid #fde68a;border-radius:12px;padding:14px;margin-top:10px">
                 <div style="font-weight:700;font-size:13px;color:#92400e;margin-bottom:10px">🗓 الإجازات الرسمية</div>
-                <div style="display:flex;gap:6px;margin-bottom:10px;align-items:flex-end;flex-wrap:wrap">
-                  <div><div class="set-label" style="font-size:11px">التاريخ</div><input id="holidayDate" type="date" class="set-input" style="width:140px;font-size:12px"></div>
-                  <div style="flex:1;min-width:100px"><div class="set-label" style="font-size:11px">اسم الإجازة</div><input id="holidayName" type="text" class="set-input" placeholder="مثال: اليوم الوطني" style="width:100%;font-size:12px"></div>
-                  <button onclick="addHoliday()" style="background:#d97706;color:#fff;border:none;border-radius:8px;padding:7px 12px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;flex-shrink:0">+ إضافة</button>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;align-items:flex-end">
+                  <div><div class="set-label" style="font-size:11px">التاريخ</div><input id="holidayDate" type="date" class="set-input" style="width:148px;font-size:12px"></div>
+                  <div style="flex:1;min-width:130px"><div class="set-label" style="font-size:11px">اسم الإجازة</div><input id="holidayName" type="text" class="set-input" placeholder="مثال: اليوم الوطني" style="width:100%;font-size:12px"></div>
+                  <button onclick="addHoliday()" style="background:#d97706;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;flex-shrink:0">+ إضافة</button>
                 </div>
                 <div id="holidaysList" style="display:flex;flex-direction:column;gap:6px">
                   <div style="text-align:center;color:var(--muted);font-size:12px;padding:8px">لا توجد إجازات مضافة</div>
                 </div>
               </div>
-              </div><!-- /grid -->
             </div>
           </div>
 
@@ -2137,22 +2012,22 @@ input:checked+.slider:before{transform:translateX(-20px)}
               </div>
               <div class="set-row">
                 <div>
-                  <div class="set-label">🏖️ يوم الراحة الأسبوعي</div>
-                  <div class="set-desc">يُستثنى من مدة الاشتراك عند الحساب</div>
+                  <div class="set-label">Weekly Rest Day</div>
+                  <div class="set-desc">Excluded from subscription duration</div>
                 </div>
                 <select class="set-input" id="setRestDay" onchange="saveSettings()" style="width:auto;padding:7px 12px">
-                  <option value="-1">بدون يوم راحة</option>
-                  <option value="0">الأحد</option>
-                  <option value="1">الاثنين</option>
-                  <option value="2">الثلاثاء</option>
-                  <option value="3">الأربعاء</option>
-                  <option value="4">الخميس</option>
-                  <option value="5">الجمعة</option>
-                  <option value="6">السبت</option>
+                  <option value="-1">No Rest Day</option>
+                  <option value="0">Sunday</option>
+                  <option value="1">Monday</option>
+                  <option value="2">Tuesday</option>
+                  <option value="3">Wednesday</option>
+                  <option value="4">Thursday</option>
+                  <option value="5">Friday</option>
+                  <option value="6">Saturday</option>
                 </select>
               </div>
               <div class="set-row" style="flex-direction:column;align-items:flex-start;gap:10px">
-                <div><div class="set-label">📅 إرسال تذكير قبل الانتهاء بـ:</div></div>
+                <div><div class="set-label">Send reminder before expiration in:</div></div>
                 <div class="days-checks" id="daysChecks">
                   <label class="day-chip checked"><input type="checkbox" value="30" onchange="saveDays(this)"> 30 يوم</label>
                   <label class="day-chip checked"><input type="checkbox" value="14" onchange="saveDays(this)"> 14 يوم</label>
@@ -2174,7 +2049,7 @@ input:checked+.slider:before{transform:translateX(-20px)}
             </div>
             <div class="set-bd">
               <div id="userList"></div>
-              <button class="btn bp" style="margin-top:12px;font-size:12px;padding:8px 14px" onclick="openAddUser()">➕ إضافة مستخدم</button>
+              <button class="btn bp" style="margin-top:12px;font-size:12px;padding:8px 14px" onclick="openAddUser()">+ Add User</button>
             </div>
           </div>
           <div class="set-card" id="setCardWa" data-set-tab="comms" style="grid-column:1/-1">
@@ -2570,11 +2445,11 @@ input:checked+.slider:before{transform:translateX(-20px)}
           </div>
 
           <!-- ===== ZKTeco إعدادات جهاز البصمة ===== -->
-          <div class="set-card" id="setCardFingerprint" data-set-tab="fingerprint" style="grid-column:1/-1">
+          <div class="set-card" data-set-tab="voice" style="grid-column:1/-1">
             <div class="set-hd">
               <div class="set-hd-ico" style="background:#e0f2fe">🔌</div>
               <div class="set-hd-txt">
-                <div class="set-hd-label">إعدادات البصمة</div>
+                <div class="set-hd-label">جهاز البصمة ZKTeco</div>
                 <div class="set-hd-sub">ربط جهاز ZKTeco للحضور والانصراف التلقائي</div>
               </div>
             </div>
@@ -2630,6 +2505,59 @@ input:checked+.slider:before{transform:translateX(-20px)}
                   <input id="zkSyncTime" type="time" class="set-input" style="width:140px" onchange="saveZkSettings()" title="مزامنة يومية في هذا الوقت">
                   <div style="font-size:11px;color:var(--muted);margin-top:4px">مزامنة تلقائية شاملة كل يوم في هذا الوقت</div>
                 </div>
+              </div>
+              <div>
+                <div class="set-label">👔 الحد الأدنى للانصراف — الموظفين</div>
+                <select id="zkMinSessionEmp" class="set-input" onchange="saveZkSettings()" style="width:220px">
+                  <option value="0">بدون حد (فوري)</option>
+                  <option value="5">5 دقائق</option>
+                  <option value="10">10 دقائق</option>
+                  <option value="15">15 دقيقة</option>
+                  <option value="20">20 دقيقة</option>
+                  <option value="30">30 دقيقة</option>
+                  <option value="45">45 دقيقة</option>
+                  <option value="60">ساعة واحدة</option>
+                  <option value="90">ساعة ونصف</option>
+                  <option value="120">ساعتان</option>
+                  <option value="180">3 ساعات</option>
+                  <option value="240">4 ساعات</option>
+                  <option value="300">5 ساعات</option>
+                  <option value="360">6 ساعات</option>
+                  <option value="420">7 ساعات</option>
+                  <option value="480">8 ساعات</option>
+                  <option value="540">9 ساعات</option>
+                  <option value="600">10 ساعات</option>
+                  <option value="720">12 ساعة</option>
+                  <option value="960">16 ساعة</option>
+                  <option value="1200">20 ساعة</option>
+                  <option value="1440">24 ساعة</option>
+                </select>
+              </div>
+              <div>
+                <div class="set-label">👔 مزامنة تلقائية للموظفين كل</div>
+                <select id="zkEmpSyncInterval" class="set-input" onchange="saveZkSettings();startZkEmpAutoSync()" style="width:220px">
+                  <option value="0">بدون مزامنة تلقائية</option>
+                  <option value="1">ثانية واحدة</option>
+                  <option value="10">10 ثوانٍ</option>
+                  <option value="30">30 ثانية</option>
+                  <option value="45">45 ثانية</option>
+                  <option value="60">دقيقة واحدة</option>
+                  <option value="120">دقيقتان</option>
+                  <option value="180">3 دقائق</option>
+                  <option value="300">5 دقائق</option>
+                  <option value="600">10 دقائق</option>
+                  <option value="900">15 دقيقة</option>
+                  <option value="1800">30 دقيقة</option>
+                  <option value="3600">ساعة</option>
+                </select>
+                <div id="zkEmpSyncStatus" style="font-size:11px;color:var(--muted);margin-top:4px">⏸ متوقفة</div>
+              </div>
+              <div class="set-row" style="background:#f0fdf4;border-radius:10px;padding:10px 14px">
+                <div>
+                  <div class="set-label">📱 إشعار واتساب لحضور الموظفين</div>
+                  <div class="set-desc">يُرسَل لرقم النادي عند حضور/انصراف كل موظف</div>
+                </div>
+                <label class="toggle"><input type="checkbox" id="empAttWaEnabled" onchange="saveEmpAttWaSetting(this)"><span class="slider"></span></label>
               </div>
               <div style="display:flex;gap:10px;flex-wrap:wrap">
                 <button class="btn bg" onclick="zkConnect()" id="zkConnBtn">🔌 اتصال بالجهاز</button>
@@ -2753,30 +2681,13 @@ input:checked+.slider:before{transform:translateX(-20px)}
             <div class="set-bd">
               <div class="set-row">
                 <div>
-                  <div class="set-label">إظهار أداة التشخيص في القائمة</div>
-                  <div class="set-desc">يُظهر أو يُخفي قسم التشخيص — التحكم للأدمن فقط.</div>
+                  <div class="set-label">Show diagnostics in menu</div>
+                  <div class="set-desc">Shows/hides the diagnostics section. Control remains admin-only.</div>
                 </div>
                 <label class="toggle">
                   <input type="checkbox" id="setDiagnosticsVisible" onchange="saveDiagnosticsVisibility(this)">
                   <span class="slider"></span>
                 </label>
-              </div>
-              <!-- خيار أداة الفحص -->
-              <div class="set-row" style="background:#f8faff;border-radius:10px;padding:10px 14px">
-                <div>
-                  <div class="set-label">🔍 أداة فحص العناصر</div>
-                  <div class="set-desc">تُظهر زر الفحص بالفأرة للمستخدمين — للأدمن دائماً مرئي.</div>
-                </div>
-                <label class="toggle"><input type="checkbox" id="setInspectorVisible" onchange="saveInspectorSetting(this)"><span class="slider"></span></label>
-              </div>
-              <!-- المشاكل المسجّلة -->
-              <div style="background:#f8faff;border:1px solid #e4eaf5;border-radius:12px;padding:14px">
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-                  <div style="font-weight:700;font-size:13px;color:#1e3a5f">🐛 المشاكل المسجّلة بأداة الفحص</div>
-                  <button onclick="localStorage.removeItem('inspector_issues');_inspectorShowIssues();toast('✅ تم مسح المشاكل','tok')"
-                    style="background:#fee2e2;color:#dc2626;border:none;border-radius:7px;padding:4px 10px;font-size:11px;cursor:pointer;font-family:inherit">مسح الكل</button>
-                </div>
-                <div id="inspectorIssuesList"><div style="text-align:center;color:var(--muted);padding:16px">لا توجد مشاكل مسجّلة</div></div>
               </div>
             </div>
           </div>
@@ -3511,7 +3422,7 @@ input:checked+.slider:before{transform:translateX(-20px)}
             <div class="pay-choice-row">
               <button type="button" id="payMethod-cash" class="pay-choice-btn" onclick="choosePayBase('payMethod',1)">💵 كاش</button>
               <button type="button" id="payMethod-card" class="pay-choice-btn" onclick="choosePayBase('payMethod',3)">💳 شبكة</button>
-              <button type="button" id="payMethod-account" class="pay-choice-btn" onclick="choosePayBase('payMethod',6)">🏦 دفعة على الحساب</button>
+              <button type="button" id="payMethod-account" class="pay-choice-btn" onclick="choosePayBase('payMethod',6)">🏦 على الحساب</button>
             </div>
             <div id="payMethod-sub" class="pay-sub-row">
               <button type="button" id="payMethod-full" class="pay-sub-btn" onclick="payFillRemaining();setPaySub('payMethod','full')">✅ كامل المبلغ</button>
@@ -3559,13 +3470,6 @@ input:checked+.slider:before{transform:translateX(-20px)}
             </div>
           </div>
         </div>
-        <div class="fg" style="grid-column:1/-1">
-          <label style="font-weight:700;color:var(--primary)">🕐 فترة دوام الموظف</label>
-          <select id="uShiftId" class="set-input">
-            <option value="">أي فترة / تلقائي</option>
-          </select>
-          <div style="font-size:11px;color:var(--muted);margin-top:4px">اختر الفترة الأولى أو الثانية أو أي فترة تضيفها من إعدادات الموظفين</div>
-        </div>
       </div>
       <div id="permSection">
         <div class="sl2">🔐 الصلاحيات</div>
@@ -3603,7 +3507,7 @@ input:checked+.slider:before{transform:translateX(-20px)}
 //  البريد       : d.llsyanh07@gmail.com
 //  يُحظر نسخ هذا الكود أو توزيعه بدون إذن خطي من المطوّر
 // ══════════════════════════════════════════════════════════════════
-const APP_VERSION = '1.7.7';
+const APP_VERSION = '1.7.1';
 
 // ══ نظام الترجمة ══════════════════════════════════════════════════
 let _lang = 'ar'; // ثابت عربي دائماً
@@ -3640,10 +3544,10 @@ const _T = {
     dash_total:'إجمالي المشتركين',dash_active:'نشط',dash_expired:'منتهي',
     dash_expiring:'ينتهي قريباً',dash_today:'حضور اليوم',dash_revenue:'الإيرادات',
     set_tab_club:'النادي',set_tab_subs:'الاشتراكات',set_tab_comms:'التواصل',
-    set_tab_voice:'إعدادات الصوت',set_tab_users:'المستخدمون',set_tab_backup:'النسخ الاحتياطي',set_tab_admin:'متقدم',
+    set_tab_voice:'الصوت والبصمة',set_tab_users:'المستخدمون',set_tab_backup:'النسخ الاحتياطي',set_tab_admin:'متقدم',
     set_club_title:'معلومات النادي',set_club_sub:'الشعار والاسم والبيانات الرسمية',
     set_sports_title:'أنواع الرياضة',set_dur_title:'مدد الاشتراك',
-    set_voice_title:'إعدادات الصوت',set_auto_title:'إعدادات الإرسال التلقائي',
+    set_voice_title:'إعدادات النطق الصوتي',set_auto_title:'إعدادات الإرسال التلقائي',
     set_users_title:'إدارة المستخدمين',set_wa_title:'ربط الواتساب',
     set_backup_title:'النسخ الاحتياطي والاستعادة',set_fp_title:'جهاز البصمة',
     flt_all:'الكل',flt_active:'نشط',flt_expired:'منتهي',flt_soon:'ينتهي قريباً',flt_today:'اليوم',
@@ -3700,7 +3604,7 @@ const _T = {
     dash_total:'Total Members',dash_active:'Active',dash_expired:'Expired',
     dash_expiring:'Expiring Soon',dash_today:"Today's Attendance",dash_revenue:'Revenue',
     set_tab_club:'Club',set_tab_subs:'Subscriptions',set_tab_comms:'Communication',
-    set_tab_voice:'Voice Settings',set_tab_users:'Users',set_tab_backup:'Backup',set_tab_admin:'Advanced',
+    set_tab_voice:'Voice & Fingerprint',set_tab_users:'Users',set_tab_backup:'Backup',set_tab_admin:'Advanced',
     set_club_title:'Club Information',set_club_sub:'Logo, name and official data',
     set_sports_title:'Sport Types',set_dur_title:'Subscription Durations',
     set_voice_title:'Voice Settings',set_auto_title:'Auto Send Settings',
@@ -3884,7 +3788,7 @@ const _UI_MAP_EN = {
   'أداة التشخيص والإصلاح':'Diagnostics Tool',
   'إظهار أداة التشخيص في القائمة':'Show diagnostics in menu',
   // الإعدادات — البصمة
-  'جهاز البصمة ZKTeco':'ZKTeco Fingerprint Device',
+  'جهاز البصمة (IBScanUltimate)':'Fingerprint Device (IBScanUltimate)',
   'حالة الجهاز':'Device Status','جاري التحميل...':'Loading...',
   'وضع الاختبار (بدون جهاز)':'Test Mode (No Device)',
   'عند التفعيل يعمل البرنامج بمعرّفات تجريبية':'When enabled, uses test IDs',
@@ -4563,48 +4467,8 @@ function getAttendance(){return JSON.parse(localStorage.getItem(KA)||'{}');}
 function saveAttendance(a){localStorage.setItem(KA,JSON.stringify(a));}
 
 function getUsers(){
-  const users=JSON.parse(localStorage.getItem(KU)||'null')||
+  return JSON.parse(localStorage.getItem(KU)||'null')||
     (()=>{const d=[{username:'admin',password:'123'}];localStorage.setItem(KU,JSON.stringify(d));return d;})();
-  if(localStorage.getItem('sub_migrated_help_perm')!=='1'){
-    let changed=false;
-    users.forEach(u=>{
-      if(u&&u.username!=='admin'&&Array.isArray(u.permissions)&&!u.permissions.includes('help')){
-        u.permissions.push('help');
-        changed=true;
-      }
-    });
-    if(changed)localStorage.setItem(KU,JSON.stringify(users));
-    localStorage.setItem('sub_migrated_help_perm','1');
-  }
-  if(localStorage.getItem('sub_migrated_fingerprint_perm')!=='1'){
-    let changed=false;
-    users.forEach(u=>{
-      if(u&&u.username!=='admin'&&Array.isArray(u.permissions)&&u.permissions.includes('set_voice')&&!u.permissions.includes('set_fingerprint')){
-        u.permissions.push('set_fingerprint');
-        changed=true;
-      }
-    });
-    if(changed)localStorage.setItem(KU,JSON.stringify(users));
-    localStorage.setItem('sub_migrated_fingerprint_perm','1');
-  }
-  return users;
-}
-async function refreshUsersFromServerStore(){
-  try{
-    const res=await fetch(getStoreServerBase()+'/api/store',{cache:'no-store'});
-    if(!res.ok)throw new Error('HTTP '+res.status);
-    const data=await res.json();
-    const val=data?.items?.[KU];
-    if(!val)return false;
-    const users=JSON.parse(val);
-    if(Array.isArray(users)&&users.length){
-      localStorage.setItem(KU,val);
-      return true;
-    }
-  }catch(e){
-    console.warn('[STORE] تعذر تحديث المستخدمين من السيرفر:', e.message);
-  }
-  return false;
 }
 const PASSWORD_HASH_PREFIX='sha256$';
 async function hashPassword(pass){
@@ -4713,7 +4577,7 @@ _إدارة {النادي}_ 🏋️`,
 🕐 الوقت: *{الوقت}*
 {ملاحظة}
 ━━━━━━━━━━━━━━━━━━
-📊 *ملخص الدفعات:*
+📊 *ملخص الحساب:*
 💵 المدفوع: *{المدفوع}* من أصل *{الاجمالي}*
 ✅ {حالة_الدفع}
 
@@ -4733,7 +4597,7 @@ _إدارة {النادي}_ 🏋️`,
 🕐 الوقت: *{الوقت}*
 {ملاحظة}
 ━━━━━━━━━━━━━━━━━━
-📊 *ملخص الدفعات:*
+📊 *ملخص الحساب:*
 💵 المدفوع حتى الآن: *{المدفوع}*
 ⏳ المتبقي: *{المتبقي}* من أصل *{الاجمالي}*
 
@@ -4753,7 +4617,7 @@ _إدارة {النادي}_ 🏋️`,
 🕐 الوقت: *{الوقت}*
 {ملاحظة}
 ━━━━━━━━━━━━━━━━━━
-🏦 إجمالي دفعاتك على الحساب: *{الرصيد}*
+🏦 إجمالي رصيدك: *{الرصيد}*
 
 شكراً لك 🙏
 _إدارة {النادي}_ 🏋️`,
@@ -4908,7 +4772,7 @@ function getSettings(){
     trackCheckout:false,
     attWaEnabled:false,
     voiceEnabled:false,
-    voiceEngine:'system',
+    voiceEngine:'edge',
     edgeVoice:'ar-SA-HaalaNeural',
     voiceRate:0.9,
     voicePitch:1.0,
@@ -5355,7 +5219,7 @@ function saveSettings(){
   if(gv('setRestDay')!==null)     s.restDay=parseInt(gv('setRestDay'));
   if(gv('setSendMode')!==null)    s.sendMode=gv('setSendMode');
   if(gv('setBotUrl')!==null)      s.botUrl=(gv('setBotUrl')||'http://localhost:3005').replace(/\/$/,'');
-  if(gv('setAutoMsg')!==null)     s.autoMsg=_boldTemplateVars(rteGetText('setAutoMsg')||gv('setAutoMsg'));
+  if(gv('setAutoMsg')!==null)     s.autoMsg=rteGetText('setAutoMsg')||gv('setAutoMsg');
   s.termsText     = rteGetText('setTermsText') || document.getElementById('setTermsText')?.value || s.termsText;
   s.termsAutoSend = document.getElementById('setTermsAutoSend')?.checked ?? s.termsAutoSend;
   s.termsCaption  = document.getElementById('setTermsCaption')?.value  || s.termsCaption;
@@ -5367,8 +5231,8 @@ function saveSettings(){
   if(_weEl) s.welcomeEnabled = _weEl.checked; // فقط إذا كان العنصر موجوداً
   const _wm = document.getElementById('setWelcomeMsg');
   const _rm = document.getElementById('setRenewMsg');
-  if(_wm && _wm.value.trim()) s.welcomeMsg = _boldTemplateVars(rteGetText('setWelcomeMsg')||_wm.value);
-  if(_rm && _rm.value.trim()) s.renewMsg   = _boldTemplateVars(rteGetText('setRenewMsg')||_rm.value);
+  if(_wm && _wm.value.trim()) s.welcomeMsg = rteGetText('setWelcomeMsg')||_wm.value;
+  if(_rm && _rm.value.trim()) s.renewMsg   = rteGetText('setRenewMsg')||_rm.value;
   const selTpl    = document.querySelector('input[name="pdfTpl"]:checked');
   if(selTpl) s.pdfTemplate = selTpl.value;
   _ksSet(s);
@@ -5439,7 +5303,7 @@ function fillMsg(tpl,rec,extra){
     .replace(/{تاريخ_الانتهاء}/g,  rec.end||'')
     .replace(/{الأيام_المتبقية}/g,  d!==null?d:'')
     .replace(/{المبلغ}/g,       rec.amount?rec.amount:'')
-    .replace(/{طريقة_الدفع}/g,  displayPayMethod(extra.method||rec.method||''))
+    .replace(/{طريقة_الدفع}/g,  extra.method||rec.method||'')
     .replace(/{التاريخ}/g,      extra.date||fmtDateAr())
     .replace(/{الوقت}/g,        extra.time||currentMsgTime())
     .replace(/{المدفوع}/g,      extra.paid!==undefined?extra.paid+' '+getCurrencySymbol():'')
@@ -5981,84 +5845,69 @@ function updateCities(preSelect){
 
 // ============ PERMISSIONS ============
 const PERMS={
-  dashboard:        {icon:'📊',label:'لوحة التحكم'},
-  customers_view:   {icon:'👥',label:'عرض المشتركين'},
-  customers_edit:   {icon:'✏️',label:'إضافة/تعديل مشترك'},
-  customers_delete: {icon:'🗑️',label:'حذف مشترك'},
-  payments:         {icon:'💳',label:'الدفعات'},
-  payments_delete:  {icon:'🗑️',label:'حذف الدفعات'},
-  reports:          {icon:'📈',label:'التقارير'},
-  attendance:       {icon:'📋',label:'حضور المشتركين'},
-  emp_attendance:   {icon:'👔',label:'حضور الموظفين'},
-  help:             {icon:'📖',label:'دليل الاستخدام'},
-  whatsapp:         {icon:'💬',label:'رسائل واتساب'},
-  auto:             {icon:'🤖',label:'الإرسال التلقائي'},
-  settings:         {icon:'⚙️',label:'دخول الإعدادات'},
-  set_club:         {icon:'🏋️',label:'إعدادات النادي'},
-  set_subs:         {icon:'⚽',label:'الرياضات والمدد'},
-  set_attendance:   {icon:'📅',label:'إعدادات الحضور'},
-  set_employees:    {icon:'👔',label:'إعدادات الموظفين'},
-  set_auto:         {icon:'⚙️',label:'إعدادات الإرسال التلقائي'},
-  set_wa:           {icon:'📱',label:'ربط الواتساب'},
-  set_welcome:      {icon:'🎉',label:'رسائل الترحيب'},
-  set_terms:        {icon:'📄',label:'شروط الاشتراك'},
-  set_fingerprint:  {icon:'👆',label:'إعدادات البصمة'},
-  set_voice:        {icon:'🔊',label:'إعدادات الصوت'},
-  set_backup:       {icon:'💾',label:'النسخ الاحتياطي'},
-  users:            {icon:'🔑',label:'إدارة المستخدمين'},
-  diagnostics:      {icon:'🛠️',label:'التشخيص والإصلاح'},
+  dashboard:       {icon:'📊',label:'لوحة التحكم'},
+  customers_view:  {icon:'👥',label:'عرض المشتركين'},
+  customers_edit:  {icon:'✏️',label:'إضافة/تعديل'},
+  customers_delete:{icon:'🗑️',label:'حذف مشترك'},
+  whatsapp:        {icon:'💬',label:'رسائل الواتساب'},
+  auto:            {icon:'🤖',label:'الإرسال التلقائي'},
+  reports:         {icon:'📈',label:'التقارير'},
+  attendance:      {icon:'📋',label:'الحضور والانصراف'},
+  payments:        {icon:'💳',label:'الدفعات'},
+  payments_delete: {icon:'🗑️',label:'حذف الدفعات'},
+  diagnostics:     {icon:'🛠️',label:'التشخيص والإصلاح'},
+  settings:        {icon:'⚙️',label:'الإعدادات (دخول)'},
+  users:           {icon:'🔑',label:'إدارة المستخدمين'},
+  // أقسام الإعدادات
+  set_club:        {icon:'🏋️',label:'إعدادات النادي'},
+  set_sports:      {icon:'⚽',label:'الرياضة والمدد'},
+  set_auto:        {icon:'⚙️',label:'إعدادات الإرسال التلقائي'},
+  set_wa:          {icon:'📱',label:'ربط الواتساب'},
+  set_welcome:     {icon:'🎉',label:'رسائل الترحيب'},
+  set_terms:       {icon:'📄',label:'شروط الاشتراك'},
+  set_backup:      {icon:'💾',label:'النسخ الاحتياطي'},
 };
 // الصلاحيات المقابلة لأقسام الإعدادات
 const SETTINGS_SECTIONS={
-  set_club:       'setCardClub',
-  set_subs:       'setCardSports',
-  set_auto:       'setCardAuto',
-  set_wa:         'setCardWa',
-  set_welcome:    'setCardWelcome',
-  set_terms:      'setCardTerms',
-  set_backup:     'setCardBackup',
-  set_fingerprint:'setCardFingerprint',
-  set_voice:      'setCardVoice',
+  set_club:    'setCardClub',
+  set_sports:  'setCardSports',
+  set_auto:    'setCardAuto',
+  set_wa:      'setCardWa',
+  set_welcome: 'setCardWelcome',
+  set_terms:   'setCardTerms',
+  set_backup:  'setCardBackup',
 };
 const ROLES={
-  employee: ['dashboard','customers_view','customers_edit','attendance','emp_attendance','help','payments','whatsapp'],
-  supervisor:['dashboard','customers_view','customers_edit','customers_delete','reports','attendance','emp_attendance','help','whatsapp','auto','payments','payments_delete','settings','set_club','set_subs','set_attendance','set_employees','set_auto','set_wa','set_welcome','set_terms','set_fingerprint','set_voice'],
+  employee: ['dashboard','customers_view','customers_edit','attendance','payments','payments_delete'],
+  supervisor:['dashboard','customers_view','customers_edit','customers_delete','reports','attendance','payments','payments_delete','diagnostics','settings','set_club','set_welcome'],
   all:      Object.keys(PERMS),
-  viewer:   ['dashboard','customers_view','reports','help']
+  viewer:   ['dashboard','customers_view','reports']
 };
-const PERM_ALIASES={set_subs:['set_sports']};
-function normalizePermSelection(sel){
-  const list=Array.isArray(sel)?sel.slice():[];
-  Object.entries(PERM_ALIASES).forEach(([perm, aliases])=>{
-    if(!list.includes(perm)&&aliases.some(a=>list.includes(a)))list.push(perm);
-  });
-  return list;
-}
 function canDo(perm){
   if(!currentUser)return false;
   const u=getUsers().find(x=>x.username===currentUser);
   if(!u)return false;
   if(u.username==='admin')return true;
   const perms=u.permissions||[];
-  return perms.includes(perm)||(PERM_ALIASES[perm]||[]).some(p=>perms.includes(p));
+  return perms.includes(perm);
 }
 function applyPermissions(){
+  const navPerms=['dashboard','customers_view','whatsapp','auto','reports','attendance','diagnostics','settings'];
   const s=getSettings();
-  document.querySelectorAll('.nav-item').forEach(el=>{
-    const perm=el.dataset.perm;
-    const feat=el.dataset.feat;
-    const permHidden=perm?!canDo(perm):false;
-    const featHidden=feat?s[feat]!==true:false;
+  const featByNav={'nav-whatsapp':'feat_whatsapp','nav-auto':'feat_auto'};
+  document.querySelectorAll('.nav-item').forEach((el,i)=>{
+    const permHidden=navPerms[i]&&!canDo(navPerms[i]);
+    const featKey=el.id?featByNav[el.id]:null;
+    const featHidden=featKey?s[featKey]!==true:false;
     el.style.display=(permHidden||featHidden)?'none':'';
   });
   const arc=document.getElementById('attDetailedReportCard');
   if(arc) arc.style.display=canDo('reports')?'':'none';
   applyDiagnosticsVisibility();
 }
-const SETTINGS_PERMS=['set_club','set_subs','set_attendance','set_employees','set_auto','set_wa','set_welcome','set_terms','set_fingerprint','set_voice','set_backup','users','diagnostics'];
+const SETTINGS_PERMS=['set_club','set_sports','set_auto','set_wa','set_welcome','set_terms','set_backup'];
 function renderPermGrid(sel){
   const g=document.getElementById('permGrid');if(!g)return;
-  sel=normalizePermSelection(sel);
   const mainPerms=Object.entries(PERMS).filter(([k])=>!SETTINGS_PERMS.includes(k));
   g.innerHTML=mainPerms.map(([k,{icon,label}])=>`
     <label class="perm-chip${sel.includes(k)?' active':''}">
@@ -6066,7 +5915,7 @@ function renderPermGrid(sel){
       <span>${icon} ${label}</span>
     </label>`).join('');
   const sg=document.getElementById('settingsPermGrid');if(!sg)return;
-  sg.innerHTML=SETTINGS_PERMS.map(k=>{if(!PERMS[k])return'';const {icon,label}=PERMS[k];return`
+  sg.innerHTML=SETTINGS_PERMS.map(k=>{const {icon,label}=PERMS[k];return`
     <label class="perm-chip${sel.includes(k)?' active':''}">
       <input type="checkbox" value="${k}" ${sel.includes(k)?'checked':''} onchange="this.closest('.perm-chip').classList.toggle('active',this.checked)">
       <span>${icon} ${label}</span>
@@ -6268,9 +6117,6 @@ async function doLogin(){
     document.getElementById('dateBadge').textContent='📅 '+fmtDateAr();
     applyPermissions();
     applyOwnerRestrictions();
-    applyDiagnosticsVisibility();
-    applySettingsPerms();
-    applyInspectorVisibility();
     loadSettings();
     updateAttModeUI();
     _initNavHoverSound();
@@ -6342,16 +6188,6 @@ function saveShiftPeriods(d){ localStorage.setItem(KSP,JSON.stringify(d)); }
 function getHolidays(){ try{return JSON.parse(localStorage.getItem(KHL)||'[]');}catch(_){return[];} }
 function saveHolidays(d){ localStorage.setItem(KHL,JSON.stringify(d)); }
 function isHoliday(date){ return getHolidays().some(h=>h.date===date); }
-function fillUserShiftSelect(selected=''){
-  const sel=document.getElementById('uShiftId'); if(!sel)return;
-  const periods=getShiftPeriods();
-  sel.innerHTML='<option value="">أي فترة / تلقائي</option>'+periods.map((p,i)=>`<option value="${p.id}" ${String(selected)===String(p.id)?'selected':''}>${p.name||('الفترة '+(i+1))} (${p.start||'--:--'} - ${p.end||'--:--'})</option>`).join('');
-}
-function getEmployeeShiftPeriod(empName){
-  const u=(getUsers?getUsers():[]).find(x=>x.username===empName);
-  if(!u||!u.shiftId)return null;
-  return getShiftPeriods().find(p=>String(p.id)===String(u.shiftId))||null;
-}
 
 function renderShiftPeriods(){
   const el=document.getElementById('shiftPeriodsTable'); if(!el) return;
@@ -6372,16 +6208,16 @@ function renderShiftPeriods(){
 function addShiftPeriod(){
   const periods=getShiftPeriods();
   periods.push({id:Date.now(),name:'فترة '+(periods.length+1),start:'08:00',end:'17:00',grace:15});
-  saveShiftPeriods(periods); renderShiftPeriods(); fillUserShiftSelect(document.getElementById('uShiftId')?.value||'');
+  saveShiftPeriods(periods); renderShiftPeriods();
 }
 function updateShiftField(id,field,value){
   const periods=getShiftPeriods();
   const p=periods.find(x=>x.id===id); if(!p) return;
   p[field]=field==='grace'?parseInt(value)||0:value;
-  saveShiftPeriods(periods); fillUserShiftSelect(document.getElementById('uShiftId')?.value||'');
+  saveShiftPeriods(periods);
 }
 function deleteShiftPeriod(id){
-  saveShiftPeriods(getShiftPeriods().filter(p=>p.id!==id)); renderShiftPeriods(); fillUserShiftSelect(document.getElementById('uShiftId')?.value||'');
+  saveShiftPeriods(getShiftPeriods().filter(p=>p.id!==id)); renderShiftPeriods();
 }
 
 function renderHolidays(){
@@ -6412,22 +6248,17 @@ function deleteHoliday(id){
   saveHolidays(getHolidays().filter(h=>h.id!==id)); renderHolidays();
 }
 
-function calcShiftStatus(inTime, outTime, empName){
-  const assigned=empName?getEmployeeShiftPeriod(empName):null;
-  const periods=assigned?[assigned]:getShiftPeriods();
+function calcShiftStatus(inTime, outTime){
+  const periods=getShiftPeriods();
   let shiftStart='', shiftEnd='', grace=0;
   if(periods.length && inTime){
     const [ih,im]=inTime.split(':').map(Number);
     const inMins=ih*60+im;
-    // أولاً: جد الفترة التي وصل الموظف بعد بدايتها (الأقرب من الخلف)
     let best=null, bestDiff=Infinity;
     periods.forEach(p=>{
       if(!p.start) return;
       const [sh,sm]=p.start.split(':').map(Number);
-      const startM=sh*60+sm;
-      // فرق الوقت من بداية الفترة (موجب = وصل بعد البداية)
-      let diff=inMins-startM;
-      if(diff<0) diff+=24*60; // تصحيح عبور منتصف الليل
+      const diff=Math.abs(inMins-(sh*60+sm));
       if(diff<bestDiff){ bestDiff=diff; best=p; }
     });
     if(best){ shiftStart=best.start; shiftEnd=best.end; grace=parseInt(best.grace)||0; }
@@ -6436,8 +6267,7 @@ function calcShiftStatus(inTime, outTime, empName){
   if(inTime && shiftStart){
     const [sh,sm]=shiftStart.split(':').map(Number);
     const [ih,im]=inTime.split(':').map(Number);
-    let diff=(ih*60+im)-(sh*60+sm)-grace;
-    if(diff<-12*60) diff+=24*60; // تصحيح عبور منتصف الليل
+    const diff=(ih*60+im)-(sh*60+sm)-grace;
     if(diff>0) lateIn=diff;
   }
   if(outTime && shiftEnd){
@@ -6449,7 +6279,7 @@ function calcShiftStatus(inTime, outTime, empName){
     let outM=oh*60+om;
     // معالجة العبور عند منتصف الليل
     if(endM<=startM) endM+=24*60;
-    if(outM<6*60)    outM+=24*60;
+    if(outM<startM)  outM+=24*60;
     const diff=endM-outM;
     if(diff>0) earlyOut=diff;
   }
@@ -6506,9 +6336,8 @@ function renderEmpAtt(){
     if(r.inTime&&r.outTime){
       const [ih,im]=r.inTime.split(':').map(Number);
       const [oh,om]=r.outTime.split(':').map(Number);
-      let mins=(oh*60+om)-(ih*60+im);
-      if(mins<0) mins+=24*60;
-      dur=Math.floor(mins/60)+'س '+(mins%60)+'د';
+      const mins=(oh*60+om)-(ih*60+im);
+      if(mins>0) dur=Math.floor(mins/60)+'س '+(mins%60)+'د';
     }
     const status = r.outTime ? `<span class="badge ba">✅ اكتمل</span>` : `<span class="badge bs">⏳ في العمل</span>`;
     const late = (r.lateIn>0) ? `<span style="display:inline-block;background:#fee2e2;color:#dc2626;border-radius:6px;padding:2px 7px;font-size:11px;font-weight:700">⚠️ ${r.lateIn}د</span>` : `<span style="color:#16a34a;font-size:11px">—</span>`;
@@ -6642,7 +6471,47 @@ async function exportEmpAttPdf(){
   await printHtmlInElectron(html, `حضور-الموظفين-${todayStr()}.pdf`);
 }
 
+// ── Override openAddUser/openEditUser/saveUser to include zkId ───
+const _origOpenAddUser = typeof openAddUser === 'function' ? openAddUser : null;
+function openAddUser(){
+  if(_origOpenAddUser) _origOpenAddUser();
+  const zkEl=document.getElementById('uZkId');
+  if(zkEl && !zkEl.value) zkEl.value=_nextEmpNum();
+}
 
+const _origOpenEditUser = typeof openEditUser === 'function' ? openEditUser : null;
+function openEditUser(i){
+  if(_origOpenEditUser) _origOpenEditUser(i);
+  const users=getUsers();
+  const zkEl=document.getElementById('uZkId');
+  if(zkEl&&users[i]){
+    // إذا لا يملك رقماً بعد، أعطه رقماً تلقائياً واحفظه
+    if(!users[i].zkId){
+      users[i].zkId=_nextEmpNum();
+      localStorage.setItem(KU,JSON.stringify(users));
+    }
+    zkEl.value=users[i].zkId;
+  }
+}
+
+const _origSaveUser = typeof saveUser === 'function' ? saveUser : null;
+async function saveUser(){
+  const zkId=(document.getElementById('uZkId')?.value||'').trim();
+  const isNew=(editUserId===null);
+  const users=getUsers();
+  if(editUserId!==null){ users[editUserId].zkId=zkId; localStorage.setItem(KU,JSON.stringify(users)); }
+  if(_origSaveUser) await _origSaveUser();
+  // حفظ zkId للمستخدم الجديد
+  if(isNew&&zkId){
+    const newUsers=getUsers();
+    const last=newUsers[newUsers.length-1];
+    if(last&&!last.zkId){ last.zkId=zkId; localStorage.setItem(KU,JSON.stringify(newUsers)); }
+    // رسالة تأكيد واضحة
+    setTimeout(()=>{
+      toast('✅ تم إضافة الموظف — رقمه في جهاز البصمة: '+zkId,'tok');
+    }, 300);
+  }
+}
 
 // ── ZKTeco Real-Time ─────────────────────────────────────────────
 let _zkAutoTimer   = null;
@@ -6671,21 +6540,13 @@ function zkStopMonitor(){
   fetch(getStoreServerBase()+'/api/zk/stop-monitor',{method:'POST'}).catch(()=>{});
 }
 
-// منع تكرار معالجة نفس البصمة خلال 30 ثانية (الجهاز قد يبصم مرتين)
-const _zkEvtCooldown={};
-function _zkCanProcess(ev){
-  const key=ev.deviceUserId+'_'+ev.type;
-  const now=Date.now();
-  if(_zkEvtCooldown[key]&&(now-_zkEvtCooldown[key])<30000) return false;
-  _zkEvtCooldown[key]=now;
-  return true;
-}
+// جلب الأحداث الجديدة من السيرفر كل 5 ثوانٍ
 async function _zkFetchEvents(){
   try{
     const r=await fetch(getStoreServerBase()+'/api/zk/events');
     const d=await r.json();
     if(d.ok && d.events && d.events.length){
-      d.events.forEach(ev=>{ if(_zkCanProcess(ev)) _zkProcessEvent(ev); });
+      d.events.forEach(ev=>_zkProcessEvent(ev));
     }
   }catch(_){}
 }
@@ -6759,101 +6620,51 @@ function _zkHandleMemberAtt(member, date, time){
 }
 
 // منطق حضور/انصراف الموظف عند البصم
-// دالة مساعدة لتنسيق الدقائق
-function _fmtMins(m){ const h=Math.floor(m/60),r=m%60; return h>0?(h+'س '+(r?r+'د':'')):r+'د'; }
-function _timeMins(t){const [h,m]=String(t||'00:00').split(':').map(Number);return(h||0)*60+(m||0);}
-function _minsTime(m){m=((m%(24*60))+(24*60))%(24*60);return String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0');}
-function _findEmpShiftForPunch(time,mode,empName){
-  const assigned=getEmployeeShiftPeriod(empName);
-  const periods=(assigned?[assigned]:getShiftPeriods()).filter(p=>p.start&&p.end);
-  if(!periods.length)return null;
-  const t=_timeMins(time);
-  let best=null,bestScore=Infinity;
-  periods.forEach(p=>{
-    const bs=_timeMins(p.start),be=_timeMins(p.end);
-    [-1440,0,1440].forEach(off=>{
-      const start=bs+off;let end=be+off;if(end<=start)end+=1440;
-      const score=mode==='in'?(t<=start?start-t:Math.abs(t-start)+720):(t>=start?Math.abs(t-end):Math.abs((t+1440)-end));
-      if(score<bestScore){bestScore=score;best={period:p,start,end,time:t};}
-    });
-  });
-  return best;
-}
-function _checkEmpInBlock(time,empName){
-  const allow=parseInt(getSettings().zkEmpEarlyAllow||0);
-  const sh=_findEmpShiftForPunch(time,'in',empName);
-  if(!sh)return false;
-  if(sh.time<sh.start-allow){
-    toast('🔒 '+(empName?empName+' — ':'')+'لا يسمح بالحضور قبل '+_minsTime(sh.start-allow),'tin');
-    return true;
-  }
-  return false;
-}
-function _checkEmpOutLateBlock(inTime,outTime,empName){
-  const grace=parseInt(getSettings().zkEmpOutGrace||0);
-  const sh=_findEmpShiftForPunch(inTime,'out',empName);
-  if(!sh)return false;
-  let outM=_timeMins(outTime);while(outM<sh.start)outM+=1440;
-  const limit=sh.end+grace;
-  if(outM>limit){
-    toast('🔒 '+(empName?empName+' — ':'')+'انتهت مهلة الانصراف عند '+_minsTime(limit),'tin');
-    return true;
-  }
-  return false;
-}
-
-// منع تكرار رسائل الواتساب لنفس الشخص خلال 60 ثانية
-const _waCooldown={};
-function _waCanSend(key,ms=60000){ const now=Date.now(); if(_waCooldown[key]&&(now-_waCooldown[key])<ms) return false; _waCooldown[key]=now; return true; }
-function _empWaCanSend(empName,type){ return _waCanSend('emp_'+empName+'_'+type); }
-
-// دالة مساعدة لبناء الرسالة وإرسالها للمدير وللموظف
-async function _empSendMsg(msg, empName){
-  const s=getSettings();
-  if(s.sendMode==='link') return;
-  // للمدير
-  const mgrPhone=s.clubPhone;
-  if(mgrPhone&&fmtPhone(mgrPhone)) try{ await sendWhatsApp(fmtPhone(mgrPhone),msg); }catch(_){}
-  // للموظف نفسه
-  const empUser=getUsers().find(u=>u.username===empName);
-  const empPhone=empUser?.phone;
-  if(empPhone&&fmtPhone(empPhone)) try{ await sendWhatsApp(fmtPhone(empPhone),msg); }catch(_){}
-}
-
 async function _sendEmpAttWa(empName, type, inTime, outTime){
   const s=getSettings();
-  const enabled=s.empAttWaEnabled===true||
-    (type==='in'?s.empAttWaInEnabled===true:s.empAttWaOutEnabled===true);
-  if(!enabled) return;
-  if(s.sendMode==='link') return;
-  // مدة الجلسة
+  // يكفي أي من التبديلين: الرئيسي أو تبديل القالب
+  const enabled = s.empAttWaEnabled===true ||
+    (type==='in'  ? s.empAttWaInEnabled===true  : s.empAttWaOutEnabled===true);
+  if(!enabled){ return; }
+  const phone=s.clubPhone;
+  if(!phone){ toast('⚠️ أدخل رقم هاتف النادي في الإعدادات','ter'); return; }
+  if(!fmtPhone(phone)){ toast('⚠️ رقم هاتف النادي غير صحيح: '+phone,'ter'); return; }
+  if(s.sendMode==='link'){ toast('⚠️ يجب تفعيل وضع البوت لإرسال إشعارات الموظفين تلقائياً','ter'); return; }
+  const club=s.clubName||'النادي';
+  const tpl=type==='in'?(s.msgEmpAttIn||_EMP_MSG_DEFAULTS.in):(s.msgEmpAttOut||_EMP_MSG_DEFAULTS.out);
   const ih=inTime||'—', oh=outTime||'—';
   let dur='—';
   if(inTime&&outTime){
-    const [a,b]=inTime.split(':').map(Number),[c,d]=outTime.split(':').map(Number);
-    const m=(c*60+d)-(a*60+b); if(m>0) dur=_fmtMins(m);
+    const [a,b]=inTime.split(':').map(Number);
+    const [c,d]=outTime.split(':').map(Number);
+    const mins=(c*60+d)-(a*60+b);
+    if(mins>0) dur=Math.floor(mins/60)+'س '+(mins%60)+'د';
   }
-  // التأخير والانسحاب من آخر سجل
-  const rec=getEmpAtt().find(r=>r.emp===empName&&r.date===todayStr());
-  const lateTxt=rec?.lateIn>0?_fmtMins(rec.lateIn):'في الوقت ✅';
-  const earlyTxt=rec?.earlyOut>0?_fmtMins(rec.earlyOut):'في الوقت ✅';
-  const tpl=type==='in'?(s.msgEmpAttIn||_EMP_MSG_DEFAULTS.in):(s.msgEmpAttOut||_EMP_MSG_DEFAULTS.out);
   const msg=tpl
-    .replace(/\{الموظف\}/g,empName).replace(/\{النادي\}/g,s.clubName||'النادي')
-    .replace(/\{الوقت\}/g,ih).replace(/\{وقت_الحضور\}/g,ih).replace(/\{وقت_الانصراف\}/g,oh)
-    .replace(/\{المدة\}/g,dur).replace(/\{التأخير\}/g,lateTxt).replace(/\{الانسحاب\}/g,earlyTxt)
+    .replace(/\{الموظف\}/g,empName)
+    .replace(/\{النادي\}/g,club)
+    .replace(/\{الوقت\}/g,inTime||oh)
+    .replace(/\{وقت_الحضور\}/g,ih)
+    .replace(/\{وقت_الانصراف\}/g,oh)
+    .replace(/\{المدة\}/g,dur)
     .replace(/\{التاريخ\}/g,todayStr());
-  await _empSendMsg(msg, empName);
-  toast('📱 تم إرسال إشعار '+(type==='in'?'حضور':'انصراف')+' '+empName,'tok');
+  try{
+    const result=await sendWhatsApp(phone,msg);
+    if(result.ok) toast('📱 تم إرسال إشعار '+( type==='in'?'حضور':'انصراف')+' '+empName+' للمدير','tok');
+    else toast('❌ فشل إرسال الإشعار: '+(result.error||'خطأ'),'ter');
+  }catch(e){ toast('❌ خطأ: '+e.message,'ter'); }
 }
 
 function _zkHandleEmpAtt(empName, date, time){
   const data=getEmpAtt();
   const rec=data.find(r=>r.emp===empName&&r.date===date&&r.inTime&&!r.outTime);
   if(!rec){
-    if(_checkEmpInBlock(time, empName)) return;
-    const {lateIn}=calcShiftStatus(time,null,empName);
-    data.unshift({id:Date.now(),emp:empName,date,inTime:time,outTime:null,lateIn,earlyOut:0,source:'zkteco'});
+    data.unshift({id:Date.now(),emp:empName,date,inTime:time,outTime:null,source:'zkteco'});
+    saveEmpAtt(data);
+    if(document.getElementById('view-emp-attendance')?.classList.contains('active'))renderEmpAtt();
+    const {lateIn}=calcShiftStatus(time,null);
+    if(!rec) data.unshift({id:Date.now(),emp:empName,date:today,inTime:time,outTime:null,lateIn,earlyOut:0});
+    else { rec.inTime=time; rec.lateIn=lateIn; }
     saveEmpAtt(data);
     if(document.getElementById('view-emp-attendance')?.classList.contains('active'))renderEmpAtt();
     toast((lateIn>0?'⚠️ متأخر '+lateIn+'د — ':'✅ ')+' حضور موظف: '+empName+' — '+time,'tok');
@@ -6862,9 +6673,8 @@ function _zkHandleEmpAtt(empName, date, time){
     // فحص وقت الانصراف — يستخدم نهاية الفترة إن وُجدت، وإلا الحد الأدنى
     const blocked=_checkEmpOutBlock(rec.inTime, time, empName);
     if(blocked) return;
-    if(_checkEmpOutLateBlock(rec.inTime, time, empName)) return;
     rec.outTime=time;
-    const {lateIn:_lt2, earlyOut}=calcShiftStatus(rec.inTime,time,empName);
+    const {lateIn:_lt2, earlyOut}=calcShiftStatus(rec.inTime,time);
     if(_lt2>0) rec.lateIn=_lt2;
     rec.earlyOut=earlyOut;
     saveEmpAtt(data);
@@ -6882,9 +6692,8 @@ function saveEmpAttWaSetting(cb){
 
 // قوالب رسائل الموظفين
 const _EMP_MSG_DEFAULTS={
-  in:      `🏋️ *{النادي}*\n\n✅ حضور موظف\n👤 الموظف: *{الموظف}*\n⏰ وقت الحضور: {الوقت}\n⚠️ التأخير: {التأخير}\n📅 {التاريخ}`,
-  out:     `🏋️ *{النادي}*\n\n🚪 انصراف موظف\n👤 الموظف: *{الموظف}*\n⏰ الحضور: {وقت_الحضور}\n🚪 الانصراف: {وقت_الانصراف}\n⏱ المدة: {المدة}\n🏃 انسحاب مبكر: {الانسحاب}\n📅 {التاريخ}`,
-  blocked: `🔒 *{النادي}*\n\n⏳ محاولة انصراف مبكر\n👤 الموظف: *{الموظف}*\n🕐 الانصراف متاح من: {وقت_السماح}\n⏳ الوقت المتبقي: {الباقي}\n📅 {التاريخ}`
+  in: `🏋️ *{النادي}*\n\n✅ حضور موظف\n👤 الموظف: *{الموظف}*\n⏰ وقت الحضور: {الوقت}\n📅 {التاريخ}`,
+  out:`🏋️ *{النادي}*\n\n🚪 انصراف موظف\n👤 الموظف: *{الموظف}*\n⏰ الحضور: {وقت_الحضور}\n🚪 الانصراف: {وقت_الانصراف}\n⏱ المدة: {المدة}\n📅 {التاريخ}`
 };
 
 function saveEmpMsgEnabled(type,val){
@@ -6894,7 +6703,6 @@ function saveEmpMsgEnabled(type,val){
 }
 function saveEmpMsgTpl(type,val){
   const s=getSettings();
-  val=_boldTemplateVars(val);
   if(type==='in') s.msgEmpAttIn=val; else s.msgEmpAttOut=val;
   _ksSet(s);
 }
@@ -6919,8 +6727,8 @@ function initEmpMsgPanels(){
   const tout=document.getElementById('msgEmpAttOut');
   const ein=document.getElementById('empAttWaInEnabled');
   const eout=document.getElementById('empAttWaOutEnabled');
-  if(tin){ tin.value=_boldTemplateVars(s.msgEmpAttIn||_EMP_MSG_DEFAULTS.in); updateEmpMsgPreview('in'); }
-  if(tout){ tout.value=_boldTemplateVars(s.msgEmpAttOut||_EMP_MSG_DEFAULTS.out); updateEmpMsgPreview('out'); }
+  if(tin){ tin.value=s.msgEmpAttIn||_EMP_MSG_DEFAULTS.in; updateEmpMsgPreview('in'); }
+  if(tout){ tout.value=s.msgEmpAttOut||_EMP_MSG_DEFAULTS.out; updateEmpMsgPreview('out'); }
   if(ein) ein.checked=!!s.empAttWaInEnabled;
   if(eout) eout.checked=!!s.empAttWaOutEnabled;
 }
@@ -6987,8 +6795,6 @@ function saveZkSettings(){
   s.zkAutoInterval= parseInt(document.getElementById('zkAutoInterval')?.value)||0; // بالثوانٍ
   const _zkms=document.getElementById('zkMinSession'); s.zkMinSession=_zkms?parseInt(_zkms.value):30;
   const _zkme=document.getElementById('zkMinSessionEmp'); s.zkMinSessionEmp=_zkme?parseInt(_zkme.value):0;
-  const _zkea=document.getElementById('zkEmpEarlyAllow'); s.zkEmpEarlyAllow=_zkea?parseInt(_zkea.value)||0:(s.zkEmpEarlyAllow||0);
-  const _zkeo=document.getElementById('zkEmpOutGrace'); s.zkEmpOutGrace=_zkeo?parseInt(_zkeo.value)||0:(s.zkEmpOutGrace||0);
   const _zkst=document.getElementById('zkSyncTime'); s.zkSyncTime=_zkst?_zkst.value:'';
   const _zkes=document.getElementById('zkEmpSyncInterval'); s.zkEmpSyncInterval=_zkes?parseInt(_zkes.value)||0:0;
   _ksSet(s);
@@ -7003,8 +6809,6 @@ function loadZkSettings(){
   const ai=document.getElementById('zkAutoInterval'); if(ai) ai.value=s.zkAutoInterval||0;
   const ms=document.getElementById('zkMinSession'); if(ms) ms.value=(s.zkMinSession!==undefined&&s.zkMinSession!==null)?s.zkMinSession:30;
   const me=document.getElementById('zkMinSessionEmp'); if(me) me.value=(s.zkMinSessionEmp!==undefined&&s.zkMinSessionEmp!==null)?s.zkMinSessionEmp:0;
-  const ea=document.getElementById('zkEmpEarlyAllow'); if(ea) ea.value=(s.zkEmpEarlyAllow!==undefined&&s.zkEmpEarlyAllow!==null)?s.zkEmpEarlyAllow:0;
-  const eo=document.getElementById('zkEmpOutGrace'); if(eo) eo.value=(s.zkEmpOutGrace!==undefined&&s.zkEmpOutGrace!==null)?s.zkEmpOutGrace:0;
   const st=document.getElementById('zkSyncTime'); if(st) st.value=s.zkSyncTime||'';
   const ew=document.getElementById('empAttWaEnabled'); if(ew) ew.checked=!!s.empAttWaEnabled;
   const es=document.getElementById('zkEmpSyncInterval'); if(es) es.value=s.zkEmpSyncInterval||0;
@@ -7026,9 +6830,7 @@ function zkCleanError(err){
   if(msg.includes('getInfo')){
     return 'تم الوصول للجهاز لكن تعذر قراءة معلوماته. أعد المحاولة أو استخدم مزامنة الآن.';
   }
-  if(msg.includes('ETIMEDOUT')||msg.includes('ECONNREFUSED')) return 'تعذر الاتصال — تحقق من IP الجهاز والشبكة';
-  if(msg.includes('ENOTFOUND')) return 'عنوان IP غير صحيح أو الجهاز غير موجود في الشبكة';
-  return msg||'تعذر الاتصال بالجهاز — تحقق من تشغيله وصحة الـ IP';
+  return msg||'خطأ غير معروف';
 }
 
 function startZkAutoSync(){
@@ -7042,7 +6844,7 @@ function startZkAutoSync(){
   }
   if(el) el.textContent='🔴 مزامنة '+_zkIntervalLabel(secs);
   // تحديث Server poll interval
-  {
+  if(_zkInstance||true){
     fetch(getStoreServerBase()+'/api/zk/start-monitor',{
       method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({intervalSecs:secs})
@@ -7077,24 +6879,16 @@ function zkConnect(silent=false){
       setDashZk('ok','🟢','جهاز البصمة متصل ✅','ZKTeco — '+ip);
       // تحديث زر الشريط العلوي
       const tb=document.getElementById('topZkBtn');
-      if(tb){
-        tb.style.background='#3b82f6';tb.style.borderColor='#93c5fd';tb.style.boxShadow='0 0 0 1px rgba(147,197,253,.35),0 0 16px rgba(59,130,246,.65)';tb.title='البصمة متصلة ✅ — '+ip;
-        tb.onmouseover=()=>{tb.style.background='#2563eb';};
-        tb.onmouseout =()=>{tb.style.background='#3b82f6';};
-      }
+      if(tb){tb.style.background='rgba(34,197,94,.4)';tb.style.borderColor='rgba(34,197,94,.6)';tb.title='البصمة متصلة ✅ — '+ip;}
     } else {
-      const err=zkCleanError(d&&d.error)||'تعذر الاتصال بالجهاز — تحقق من IP والشبكة';
+      const err=zkCleanError(d.error);
       if(!silent){
         if(status){status.style.background='#fee2e2';status.textContent='❌ '+err;}
-        toast('❌ '+err,'ter');
+        toast('❌ فشل الاتصال: '+err,'ter');
       }
       setDashZk('err','🔴','البصمة غير متصلة',err);
       const tb=document.getElementById('topZkBtn');
-      if(tb){
-        tb.style.background='rgba(255,255,255,.15)';tb.style.borderColor='rgba(255,255,255,.3)';tb.style.boxShadow='none';tb.title='البصمة غير متصلة — انقر للمحاولة';
-        tb.onmouseover=()=>{tb.style.background='rgba(255,255,255,.25)';};
-        tb.onmouseout =()=>{tb.style.background='rgba(255,255,255,.15)';};
-      }
+      if(tb){tb.style.background='rgba(220,38,38,.3)';tb.style.borderColor='rgba(220,38,38,.5)';tb.title='البصمة غير متصلة — انقر للمحاولة';}
     }
   }).catch(e=>{
     if(!silent){
@@ -7114,9 +6908,8 @@ function zkSync(silent){
         if(d.attendance&&d.attendance.length){ mergeZkAttendance(d.attendance); }
         toast('✅ تمت المزامنة','tok');
       } else {
-        const syncErr=zkCleanError(d&&d.error)||'فشلت المزامنة';
-        if(status){status.style.background='#fee2e2';status.textContent='❌ '+syncErr;}
-        toast('❌ '+syncErr,'ter');
+        if(status){status.style.background='#fee2e2';status.textContent='❌ '+d.error;}
+        toast('❌ '+d.error,'ter');
       }
     }).catch(()=>toast('❌ تعذّر الاتصال بالسيرفر','ter'));
 }
@@ -7157,15 +6950,11 @@ function mergeZkAttendance(records){
       // → قائمة حضور الموظفين
       if(!empData.find(e=>e.id===r.id)){
         if(r.type==='in'||r.type===0){
-          if(_checkEmpInBlock(r.time, name)) return;
           const ex=empData.find(e=>e.emp===name&&e.date===r.date&&e.inTime&&!e.outTime);
           if(!ex) empData.unshift({id:r.id,emp:name,date:r.date,inTime:r.time,outTime:null,source:'zkteco'});
         } else {
           const rec=empData.find(e=>e.emp===name&&e.date===r.date&&e.inTime&&!e.outTime);
-          if(rec){
-            if(_checkEmpOutBlock(rec.inTime, r.time, name)||_checkEmpOutLateBlock(rec.inTime, r.time, name)) return;
-            rec.outTime=r.time;
-          }
+          if(rec) rec.outTime=r.time;
           else empData.unshift({id:r.id,emp:name,date:r.date,inTime:null,outTime:r.time,source:'zkteco'});
         }
         addedEmp++;
@@ -7438,9 +7227,6 @@ function _lcCopyId(){
 
 setTimeout(()=>{ try{applyLoginTheme();}catch(_){} try{applyLoginCopyright();}catch(_){} try{_lcInit();}catch(_){} try{applyLang(_lang);}catch(_){} }, 0);
 
-// USB fingerprint compatibility stubs. ZKTeco is the only active attendance device.
-let _fpAutoActive=false, _fpAutoAbort=null, _fpMockResolve=null;
-function _fpAutoUIState(){}
 // ============ VIEWS ============
 const VN={
   get dashboard(){ return t('pg_dashboard'); },
@@ -7454,7 +7240,7 @@ const VN={
   get help(){ return t('pg_help'); },
   'emp-attendance': '👔 حضور وانصراف الموظفين'
 };
-const VIEW_PERMS={customers:'customers_view',whatsapp:'whatsapp',auto:'auto',reports:'reports',attendance:'attendance','emp-attendance':'emp_attendance',diagnostics:'diagnostics',help:'help',settings:'settings'};
+const VIEW_PERMS={customers:'customers_view',whatsapp:'whatsapp',auto:'auto',reports:'reports',attendance:'attendance',diagnostics:'diagnostics',settings:'settings'};
 function showView(v){
   if(VIEW_PERMS[v]&&!canDo(VIEW_PERMS[v])){toast('⛔ ليس لديك صلاحية للوصول إلى هذا القسم','ter');return;}
   if(v==='diagnostics' && getSettings().diagnosticsVisible===false){toast('⛔ أداة التشخيص مخفية حالياً','ter');return;}
@@ -7472,18 +7258,13 @@ function showView(v){
   const items=document.querySelectorAll('.nav-item');
   const map={dashboard:0,customers:1,whatsapp:2,auto:3,reports:4,attendance:5,'emp-attendance':6,diagnostics:7,help:8,settings:9};
   if(items[map[v]])items[map[v]].classList.add('active');
-  if(v==='dashboard'){renderDashboard();checkDashWaStatus();checkDashZkStatus();}
+  if(v==='dashboard'){renderDashboard();checkDashWaStatus();}
   if(v==='customers'){populateFilterSelects();renderCustomers();}
-  if(v==='whatsapp'){
-    loadMsgTemplates?.();
-    initEmpMsgPanels?.();
-    if(!document.getElementById('msgEditor')?.value)selectTpl(curTpl||'welcome');
-    else{renderWaRecipients();updateTemplatePreviews();refreshEditorPreview?.();}
-  }
+  if(v==='whatsapp'){renderWaRecipients();updateTemplatePreviews();}
   if(v==='auto')renderAutoView();
   if(v==='reports')renderReports();
   if(v==='diagnostics')runDiagnostics();
-  if(v==='settings'){loadFeaturesAdminCard();_syncSettingsToggles();switchSetTab('club',document.querySelector('#setTabsBar .set-tab'));updateAttModeUI();applySettingsPerms();}
+  if(v==='settings'){fpLoadStatus();loadFeaturesAdminCard();_syncSettingsToggles();switchSetTab('club',document.querySelector('#setTabsBar .set-tab'));updateAttModeUI();}
   if(v==='help')renderHelpView();
   if(v==='attendance'){
     renderAttendance();
@@ -7519,12 +7300,10 @@ let _lastDiagnostics=[];
 function applyDiagnosticsVisibility(){
   const nav=document.getElementById('nav-diagnostics');
   if(!nav)return;
-  const allowed=getSettings().diagnosticsVisible!==false && canDo('diagnostics');
-  if(!allowed){
+  const hidden=getSettings().diagnosticsVisible===false;
+  if(hidden){
     nav.style.display='none';
     if(document.getElementById('view-diagnostics')?.classList.contains('active')) showView('dashboard');
-  }else{
-    nav.style.display='';
   }
 }
 
@@ -7689,14 +7468,16 @@ async function runDiagnostics(){
   else if(bkKeys.length>10) items.push(diagItem('warn','النسخ الاحتياطية',`يوجد ${bkKeys.length} نسخة احتياطية قد تملأ التخزين — احذف القديمة.`,true));
   else items.push(diagItem('ok','النسخ الاحتياطية',`يوجد ${bkKeys.length} نسخة احتياطية محفوظة.`));
 
-  // 9. جهاز البصمة ZKTeco
+  // 9. جهاز البصمة
   try{
     const ctrl=new AbortController();
     setTimeout(()=>ctrl.abort(),3000);
-    const zr=await fetch((s.botUrl||'http://localhost:3005').replace(/\/$/,'')+'/api/zk/status',{signal:ctrl.signal,cache:'no-store'});
-    const zk=await zr.json();
-    items.push(diagItem(zk.connected?'ok':'warn','جهاز البصمة ZKTeco',zk.connected?(zk.monitoring?'متصل والمراقبة الفورية تعمل.':'متصل، شغّل المراقبة الفورية من إعدادات ZKTeco.'):'غير متصل — تحقق من IP الجهاز ثم اضغط اتصال بالجهاز.'));
-  }catch(_){items.push(diagItem('warn','جهاز البصمة ZKTeco','تعذر الاتصال بخدمة ZKTeco — تأكد أن البوت يعمل.'));}
+    const fr=await fetch((s.botUrl||'http://localhost:3005').replace(/\/$/,'')+'/api/fp/status',{signal:ctrl.signal,cache:'no-store'});
+    const fp=await fr.json();
+    if(fp.sdkLoaded&&!fp.forceMock) items.push(diagItem('ok','جهاز البصمة',`SDK محمّل — ${fp.deviceOpen?'الجهاز متصل ✓':'الجهاز غير متصل (وصّل الجهاز عبر USB)'}.`));
+    else if(fp.forceMock) items.push(diagItem('warn','جهاز البصمة','وضع الاختبار مفعّل يدوياً — البصمات تجريبية.'));
+    else items.push(diagItem('warn','جهاز البصمة','SDK غير محمّل: '+(fp.sdkError||'لم يُعثر على DLL')+'.'));
+  }catch(_){items.push(diagItem('warn','جهاز البصمة','تعذر الاتصال بخادم البصمة — ربما البوت لم يبدأ بعد.'));}
 
   // 10. اتصال واتساب
   try{
@@ -8234,7 +8015,7 @@ function setDashZk(type, icon, text, sub){
 
 async function checkDashZkStatus(){
   const s=getSettings();
-  if(!s.zkIp){ setDashZk('warn','🔴','جهاز البصمة غير مضبوط','أدخل IP جهاز ZKTeco من الإعدادات'); return; }
+  if(!s.zkIp){ return; }
   setDashZk('loading','⏳','جاري التحقق من البصمة...','جهاز ZKTeco — '+s.zkIp);
   try{
     const r=await fetch(getStoreServerBase()+'/api/zk/status',{signal:AbortSignal.timeout?AbortSignal.timeout(5000):undefined});
@@ -8288,13 +8069,11 @@ async function checkDashWaStatus(){
   try{
     const res=await fetch(url+'/api/status',{signal:ctrl.signal});
     const d=await res.json();
-    setSidebarWaState(d.status);
     if(d.status==='ready')        setDashWa('ok',  '🟢','واتساب متصل وجاهز للإرسال','انقر للإعدادات');
     else if(d.status==='qr')      setDashWa('warn','📷','يحتاج مسح QR ? انقر للإعدادات','امسح رمز QR لتفعيل الإرسال');
     else if(d.status==='pairing') setDashWa('warn','🔑','في انتظار رمز الربط','أدخل الرمز في واتساب');
     else                          setDashWa('warn','🟡','البوت يعمل ? واتساب غير جاهز','الحالة: '+d.status);
   }catch(e){
-    setSidebarWaState('offline');
     setDashWa('err','🔴','البوت غير متصل','شغّل تشغيل بوت الواتساب.bat');
   }finally{
     clearTimeout(tid);
@@ -8303,7 +8082,6 @@ async function checkDashWaStatus(){
 
 // ============ DASHBOARD ============
 function renderDashboard(){
-  setTimeout(()=>{try{checkDashZkStatus();}catch(_){}} ,0);
   const data=getData();
   let act=0,exp=0,soon=0;
   data.forEach(r=>{const d=calcDays(r.end);if(d===null)return;if(d<0)exp++;else if(d<=7)soon++;else act++;});
@@ -8571,8 +8349,6 @@ function updateAutoStatus(){if(document.getElementById('view-auto').classList.co
 
 // ============ SETTINGS ============
 function switchSetTab(tab, btn) {
-  const tabPerms={club:'set_club',subs:'set_subs',comms:'set_wa',attendance:'set_attendance',employees:'set_employees',fingerprint:'set_fingerprint',voice:'set_voice',users:'users',backup:'set_backup'};
-  if(tabPerms[tab]&&!canDo(tabPerms[tab])){toast('⛔ ليس لديك صلاحية لهذا القسم','ter');applySettingsPerms?.();return;}
   document.querySelectorAll('#setTabsBar .set-tab').forEach(b => b.classList.remove('s-active'));
   if (btn) btn.classList.add('s-active');
   document.querySelectorAll('.set-card[data-set-tab]').forEach(c => {
@@ -8580,9 +8356,6 @@ function switchSetTab(tab, btn) {
     else c.classList.add('tab-hidden');
   });
   if(tab==='attendance'){ renderShiftPeriods(); renderHolidays(); }
-  if(tab==='employees'){ renderShiftPeriods(); renderHolidays(); loadZkSettings(); }
-  if(tab==='users'){ refreshUsersFromServerStore().then(()=>renderUserList()); }
-  if(tab==='admin'){ _inspectorShowIssues(); }
 }
 
 function arrangeAppearanceSettings(){
@@ -8600,54 +8373,6 @@ function arrangeAppearanceSettings(){
     if(el&&mount&&el.parentElement!==mount)mount.appendChild(el);
   });
 }
-function loadVoiceSettings(){
-  const s=getSettings();
-  const vg=document.getElementById('voiceGreeting'); if(vg) vg.value=s.voiceGreeting||'أهلاً وسهلاً {الاسم}، مرحباً بك';
-  const vf=document.getElementById('voiceFarewell'); if(vf) vf.value=s.voiceFarewell||'مع السلامة {الاسم}، إلى اللقاء';
-  const vv=document.getElementById('voiceVolume');
-  if(vv){ vv.value=s.voiceVolume||1.0; const lbl=document.getElementById('voiceVolumeLbl'); if(lbl) lbl.textContent=parseFloat(vv.value).toFixed(1); }
-}
-function loadEmployeeSelect(){ buildEmpSelect(); }
-
-function toggleVoice(el){
-  const s=getSettings(); s.voiceEnabled=el.checked; saveSettings();
-  const other=document.getElementById(el.id==='voiceToggle'?'voiceSettingsToggle':'voiceToggle');
-  if(other) other.checked=el.checked;
-}
-function saveNavHoverSound(el){ const s=getSettings(); s.navHoverSound=el.checked; saveSettings(); }
-function onVoiceEngineChange(){ /* no-op: engine is always Windows TTS */ }
-function saveVoiceSettings(){
-  const s=getSettings();
-  s.voiceEngine='system';
-  const vg=document.getElementById('voiceGreeting'); if(vg) s.voiceGreeting=vg.value;
-  const vf=document.getElementById('voiceFarewell'); if(vf) s.voiceFarewell=vf.value;
-  const vr=document.getElementById('voiceRate'); if(vr) s.voiceRate=parseFloat(vr.value)||0.9;
-  const vp=document.getElementById('voicePitch'); if(vp) s.voicePitch=parseFloat(vp.value)||1.0;
-  const vv=document.getElementById('voiceVolume'); if(vv) s.voiceVolume=parseFloat(vv.value)||1.0;
-  saveSettings(); toast('✅ تم حفظ إعدادات الصوت','tok');
-}
-async function playEdgeTTS(text){ await speak(text); }
-function showAvailableVoices(){
-  if(!window.speechSynthesis){toast('⚠️ Windows TTS غير مدعوم','ter');return;}
-  const voices=window.speechSynthesis.getVoices().filter(v=>v.lang.startsWith('ar'));
-  if(!voices.length){toast('لا توجد أصوات عربية مثبتة في Windows','ter');return;}
-  toast('الأصوات العربية: '+voices.map(v=>v.name).join(' | '),'tin');
-}
-async function speak(text){
-  const s=getSettings();
-  if(!s.voiceEnabled||!text) return;
-  if(!window.speechSynthesis) return;
-  window.speechSynthesis.cancel();
-  const utt=new SpeechSynthesisUtterance(text);
-  utt.lang='ar-SA';
-  utt.rate=parseFloat(s.voiceRate??0.9);
-  utt.pitch=parseFloat(s.voicePitch??1.0);
-  utt.volume=parseFloat(s.voiceVolume??1.0);
-  const voices=window.speechSynthesis.getVoices();
-  const arVoice=voices.find(v=>v.lang==='ar-SA')||voices.find(v=>v.lang.startsWith('ar'))||null;
-  if(arVoice) utt.voice=arVoice;
-  window.speechSynthesis.speak(utt);
-}
 function loadSettings(){
   // عرض الإصدار الحالي في بطاقة التحديث
   const vs = document.getElementById('curVerSpan');
@@ -8661,7 +8386,7 @@ function loadSettings(){
   document.getElementById('setRestDay').value=s.restDay??5;
   document.getElementById('setSendMode').value=s.sendMode||'link';
   document.getElementById('setBotUrl').value=s.botUrl||'http://localhost:3005';
-  document.getElementById('setAutoMsg').value=_boldTemplateVars(s.autoMsg);
+  document.getElementById('setAutoMsg').value=s.autoMsg;
   updateSendModeUI();
   document.querySelectorAll('#daysChecks input').forEach(cb=>{
     cb.checked=s.days.includes(parseInt(cb.value));
@@ -8719,8 +8444,8 @@ function loadSettings(){
   if(wEl) wEl.checked = !!s.welcomeEnabled;
   // إعادة التعيين إذا كان النص تالفاً (لا يحتوي سطر جديد)
   const DEF = getDefaultSettings();
-  const wTxt = _boldTemplateVars((s.welcomeMsg||'').includes('\n') ? s.welcomeMsg : DEF.welcomeMsg);
-  const rTxt = _boldTemplateVars((s.renewMsg||'').includes('\n')   ? s.renewMsg   : DEF.renewMsg);
+  const wTxt = (s.welcomeMsg||'').includes('\n') ? s.welcomeMsg : DEF.welcomeMsg;
+  const rTxt = (s.renewMsg||'').includes('\n')   ? s.renewMsg   : DEF.renewMsg;
   if(wMsg){ wMsg.value=wTxt; const ed=document.querySelector('.rte-editor[data-ta="setWelcomeMsg"]'); if(ed)ed.innerHTML=wTxt.replace(/\n/g,'<br>'); }
   if(rMsg){ rMsg.value=rTxt; const ed=document.querySelector('.rte-editor[data-ta="setRenewMsg"]'); if(ed)ed.innerHTML=rTxt.replace(/\n/g,'<br>'); }
   updateWelcomePreviews();
@@ -9194,8 +8919,7 @@ function _checkEmpOutBlock(inTime, nowTime, empName){
   const minMins=s.zkMinSessionEmp!==undefined?parseInt(s.zkMinSessionEmp):0;
   if(minMins>0){
     // الحساب من وقت بداية الدوام إن وُجد، وإلا من وقت الحضور
-    const assigned=getEmployeeShiftPeriod(empName);
-    const periods=assigned?[assigned]:getShiftPeriods();
+    const periods=getShiftPeriods();
     let baseTime=inTime;
     if(periods.length){
       const [ih,im]=inTime.split(':').map(Number);
@@ -9215,20 +8939,7 @@ function _checkEmpOutBlock(inTime, nowTime, empName){
     if(elapsed<0) elapsed+=24*60;
     if(elapsed<minMins){
       const allowT=_allowTime(baseTime,minMins);
-      const remL=_remainLabelFrom(baseTime,minMins);
-      toast('🔒 '+(empName?empName+' — ':'')+'الانصراف من الساعة '+allowT+' (باقي '+remL+')','tin');
-      // إرسال واتساب للمدير وللموظف
-      (async()=>{
-        const s=getSettings();
-        if(s.empAttWaEnabled!==true||s.sendMode==='link') return;
-        const msg=_EMP_MSG_DEFAULTS.blocked
-          .replace(/\{النادي\}/g,s.clubName||'النادي')
-          .replace(/\{الموظف\}/g,empName||'—')
-          .replace(/\{وقت_السماح\}/g,allowT)
-          .replace(/\{الباقي\}/g,remL)
-          .replace(/\{التاريخ\}/g,todayStr());
-        await _empSendMsg(msg, empName);
-      })();
+      toast('🔒 '+(empName?empName+' — ':'')+'الانصراف من الساعة '+allowT+' (باقي '+_remainLabelFrom(baseTime,minMins)+')','tin');
       return true;
     }
   }
@@ -9687,152 +9398,6 @@ async function sendWhatsApp(phone,message){
 }
 
 let _botWatchId=null;
-let _waQrModalWatchId=null;
-function setSidebarWaState(status){
-  const nav=document.getElementById('nav-whatsapp');
-  if(!nav)return;
-  const ready=status==='ready';
-  nav.dataset.waReady=ready?'1':'0';
-  nav.style.cursor='pointer';
-  nav.title='رسائل واتساب';
-}
-async function getWhatsAppBotStatus(timeout=2500){
-  const url=(getSettings().botUrl||'http://localhost:3005').replace(/\/+$/,'');
-  const c=new AbortController(); const tid=setTimeout(()=>c.abort(),timeout);
-  try{
-    const d=await(await fetch(url+'/api/status',{signal:c.signal})).json();
-    return d&&d.status?d.status:'unknown';
-  }catch(_){
-    return 'offline';
-  }finally{
-    clearTimeout(tid);
-  }
-}
-function ensureWhatsAppBotMode(){
-  const s=getSettings();
-  if(s.sendMode==='bot'||s.sendMode==='baileys')return;
-  s.sendMode='baileys';
-  _ksSet(s);
-  const sel=document.getElementById('setSendMode');
-  if(sel)sel.value='baileys';
-  updateSendModeUI();
-}
-function hideWhatsAppLinkPanel(){
-  if(_waQrModalWatchId){clearInterval(_waQrModalWatchId);_waQrModalWatchId=null;}
-  const box=document.getElementById('botIframeBox');
-  const frame=document.getElementById('botFrame');
-  const btn=document.getElementById('qrToggleBtn');
-  if(box)box.style.display='none';
-  if(frame)frame.src='';
-  if(btn)btn.textContent='📷 ربط الواتساب';
-  const dashBox=document.getElementById('dashWaQrPanel');
-  const dashFrame=document.getElementById('dashBotFrame');
-  const modal=document.getElementById('waQrModal');
-  const modalFrame=document.getElementById('waQrModalFrame');
-  if(dashBox)dashBox.style.display='none';
-  if(dashFrame)dashFrame.src='';
-  if(modal)modal.style.display='none';
-  if(modalFrame)modalFrame.src='';
-}
-function startWaQrModalWatch(){
-  if(_waQrModalWatchId)clearInterval(_waQrModalWatchId);
-  _waQrModalWatchId=setInterval(async()=>{
-    const modal=document.getElementById('waQrModal');
-    if(!modal||modal.style.display==='none'){
-      clearInterval(_waQrModalWatchId);_waQrModalWatchId=null;return;
-    }
-    const status=await getWhatsAppBotStatus(1800);
-    setSidebarWaState(status);
-    if(status==='ready'){
-      setBotUI('ok','🟢','واتساب متصل','جاهز للإرسال التلقائي');
-      _syncQrBtn(true);
-      hideWhatsAppLinkPanel();
-      checkDashWaStatus?.();
-    }
-  },2000);
-}
-function reloadWaQrModalFrame(){
-  const url=(getSettings().botUrl||'http://localhost:3005').replace(/\/+$/,'');
-  const frame=document.getElementById('waQrModalFrame');
-  if(frame)frame.src=url+'/qr?t='+Date.now();
-}
-function reloadDashBotFrame(){
-  const url=(getSettings().botUrl||'http://localhost:3005').replace(/\/+$/,'');
-  const frame=document.getElementById('dashBotFrame');
-  if(frame)frame.src=url+'/qr?t='+Date.now();
-}
-function showWhatsAppQrPanel(){
-  const modal=document.getElementById('waQrModal');
-  const modalFrame=document.getElementById('waQrModalFrame');
-  const modalStatus=document.getElementById('waQrModalStatus');
-  const url=(getSettings().botUrl||'http://localhost:3005').replace(/\/+$/,'');
-  if(modal){
-    modal.style.display='flex';
-    if(modalStatus)modalStatus.textContent='امسح QR أو أدخل رقم الربط لتفعيل واتساب';
-    if(modalFrame)modalFrame.src=url+'/qr?t='+Date.now();
-    startWaQrModalWatch();
-    return;
-  }
-  const dashBox=document.getElementById('dashWaQrPanel');
-  const dashFrame=document.getElementById('dashBotFrame');
-  const dashStatus=document.getElementById('dashWaQrStatus');
-  if(dashBox){
-    dashBox.style.display='block';
-    if(dashStatus)dashStatus.textContent='امسح QR أو أدخل رقم الربط لتفعيل واتساب';
-    if(dashFrame)dashFrame.src=url+'/qr?t='+Date.now();
-    dashBox.scrollIntoView({behavior:'smooth',block:'start'});
-    return;
-  }
-  const box=document.getElementById('botIframeBox');
-  const connPanel=document.getElementById('botConnectedPanel');
-  const qrPanel=document.getElementById('botQrPanel');
-  const frame=document.getElementById('botFrame');
-  const btn=document.getElementById('qrToggleBtn');
-  if(connPanel)connPanel.style.display='none';
-  if(qrPanel)qrPanel.style.display='block';
-  if(box)box.style.display='block';
-  if(frame)frame.src=url+'/qr?t='+Date.now();
-  if(btn)btn.textContent='📷 إخفاء QR';
-  if(box)box.scrollIntoView({behavior:'smooth',block:'nearest'});
-}
-async function openWhatsAppLinkPanel(knownStatus){
-  showView('dashboard');
-  ensureWhatsAppBotMode();
-  showWhatsAppQrPanel();
-  setTimeout(async()=>{
-    const status=knownStatus||await getWhatsAppBotStatus();
-    if(status==='ready'){
-      setBotUI('ok','🟢','واتساب متصل','جاهز للإرسال التلقائي');
-      _syncQrBtn(true);
-      hideWhatsAppLinkPanel();
-      return;
-    }
-    setBotUI(status==='offline'?'err':'warn',status==='offline'?'🔴':'📷',status==='offline'?'خدمة البوت غير متصلة':'اربط واتساب','امسح QR أو أدخل رقم الربط');
-    showWhatsAppQrPanel();
-    startBotFromSettings();
-  },80);
-}
-async function openWhatsAppFromSidebar(ev){
-  ev?.preventDefault?.();
-  ev?.stopPropagation?.();
-  if(!featEnabled('feat_whatsapp')||!canDo('whatsapp'))return;
-  const nav=document.getElementById('nav-whatsapp');
-  if(nav?.dataset?.waReady==='1')return;
-  openWhatsAppLinkPanel();
-}
-function openWhatsAppMessagesNav(ev){
-  ev?.preventDefault?.();
-  ev?.stopPropagation?.();
-  if(!featEnabled('feat_whatsapp')||!canDo('whatsapp'))return;
-  showView('whatsapp');
-}
-async function openWhatsAppStatusButton(ev){
-  ev?.preventDefault?.();
-  ev?.stopPropagation?.();
-  const status=await getWhatsAppBotStatus(1200);
-  if(status==='ready')return;
-  openWhatsAppLinkPanel(status);
-}
 async function startBotFromSettings(){
   const botUrl = (getSettings().botUrl||'http://localhost:3005').replace(/\/+$/,'');
   const guide  = document.getElementById('botStartGuide');
@@ -9844,14 +9409,13 @@ async function startBotFromSettings(){
     if(d.status==='ready'){
       setBotUI('ok','🟢','البوت يعمل ✅','جاهز للإرسال التلقائي');
       _syncQrBtn(true);
-      hideWhatsAppLinkPanel();
       if(guide) guide.style.display='none';
       return;
     }
     if(d.status==='qr'){
       setBotUI('warn','📷','البوت يعمل — امسح QR','');
       if(guide) guide.style.display='none';
-      showWhatsAppQrPanel(); return;
+      toggleQrPanel(); return;
     }
   }catch(_){}
 
@@ -9896,13 +9460,12 @@ function _startBotWatch(){
         clearInterval(_botWatchId);
         setBotUI('ok','🟢','✅ البوت متصل وجاهز!','الإرسال التلقائي يعمل الآن');
         _syncQrBtn(true);
-        hideWhatsAppLinkPanel();
         toast('✅ البوت متصل وجاهز!','tok');
         const g=document.getElementById('botStartGuide');if(g)g.style.display='none';
       }else if(d.status==='qr'||d.status==='pairing'){
         clearInterval(_botWatchId);
         setBotUI('warn','📷','امسح QR من هاتفك','');
-        showWhatsAppQrPanel();
+        toggleQrPanel();
       }else if(n>3){
         setBotUI('warn','🔄','جاري الاتصال... ('+n+')','');
       }
@@ -10030,21 +9593,12 @@ function setBotUI(type,icon,text,sub){
   if(iconEl)iconEl.textContent=icon;
   if(textEl){textEl.textContent=text;textEl.style.color=s.cl;textEl.style.fontWeight='700';}
   if(subEl){subEl.textContent=sub;subEl.style.color=type==='ok'?'#16a34a':type==='err'?'#dc2626':'#6b7280';}
-  setSidebarWaState(type==='ok'?'ready':type==='err'?'offline':'pending');
-  if(type==='ok')hideWhatsAppLinkPanel();
   // تحديث زر الواتساب في الشريط العلوي
   const wb=document.getElementById('topWaBtn');
   if(wb){
-    if(type==='ok'){
-      wb.style.background='#22c55e';wb.style.borderColor='#86efac';wb.style.boxShadow='0 0 0 1px rgba(134,239,172,.35),0 0 16px rgba(34,197,94,.65)';wb.title='واتساب متصل ✅';
-      wb.onmouseover=()=>{wb.style.background='#16a34a';};
-      wb.onmouseout =()=>{wb.style.background='#22c55e';};
-    }
-    else{
-      wb.style.background='rgba(255,255,255,.15)';wb.style.borderColor='rgba(255,255,255,.3)';wb.style.boxShadow='none';wb.title=type==='err'?'واتساب غير متصل':'حالة الواتساب';
-      wb.onmouseover=()=>{wb.style.background='rgba(255,255,255,.25)';};
-      wb.onmouseout =()=>{wb.style.background='rgba(255,255,255,.15)';};
-    }
+    if(type==='ok'){wb.style.background='rgba(34,197,94,.4)';wb.style.borderColor='rgba(34,197,94,.6)';wb.title='واتساب متصل ✅';}
+    else if(type==='err'){wb.style.background='rgba(220,38,38,.3)';wb.style.borderColor='rgba(220,38,38,.5)';wb.title='واتساب غير متصل';}
+    else{wb.style.background='rgba(255,255,255,.15)';wb.style.borderColor='rgba(255,255,255,.3)';wb.title='حالة الواتساب';}
   }
 }
 
@@ -10229,9 +9783,6 @@ function isDeferredMethod(method){
 function isCreditMethod(method){
   const m=String(method||'');
   return m.includes('على الحساب') || m.includes('عظ') || m.includes('الحساب');
-}
-function displayPayMethod(method){
-  return isCreditMethod(method)?'دفعة على الحساب':String(method||'');
 }
 function isPaidMethod(method){
   return !!method && !isDeferredMethod(method) && !isCreditMethod(method);
@@ -10449,7 +10000,7 @@ async function sendPaymentNotification(rec, amt, method, note, allPayments){
     .replace(/{النادي}/g, club)
     .replace(/{الاسم}/g, rec.name||'')
     .replace(/{المبلغ}/g, amt+' '+cur)
-    .replace(/{طريقة_الدفع}/g, displayPayMethod(method))
+    .replace(/{طريقة_الدفع}/g, method)
     .replace(/{التاريخ}/g, nowDate)
     .replace(/{الوقت}/g, nowTimeStr)
     .replace(/{المدفوع}/g, paid+' '+cur)
@@ -10572,7 +10123,6 @@ function toggleAttWa(cb){
 }
 
 async function sendAttWa(rec, type, inTime, outTime){
-  if(!_waCanSend('mem_'+rec.id+'_'+type)) return;
   if(!canDo('whatsapp')) return;
   const s=getSettings();
   if(s.attWaEnabled!==true) return;
@@ -10605,7 +10155,9 @@ function getAttRec(dayAtt, id){
   return v;
 }
 
-// nowTime معرّفة لاحقاً
+function nowTime(){
+  return (function(){const d=new Date();return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');}());
+}
 
 function normalizeSearch(v){
   return String(v||'')
@@ -11714,24 +11266,8 @@ function getAttRec(dayAtt, id){
   return v;
 }
 
-// فحص دوري لانحراف ساعة الجهاز
-let _timeOffset=0;
-(async function _syncDeviceClock(){
-  try{
-    const t0=Date.now();
-    const r=await fetch('https://worldtimeapi.org/api/ip',{cache:'no-store',signal:AbortSignal.timeout(4000)});
-    const dj=await r.json();
-    const serverMs=new Date(dj.utc_datetime).getTime();
-    _timeOffset=Math.round((serverMs-((t0+Date.now())/2))/1000);
-    if(Math.abs(_timeOffset)>120)
-      toast('⚠️ ساعة الجهاز تختلف عن الوقت الحقيقي بـ '+Math.abs(Math.round(_timeOffset/60))+' دقيقة','ter');
-  }catch(_){ _timeOffset=0; }
-  setTimeout(_syncDeviceClock,30*60*1000);
-})();
-
 function nowTime(){
-  const d=new Date(Date.now()+_timeOffset*1000);
-  return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
+  return (function(){const d=new Date();return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');}());
 }
 
 function renderAttendance(){
@@ -12929,7 +12465,86 @@ function detectRoleLabel(perms){
   if(p===ROLES.viewer.slice().sort().join(','))     return{l:'عرض فقط',bg:'#f3f4f6',c:'#6b7280'};
   return{l:'مخصص',bg:'#f0fdf4',c:'#16a34a'};
 }
-
+function renderUserList(){
+  const ul=document.getElementById('userList');if(!ul)return;
+  const users=getUsers();
+  if(!users.length){ul.innerHTML='<div style="color:var(--muted);font-size:13px">لا يوجد مستخدمون</div>';return;}
+  ul.innerHTML=users.map((u,i)=>{
+    const isAdmin=u.username==='admin';
+    const perms=isAdmin?Object.keys(PERMS):(u.permissions||[]);
+    const badges=perms.slice(0,5).map(p=>PERMS[p]?`<span class="perm-badge">${PERMS[p].icon} ${PERMS[p].label}</span>`:'').join('')
+      +(perms.length>5?`<span class="perm-badge">+${perms.length-5}</span>`:'');
+    const roleInfo=isAdmin
+      ?{l:'مدير',bg:'#dcfce7',c:'#16a34a'}
+      :detectRoleLabel(perms);
+    return`<div class="usr-row" style="align-items:flex-start">
+      <div style="flex:1;min-width:0">
+        <div class="usr-name">👤 ${u.username}
+          <span class="badge" style="background:${roleInfo.bg};color:${roleInfo.c};font-size:10px;margin-right:6px">${roleInfo.l}</span>
+        </div>
+        <div style="margin-top:5px;flex-wrap:wrap;display:flex">${badges||'<span style="font-size:11px;color:var(--muted)">لا توجد صلاحيات</span>'}</div>
+      </div>
+      <div style="display:flex;gap:7px;margin-top:4px">
+        <button class="ab ab-e" title="تعديل" onclick="openEditUser(${i})">✏️</button>
+        ${!isAdmin?`<button class="ab ab-d" title="حذف" onclick="deleteUser(${i})">🗑️</button>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
+function openAddUser(){
+  editUserId=null;
+  document.getElementById('userModalTitle').textContent='➕ إضافة مستخدم جديد';
+  document.getElementById('uName').value='';
+  document.getElementById('uPass').value='';
+  document.getElementById('uName').disabled=false;
+  document.getElementById('permSection').style.display='block';
+  renderPermGrid(ROLES.employee);
+  document.querySelectorAll('.role-btn').forEach(b=>b.classList.remove('sel'));
+  document.querySelectorAll('.role-btn')[0]?.classList.add('sel');
+  openOverlay('userOverlay');
+}
+function openEditUser(i){
+  editUserId=i;
+  const users=getUsers();const u=users[i];
+  document.getElementById('userModalTitle').textContent='✏️ تعديل: '+u.username;
+  document.getElementById('uName').value=u.username;
+  document.getElementById('uPass').value='';
+  document.getElementById('uName').disabled=true;
+  const isAdmin=u.username==='admin';
+  document.getElementById('permSection').style.display=isAdmin?'none':'block';
+  if(!isAdmin)renderPermGrid(u.permissions||[]);
+  document.querySelectorAll('.role-btn').forEach(b=>b.classList.remove('sel'));
+  openOverlay('userOverlay');
+}
+async function saveUser(){
+  const name=document.getElementById('uName').value.trim();
+  const pass=document.getElementById('uPass').value.trim();
+  if(!name){toast('أدخل اسم المستخدم','ter');return;}
+  const users=getUsers();
+  const perms=getSelectedPerms();
+  if(editUserId!==null){
+    if(pass)users[editUserId].password=await hashPassword(pass);
+    if(users[editUserId].username!=='admin')users[editUserId].permissions=perms;
+    toast('تم تحديث المستخدم ✅','tok');
+  }else{
+    if(!pass){toast('أدخل كلمة المرور','ter');return;}
+    if(users.find(u=>u.username===name)){toast('اسم المستخدم موجود مسبقاً','ter');return;}
+    users.push({username:name,password:await hashPassword(pass),permissions:perms});
+    toast('تم إضافة المستخدم ✅','tok');
+  }
+  localStorage.setItem(KU,JSON.stringify(users));
+  closeOverlay('userOverlay');
+  renderUserList();
+}
+function deleteUser(i){
+  const users=getUsers();
+  if(users[i].username==='admin'){toast('لا يمكن حذف المدير الرئيسي','ter');return;}
+  if(!confirm(`حذف المستخدم "${users[i].username}"؟`))return;
+  users.splice(i,1);
+  localStorage.setItem(KU,JSON.stringify(users));
+  renderUserList();
+  toast('تم حذف المستخدم','ter');
+}
 
 // ============ BACKUP / RESTORE ============
 let _backupHandle = null;
@@ -13439,7 +13054,24 @@ function savePdfTemplate(radio){
   document.querySelectorAll('.role-btn').forEach(b=>b.classList.remove('sel'));
   openOverlay('userOverlay');
 }
-
+async function saveUser(){
+  const name=document.getElementById('uName').value.trim();
+  const pass=document.getElementById('uPass').value.trim();
+  if(!name){toast('أدخل اسم المستخدم','ter');return;}
+  if(!pass){toast('أدخل كلمة المرور','ter');return;}
+  const users=getUsers();
+  if(editUserId!==null){
+    users[editUserId].password=await hashPassword(pass);
+    toast('تم تحديث كلمة المرور ✅','tok');
+  } else {
+    if(users.find(u=>u.username===name)){toast('اسم المستخدم موجود مسبقاً','ter');return;}
+    users.push({username:name,password:await hashPassword(pass)});
+    toast('تم إضافة المستخدم ✅','tok');
+  }
+  localStorage.setItem(KU,JSON.stringify(users));
+  closeOverlay('userOverlay');
+  renderUserList();
+}
 function renderPdfBorderGrid(){
   const sel=document.getElementById('pdfBorderSelect'); if(!sel)return;
   const s=getSettings();
@@ -13640,10 +13272,6 @@ function switchMsgCenter(n){
   else if(n===8)updateMsgPreview('msgAttOut');
 }
 
-function _boldTemplateVars(text){
-  return String(text||'').replace(/\*?\{([^}]+)\}\*?/g,(_,name)=>'*{'+name+'}*');
-}
-
 function saveMsgTpl(key, val){
   // تحويل HTML إلى تنسيق واتساب إذا كان المحرر الغني نشطاً
   const txtMap={msgPayment:'msgPaymentTxt',msgAjal:'msgAjalTxt',msgCredit:'msgCreditTxt',
@@ -13653,12 +13281,10 @@ function saveMsgTpl(key, val){
     const rteVal=rteGetText(taId);
     if(rteVal!==undefined) val=rteVal;
   }
-  val=_boldTemplateVars(val);
   const s=getSettings(); s[key]=val; _ksSet(s);
 }
 
 function setMsgEditorValue(id, val){
-  val=_boldTemplateVars(val);
   const el=document.getElementById(id);
   if(el) el.value=val;
   const ed=document.querySelector(`.rte-editor[data-ta="${id}"]`);
@@ -13677,8 +13303,8 @@ function resetMsgTemplate(key, silent=false){
   const map={welcome:'setWelcomeMsg',renew:'setRenewMsg',
              msgPayment:'msgPaymentTxt',msgAjal:'msgAjalTxt',msgCredit:'msgCreditTxt',
              msgAuto:'setAutoMsg',msgAttIn:'msgAttInTxt',msgAttOut:'msgAttOutTxt'};
-  const defVal = _boldTemplateVars(key==='welcome'?d.welcomeMsg : key==='renew'?d.renewMsg
-               : key==='msgAuto'?d.autoMsg : d[key]);
+  const defVal = key==='welcome'?d.welcomeMsg : key==='renew'?d.renewMsg
+               : key==='msgAuto'?d.autoMsg : d[key];
   setMsgEditorValue(map[key],defVal);
   const s=getSettings();
   if(key==='welcome'||key==='renew'){
@@ -13712,7 +13338,7 @@ function updateMsgPreview(key){
   t=t.replace(/\{النادي\}/g,_cn)
      .replace(/\{الاسم\}/g,'محمد أحمد')
      .replace(/\{المبلغ\}/g,'200 '+getCurrencySymbol())
-     .replace(/\{طريقة_الدفع\}/g,key==='msgCredit'?'دفعة على الحساب':'كاش')
+     .replace(/\{طريقة_الدفع\}/g,'كاش')
      .replace(/\{التاريخ\}/g,fmtDateAr())
      .replace(/\{الوقت\}/g,(function(){const n=new Date();return String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0');}()))
      .replace(/\{المدفوع\}/g,'700')
@@ -13746,7 +13372,7 @@ function _migrateClubNameInTemplates(){
   const oldName=s.clubName||'';
   const knownHardcoded=['مركز التنين الذهبي الرياضي'];
   if(oldName) knownHardcoded.push(oldName);
-  const keys=['welcomeMsg','renewMsg','msgPayment','msgAjal','msgCredit','msgAttIn','msgAttOut','msgEmpAttIn','msgEmpAttOut','autoMsg'];
+  const keys=['welcomeMsg','renewMsg','msgPayment','msgAjal','msgCredit','msgAttIn','msgAttOut','autoMsg'];
   let changed=false;
   keys.forEach(k=>{
     if(!s[k])return;
@@ -13754,7 +13380,6 @@ function _migrateClubNameInTemplates(){
     knownHardcoded.forEach(n=>{
       if(n&&val.includes(n)){ val=val.split(n).join('{النادي}'); }
     });
-    val=_boldTemplateVars(val);
     if(val!==s[k]){ s[k]=val; changed=true; }
   });
   if(changed) _ksSet(s);
@@ -13766,15 +13391,12 @@ function loadMsgTemplates(){
   // استخدم القيمة المحفوظة إذا كانت طويلة كافياً، وإلا استخدم الافتراضية
   const pick=(saved,def)=>saved&&saved.trim().length>30?saved:def;
   const set=(id,val)=>{
-    val=_boldTemplateVars(val);
     const el=document.getElementById(id);
     if(!el)return;
     el.value=val;
     const ed=document.querySelector(`.rte-editor[data-ta="${id}"]`);
     if(ed) ed.innerHTML=val.replace(/\n/g,'<br>');
   };
-  set('setWelcomeMsg', pick(s.welcomeMsg, d.welcomeMsg));
-  set('setRenewMsg',   pick(s.renewMsg,   d.renewMsg));
   set('msgPaymentTxt', pick(s.msgPayment, d.msgPayment));
   set('msgAjalTxt',    pick(s.msgAjal,    d.msgAjal));
   set('msgCreditTxt',  pick(s.msgCredit,  d.msgCredit));
@@ -13784,13 +13406,6 @@ function loadMsgTemplates(){
   // Load toggle states
   const toggleMap={msgWelcomeEnabled:'msgWelcomeEnabled',msgRenewEnabled:'msgRenewEnabled',msgPaymentEnabled:'msgPaymentEnabled',msgAjalEnabled:'msgAjalEnabled',msgCreditEnabled:'msgCreditEnabled',msgAutoEnabled:'msgAutoEnabled',msgAttInEnabled:'msgAttInEnabled',msgAttOutEnabled:'msgAttOutEnabled'};
   Object.entries(toggleMap).forEach(([key,id])=>{const el=document.getElementById(id);if(!el)return; el.checked=key==='msgAutoEnabled'?s.autoEnabled!==false:s[key]!==false;});
-  updateWelcomePreviews();
-  updateMsgPreview('msgPayment');
-  updateMsgPreview('msgAjal');
-  updateMsgPreview('msgCredit');
-  updateAutoMsgPreview();
-  updateMsgPreview('msgAttIn');
-  updateMsgPreview('msgAttOut');
 }
 
 function switchWelcomeTab(n){
@@ -13942,12 +13557,10 @@ function renderUserList(){
     const roleInfo=isAdmin
       ?{l:'مدير',bg:'#dcfce7',c:'#16a34a'}
       :detectRoleLabel(perms);
-    const shiftName=u.shiftId?(getShiftPeriods().find(p=>String(p.id)===String(u.shiftId))?.name||'فترة محذوفة'):'أي فترة';
     return`<div class="usr-row" style="align-items:flex-start">
       <div style="flex:1;min-width:0">
         <div class="usr-name">👤 ${u.username}
           <span class="badge" style="background:${roleInfo.bg};color:${roleInfo.c};font-size:10px;margin-right:6px">${roleInfo.l}</span>
-          ${!isAdmin?`<span class="badge" style="background:#e0f2fe;color:#0369a1;font-size:10px;margin-right:4px">🕐 ${shiftName}</span>`:''}
         </div>
         <div style="margin-top:5px;flex-wrap:wrap;display:flex">${badges||'<span style="font-size:11px;color:var(--muted)">لا توجد صلاحيات</span>'}</div>
       </div>
@@ -13965,9 +13578,6 @@ function openAddUser(){
   document.getElementById('uPass').value='';
   document.getElementById('uName').disabled=false;
   document.getElementById('permSection').style.display='block';
-  const zkEl=document.getElementById('uZkId');
-  if(zkEl) zkEl.value=_nextEmpNum();
-  fillUserShiftSelect('');
   renderPermGrid(ROLES.employee);
   document.querySelectorAll('.role-btn').forEach(b=>b.classList.remove('sel'));
   document.querySelectorAll('.role-btn')[0]?.classList.add('sel');
@@ -13987,7 +13597,6 @@ function openEditUser(i){
   // رقم الموظف
   if(!u.zkId){ u.zkId=_nextEmpNum(); users[i]=u; localStorage.setItem(KU,JSON.stringify(users)); }
   const _zk=document.getElementById('uZkId');if(_zk)_zk.value=u.zkId;
-  fillUserShiftSelect(u.shiftId||'');
   openOverlay('userOverlay');
 }
 async function saveUser(){
@@ -13996,29 +13605,19 @@ async function saveUser(){
   if(!name){toast('أدخل اسم المستخدم','ter');return;}
   const users=getUsers();
   const perms=getSelectedPerms();
-  const zkId=(document.getElementById('uZkId')?.value||'').trim();
-  const shiftId=(document.getElementById('uShiftId')?.value||'').trim();
   if(editUserId!==null){
     if(pass)users[editUserId].password=await hashPassword(pass);
-    if(users[editUserId].username!=='admin'){
-      users[editUserId].permissions=perms;
-      users[editUserId].zkId=zkId||users[editUserId].zkId||_nextEmpNum();
-      users[editUserId].shiftId=shiftId;
-    }
+    if(users[editUserId].username!=='admin')users[editUserId].permissions=perms;
     toast('تم تحديث المستخدم ✅','tok');
   }else{
     if(!pass){toast('أدخل كلمة المرور','ter');return;}
     if(users.find(u=>u.username===name)){toast('اسم المستخدم موجود مسبقاً','ter');return;}
-    users.push({username:name,password:await hashPassword(pass),permissions:perms,zkId:zkId||_nextEmpNum(),shiftId});
+    users.push({username:name,password:await hashPassword(pass),permissions:perms});
     toast('تم إضافة المستخدم ✅','tok');
   }
   localStorage.setItem(KU,JSON.stringify(users));
-  applyPermissions();
-  applyFeatures?.();
-  applySettingsPerms?.();
   closeOverlay('userOverlay');
   renderUserList();
-  loadEmployeeSelect?.();
 }
 function deleteUser(i){
   const users=getUsers();
@@ -14080,12 +13679,8 @@ async function previewTermsPDF(){
 function sendTermsPDFById(id, btn){ sendTermsPDF(getData().find(x=>x.id===id), btn); }
 
 // ?? إدراج متغير في textarea ??
-function _boldWaVar(v){
-  return _boldTemplateVars(v);
-}
 function insertVar(elId, v){
   if(v===undefined){ v=elId; elId='msgEditor'; }
-  v=_boldWaVar(v);
   const el = document.getElementById(elId);
   if(!el) return;
   const usedRte=_rteInsertPlainText(elId,v);
@@ -14151,7 +13746,7 @@ function buildWelcomeText(template, rec){
     .replace(/\{تاريخ_الاشتراك\}/g,   startDate)
     .replace(/\{المدة\}/g,             dur)
     .replace(/\{النادي\}/g,            club)
-    .replace(/\{طريقة_الدفع\}/g,       displayPayMethod(pay))
+    .replace(/\{طريقة_الدفع\}/g,       pay)
     .replace(/\{المبلغ\}/g,            rec.amount ? rec.amount : '?'));
 }
 
@@ -14629,13 +14224,103 @@ function focusAttendanceQr(){
   },100);
 }
 
-function startFpAttendanceScan(){
-  showView('settings');
-  switchSetTab('attendance',document.querySelector('#setTabsBar .set-tab:nth-child(4)'));
-  toast('تم حذف ماسح USB. استخدم جهاز ZKTeco من إعدادات الحضور.','tin');
+let _fpAttendanceScanning=false;
+let _fpMockMembers=[];
+
+async function startFpAttendanceScan(){
+  if(_fpAttendanceScanning)return;
+  _fpAttendanceScanning=true;
+  showView('attendance');
+  const btn=document.getElementById('fpAttendanceBtn');
+  if(btn){btn.disabled=true;btn.textContent='⏳ جارٍ المسح…';}
+  setAttQrStatus('info','👆 ضع إصبعك على الجهاز الآن…');
+  try{
+    const capRes=await fetch(getBotBaseUrl()+'/api/fp/capture',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({timeout:15000})
+    });
+    if(!capRes.ok)throw new Error('HTTP '+capRes.status);
+    const capData=await capRes.json();
+    if(!capData.ok||!capData.id)throw new Error(capData.error||'لم يتم التقاط البصمة');
+
+    // وضع المحاكاة — جهاز حقيقي غير متصل
+    if(capData.isMock){
+      _showFpMockPicker();
+      return;
+    }
+
+    // ── جهاز حقيقي: مطابقة بيومترية ──
+    let matched=null;
+    const bioMembers=getData().filter(m=>m.fingerprint_image);
+
+    if(bioMembers.length){
+      const idRes=await fetch(getBotBaseUrl()+'/api/fp/identify',{
+        method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          capturedImage:capData.image,
+          members:bioMembers.map(m=>({id:m.id,name:m.name,fingerprint_image:m.fingerprint_image})),
+          threshold:0.82
+        })
+      });
+      if(idRes.ok){
+        const idData=await idRes.json();
+        if(idData.match) matched=getData().find(x=>x.id===idData.match.memberId)||null;
+      }
+    }
+
+    // إذا لم تنجح البيومترية، جرّب المطابقة بمعرّف البصمة (hash دقيق)
+    if(!matched){
+      matched=getData().find(m=>
+        m.fingerprint_id && normalizeFingerprintId(m.fingerprint_id)===normalizeFingerprintId(capData.id)
+      )||null;
+    }
+
+    if(!matched){
+      const hint=!bioMembers.length
+        ? ' — أعد تسجيل البصمة من قائمة المشتركين بالجهاز الحقيقي'
+        : ' — حاول مجدداً أو أعد تسجيل البصمة';
+      setAttQrStatus('err','❌ لم يتم التعرف على البصمة'+hint);
+      speak('لم يتم التعرف على البصمة');
+      return;
+    }
+    _recordAttendanceDirect(matched,'البصمة');
+  }catch(e){
+    setAttQrStatus('err','❌ '+(e.message||'تعذّر الاتصال بجهاز البصمة'));
+  }finally{
+    _fpAttendanceScanning=false;
+    if(btn){btn.disabled=false;btn.textContent='👆 مسح البصمة';}
+  }
 }
-function _showFpMockPicker(){}
-function _fpMockAttend(){}
+
+function _showFpMockPicker(){
+  const today=todayStr();
+  const dayAtt=getAttendance()[today]||{};
+  _fpMockMembers=getData().filter(m=>m.fingerprint_id&&calcDays(m.end)>=0);
+  const box=document.getElementById('attQrStatus');
+  if(!_fpMockMembers.length){
+    box.style.cssText='display:block;padding:12px 16px;border-radius:10px;font-size:13px;font-weight:800;background:#fef3c7;color:#92400e';
+    box.textContent='⚠️ لا يوجد مشتركون مسجلون ببصمة';
+    return;
+  }
+  let html='<div style="margin-bottom:10px;font-size:13px;font-weight:800;color:#5b21b6">👆 اختر المشترك لتسجيل الحضور أو الانصراف:</div><div style="display:flex;flex-wrap:wrap;gap:8px">';
+  _fpMockMembers.forEach((m,i)=>{
+    const rec=getAttRec(dayAtt,m.id);
+    const icon=rec&&rec.out?'✅✅':rec?'✅':'👤';
+    const bg=rec?'#d1fae5':'#ede9fe', col=rec?'#065f46':'#5b21b6';
+    html+=`<button onclick="_fpMockAttend(${i})"
+      style="padding:10px 18px;background:${bg};color:${col};border:2px solid ${rec?'#6ee7b7':'#c4b5fd'};border-radius:12px;cursor:pointer;font-family:inherit;font-weight:700;font-size:14px">
+      ${icon} ${firstNameOf(m)}</button>`;
+  });
+  html+='</div>';
+  box.style.cssText='display:block;padding:14px 16px;border-radius:10px;background:#f5f3ff;color:#4c1d95';
+  box.innerHTML=html;
+}
+
+function _fpMockAttend(idx){
+  const m=_fpMockMembers[idx];
+  if(m) _recordAttendanceDirect(m,'البصمة (محاكاة)');
+}
+
 function _recordAttendanceDirect(member,sourceName){
   if(calcDays(member.end)<0){
     setAttQrStatus('err','اشتراك '+firstNameOf(member)+' منتهي، لم يتم تسجيل الحضور.');
@@ -14663,12 +14348,446 @@ function _recordAttendanceDirect(member,sourceName){
   setAttQrStatus('warn',firstNameOf(member)+' مسجل حضوره بالفعل'+(rec.out?' وانصرافه.':'.'));
 }
 
-// ============ ZKTECO ATTENDANCE ONLY ============
-function toggleFpAutoScan(){
-  zkConnect(true);
-  zkStartMonitor();
-  toast('تم حذف ماسح USB. المراقبة التلقائية تعمل عبر ZKTeco فقط.','tin');
+// ============ FINGERPRINT AUTO SCAN ============
+let _fpAutoActive=false, _fpAutoAbort=null, _fpMockResolve=null, _fpAutoMode='unknown', _fpAutoSdkError='';
+
+async function toggleFpAutoScan(){
+  if(_fpAutoActive){
+    _fpAutoActive=false;
+    if(_fpAutoAbort)_fpAutoAbort.abort();
+    if(_fpMockResolve){_fpMockResolve();_fpMockResolve=null;}
+    _fpAutoUIState('idle');
+    return;
+  }
+  _fpAutoActive=true;
+  _fpAutoUIState('active');
+  _setFpAutoStatus('wait','🔌 جارٍ فحص الجهاز…');
+  try{
+    const r=await fetch(getBotBaseUrl()+'/api/fp/status',{cache:'no-store'});
+    const d=r.ok?await r.json():{mockMode:true,sdkError:''};
+    _fpAutoMode=d.mockMode?'mock':'real';
+    _fpAutoSdkError=d.sdkError||'';
+  }catch(e){_fpAutoMode='mock';_fpAutoSdkError='لا يمكن الاتصال بالخادم';}
+  _updateFpModeChip();
+  _runFpAutoLoop();
 }
+
+function _updateFpModeChip(){
+  const chip=document.getElementById('fpAutoModeChip');
+  const wait=document.getElementById('fpAutoWaitArea');
+  if(!chip)return;
+  let txt,bg,col;
+  if(_fpAutoMode==='real'){
+    txt='🟢 جهاز IB Columbo نشط — ضع إصبعك';
+    bg='#d1fae5'; col='#065f46';
+  } else {
+    // أظهر السبب الحقيقي للمحاكاة
+    const reason=_fpAutoSdkError||'جهاز البصمة غير متصل';
+    txt='🔬 '+reason;
+    bg='#fef3c7'; col='#b45309';
+  }
+  chip.style.cssText=`display:inline-block;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;background:${bg};color:${col};max-width:100%;white-space:normal;line-height:1.4`;
+  chip.textContent=txt;
+  if(wait)wait.style.display=_fpAutoMode==='real'?'block':'none';
+}
+
+function _fpAutoUIState(state){
+  const inEl=document.getElementById('fpAutoInactive');
+  const acEl=document.getElementById('fpAutoActive');
+  if(state==='active'){
+    if(inEl)inEl.style.display='none';
+    if(acEl)acEl.style.display='block';
+    document.getElementById('fpAttendanceBtn')?.setAttribute('disabled','');
+  } else {
+    if(inEl)inEl.style.display='block';
+    if(acEl)acEl.style.display='none';
+    document.getElementById('fpAttendanceBtn')?.removeAttribute('disabled');
+    const chip=document.getElementById('fpAutoModeChip');
+    if(chip)chip.style.display='none';
+    const res=document.getElementById('fpAutoResult');
+    if(res)res.style.display='none';
+    const mp=document.getElementById('fpAutoMockPicker');
+    if(mp)mp.style.display='none';
+    const wa=document.getElementById('fpAutoWaitArea');
+    if(wa)wa.style.display='block';
+    _setFpAutoStatus('wait','⏳ انتظار البصمة…');
+  }
+}
+
+function _setFpAutoIcon(icon,cls,col){
+  const el=document.getElementById('fpAutoIcon');
+  if(el){el.textContent=icon;el.className=cls;el.style.color=col||'';}
+}
+function _setFpAutoStatus(type,text){
+  const cfg={
+    wait:{icon:'👆',cls:'fp-anim',col:'#7c3aed'},
+    ok:  {icon:'✅',cls:'fp-success',col:'#15803d'},
+    bye: {icon:'🚪',cls:'fp-success',col:'#1e40af'},
+    err: {icon:'❌',cls:'',col:'#b91c1c'},
+    warn:{icon:'⚠️',cls:'',col:'#a16207'},
+  };
+  const c=cfg[type]||cfg.wait;
+  _setFpAutoIcon(c.icon,c.cls,c.col);
+  const st=document.getElementById('fpAutoStatus');
+  if(st){st.textContent=text;st.style.color=c.col;}
+}
+function _fpDelay(ms){return new Promise(r=>setTimeout(r,ms));}
+
+async function _runFpAutoLoop(){
+  while(_fpAutoActive){
+    try{
+      // ══ وضع المحاكاة: أظهر المنتقي فوراً ══
+      if(_fpAutoMode!=='real'){
+        const res=document.getElementById('fpAutoResult');
+        if(res)res.style.display='none';
+        await new Promise(resolve=>{
+          _fpMockResolve=resolve;
+          _showFpAutoMockPicker();
+        });
+        continue;
+      }
+
+      // ══ جهاز حقيقي: التقط البصمة ══
+      _setFpAutoStatus('wait','👆 ضع إصبعك على الجهاز…');
+      const res=document.getElementById('fpAutoResult');
+      if(res)res.style.display='none';
+      const mp=document.getElementById('fpAutoMockPicker');
+      if(mp)mp.style.display='none';
+
+      _fpAutoAbort=new AbortController();
+      const capRes=await fetch(getBotBaseUrl()+'/api/fp/capture',{
+        method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({timeout:30000}),
+        signal:_fpAutoAbort.signal
+      });
+      if(!capRes.ok){await _fpDelay(1500);continue;}
+      const capData=await capRes.json();
+      if(!capData.ok||!capData.id){await _fpDelay(1000);continue;}
+
+      if(capData.isMock){_fpAutoMode='mock';_updateFpModeChip();continue;}
+
+      let matched=null;
+      const bio=getData().filter(m=>m.fingerprint_image);
+      if(bio.length){
+        const idRes=await fetch(getBotBaseUrl()+'/api/fp/identify',{
+          method:'POST',headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({
+            capturedImage:capData.image,
+            members:bio.map(m=>({id:m.id,name:m.name,fingerprint_image:m.fingerprint_image})),
+            threshold:0.82
+          })
+        });
+        if(idRes.ok){const id=await idRes.json();if(id.match)matched=getData().find(x=>x.id===id.match.memberId)||null;}
+      }
+      if(!matched)
+        matched=getData().find(m=>m.fingerprint_id&&normalizeFingerprintId(m.fingerprint_id)===normalizeFingerprintId(capData.id))||null;
+
+      if(matched){_fpAutoRecord(matched);await _fpDelay(3500);}
+      else{
+        _setFpAutoStatus('err','❌ لم يتم التعرف'+(bio.length===0?' — أعد تسجيل البصمة':''));
+        await _fpDelay(2500);
+      }
+    }catch(e){
+      if(e.name==='AbortError')break;
+      _setFpAutoStatus('err','❌ '+(e.message||'خطأ في الجهاز'));
+      await _fpDelay(2000);
+    }
+  }
+  _fpAutoUIState('idle');
+}
+
+function _fpAutoRecord(member){
+  if(calcDays(member.end)<0){
+    _setFpAutoStatus('err','اشتراك '+firstNameOf(member)+' منتهي');
+    speak('اشتراك '+firstNameOf(member)+' منتهي');
+    _showFpAutoResult(member,'expired'); renderAttendance(); return;
+  }
+  const today=todayStr(), dayAtt=getAttendance()[today]||{};
+  const rec=getAttRec(dayAtt,member.id), s=getSettings();
+  if(!rec){
+    markCheckin(member.id,today);
+    const g=(s.voiceGreeting||'أهلاً وسهلاً {الاسم}، مرحباً بك').replace('{الاسم}',firstNameOf(member));
+    _setFpAutoStatus('ok',g); speak(g); _showFpAutoResult(member,'in');
+  } else if(getTrackCheckout()&&!rec.out){
+    markCheckout(member.id,today);
+    const f=(s.voiceFarewell||'مع السلامة {الاسم}، إلى اللقاء').replace('{الاسم}',firstNameOf(member));
+    _setFpAutoStatus('bye',f); speak(f); _showFpAutoResult(member,'out');
+  } else {
+    _setFpAutoStatus('warn',firstNameOf(member)+' مسجل حضوره بالفعل'+(rec.out?' وانصرافه.':'.'));
+    _showFpAutoResult(member,'dup');
+  }
+  renderAttendance();
+}
+
+function _showFpAutoResult(member,type){
+  const el=document.getElementById('fpAutoResult');
+  if(!el)return;
+  const cfg={
+    in:     {bg:'#f0fdf4',col:'#15803d',border:'#86efac',lbl:'✅ حضور'},
+    out:    {bg:'#eff6ff',col:'#1e40af',border:'#93c5fd',lbl:'🚪 انصراف'},
+    expired:{bg:'#fef2f2',col:'#b91c1c',border:'#fca5a5',lbl:'⛔ اشتراك منتهي'},
+    dup:    {bg:'#fefce8',col:'#a16207',border:'#fde047',lbl:'⚠️ مسجل سابقاً'},
+  };
+  const c=cfg[type]||cfg.dup;
+  el.style.cssText=`display:block;padding:18px;border-radius:14px;background:${c.bg};border:2px solid ${c.border};text-align:center`;
+  el.innerHTML=`<div style="font-size:32px;margin-bottom:6px">${c.lbl.split(' ')[0]}</div>
+    <div style="font-size:21px;font-weight:900;color:${c.col}">${member.name||''}</div>
+    <div style="font-size:12px;color:${c.col};opacity:.8;margin-top:5px">${c.lbl}${member.pkg_name?' — '+member.pkg_name:''}</div>`;
+}
+
+function _showFpAutoMockPicker(){
+  const today=todayStr(), dayAtt=getAttendance()[today]||{};
+  _fpMockMembers=getData().filter(m=>m.fingerprint_id&&calcDays(m.end)>=0);
+  const mp=document.getElementById('fpAutoMockPicker');
+  if(!mp)return;
+  if(!_fpMockMembers.length){
+    mp.innerHTML='<div style="text-align:center;color:#9ca3af;font-size:14px;padding:10px">لا يوجد مشتركون بصمة مسجلة نشطة<br><small>سجّل البصمة من قائمة المشتركين أولاً</small></div>';
+    mp.style.display='block'; return;
+  }
+  let html='<div style="margin-bottom:12px;font-size:13px;color:#6d28d9;font-weight:800">👆 اضغط اسم المشترك لتسجيل حضوره أو انصرافه:</div><div style="display:flex;flex-wrap:wrap;gap:10px">';
+  _fpMockMembers.forEach((m,i)=>{
+    const rec=getAttRec(dayAtt,m.id);
+    const icon=rec&&rec.out?'✅✅':rec?'✅':'👤';
+    const bg=rec?'#d1fae5':'#ede9fe', col=rec?'#065f46':'#5b21b6', bdr=rec?'#6ee7b7':'#c4b5fd';
+    html+=`<button onclick="_fpAutoMockAttend(${i})"
+      style="padding:12px 20px;background:${bg};color:${col};border:2px solid ${bdr};border-radius:14px;cursor:pointer;font-family:inherit;font-weight:800;font-size:15px;min-width:120px">
+      ${icon}<br><span style="font-size:13px">${firstNameOf(m)}</span></button>`;
+  });
+  html+='</div>';
+  mp.innerHTML=html; mp.style.display='block';
+}
+
+function _fpAutoMockAttend(idx){
+  const m=_fpMockMembers[idx];
+  if(!m)return;
+  const mp=document.getElementById('fpAutoMockPicker');
+  if(mp)mp.style.display='none';
+  _fpAutoRecord(m);
+  if(_fpMockResolve){
+    const res=_fpMockResolve; _fpMockResolve=null;
+    setTimeout(res,3500);
+  }
+}
+// ============ / FINGERPRINT AUTO SCAN ============
+
+function toggleVoice(cb){
+  const s=getSettings(); s.voiceEnabled=cb.checked; _ksSet(s);
+  if(cb.checked) speak(`تم تفعيل النطق الصوتي`);
+}
+
+function saveVoiceSettings(){
+  const s=getSettings();
+  const eng=document.querySelector('input[name="voiceEngine"]:checked');
+  s.voiceEngine=eng?eng.value:'edge';
+  s.edgeVoice=document.getElementById('edgeVoice')?.value||'ar-SA-HaalaNeural';
+  s.voiceRate=parseFloat(document.getElementById('voiceRate')?.value||0.9);
+  s.voicePitch=parseFloat(document.getElementById('voicePitch')?.value||1.0);
+  s.voiceVolume=parseFloat(document.getElementById('voiceVolume')?.value||1.0);
+  s.voiceGreeting=document.getElementById('voiceGreeting')?.value||'أهلاً وسهلاً {الاسم}، مرحباً بك';
+  s.voiceFarewell=document.getElementById('voiceFarewell')?.value||'مع السلامة {الاسم}، إلى اللقاء';
+  _ksSet(s);
+  toast((_lang==='en'?'✅ Voice settings saved':'✅ تم حفظ إعدادات الصوت'),'tok');
+}
+
+// ── صوت تمرير الفارة على القوائم ────────────────────────────────────────
+let _uiAudioCtx = null;
+function _playNavHover(){
+  try {
+    const s = getSettings();
+    if(s.navHoverSound === false) return;
+    if(!_uiAudioCtx || _uiAudioCtx.state === 'closed')
+      _uiAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const _doPlay = () => {
+      try {
+        const now = _uiAudioCtx.currentTime;
+        const osc  = _uiAudioCtx.createOscillator();
+        const gain = _uiAudioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(_uiAudioCtx.destination);
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(900, now);
+        osc.frequency.exponentialRampToValueAtTime(680, now + 0.055);
+        gain.gain.setValueAtTime(0.06, now);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.055);
+        osc.start(now);
+        osc.stop(now + 0.06);
+      } catch(_) {}
+    };
+    if(_uiAudioCtx.state === 'suspended') {
+      _uiAudioCtx.resume().then(_doPlay).catch(()=>{});
+    } else {
+      _doPlay();
+    }
+  } catch(_) {}
+}
+function _initNavHoverSound(){
+  const items = document.querySelectorAll('.nav-item');
+  items.forEach(item => {
+    item.addEventListener('mouseenter', _playNavHover);
+    item.addEventListener('click', ()=>{
+      // إصلاح مشكلة Chrome "sticky hover" — إعادة حساب hover بعد النقر
+      const nav = document.querySelector('.sb-nav');
+      if(!nav) return;
+      nav.style.pointerEvents = 'none';
+      requestAnimationFrame(()=>requestAnimationFrame(()=>{
+        nav.style.pointerEvents = '';
+      }));
+    });
+  });
+}
+function saveNavHoverSound(cb){
+  const s = getSettings();
+  s.navHoverSound = cb.checked;
+  _ksSet(s);
+}
+
+function loadVoiceSettings(){
+  const s=getSettings();
+  const tog=document.getElementById('voiceToggle');
+  if(tog)tog.checked=!!s.voiceEnabled;
+  const stog=document.getElementById('voiceSettingsToggle');
+  if(stog)stog.checked=!!s.voiceEnabled;
+  // engine
+  const eng=s.voiceEngine||'edge';
+  const engEl=document.getElementById('engine'+eng.charAt(0).toUpperCase()+eng.slice(1));
+  if(engEl)engEl.checked=true;
+  onVoiceEngineChange();
+  // edge voice
+  const ev=document.getElementById('edgeVoice');
+  if(ev)ev.value=s.edgeVoice||'ar-SA-HaalaNeural';
+  const rate=document.getElementById('voiceRate');
+  const rateLbl=document.getElementById('voiceRateLbl');
+  if(rate){rate.value=s.voiceRate??0.9; if(rateLbl)rateLbl.textContent=parseFloat(s.voiceRate??0.9).toFixed(1);}
+  const pitch=document.getElementById('voicePitch');
+  const pitchLbl=document.getElementById('voicePitchLbl');
+  if(pitch){pitch.value=s.voicePitch??1.0; if(pitchLbl)pitchLbl.textContent=parseFloat(s.voicePitch??1.0).toFixed(1);}
+  const vol=document.getElementById('voiceVolume');
+  const volLbl=document.getElementById('voiceVolumeLbl');
+  if(vol){vol.value=s.voiceVolume??1.0; if(volLbl)volLbl.textContent=parseFloat(s.voiceVolume??1.0).toFixed(1);}
+  const greet=document.getElementById('voiceGreeting');
+  if(greet)greet.value=s.voiceGreeting||'أهلاً وسهلاً {الاسم}، مرحباً بك';
+  const fare=document.getElementById('voiceFarewell');
+  if(fare)fare.value=s.voiceFarewell||'مع السلامة {الاسم}، إلى اللقاء';
+}
+
+function onVoiceEngineChange(){
+  const eng=document.querySelector('input[name="voiceEngine"]:checked')?.value||'edge';
+  const row=document.getElementById('edgeVoiceRow');
+  if(row)row.style.display=eng==='edge'?'block':'none';
+}
+
+function handleAttendanceQrKey(ev){
+  if(ev.key!=='Enter')return;
+  ev.preventDefault();
+  processAttendanceQr(ev.target.value);
+}
+
+function processAttendanceQr(value){
+  const input=document.getElementById('attQrInput');
+  const scan=findMemberByAttendanceScan(value);
+  if(input){input.value='';input.focus();}
+  if(!String(value||'').trim()){setAttQrStatus('warn','لم يتم قراءة QR أو بصمة.');return;}
+
+  const member=scan?.member;
+  const sourceName=scan?.source==='fingerprint'?'البصمة':'QR';
+  if(!member){setAttQrStatus('err','الرمز غير معروف أو غير مرتبط بأي مشترك.');return;}
+  if(calcDays(member.end)<0){setAttQrStatus('err','اشتراك '+firstNameOf(member)+' منتهي، لم يتم تسجيل الحضور.');return;}
+
+  const today=todayStr();
+  const dayAtt=getAttendance()[today]||{};
+  const rec=getAttRec(dayAtt, member.id);
+
+  if(!rec){
+    markCheckin(member.id, today);
+    const s=getSettings();
+    const greet=(s.voiceGreeting||'أهلاً وسهلاً {الاسم}، مرحباً بك').replace('{الاسم}',firstNameOf(member));
+    setAttQrStatus('ok',greet+' — تم تسجيل الحضور عبر '+sourceName+'.');
+    speak(greet);
+    return;
+  }
+
+  if(getTrackCheckout() && !rec.out){
+    markCheckout(member.id, today);
+    const s=getSettings();
+    const farewell=(s.voiceFarewell||'مع السلامة {الاسم}، إلى اللقاء').replace('{الاسم}',firstNameOf(member));
+    setAttQrStatus('bye',farewell+' — تم تسجيل الانصراف عبر '+sourceName+'.');
+    speak(farewell);
+    return;
+  }
+
+  setAttQrStatus('warn',firstNameOf(member)+' مسجل حضوره بالفعل'+(rec.out?' وانصرافه.':'.'));
+}
+
+// ============ EDGE TTS (via server proxy) ============
+async function playEdgeTTS(text){
+  try{
+    const s=getSettings();
+    const voice=s.edgeVoice||'ar-SA-HaalaNeural';
+    const rate =Math.round((parseFloat(s.voiceRate ??0.9)-1.0)*80);
+    const pitch=Math.round((parseFloat(s.voicePitch??1.0)-1.0)*30);
+    const vol  =Math.round((parseFloat(s.voiceVolume??1.0)-1.0)*100);
+    const url=`/api/tts?text=${encodeURIComponent(text)}&voice=${encodeURIComponent(voice)}&rate=${rate}&pitch=${pitch}&vol=${vol}`;
+    const resp=await fetch(url);
+    if(!resp.ok) throw new Error('server '+resp.status);
+    const blob=await resp.blob();
+    const audioUrl=URL.createObjectURL(blob);
+    const audio=new Audio(audioUrl);
+    audio.onended=()=>URL.revokeObjectURL(audioUrl);
+    await audio.play();
+  }catch(e){
+    console.warn('Edge TTS proxy failed:',e.message);
+    _doSpeak(text,getSettings());
+  }
+}
+// ============ / EDGE TTS ============
+
+// ============ VOICE / TTS ============
+let _ttsVoices=[];
+function _loadVoices(){
+  const v=window.speechSynthesis?.getVoices()||[];
+  if(v.length)_ttsVoices=v;
+}
+if(window.speechSynthesis){
+  _loadVoices();
+  window.speechSynthesis.onvoiceschanged=_loadVoices;
+  // Fallback: some Electron builds fire the event late
+  setTimeout(_loadVoices,500);
+  setTimeout(_loadVoices,1500);
+}
+
+function _doSpeak(text,s){
+  window.speechSynthesis.cancel();
+  const utt=new SpeechSynthesisUtterance(text);
+  utt.lang='ar-SA';
+  utt.rate=parseFloat(s.voiceRate??0.9);
+  utt.pitch=parseFloat(s.voicePitch??1.0);
+  utt.volume=parseFloat(s.voiceVolume??1.0);
+  const voices=_ttsVoices.length?_ttsVoices:window.speechSynthesis.getVoices();
+  const arVoice=voices.find(v=>v.lang==='ar-SA')||voices.find(v=>v.lang.startsWith('ar'))||null;
+  if(arVoice)utt.voice=arVoice;
+  window.speechSynthesis.speak(utt);
+}
+
+function speak(text){
+  const s=getSettings();
+  if(!s.voiceEnabled)return;
+  if((s.voiceEngine||'edge')==='edge'){
+    playEdgeTTS(text);
+  } else {
+    if(!window.speechSynthesis)return;
+    if(_ttsVoices.length===0){setTimeout(()=>{_loadVoices();_doSpeak(text,s);},400);return;}
+    _doSpeak(text,s);
+  }
+}
+
+function showAvailableVoices(){
+  const all=window.speechSynthesis?.getVoices()||[];
+  if(!all.length){toast('⚠️ لا توجد أصوات Windows متاحة حتى الآن','ter');return;}
+  const ar=all.filter(v=>v.lang.startsWith('ar'));
+  if(ar.length) toast('✅ أصوات عربية ('+ar.length+'): '+ar.slice(0,3).map(v=>v.name).join('، '),'tok');
+  else toast('⚠️ لا توجد أصوات عربية — إجمالي: '+all.length+' — مثال: '+all.slice(0,2).map(v=>v.name).join('، '),'tin');
+}
+
 // ============ FINGERPRINT ENROLLMENT ============
 let _fpEnrollMemberId=null, _fpEnrollPollTimer=null, _fpEnrollLastId=0, _fpEnrollDone=false;
 let _fpCapturePollTimer=null, _fpCaptureLastId=0;
@@ -14762,9 +14881,66 @@ function fpEnrollFromInput(){
   _captureEnrollFp(fpId,null);
 }
 
-function fpStartScan(){
-  toast('تم حذف ماسح USB. أدخل رقم المستخدم في جهاز ZKTeco داخل خانة رقم ZKTeco.','tin');
+async function fpStartScan(){
+  if(_fpEnrollDone)return;
+  const btn=document.getElementById('fpScanBtn');
+  const st=document.getElementById('fpEnrollStatus');
+  const icon=document.getElementById('fpEnrollIcon');
+  if(btn){btn.disabled=true;btn.textContent='🔌 فحص الجهاز…';}
+  icon.textContent='👆'; icon.className='fp-anim';
+  const stBase='padding:14px;background:#f5f3ff;border:2px solid #c4b5fd;border-radius:12px;font-size:13px;font-weight:700;color:#7c3aed;margin-bottom:14px';
+  st.style.cssText=stBase;
+  st.textContent='🔌 جارٍ فحص اتصال الجهاز…';
+  _stopEnrollPoll();
+
+  // فحص الجهاز أولاً
+  let isMockMode=true;
+  try{
+    const sr=await fetch(getBotBaseUrl()+'/api/fp/status',{cache:'no-store'});
+    if(sr.ok){const sd=await sr.json();isMockMode=sd.mockMode!==false;}
+  }catch(e){isMockMode=true;}
+
+  if(isMockMode){
+    // وضع المحاكاة — ولّد معرفاً جديداً واعرضه للتأكيد
+    const mockId='FP'+(1000+Math.floor(Math.random()*8999));
+    icon.textContent='📱'; icon.className='';
+    st.style.cssText='padding:14px;background:#fefce8;border:2px solid #fde047;border-radius:12px;font-size:13px;font-weight:700;color:#854d0e;margin-bottom:14px';
+    st.textContent='📱 الجهاز غير متصل — معرف تجريبي جاهز للتسجيل';
+    const res=document.getElementById('fpEnrollResult');
+    res.style.cssText='display:block;padding:12px;background:#fefce8;border:2px solid #fde047;border-radius:10px;text-align:center;margin-bottom:8px';
+    res.innerHTML=`<div style="font-size:12px;color:#78350f;margin-bottom:10px">سيُسجَّل المعرف التجريبي:<br><b style="font-size:18px;letter-spacing:2px;color:#6d28d9">${mockId}</b></div>
+      <div style="display:flex;gap:8px;justify-content:center">
+        <button type="button" onclick="_confirmMockEnroll('${mockId}')" style="padding:8px 18px;background:linear-gradient(135deg,#6d28d9,#9333ea);color:#fff;border:none;border-radius:9px;cursor:pointer;font-family:inherit;font-size:13px;font-weight:700">✅ تسجيل</button>
+        <button type="button" onclick="_cancelMockEnroll()" style="padding:8px 14px;background:#f3f4f6;color:#374151;border:1.5px solid #e5e7eb;border-radius:9px;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600">🔄 معرف جديد</button>
+      </div>`;
+    if(btn)btn.style.display='none';
+    return;
+  }
+
+  // جهاز حقيقي متصل — ابدأ الالتقاط
+  icon.textContent='👆'; icon.className='fp-anim';
+  st.style.cssText=stBase;
+  st.textContent='👆 ضع إصبعك على الجهاز الآن…';
+  if(btn){btn.textContent='⏳ جارٍ المسح…';}
+  try{
+    const r=await fetch(getBotBaseUrl()+'/api/fp/capture',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({timeout:15000})
+    });
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    const data=await r.json();
+    if(!data.ok||!data.id)throw new Error(data.error||'لم يتم التقاط البصمة');
+    _captureEnrollFp(data.id, data.image||null);
+  }catch(e){
+    icon.textContent='❌'; icon.className='';
+    st.style.cssText='padding:14px;background:#fef2f2;border:2px solid #fca5a5;border-radius:12px;font-size:13px;font-weight:700;color:#dc2626;margin-bottom:14px';
+    st.textContent='❌ '+(e.message||'خطأ في الاتصال بجهاز البصمة');
+    if(btn){btn.disabled=false;btn.textContent='👆 أعد المسح';}
+    _startEnrollPoll();
+  }
 }
+
 function _confirmMockEnroll(fpId){
   const res=document.getElementById('fpEnrollResult');
   if(res)res.style.display='none';
@@ -14777,7 +14953,23 @@ function _cancelMockEnroll(){
   _startEnrollPoll();
 }
 
-function _startEnrollPoll(){}
+function _startEnrollPoll(){
+  _stopEnrollPoll();
+  _fpEnrollPollTimer=setInterval(async()=>{
+    if(_fpEnrollDone){_stopEnrollPoll();return;}
+    try{
+      const res=await fetch(getBotBaseUrl()+'/api/fingerprint-events?after='+encodeURIComponent(_fpEnrollLastId),{cache:'no-store'});
+      if(!res.ok)return;
+      const d=await res.json();
+      const evs=Array.isArray(d.events)?d.events:[];
+      if(!evs.length)return;
+      const ev=evs[evs.length-1];
+      _fpEnrollLastId=Math.max(_fpEnrollLastId,Number(ev.id)||0);
+      const fpId=normalizeFingerprintId(ev.fingerprintId||ev.fingerprint_id||ev.value||'');
+      if(fpId) _captureEnrollFp(fpId);
+    }catch(_){}
+  },1000);
+}
 function _stopEnrollPoll(){if(_fpEnrollPollTimer){clearInterval(_fpEnrollPollTimer);_fpEnrollPollTimer=null;}}
 
 function _captureEnrollFp(fpId, fpImage){
@@ -14843,8 +15035,37 @@ function _captureEnrollFp(fpId, fpImage){
 }
 
 // مسح البصمة إلى حقل الاستمارة (للمشتركين الجدد أو القدامى)
-function openFingerprintCapture(){
-  toast('تم حذف ماسح USB. استخدم خانة رقم المستخدم في جهاز ZKTeco.','tin');
+async function openFingerprintCapture(){
+  if(editId) return openFingerprintEnroll(editId);
+  // مشترك جديد: التقاط البصمة مباشرةً من جهاز IB Columbo
+  stopFpCapturePoll();
+  const captureBtn=document.querySelector('button[onclick="openFingerprintCapture()"]');
+  if(captureBtn){captureBtn.disabled=true;captureBtn.textContent='⏳';}
+  toast('👆 ضع إصبعك على جهاز البصمة…','tin');
+  try{
+    const r=await fetch(getBotBaseUrl()+'/api/fp/capture',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({timeout:15000})
+    });
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    const data=await r.json();
+    if(!data.ok||!data.id)throw new Error(data.error||'لم يتم التقاط البصمة');
+    const fpId=data.id;
+    const dup=getData().find(x=>normalizeFingerprintId(x.fingerprint_id)===fpId);
+    if(dup){toast('⚠️ البصمة '+fpId+' مسجلة لـ: '+(dup.name||''),'ter');return;}
+    document.getElementById('ffp').value=fpId;
+    // حفظ الصورة في حقل مخفي مؤقت لاستخدامها عند الحفظ
+    let imgField=document.getElementById('ffp_image');
+    if(!imgField){imgField=document.createElement('input');imgField.type='hidden';imgField.id='ffp_image';document.getElementById('ffp').parentNode.appendChild(imgField);}
+    imgField.value=data.image||'';
+    toast('✅ تم التقاط البصمة: '+fpId,'tok');
+    speak('تم التقاط البصمة بنجاح');
+  }catch(e){
+    toast('❌ '+(e.message||'خطأ في الاتصال بالجهاز'),'ter');
+  }finally{
+    if(captureBtn){captureBtn.disabled=false;captureBtn.textContent='👆 مسح';}
+  }
 }
 function stopFpCapturePoll(){if(_fpCapturePollTimer){clearInterval(_fpCapturePollTimer);_fpCapturePollTimer=null;}}
 // ============ / FINGERPRINT ENROLLMENT ============
@@ -14855,15 +15076,25 @@ async function testVoice(){
   const s=getSettings();
   const name=s.clubName||'مركز اللياقة';
   const text=`أهلاً وسهلاً، مرحباً بك في ${name}`;
-  if(!window.speechSynthesis){toast('⚠️ Windows TTS غير مدعوم','ter');return;}
-  window.speechSynthesis.cancel();
-  const utt=new SpeechSynthesisUtterance(text);
-  utt.lang='ar-SA'; utt.rate=parseFloat(s.voiceRate??0.9);
-  utt.pitch=parseFloat(s.voicePitch??1.0); utt.volume=parseFloat(s.voiceVolume??1.0);
-  const voices=window.speechSynthesis.getVoices();
-  const arVoice=voices.find(v=>v.lang==='ar-SA')||voices.find(v=>v.lang.startsWith('ar'))||null;
-  if(arVoice)utt.voice=arVoice;
-  window.speechSynthesis.speak(utt);
+  const eng=document.querySelector('input[name="voiceEngine"]:checked')?.value||(s.voiceEngine||'edge');
+  if(eng==='edge'){
+    // حفظ مؤقت لصوت الاختبار المختار
+    const selVoice=document.getElementById('edgeVoice')?.value||s.edgeVoice||'ar-SA-HaalaNeural';
+    const orig=s.edgeVoice; s.edgeVoice=selVoice;
+    toast('🔊 جارٍ تحميل الصوت…','');
+    await playEdgeTTS(text);
+    s.edgeVoice=orig;
+  } else {
+    if(!window.speechSynthesis){toast('⚠️ Windows TTS غير مدعوم','ter');return;}
+    window.speechSynthesis.cancel();
+    const utt=new SpeechSynthesisUtterance(text);
+    utt.lang='ar-SA'; utt.rate=parseFloat(s.voiceRate??0.9);
+    utt.pitch=parseFloat(s.voicePitch??1.0); utt.volume=parseFloat(s.voiceVolume??1.0);
+    const voices=window.speechSynthesis.getVoices();
+    const arVoice=voices.find(v=>v.lang==='ar-SA')||voices.find(v=>v.lang.startsWith('ar'))||null;
+    if(arVoice)utt.voice=arVoice;
+    window.speechSynthesis.speak(utt);
+  }
 }
 
 // ============ / VOICE ============
@@ -15079,7 +15310,6 @@ function applyFeatures(){
   if(typeof renderCustomers==='function') renderCustomers();
   if(typeof renderAutoView==='function'&&document.getElementById('view-auto')?.classList.contains('active')) renderAutoView();
   if(typeof renderReports==='function'&&document.getElementById('view-reports')?.classList.contains('active')) renderReports();
-  applySettingsPerms?.();
 }
 
 function _syncSettingsToggles(){
@@ -15097,69 +15327,6 @@ function _syncSettingsToggles(){
   const show=(id,v)=>{const el=document.getElementById(id);if(el)el.style.display=v?'':'none';};
   show('setCardWelcome', f('feat_whatsapp') && canDo('set_welcome'));
   show('setCardVoice',   f('feat_voice'));
-}
-
-function applySettingsPerms(){
-  const cardMap={
-    set_club:      'setCardClub',
-    set_subs:      ['setCardSports','setCardSports2'],
-    set_attendance: null,
-    set_employees:  null,
-    set_auto:      'setCardAuto',
-    set_wa:        'setCardWa',
-    set_welcome:   'setCardWelcome',
-    set_terms:     'setCardTerms',
-    set_fingerprint:'setCardFingerprint',
-    set_voice:     'setCardVoice',
-    set_backup:    'setCardBackup',
-    users:         'setCardUsers',
-  };
-  Object.entries(cardMap).forEach(([perm, ids])=>{
-    const show=canDo(perm);
-    const list=Array.isArray(ids)?ids:(ids?[ids]:[]);
-    list.forEach(id=>{
-      const el=document.getElementById(id);
-      if(el)el.style.display=show?'':'none';
-    });
-  });
-  const isAdmin=currentUser==='admin';
-  const adminOnly=['letterheadAdminCard','loginThemeAdminCard','watermarkAdminSection','diagnosticsAdminCard','featuresAdminCard','copyrightAdminCard','manualUpdateAdminCard','updateAdminCard'];
-  adminOnly.forEach(id=>{const el=document.getElementById(id);if(el)el.style.display=isAdmin?'':'none';});
-  if(isAdmin){loadLetterheadSettings?.();loadLoginSettings?.();}
-
-  const tabPermMap={
-    club:       'set_club',
-    subs:       'set_subs',
-    comms:      'set_wa',
-    attendance: 'set_attendance',
-    employees:  'set_employees',
-    fingerprint:'set_fingerprint',
-    voice:      'set_voice',
-    users:      'users',
-    backup:     'set_backup',
-  };
-  document.querySelectorAll('#setTabsBar .set-tab').forEach(btn=>{
-    const onclick=btn.getAttribute('onclick')||'';
-    const m=onclick.match(/switchSetTab\('([\w-]+)'/);
-    if(!m){
-      if(onclick.includes("showView('whatsapp')")){
-        btn.style.display=(canDo('whatsapp')&&getSettings().feat_whatsapp===true)?'':'none';
-      }
-      return;
-    }
-    const tab=m[1];
-    const perm=tabPermMap[tab];
-    if(perm)btn.style.display=canDo(perm)?'':'none';
-  });
-  const active=document.querySelector('#setTabsBar .set-tab.s-active');
-  if(!active||active.style.display==='none'){
-    const first=[...document.querySelectorAll('#setTabsBar .set-tab')]
-      .find(btn=>btn.style.display!=='none'&&(btn.getAttribute('onclick')||'').includes('switchSetTab'));
-    if(first){
-      const m=(first.getAttribute('onclick')||'').match(/switchSetTab\('([\w-]+)'/);
-      if(m)switchSetTab(m[1],first);
-    }
-  }
 }
 
 function loadFeaturesAdminCard(){
@@ -15435,11 +15602,72 @@ function printHelp(){
 }
 // ============ / HELP ============
 
-// ============ ZKTECO SETTINGS ONLY ============
-function fpLoadStatus(){}
-function fpSetForceMock(){toast('تم حذف وضع اختبار ماسح USB.','tin');}
-function fpRunTestScan(){toast('تم حذف ماسح USB. استخدم اتصال ZKTeco ومزامنة الآن.','tin');}
-// ============ / ZKTECO SETTINGS ONLY ============
+// ============ FINGERPRINT SETTINGS ============
+async function fpLoadStatus(){
+  const body=document.getElementById('fpSettingsStatusBody');
+  const tog=document.getElementById('fpForceMockToggle');
+  if(!body)return;
+  body.textContent='جاري التحقق...';
+  try{
+    const r=await fetch(getBotBaseUrl()+'/api/fp/status',{cache:'no-store'});
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    const s=await r.json();
+    const dllLine=s.dllPath?`<div>📂 DLL: <code style="font-size:10px">${s.dllPath}</code></div>`:'';
+    const errLine=s.sdkError?`<div style="color:#dc2626">⚠️ ${s.sdkError}</div>`:'';
+    const modeLine=s.sdkLoaded&&!s.forceMock
+      ?`<span style="color:#16a34a;font-weight:700">✅ جهاز حقيقي متصل</span>`
+      :(s.forceMock
+        ?`<span style="color:#7c3aed;font-weight:700">🧪 وضع اختبار قسري</span>`
+        :`<span style="color:#d97706;font-weight:700">⚠️ وضع محاكاة (لا يوجد جهاز)</span>`);
+    body.innerHTML=`<div style="margin-bottom:6px">${modeLine}</div>${errLine}${dllLine}
+      <div style="color:#64748b;margin-top:4px">الجهاز مفتوح: ${s.deviceOpen?'نعم':'لا'}</div>`;
+    if(tog)tog.checked=!!s.forceMock;
+  }catch(e){
+    body.innerHTML=`<span style="color:#dc2626">❌ لا يمكن الاتصال بالسيرفر: ${e.message}</span>`;
+  }
+}
+
+async function fpSetForceMock(enabled){
+  try{
+    const r=await fetch(getBotBaseUrl()+'/api/fp/set-mock',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({enabled})
+    });
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    await fpLoadStatus();
+    toast(enabled?'🧪 تم تفعيل وضع الاختبار':'✅ تم إلغاء وضع الاختبار','tok');
+  }catch(e){
+    toast('❌ '+e.message,'ter');
+  }
+}
+
+async function fpRunTestScan(){
+  const btn=document.getElementById('fpTestScanBtn');
+  const res=document.getElementById('fpTestResult');
+  if(!btn||!res)return;
+  btn.disabled=true; btn.textContent='⏳ جارٍ المسح...';
+  res.style.color='var(--muted)'; res.textContent='ضع إصبعك على الجهاز أو انتظر المعرف التجريبي...';
+  try{
+    const r=await fetch(getBotBaseUrl()+'/api/fp/capture',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({timeout:10000})
+    });
+    const d=await r.json();
+    if(d.ok){
+      res.style.color='#16a34a';
+      res.innerHTML=`✅ نجح المسح — المعرف: <b>${d.id}</b>${d.isMock?' (تجريبي)':' (حقيقي)'}`;
+    }else{
+      res.style.color='#dc2626';
+      res.textContent='❌ '+(d.error||'فشل المسح');
+    }
+  }catch(e){
+    res.style.color='#dc2626';
+    res.textContent='❌ '+e.message;
+  }finally{
+    btn.disabled=false; btn.textContent='👆 ابدأ مسح تجريبي';
+  }
+}
+// ============ / FINGERPRINT SETTINGS ============
 
 // init
 async function initApp(){
@@ -15472,88 +15700,6 @@ function _preLoginZkConnect(){
 
 initApp();
 
-function _inspectorSave(elInfoOrBtn){
-  const elInfo=typeof elInfoOrBtn==='string'?elInfoOrBtn:(elInfoOrBtn?.dataset?.el||'');
-  const desc=document.getElementById('inspectorDesc')?.value?.trim();
-  if(!desc){ toast('⚠️ اكتب وصف المشكلة أولاً','ter'); return; }
-  const issues=JSON.parse(localStorage.getItem('inspector_issues')||'[]');
-  issues.unshift({id:Date.now(),el:elInfo,desc,time:new Date().toLocaleString('ar-SA'),url:location.href});
-  localStorage.setItem('inspector_issues',JSON.stringify(issues.slice(0,50)));
-  document.getElementById('inspectorReport').style.display='none';
-  toast('✅ تم حفظ المشكلة — شاهدها في الإعدادات ← متقدم','tok');
-}
-function _inspectorShowIssues(){
-  const issues=JSON.parse(localStorage.getItem('inspector_issues')||'[]');
-  const el=document.getElementById('inspectorIssuesList');
-  if(!el) return;
-  if(!issues.length){ el.innerHTML='<div style="text-align:center;color:var(--muted);padding:20px">لا توجد مشاكل مسجّلة</div>'; return; }
-  el.innerHTML=issues.map((iss,i)=>`
-    <div style="background:#f8faff;border:1px solid #e4eaf5;border-radius:10px;padding:12px 14px;margin-bottom:8px">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-        <span style="font-family:monospace;font-size:11px;color:#2a5298;font-weight:700">${iss.el}</span>
-        <div style="display:flex;gap:6px;align-items:center">
-          <span style="font-size:10px;color:var(--muted)">${iss.time}</span>
-          <button onclick="_inspectorDeleteIssue(${iss.id})" style="background:#fee2e2;color:#dc2626;border:none;border-radius:6px;padding:2px 8px;cursor:pointer;font-size:11px">×</button>
-        </div>
-      </div>
-      <div style="font-size:13px;color:var(--text);line-height:1.6">${iss.desc}</div>
-    </div>`).join('');
-}
-function _inspectorDeleteIssue(id){
-  const issues=JSON.parse(localStorage.getItem('inspector_issues')||'[]').filter(i=>i.id!==id);
-  localStorage.setItem('inspector_issues',JSON.stringify(issues));
-  _inspectorShowIssues();
-}
-function saveInspectorSetting(cb){
-  const s=getSettings(); s.inspectorVisible=cb.checked; _ksSet(s);
-  applyInspectorVisibility();
-  toast(cb.checked?'✅ أداة الفحص مرئية للمستخدمين':'أداة الفحص للأدمن فقط','tok');
-}
-function applyInspectorVisibility(){
-  const btn=document.getElementById('inspectorBtn');
-  if(!btn) return;
-  const isAdm=currentUser==='admin';
-  const allowed=getSettings().inspectorVisible===true;
-  btn.style.display=(isAdm||allowed)?'flex':'none';
-  // تحديث الـ toggle في الإعدادات
-  const el=document.getElementById('setInspectorVisible');
-  if(el) el.checked=!!getSettings().inspectorVisible;
-}
-
-
-// ════ ERROR MONITOR ════
-const _errLog=[];
-let _errPanelOpen=false;
-function _errMonAdd(msg,src,line){
-  _errLog.unshift({msg:String(msg||'').slice(0,300),src:String(src||'').split('/').pop()+'  L'+line,time:new Date().toLocaleTimeString('ar-SA')});
-  if(_errLog.length>30) _errLog.pop();
-  _errMonRefresh();
-  var btn=document.getElementById('errMonBtn');
-  if(btn){btn.style.display='flex';btn.textContent='⚠️ '+_errLog.length;}
-}
-window.onerror=function(msg,src,line){_errMonAdd(msg,src,line);return false;};
-window.addEventListener('unhandledrejection',function(e){_errMonAdd(e.reason&&e.reason.message?e.reason.message:String(e.reason),'Promise',0);});
-function _errMonToggle(){
-  _errPanelOpen=!_errPanelOpen;
-  var p=document.getElementById('errMonPanel');
-  if(p)p.style.display=_errPanelOpen?'block':'none';
-  if(_errPanelOpen)_errMonRefresh();
-}
-function _errMonRefresh(){
-  var el=document.getElementById('errMonList');if(!el)return;
-  if(!_errLog.length){el.innerHTML='<div style="padding:20px;text-align:center;color:#64748b;font-size:13px">لا توجد أخطاء ✅</div>';return;}
-  el.innerHTML=_errLog.map(function(e){return '<div class="err-item"><div class="err-msg">'+e.msg+'</div><div class="err-where">'+e.src+' — '+e.time+'</div></div>';}).join('');
-}
-function _errMonClear(){
-  _errLog.length=0;
-  var btn=document.getElementById('errMonBtn');
-  if(btn)btn.style.display='none';
-  _errMonRefresh();
-}
-function _errMonCopy(){
-  var txt=_errLog.map(function(e){return '['+e.time+'] '+e.msg+'\n  @ '+e.src;}).join('\n---\n');
-  navigator.clipboard.writeText(txt).then(function(){toast('✅ تم نسخ الأخطاء','tok');}).catch(function(){toast('❌ فشل النسخ','ter');});
-}
 </script>
 
 </body>
