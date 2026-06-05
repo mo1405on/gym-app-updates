@@ -131,20 +131,20 @@ body{font-family:'Segoe UI','Traditional Arabic',Arial,sans-serif;background:var
 /* LAYOUT */
 #mainPage{display:none}
 .app-wrap{display:flex;min-height:100vh}
-.sidebar{width:250px;background:var(--primary);display:flex;flex-direction:column;position:fixed;top:0;bottom:0;right:0;z-index:100;box-shadow:-4px 0 20px rgba(0,0,0,.15)}
+.sidebar{width:250px;background:var(--primary);display:flex;flex-direction:column;position:fixed;top:0;bottom:0;right:0;z-index:100;box-shadow:-4px 0 20px rgba(0,0,0,.15);overflow:hidden}
 .sb-logo{padding:22px 18px 18px;border-bottom:1px solid rgba(255,255,255,.1);display:flex;align-items:center;gap:12px}
 .sb-logo-icon{font-size:26px}
 .sb-logo-text{color:#fff}
 .sb-logo-text strong{display:block;font-size:14px}
 .sb-logo-text small{font-size:11px;opacity:.6}
-.sb-nav{padding:14px 10px;flex:1}
+.sb-nav{padding:14px 10px;flex:1;overflow-y:auto}
 .nav-item{display:flex;align-items:center;gap:11px;padding:11px 13px;border-radius:10px;color:rgba(255,255,255,.7);cursor:pointer;transition:background .2s,color .2s,box-shadow .2s;font-size:13.5px;font-weight:600;margin-bottom:3px;position:relative}
 .nav-item:hover{background:rgba(255,255,255,.2);color:#fff;box-shadow:0 4px 16px rgba(0,0,0,.25)}
 .nav-item.active{background:rgba(255,255,255,.15);color:#fff;font-weight:600}
 .nav-item .ni{font-size:17px;width:22px;text-align:center}
 .nav-badge{position:absolute;left:10px;top:50%;transform:translateY(-50%);background:#e74c3c;color:#fff;font-size:10px;font-weight:700;min-width:18px;height:18px;border-radius:9px;display:none;align-items:center;justify-content:center;padding:0 4px}
 .nav-badge.show{display:flex}
-.sb-foot{padding:14px;border-top:1px solid rgba(255,255,255,.1)}
+.sb-foot{padding:14px;border-top:1px solid rgba(255,255,255,.1);margin-bottom:env(safe-area-inset-bottom,0)}
 .user-info{display:flex;align-items:center;gap:10px;margin-bottom:11px}
 .u-av{width:36px;height:36px;background:rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
 .u-name{color:#fff;font-size:13px;font-weight:600}
@@ -283,12 +283,34 @@ tbody tr:hover td{background:#f8faff}
 .dur-row:last-child{border-bottom:none}
 .dur-builtin{font-size:10px;color:var(--muted);background:#f5f7fa;padding:2px 7px;border-radius:10px}
 .club-logo-box{width:90px;height:90px;border-radius:14px;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;font-size:38px;overflow:hidden;border:3px solid var(--border);flex-shrink:0;cursor:pointer}
-.sport-chip{display:inline-flex;align-items:center;gap:5px;background:#eef2ff;border:1px solid #c7d7f5;border-radius:20px;padding:4px 8px 4px 5px;font-size:12px;margin:3px}
-.sport-chip button{background:#dc2626;color:#fff;border:none;border-radius:50%;width:15px;height:15px;cursor:pointer;font-size:9px;display:flex;align-items:center;justify-content:center;padding:0;flex-shrink:0;line-height:1}
-.dur-row{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-bottom:1px solid #f5f7fa;font-size:12px}
-.dur-row:last-child{border-bottom:none}
-.dur-builtin{font-size:10px;color:var(--muted);background:#f5f7fa;padding:2px 7px;border-radius:10px}
 .club-logo-box{width:90px;height:90px;border-radius:14px;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;font-size:38px;overflow:hidden;border:3px solid var(--border);flex-shrink:0;cursor:pointer}
+/* ════ CUSTOM DATE PICKER ════ */
+.dp-wrap{position:relative;display:block;width:100%}
+.dp-input{padding:9px 12px;border:2px solid var(--border);border-radius:9px;font-size:13px;font-family:inherit;cursor:pointer;background:#fff;color:var(--text);display:flex;align-items:center;justify-content:space-between;gap:8px;user-select:none;transition:border-color .18s}
+.dp-input:hover{border-color:var(--primary)}
+.dp-popup{position:absolute;bottom:calc(100% + 6px);right:0;background:#fff;border:2px solid var(--border);border-radius:14px;box-shadow:0 8px 30px rgba(0,0,0,.15);z-index:9999;width:290px;padding:14px;display:none}
+.dp-popup.open{display:block}
+.dp-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.dp-nav{background:none;border:none;cursor:pointer;font-size:18px;color:var(--primary);padding:4px 8px;border-radius:6px}
+.dp-nav:hover{background:#eef2ff}
+.dp-title{font-weight:700;font-size:14px;color:var(--text)}
+.dp-cal-toggle{background:#f0f4ff;border:1.5px solid #c7d7f5;color:var(--primary);border-radius:8px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit}
+.dp-cal-toggle:hover{border-color:var(--primary)}
+.dp-year-btn{background:none;border:none;cursor:pointer;font-weight:700;font-size:14px;color:var(--primary);padding:2px 6px;border-radius:6px;font-family:inherit}
+.dp-year-btn:hover{background:#eef2ff}
+.dp-year-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:4px 0}
+.dp-year-item{text-align:center;padding:7px 4px;font-size:12px;font-weight:700;cursor:pointer;border-radius:8px;border:1.5px solid transparent;transition:.15s}
+.dp-year-item:hover{background:var(--primary);color:#fff}
+.dp-year-item.cur-year{border-color:var(--primary);color:var(--primary)}
+.dp-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.dp-day-name{text-align:center;font-size:10px;font-weight:700;color:var(--muted);padding:4px 0}
+.dp-day{text-align:center;padding:6px 2px;font-size:12px;cursor:pointer;border-radius:7px;transition:.15s}
+.dp-day:hover{background:var(--primary);color:#fff}
+.dp-day.today{background:#e0f2fe;color:var(--primary);font-weight:700}
+.dp-day.selected{background:var(--primary);color:#fff;font-weight:700}
+.dp-day.other-month{color:#cbd5e1;cursor:default}
+.dp-day.other-month:hover{background:none;color:#cbd5e1}
+
 /* ═══ Settings Cards ═══ */
 .set-card{background:#fff;border-radius:16px;border:1px solid #e4eaf5;box-shadow:0 2px 14px rgba(42,82,152,.07);overflow:hidden;transition:box-shadow .2s,border-color .2s}
 .set-card:hover{box-shadow:0 6px 28px rgba(42,82,152,.13);border-color:#c7d7f5}
@@ -304,10 +326,11 @@ tbody tr:hover td{background:#f8faff}
 .set-label{font-size:13px;color:var(--text);font-weight:600}
 .set-desc{font-size:11px;color:var(--muted);margin-top:2px}
 /* ═══ Settings Tab Nav ═══ */
-.set-tabs{display:flex;gap:3px;flex-wrap:wrap;background:#eef2ff;border-radius:14px;padding:5px;margin-bottom:22px}
-.set-tab{display:flex;align-items:center;gap:7px;padding:9px 15px;border:none;border-radius:10px;background:transparent;font-family:inherit;font-size:13px;font-weight:600;color:#5a6a8a;cursor:pointer;transition:all .18s;white-space:nowrap;flex-shrink:0}
-.set-tab:hover{background:rgba(255,255,255,.65);color:var(--primary)}
-.set-tab.s-active{background:#fff;color:var(--primary);box-shadow:0 2px 12px rgba(42,82,152,.14)}
+.set-tabs{display:flex;gap:4px;flex-wrap:wrap;background:linear-gradient(135deg,#eef2ff,#e8eeff);border-radius:16px;padding:6px;margin-bottom:24px;box-shadow:inset 0 1px 4px rgba(42,82,152,.08),0 2px 12px rgba(42,82,152,.1);position:sticky;top:0;z-index:100;backdrop-filter:blur(8px)}
+.set-tab{display:flex;align-items:center;gap:8px;padding:10px 16px;border:none;border-radius:11px;background:transparent;font-family:inherit;font-size:12.5px;font-weight:600;color:#6b7a99;cursor:pointer;transition:all .2s;white-space:nowrap;flex-shrink:0;letter-spacing:.01em}
+.set-tab:hover{background:rgba(255,255,255,.75);color:var(--primary);transform:translateY(-1px)}
+.set-tab.s-active{background:#fff;color:var(--primary);box-shadow:0 3px 14px rgba(42,82,152,.16);transform:translateY(-1px)}
+.set-tab-ico{font-size:16px;line-height:1}
 .set-tab-ico{font-size:15px}
 .set-card.tab-hidden{display:none !important}
 /* Toggle */
@@ -440,14 +463,6 @@ input:checked+.slider:before{transform:translateX(-20px)}
 .role-btn:hover{border-color:var(--accent);color:var(--accent)}
 .role-btn.sel{border-color:var(--primary);background:var(--primary);color:#fff}
 .perm-badge{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;background:#e8f0fe;color:var(--primary);border-radius:20px;font-size:10px;font-weight:700;margin:2px 1px}
-/* PERMISSIONS */
-.perm-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
-.perm-chip{display:flex;align-items:center;gap:8px;padding:8px 12px;border:2px solid var(--border);border-radius:9px;cursor:pointer;transition:all .2s;user-select:none;font-size:12px}
-.perm-chip input{width:15px;height:15px;accent-color:var(--primary);flex-shrink:0;margin:0;cursor:pointer}
-.perm-chip.active{border-color:var(--primary);background:#e8f0fe;color:var(--primary);font-weight:700}
-.role-btn{padding:7px 15px;border-radius:8px;border:2px solid var(--border);font-size:12px;font-family:inherit;cursor:pointer;transition:all .2s;background:#fff;color:var(--text);font-weight:600}
-.role-btn:hover{border-color:var(--accent);color:var(--accent)}
-.role-btn.sel{border-color:var(--primary);background:var(--primary);color:#fff}
 .perm-badge{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;background:#e8f0fe;color:var(--primary);border-radius:20px;font-size:10px;font-weight:700;margin:2px 1px}
 /* DONUT CHART */
 .donut-wrap{display:flex;align-items:center;gap:20px;padding:8px 0;flex-wrap:wrap}
@@ -608,7 +623,52 @@ input:checked+.slider:before{transform:translateX(-20px)}
       <div id="loginCopyrightText" style="font-size:12px;color:#6b7280;line-height:1.8;white-space:pre-line"></div>
     </div>
   </div>
-  <div class="login-version-badge">v<span id="loginAppVersion">1.6.0</span></div>
+  <div class="login-version-badge" id="loginVersionBadge" style="cursor:default" onclick="ownerVersionClick()">v<span id="loginAppVersion">1.6.0</span></div>
+</div>
+
+<!-- OWNER SETUP OVERLAY -->
+<div id="ownerSetupOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;align-items:center;justify-content:center">
+  <div style="background:#fff;border-radius:20px;padding:32px;width:380px;box-shadow:0 20px 60px rgba(0,0,0,.3)">
+    <div style="text-align:center;margin-bottom:20px">
+      <div style="font-size:36px">🔐</div>
+      <div style="font-size:18px;font-weight:800;color:#1e293b;margin-top:8px">إعداد مسؤول النظام</div>
+      <div style="font-size:12px;color:#64748b;margin-top:4px">كلمة المرور الخاصة — مخفية عن الجميع</div>
+    </div>
+    <div style="margin-bottom:14px">
+      <label style="font-size:12px;font-weight:700;color:#64748b;display:block;margin-bottom:6px">كلمة المرور الخاصة</label>
+      <input id="ownerPassInput" type="password" placeholder="أدخل كلمة مرور سرية" style="width:100%;padding:11px 14px;border:2px solid #e2e8f0;border-radius:10px;font-size:14px;font-family:inherit;outline:none">
+    </div>
+    <div style="margin-bottom:20px">
+      <label style="font-size:12px;font-weight:700;color:#64748b;display:block;margin-bottom:6px">تأكيد كلمة المرور</label>
+      <input id="ownerPassConfirm" type="password" placeholder="أعد الكتابة للتأكيد" style="width:100%;padding:11px 14px;border:2px solid #e2e8f0;border-radius:10px;font-size:14px;font-family:inherit;outline:none">
+    </div>
+    <div id="ownerSetupErr" style="color:#dc2626;font-size:12px;margin-bottom:12px;display:none"></div>
+    <div style="display:flex;gap:10px">
+      <button onclick="closeOwnerSetup()" style="flex:1;padding:12px;background:#f1f5f9;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit">إلغاء</button>
+      <button onclick="saveOwnerPassword()" style="flex:2;padding:12px;background:linear-gradient(135deg,#1e40af,#3b82f6);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit">💾 حفظ كلمة المرور</button>
+    </div>
+  </div>
+</div>
+
+<!-- OWNER PANEL OVERLAY -->
+<div id="ownerPanelOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9998;align-items:center;justify-content:center">
+  <div style="background:#fff;border-radius:20px;width:520px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.3)">
+    <div style="background:linear-gradient(135deg,#1e3a8a,#1e40af);padding:20px 24px;border-radius:20px 20px 0 0;display:flex;align-items:center;justify-content:space-between">
+      <div><div style="color:#fff;font-size:18px;font-weight:800">🔐 مسؤول النظام</div><div style="color:rgba(255,255,255,.7);font-size:12px;margin-top:2px">تحكم كامل في خصائص البرنامج</div></div>
+      <button onclick="closeOwnerPanel()" style="background:rgba(255,255,255,.2);border:none;color:#fff;border-radius:8px;padding:6px 12px;cursor:pointer;font-size:13px;font-family:inherit">✕ إغلاق</button>
+    </div>
+    <div style="padding:20px 24px">
+      <div style="font-size:13px;font-weight:700;color:#64748b;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid #f1f5f9">📋 اختر ما يراه الأدمن العادي</div>
+      <div id="ownerSectionToggles" style="display:flex;flex-direction:column;gap:8px"></div>
+      <div style="margin-top:20px;padding-top:16px;border-top:2px solid #f1f5f9">
+        <div style="font-size:13px;font-weight:700;color:#64748b;margin-bottom:12px">🔑 تغيير كلمة المرور الخاصة</div>
+        <div style="display:flex;gap:8px">
+          <input id="ownerNewPass" type="password" placeholder="كلمة المرور الجديدة" style="flex:1;padding:10px 12px;border:2px solid #e2e8f0;border-radius:9px;font-size:13px;font-family:inherit;outline:none">
+          <button onclick="changeOwnerPass()" style="padding:10px 18px;background:var(--primary);color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit">تغيير</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- MAIN APP -->
@@ -642,11 +702,18 @@ input:checked+.slider:before{transform:translateX(-20px)}
         <div class="u-av">👤</div>
         <div><div class="u-name" id="sideUser">—</div><div class="u-role">مدير النظام</div></div>
       </div>
-      <div style="display:flex;gap:8px;align-items:center">
-        <button class="btn-logout" onclick="doLogout()" style="flex:1">🚪 <span data-i18n="nav_logout">تسجيل الخروج</span></button>
-        <button onclick="closeAppFully()" title="إغلاق البرنامج نهائياً" style="background:rgba(220,38,38,.7);border:1px solid rgba(255,100,100,.4);color:#fff;border-radius:8px;padding:6px 10px;font-size:16px;cursor:pointer;font-family:inherit;flex-shrink:0" onmouseover="this.style.background='rgba(220,38,38,.95)'" onmouseout="this.style.background='rgba(220,38,38,.7)'">⏻</button>
-        <button id="langToggleBtn" onclick="toggleLang()"
-          style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:8px;padding:6px 10px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;flex-shrink:0">EN</button>
+      <div style="display:flex;flex-direction:column;gap:5px;align-items:stretch">
+        <!-- الصف العلوي: واتساب + بصمة -->
+        <div style="display:flex;gap:5px;justify-content:flex-end">
+          <button onclick="startBotFromSettings()" title="تشغيل بوت الواتساب" id="topWaBtn" style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:8px;padding:4px 7px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;width:32px;height:28px" onmouseover="this.style.background='rgba(255,255,255,.25)'" onmouseout="this.style.background='rgba(255,255,255,.15)'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></button>
+          <button onclick="zkConnect(true);toast('🔌 جاري الاتصال بالجهاز...','tin')" title="اتصال بجهاز البصمة ZKTeco" id="topZkBtn" style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:8px;padding:4px 7px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;width:32px;height:28px" onmouseover="this.style.background='rgba(255,255,255,.25)'" onmouseout="this.style.background='rgba(255,255,255,.15)'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12C2 6.5 6.5 2 12 2a10 10 0 0 1 10 10"/><path d="M5 19.5C5.5 18 6 15 6 12c0-3.3 2.7-6 6-6 3.3 0 6 2.7 6 6v2"/><path d="M9 19.5A12.5 12.5 0 0 0 10 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2"/><path d="M16 19.5c.5-1 1-3.5 1-7.5"/><path d="M9 12a3 3 0 0 1 3-3"/></svg></button>
+        </div>
+        <!-- الصف السفلي: تسجيل الخروج + إغلاق + لغة -->
+        <div style="display:flex;gap:5px;align-items:center">
+          <button class="btn-logout" onclick="doLogout()" style="flex:1;font-size:11px;padding:5px 8px">🚪 <span data-i18n="nav_logout">تسجيل الخروج</span></button>
+          <button onclick="closeAppFully()" title="إغلاق البرنامج نهائياً" style="background:rgba(220,38,38,.7);border:1px solid rgba(255,100,100,.4);color:#fff;border-radius:8px;padding:5px 8px;font-size:14px;cursor:pointer;font-family:inherit;flex-shrink:0" onmouseover="this.style.background='rgba(220,38,38,.95)'" onmouseout="this.style.background='rgba(220,38,38,.7)'">⏻</button>
+          <button id="langToggleBtn" onclick="toggleLang()" style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:8px;padding:5px 8px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;flex-shrink:0">EN</button>
+        </div>
       </div>
     </div>
   </nav>
@@ -673,18 +740,33 @@ input:checked+.slider:before{transform:translateX(-20px)}
       <!-- DASHBOARD -->
       <div class="view active" id="view-dashboard">
 
-        <!-- حالة واتساب -->
-        <div id="dashWaCard" style="display:none;margin-bottom:20px;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);border:2px solid var(--border)" onclick="showView('settings')" title="انتقل إلى إعدادات واتساب">
-          <div style="padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;cursor:pointer">
-            <div style="display:flex;align-items:center;gap:13px">
-              <span id="dashWaIcon" style="font-size:28px">⏳</span>
-              <div>
-                <div id="dashWaText" style="font-weight:700;font-size:14px;color:var(--text)">جاري التحقق من حالة واتساب...</div>
-                <div id="dashWaSub" style="font-size:11px;color:var(--muted);margin-top:2px">واتساب ? إرسال مباشر</div>
+        <!-- شريط حالة الاتصالات -->
+        <div id="dashStatusBar" style="display:none;margin-bottom:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+
+          <!-- حالة واتساب -->
+          <div id="dashWaCard" style="display:none;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);border:2px solid var(--border);cursor:pointer" onclick="showView('settings');switchSetTab('comms',document.querySelector('#setTabsBar .set-tab:nth-child(3)'))">
+            <div style="padding:13px 18px;display:flex;align-items:center;gap:12px">
+              <span id="dashWaIcon" style="font-size:26px">⏳</span>
+              <div style="flex:1">
+                <div id="dashWaText" style="font-weight:700;font-size:13px;color:var(--text)">جاري التحقق من واتساب...</div>
+                <div id="dashWaSub" style="font-size:11px;color:var(--muted);margin-top:2px">واتساب — إرسال مباشر</div>
               </div>
+              <button class="btn" style="font-size:11px;padding:5px 10px;background:#f0f4ff;color:var(--primary);border:1px solid #c7d7f5" onclick="event.stopPropagation();checkDashWaStatus()">🔄</button>
             </div>
-            <button class="btn bg" style="font-size:12px;padding:7px 14px" onclick="event.stopPropagation();checkDashWaStatus()">🔄 Check Now</button>
           </div>
+
+          <!-- حالة ZKTeco -->
+          <div id="dashZkCard" style="display:none;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);border:2px solid var(--border);cursor:pointer" onclick="showView('settings');switchSetTab('voice',document.querySelector('#setTabsBar .set-tab:nth-child(5)'))">
+            <div style="padding:13px 18px;display:flex;align-items:center;gap:12px">
+              <span id="dashZkIcon" style="font-size:26px">⏳</span>
+              <div style="flex:1">
+                <div id="dashZkText" style="font-weight:700;font-size:13px;color:var(--text)">جاري التحقق من البصمة...</div>
+                <div id="dashZkSub" style="font-size:11px;color:var(--muted);margin-top:2px">جهاز ZKTeco</div>
+              </div>
+              <button class="btn" style="font-size:11px;padding:5px 10px;background:#f0f4ff;color:var(--primary);border:1px solid #c7d7f5" onclick="event.stopPropagation();checkDashZkStatus()">🔄</button>
+            </div>
+          </div>
+
         </div>
 
         <div class="stats-row">
@@ -714,11 +796,11 @@ input:checked+.slider:before{transform:translateX(-20px)}
           <div class="card-head">
             <h3>👥 قائمة المشتركين</h3>
             <div class="cc">
-              <input type="text" class="si-input" id="searchBox" placeholder="🔍 Search..." oninput="renderCustomers()">
+              <input type="text" class="si-input" id="searchBox" placeholder="🔍 بحث..." oninput="renderCustomers()">
               <button class="btn bg" onclick="checkAllPhones()">📱 فحص الأرقام</button>
-              <button class="btn bg" id="exportBtn" onclick="openExport()">⬇️ تصدير البيانات</button>
-              <button class="btn" id="importBtn" style="background:#7c3aed;color:#fff" onclick="openImport()">📥 استيراد بيانات</button>
-              <button class="btn bp" onclick="openAdd()">+ Add Member</button>
+              <button class="btn bg" id="exportBtn" data-owner="members_export" onclick="openExport()">⬇️ تصدير البيانات</button>
+              <button class="btn" id="importBtn" data-owner="members_import" style="background:#7c3aed;color:#fff" onclick="openImport()">📥 استيراد بيانات</button>
+              <button class="btn bp" data-owner="members_add" onclick="openAdd()">+ Add Member</button>
             </div>
           </div>
           <div class="filter-bar">
@@ -1240,89 +1322,14 @@ input:checked+.slider:before{transform:translateX(-20px)}
             <h3 style="color:#fff">📋 سجل الحضور اليومي</h3>
             <div class="cc">
               <div class="date-badge" style="background:rgba(255,255,255,.2);color:#fff" id="attDateShow"></div>
-              <!-- زر تفعيل الانصراف -->
-              <div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:5px 12px">
-                <span style="color:#fff;font-size:12px;font-weight:600">🚪 تتبع الانصراف</span>
-                <label class="toggle" style="margin:0">
-                  <input type="checkbox" id="trackCheckoutToggle" onchange="toggleTrackCheckout(this)">
-                  <span class="slider"></span>
-                </label>
-              </div>
-              <!-- زر تفعيل إشعارات واتساب -->
-              <div id="attWaToggleWrapper" style="display:flex;align-items:center;gap:8px;background:rgba(37,211,102,.2);border:1px solid rgba(37,211,102,.5);border-radius:20px;padding:5px 12px">
-                <span style="color:#fff;font-size:12px;font-weight:600">💬 إشعارات واتساب</span>
-                <label class="toggle" style="margin:0">
-                  <input type="checkbox" id="attWaToggle" onchange="toggleAttWa(this)">
-                  <span class="slider"></span>
-                </label>
-              </div>
-              <!-- زر تفعيل الصوت -->
-              <div id="attVoiceWrapper" style="display:flex;align-items:center;gap:8px;background:rgba(255,200,0,.2);border:1px solid rgba(255,200,0,.5);border-radius:20px;padding:5px 12px">
-                <span style="color:#fff;font-size:12px;font-weight:600">🔊 النطق الصوتي</span>
-                <label class="toggle" style="margin:0">
-                  <input type="checkbox" id="voiceToggle" onchange="toggleVoice(this)">
-                  <span class="slider"></span>
-                </label>
+              <div id="zkLiveChip" style="display:none;align-items:center;gap:5px;background:rgba(34,197,94,.25);border:1px solid rgba(34,197,94,.5);border-radius:20px;padding:4px 10px;font-size:11px;font-weight:700;color:#fff">
+                <span style="width:7px;height:7px;background:#22c55e;border-radius:50%;display:inline-block;animation:fp-pulse 1.5s ease-in-out infinite"></span> بصمة نشطة
               </div>
               <button class="btn" style="background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.3)" onclick="renderAttendance()">🔄 تحديث</button>
+              <button class="btn" style="background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.3);font-size:12px" onclick="showView('settings');switchSetTab('attendance',document.querySelector('#setTabsBar .set-tab:nth-child(4)'))">⚙️ إعدادات الحضور</button>
             </div>
           </div>
-          <div id="attScanRow" style="padding:14px 20px;background:#f8faff;border-bottom:1px solid var(--border);display:grid;grid-template-columns:minmax(260px,1fr) auto auto;gap:10px;align-items:center">
-            <input id="attQrInput" placeholder="امسح QR البطاقة ثم Enter" autocomplete="off"
-              onkeydown="handleAttendanceQrKey(event)"
-              style="padding:11px 14px;border:2px solid var(--border);border-radius:10px;font-family:inherit;font-size:13px;direction:ltr;text-align:left;background:#fff">
-            <button class="btn bp" onclick="focusAttendanceQr()">📷 جاهز لمسح QR</button>
-            <button id="fpAttendanceBtn" class="btn" onclick="startFpAttendanceScan()"
-              style="background:linear-gradient(135deg,#6d28d9,#9333ea);color:#fff;border:none;white-space:nowrap">
-              👆 مسح البصمة
-            </button>
-            <div id="attQrStatus" style="grid-column:1/-1;display:none;padding:10px 12px;border-radius:10px;font-size:13px;font-weight:800"></div>
-          </div>
 
-          <!-- ══ لوحة البصمة التلقائية ══ -->
-          <div id="fpAutoPanel" style="border-top:2px solid #ede9fe;background:linear-gradient(160deg,#f5f3ff 0%,#faf5ff 100%)">
-
-            <!-- حالة الإيقاف -->
-            <div id="fpAutoInactive" style="padding:14px 20px">
-              <button onclick="toggleFpAutoScan()"
-                style="width:100%;padding:16px;background:linear-gradient(135deg,#6d28d9,#9333ea);color:#fff;border:none;border-radius:13px;cursor:pointer;font-size:16px;font-weight:800;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:10px">
-                <span style="font-size:24px" class="fp-anim">👆</span> تفعيل قراءة البصمة التلقائية
-              </button>
-              <div style="text-align:center;margin-top:7px;font-size:11px;color:#a78bfa">ضع الإصبع على جهاز البصمة وسيتم تسجيل الحضور والانصراف تلقائياً</div>
-            </div>
-
-            <!-- حالة التفعيل -->
-            <div id="fpAutoActive" style="display:none;padding:16px 20px">
-
-              <!-- شريط الحالة العلوي -->
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px">
-                <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-                  <span style="display:inline-block;width:10px;height:10px;background:#22c55e;border-radius:50%;box-shadow:0 0 0 4px #bbf7d0;animation:fp-pulse 1.5s ease-in-out infinite"></span>
-                  <span style="font-weight:800;color:#6d28d9;font-size:14px">Auto Reading Active</span>
-                  <span id="fpAutoModeChip" style="display:none;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700"></span>
-                </div>
-                <button onclick="toggleFpAutoScan()"
-                  style="padding:7px 16px;background:#fef2f2;color:#dc2626;border:1.5px solid #fca5a5;border-radius:10px;cursor:pointer;font-weight:700;font-family:inherit;font-size:13px">
-                  ⏹ إيقاف
-                </button>
-              </div>
-
-              <!-- أيقونة + حالة (تظهر فقط في وضع الجهاز الحقيقي) -->
-              <div id="fpAutoWaitArea" style="text-align:center;padding:20px 0 8px">
-                <div id="fpAutoIcon" class="fp-anim" style="font-size:72px;line-height:1">👆</div>
-                <div id="fpAutoStatus" style="margin-top:12px;font-size:15px;font-weight:700;color:#7c3aed;line-height:1.4">⏳ انتظار البصمة…</div>
-              </div>
-
-              <!-- نتيجة التعرف (كاملة العرض) -->
-              <div id="fpAutoResult" style="display:none;padding:20px;border-radius:14px;text-align:center;margin-bottom:10px"></div>
-
-              <!-- منتقي المحاكاة (كاملة العرض، بارز) -->
-              <div id="fpAutoMockPicker" style="display:none;padding:16px;background:#fff;border-radius:14px;border:2px solid #c4b5fd;margin-top:4px"></div>
-
-            </div>
-
-          </div>
-          <!-- ══ / لوحة البصمة التلقائية ══ -->
 
           <div id="attStats" style="padding:14px 20px;background:#f8faff;border-bottom:1px solid var(--border);display:flex;gap:28px;flex-wrap:wrap"></div>
           <div id="attList"></div>
@@ -1339,8 +1346,6 @@ input:checked+.slider:before{transform:translateX(-20px)}
           <div class="card-head">
             <h3>👔 حضور وانصراف الموظفين</h3>
             <div class="cc">
-              <button class="btn bg" onclick="empAttIn()">✅ تسجيل حضور</button>
-              <button class="btn" style="background:#ef4444;color:#fff" onclick="empAttOut()">🚪 تسجيل انصراف</button>
               <button class="btn" style="background:#fee2e2;color:#dc2626;border:1.5px solid #fca5a5" onclick="clearAllEmpAtt()">🗑️ حذف الكل</button>
             </div>
           </div>
@@ -1351,15 +1356,16 @@ input:checked+.slider:before{transform:translateX(-20px)}
               </select>
               <input type="date" id="empAttDate" class="set-input" style="width:160px">
               <button class="btn bw" onclick="filterEmpAtt()">🔍 فلتر</button>
-              <button class="btn bw" onclick="exportEmpAtt()">⬇️ تصدير</button>
+              <button class="btn bw" onclick="exportEmpAtt()">⬇️ Excel</button>
+              <button class="btn" style="background:#dc2626;color:#fff;border:none" onclick="exportEmpAttPdf()">📄 PDF</button>
             </div>
           </div>
           <div style="overflow-x:auto">
             <table>
               <thead><tr>
-                <th>#</th><th>الموظف</th><th>التاريخ</th><th>وقت الحضور</th><th>وقت الانصراف</th><th>المدة</th><th>الحالة</th><th>إجراءات</th>
+                <th>#</th><th>الموظف</th><th>التاريخ</th><th>وقت الحضور</th><th>وقت الانصراف</th><th>المدة</th><th>تأخير</th><th>انسحاب مبكر</th><th>الحالة</th><th>إجراءات</th>
               </tr></thead>
-              <tbody id="empAttTable"><tr><td colspan="8" class="no-data"><div class="ndi">📋</div>لا توجد سجلات</td></tr></tbody>
+              <tbody id="empAttTable"><tr><td colspan="10" class="no-data"><div class="ndi">📋</div>لا توجد سجلات</td></tr></tbody>
             </table>
           </div>
         </div>
@@ -1451,25 +1457,28 @@ input:checked+.slider:before{transform:translateX(-20px)}
         <!-- ══ شريط تبويبات الإعدادات ══ -->
         <div class="set-tabs" id="setTabsBar">
           <button class="set-tab s-active" onclick="switchSetTab('club',this)">
-            <span class="set-tab-ico">🏋️</span><span data-i18n="set_tab_club">النادي</span>
+            <span class="set-tab-ico">🏋️</span><span>النادي</span>
           </button>
           <button class="set-tab" onclick="switchSetTab('subs',this)">
-            <span class="set-tab-ico">📋</span><span data-i18n="set_tab_subs">الاشتراكات</span>
+            <span class="set-tab-ico">📋</span><span>الاشتراكات</span>
           </button>
           <button class="set-tab" onclick="switchSetTab('comms',this)">
-            <span class="set-tab-ico">📱</span><span data-i18n="set_tab_comms">التواصل</span>
+            <span class="set-tab-ico">📱</span><span>التواصل</span>
+          </button>
+          <button class="set-tab" onclick="switchSetTab('attendance',this)">
+            <span class="set-tab-ico">📅</span><span>الحضور</span>
           </button>
           <button class="set-tab" onclick="switchSetTab('voice',this)">
-            <span class="set-tab-ico">🔊</span><span data-i18n="set_tab_voice">الصوت والبصمة</span>
+            <span class="set-tab-ico">🔊</span><span>الصوت والبصمة</span>
           </button>
-          <button class="set-tab" onclick="switchSetTab('users',this)">
-            <span class="set-tab-ico">👥</span><span data-i18n="set_tab_users">المستخدمون</span>
+          <button class="set-tab" data-owner="settings_users" onclick="switchSetTab('users',this)">
+            <span class="set-tab-ico">👥</span><span>المستخدمون</span>
           </button>
-          <button class="set-tab" onclick="switchSetTab('backup',this)">
-            <span class="set-tab-ico">💾</span><span data-i18n="set_tab_backup">النسخ الاحتياطي</span>
+          <button class="set-tab" data-owner="settings_backup" onclick="switchSetTab('backup',this)">
+            <span class="set-tab-ico">💾</span><span>النسخ الاحتياطي</span>
           </button>
-          <button class="set-tab" id="setTabAdmin" onclick="switchSetTab('admin',this)" style="display:none">
-            <span class="set-tab-ico">🔑</span><span data-i18n="set_tab_admin">متقدم</span>
+          <button class="set-tab" id="setTabAdmin" data-owner="settings_admin" onclick="switchSetTab('admin',this)" style="display:none">
+            <span class="set-tab-ico">🔑</span><span>متقدم</span>
           </button>
         </div>
 
@@ -1558,7 +1567,7 @@ input:checked+.slider:before{transform:translateX(-20px)}
             <div class="set-hd">
               <div class="set-hd-ico" style="background:#fce7f3">🎨</div>
               <div class="set-hd-txt">
-                <div class="set-hd-label" data-i18n="set_appear_title">المظهر والألوان</div>
+                <div class="set-hd-label">ألوان البرنامج والوضع الليلي</div>
                 <div class="set-hd-sub">اختر لون البرنامج المفضّل</div>
               </div>
             </div>
@@ -1615,8 +1624,8 @@ input:checked+.slider:before{transform:translateX(-20px)}
                         <input id="memberCardIcon" class="set-input" placeholder="Example: 🏋️" oninput="saveMemberCardSettings()">
                       </div>
                       <div class="fg">
-                        <label>Gym Name on Card</label>
-                        <input id="memberCardGymName" class="set-input" placeholder="Fitness Center" oninput="saveMemberCardSettings()">
+                        <label>اسم النادي على البطاقة</label>
+                        <input id="memberCardGymName" class="set-input" placeholder="صالة اللياقة" oninput="saveMemberCardSettings()">
                       </div>
                       <div class="fg">
                         <label>حجم الأيقونة/الصورة: <span id="memberCardIconSizeLbl">46px</span></label>
@@ -1746,7 +1755,7 @@ input:checked+.slider:before{transform:translateX(-20px)}
             <div class="set-bd">
               <div id="sportsList" style="min-height:40px;max-height:220px;overflow-y:auto;margin-bottom:12px"></div>
               <div style="display:flex;gap:8px">
-                <input id="newSportInput" class="set-input" placeholder="Add sport type..." style="flex:1" onkeydown="if(event.key==='Enter')addSport()">
+                <input id="newSportInput" class="set-input" placeholder="أضف نوع رياضة..." style="flex:1" onkeydown="if(event.key==='Enter')addSport()">
                 <button class="btn bp" style="padding:8px 14px;font-size:12px;flex-shrink:0" onclick="addSport()">+ إضافة</button>
               </div>
             </div>
@@ -1764,8 +1773,8 @@ input:checked+.slider:before{transform:translateX(-20px)}
             <div class="set-bd">
               <div id="durationsList" style="min-height:40px;max-height:220px;overflow-y:auto;margin-bottom:12px"></div>
               <div style="display:flex;gap:8px;flex-wrap:wrap">
-                <input id="newDurLabel" class="set-input" placeholder="Name (e.g. 45 days)" style="flex:2;min-width:120px" onkeydown="if(event.key==='Enter')addDuration()">
-                <input id="newDurDays" class="set-input" type="number" placeholder="Days" min="1" style="width:90px;flex-shrink:0" onkeydown="if(event.key==='Enter')addDuration()">
+                <input id="newDurLabel" class="set-input" placeholder="الاسم (مثال: 45 يوم)" style="flex:2;min-width:120px" onkeydown="if(event.key==='Enter')addDuration()">
+                <input id="newDurDays" class="set-input" type="number" placeholder="أيام" min="1" style="width:90px;flex-shrink:0" onkeydown="if(event.key==='Enter')addDuration()">
                 <button class="btn bp" style="padding:8px 12px;font-size:12px;flex-shrink:0" onclick="addDuration()">+ إضافة</button>
               </div>
             </div>
@@ -1873,7 +1882,118 @@ input:checked+.slider:before{transform:translateX(-20px)}
             </div>
           </div>
 
-          <div class="set-card" id="setCardAuto" data-set-tab="subs">
+          <!-- ═══ إعدادات الحضور والانصراف ═══ -->
+          <div class="set-card" data-set-tab="attendance" style="grid-column:1/-1">
+            <div class="set-hd">
+              <div class="set-hd-ico" style="background:#fef3c7">📋</div>
+              <div class="set-hd-txt">
+                <div class="set-hd-label">إعدادات الحضور والانصراف</div>
+                <div class="set-hd-sub">وضع التسجيل، الانصراف، الإشعارات، والصوت</div>
+              </div>
+            </div>
+            <div class="set-bd" style="display:flex;flex-direction:column;gap:14px">
+              <!-- وضع الحضور -->
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+
+                <!-- يدوي -->
+                <div id="attModeManualCard" style="border:2px solid var(--border);border-radius:12px;overflow:hidden;transition:.2s;cursor:pointer" onclick="selectAttMode('manual')">
+                  <div style="display:flex;align-items:flex-start;gap:12px;padding:14px">
+                    <input type="radio" name="attMode" value="manual" id="attModeManual" style="margin-top:3px;flex-shrink:0">
+                    <div><div style="font-weight:800;font-size:13px;margin-bottom:3px">✋ يدوي</div><div style="font-size:11px;color:var(--muted);line-height:1.5">الأدمن يسجّل يدوياً<br>مع إمكانية الإلغاء وإعادة البصم</div></div>
+                  </div>
+                  <!-- إعدادات اليدوي -->
+                  <div id="attManualSettings" style="display:none;padding:12px 14px;background:#f8faff;border-top:1px solid var(--border)">
+                    <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:10px">إعدادات الوضع اليدوي</div>
+                    <div class="fg" style="margin-bottom:10px">
+                      <label style="font-size:12px">⏱ الحد الأدنى قبل السماح بتسجيل الانصراف</label>
+                      <select id="attManualDefaultOut" style="padding:8px;border:2px solid var(--border);border-radius:8px;font-family:inherit;font-size:13px;outline:none;width:100%">
+                        <option value="0">بدون حد — أي وقت</option>
+                        <option value="30">30 دقيقة</option>
+                        <option value="60">ساعة واحدة</option>
+                        <option value="90">ساعة ونصف</option>
+                        <option value="120">ساعتان</option>
+                        <option value="180">3 ساعات</option>
+                        <option value="240">4 ساعات</option>
+                        <option value="360">6 ساعات</option>
+                        <option value="480">8 ساعات</option>
+                      </select>
+                    </div>
+                    <button onclick="saveAttModeSettings('manual')" style="width:100%;padding:9px;background:var(--primary);color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit">💾 حفظ الوضع اليدوي</button>
+                  </div>
+                </div>
+
+                <!-- تلقائي -->
+                <div id="attModeAutoCard" style="border:2px solid var(--border);border-radius:12px;overflow:hidden;transition:.2s;cursor:pointer" onclick="selectAttMode('auto')">
+                  <div style="display:flex;align-items:flex-start;gap:12px;padding:14px">
+                    <input type="radio" name="attMode" value="auto" id="attModeAuto" style="margin-top:3px;flex-shrink:0">
+                    <div><div style="font-weight:800;font-size:13px;margin-bottom:3px">⚡ تلقائي</div><div style="font-size:11px;color:var(--muted);line-height:1.5">بصمة أولى = حضور<br>بصمة ثانية بعد المدة = انصراف</div></div>
+                  </div>
+                  <!-- إعدادات التلقائي -->
+                  <div id="attAutoSettings" style="display:none;padding:12px 14px;background:#f0fdf4;border-top:1px solid #bbf7d0">
+                    <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:10px">إعدادات الوضع التلقائي</div>
+                    <div class="fg" style="margin-bottom:10px">
+                      <label style="font-size:12px">⏱ الحد الأدنى قبل قبول بصمة الانصراف</label>
+                      <select id="attAutoMinMins" style="padding:8px;border:2px solid var(--border);border-radius:8px;font-family:inherit;font-size:13px;outline:none;width:100%">
+                        <option value="0">بدون حد — أي وقت</option>
+                        <option value="30">30 دقيقة</option>
+                        <option value="60">ساعة واحدة</option>
+                        <option value="90">ساعة ونصف</option>
+                        <option value="120">ساعتان</option>
+                        <option value="180">3 ساعات</option>
+                        <option value="240">4 ساعات</option>
+                        <option value="360">6 ساعات</option>
+                        <option value="480">8 ساعات</option>
+                      </select>
+                    </div>
+                    <button onclick="saveAttModeSettings('auto')" style="width:100%;padding:9px;background:#16a34a;color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit">💾 حفظ الوضع التلقائي</button>
+                  </div>
+                </div>
+
+              </div>
+              <!-- الخيارات الأخرى -->
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <div class="set-row">
+                  <div><div class="set-label">🚪 تتبع الانصراف</div><div class="set-desc">تفعيل تسجيل وقت الانصراف</div></div>
+                  <label class="toggle"><input type="checkbox" id="trackCheckoutToggle" onchange="toggleTrackCheckout(this)"><span class="slider"></span></label>
+                </div>
+                <div class="set-row" id="attWaToggleWrapper">
+                  <div><div class="set-label">💬 إشعارات واتساب</div><div class="set-desc">إرسال إشعار عند الحضور والانصراف</div></div>
+                  <label class="toggle"><input type="checkbox" id="attWaToggle" onchange="toggleAttWa(this)"><span class="slider"></span></label>
+                </div>
+                <div class="set-row" id="attVoiceWrapper">
+                  <div><div class="set-label">🔊 النطق الصوتي</div><div class="set-desc">ينطق اسم المشترك عند التسجيل</div></div>
+                  <label class="toggle"><input type="checkbox" id="voiceToggle" onchange="toggleVoice(this)"><span class="slider"></span></label>
+                </div>
+              </div>
+              <!-- فترات دوام الموظفين -->
+              <div style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:12px;padding:14px;margin-top:6px">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+                  <div style="font-weight:700;font-size:13px;color:#0369a1">🕐 فترات دوام الموظفين</div>
+                  <button onclick="addShiftPeriod()" style="background:#0369a1;color:#fff;border:none;border-radius:8px;padding:5px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit">+ إضافة فترة</button>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 100px 100px 90px 36px;gap:6px;font-size:11px;font-weight:700;color:var(--muted);padding:0 4px;margin-bottom:4px">
+                  <span>اسم الفترة</span><span>البداية</span><span>النهاية</span><span>السماح</span><span></span>
+                </div>
+                <div id="shiftPeriodsTable" style="display:flex;flex-direction:column;gap:6px">
+                  <div style="text-align:center;color:var(--muted);font-size:12px;padding:10px">لا توجد فترات — اضغط إضافة</div>
+                </div>
+              </div>
+              <!-- الإجازات الرسمية -->
+              <div style="background:#fefce8;border:1px solid #fde68a;border-radius:12px;padding:14px;margin-top:10px">
+                <div style="font-weight:700;font-size:13px;color:#92400e;margin-bottom:10px">🗓 الإجازات الرسمية</div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;align-items:flex-end">
+                  <div><div class="set-label" style="font-size:11px">التاريخ</div><input id="holidayDate" type="date" class="set-input" style="width:148px;font-size:12px"></div>
+                  <div style="flex:1;min-width:130px"><div class="set-label" style="font-size:11px">اسم الإجازة</div><input id="holidayName" type="text" class="set-input" placeholder="مثال: اليوم الوطني" style="width:100%;font-size:12px"></div>
+                  <button onclick="addHoliday()" style="background:#d97706;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;flex-shrink:0">+ إضافة</button>
+                </div>
+                <div id="holidaysList" style="display:flex;flex-direction:column;gap:6px">
+                  <div style="text-align:center;color:var(--muted);font-size:12px;padding:8px">لا توجد إجازات مضافة</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="set-card" id="setCardAuto" data-set-tab="comms">
             <div class="set-hd">
               <div class="set-hd-ico" style="background:#e0f2fe">⚙️</div>
               <div class="set-hd-txt">
@@ -1983,21 +2103,35 @@ input:checked+.slider:before{transform:translateX(-20px)}
 
                 <!-- لوحة QR + شرح التفعيل (تظهر/تختفي) -->
                 <div id="botIframeBox" style="display:none;border:2px solid #a7f3d0;border-radius:16px;overflow:hidden">
-                  <div style="background:linear-gradient(135deg,#065f46,#16a34a);padding:11px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
-                    <div style="display:flex;align-items:center;gap:9px;color:#fff">
-                      <span style="font-size:20px">📷</span>
-                      <div>
-                        <div style="font-size:14px;font-weight:700">مسح QR لربط واتساب</div>
-                        <div style="font-size:11px;opacity:.8">الصفحة تتحدث تلقائياً</div>
-                      </div>
-                    </div>
-                    <div style="display:flex;gap:7px;flex-wrap:wrap">
-                      <button onclick="sendTestMessage()" style="background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer;font-family:inherit;font-weight:600">📤 Test Send</button>
-                      <button onclick="reloadBotFrame()" style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer;font-family:inherit">🔄 تحديث</button>
-                      <button onclick="toggleQrPanel()" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:8px;padding:6px 10px;font-size:14px;cursor:pointer">✕</button>
+                  <!-- لوحة المتصل -->
+                  <div id="botConnectedPanel" style="display:none;padding:32px 24px;text-align:center;background:#f0fdf4">
+                    <div style="font-size:64px;margin-bottom:12px">✅</div>
+                    <div style="font-size:20px;font-weight:800;color:#065f46;margin-bottom:6px">واتساب متصل وجاهز</div>
+                    <div style="font-size:13px;color:#166534;margin-bottom:20px">الإرسال التلقائي يعمل بشكل صحيح</div>
+                    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+                      <button onclick="sendTestMessage()" style="background:#16a34a;color:#fff;border:none;border-radius:10px;padding:10px 20px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit">📤 إرسال تجريبي</button>
+                      <button onclick="_botForceShowQR()" style="background:#f0f4ff;color:#2a5298;border:1.5px solid #c7d7f5;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit">🔄 إعادة الربط</button>
+                      <button onclick="toggleQrPanel()" style="background:#fee2e2;color:#dc2626;border:1.5px solid #fca5a5;border-radius:10px;padding:10px 16px;font-size:13px;cursor:pointer">✕ إغلاق</button>
                     </div>
                   </div>
-                  <iframe id="botFrame" src="" style="width:100%;height:620px;border:none;display:block" title="ربط الواتساب - QR"></iframe>
+                  <!-- لوحة الربط (iframe) -->
+                  <div id="botQrPanel">
+                    <div style="background:linear-gradient(135deg,#065f46,#16a34a);padding:11px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+                      <div style="display:flex;align-items:center;gap:9px;color:#fff">
+                        <span style="font-size:20px">📷</span>
+                        <div>
+                          <div style="font-size:14px;font-weight:700">ربط الواتساب — Baileys</div>
+                          <div style="font-size:11px;opacity:.8">الصفحة تتحدث تلقائياً</div>
+                        </div>
+                      </div>
+                      <div style="display:flex;gap:7px;flex-wrap:wrap">
+                        <button onclick="sendTestMessage()" style="background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer;font-family:inherit;font-weight:600">📤 إرسال تجريبي</button>
+                        <button onclick="reloadBotFrame()" style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer;font-family:inherit">🔄 تحديث</button>
+                        <button onclick="toggleQrPanel()" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:8px;padding:6px 10px;font-size:14px;cursor:pointer">✕</button>
+                      </div>
+                    </div>
+                    <iframe id="botFrame" src="" style="width:100%;height:620px;border:none;display:block" title="ربط الواتساب - QR"></iframe>
+                  </div>
                 </div>
 
                 <!-- تعليمات التشغيل -->
@@ -2024,7 +2158,7 @@ input:checked+.slider:before{transform:translateX(-20px)}
           </div>
           <!-- ===== رسالة الترحيب ===== -->
           <!-- ===== منتقي رمز العملة ===== -->
-          <div class="set-card" data-set-tab="comms" style="grid-column:1/-1">
+          <div class="set-card" data-set-tab="club" style="grid-column:1/-1">
             <div class="set-hd">
               <div class="set-hd-ico" style="background:#fef9c3">💱</div>
               <div class="set-hd-txt">
@@ -2066,12 +2200,12 @@ input:checked+.slider:before{transform:translateX(-20px)}
 
 
           <!-- ===== شروط الاشتراك ===== -->
-          <div class="set-card" id="setCardTerms" data-set-tab="comms" style="grid-column:1/-1">
+          <div class="set-card" id="setCardTerms" data-set-tab="club" style="grid-column:1/-1">
             <div class="set-hd">
               <div class="set-hd-ico" style="background:#fff7ed">📄</div>
               <div class="set-hd-txt">
-                <div class="set-hd-label" data-i18n="set_terms_title">شروط الاشتراك</div>
-                <div class="set-hd-sub" data-i18n="set_terms_sub">نص وقالب ورأس وتذيل الصفحة</div>
+                <div class="set-hd-label">شروط الاشتراك</div>
+                <div class="set-hd-sub">نص وقالب ورأس وتذيل الصفحة</div>
               </div>
             </div>
             <div class="set-bd">
@@ -2124,11 +2258,11 @@ input:checked+.slider:before{transform:translateX(-20px)}
                         العلامة المائية (أسفل الصفحة)
                         <span style="background:#ede9fe;color:#7c3aed;font-size:10px;padding:1px 6px;border-radius:8px;font-weight:700">🔑 مسئول النظام فقط</span>
                       </label>
-                      <input id="setPdfWatermark" class="set-input" placeholder="Example: Confidential" oninput="saveSettings()" style="width:100%">
+                      <input id="setPdfWatermark" class="set-input" placeholder="مثال: سري" oninput="saveSettings()" style="width:100%">
                     </div>
                     <div class="fg" style="margin-bottom:10px">
-                      <label style="font-size:11px;font-weight:600;color:#4a5568;margin-bottom:5px;display:block">Page Header</label>
-                      <textarea id="setPdfHeader" oninput="saveSettings()" rows="2" style="width:100%;border:2px solid var(--border);border-radius:8px;padding:8px;font-family:inherit;font-size:12px;direction:rtl;resize:vertical;transition:.2s" placeholder="Example: Kingdom of Saudi Arabia&#10;General Sports Authority" data-fmt="1"></textarea>
+                      <label style="font-size:11px;font-weight:600;color:#4a5568;margin-bottom:5px;display:block">رأس الصفحة</label>
+                      <textarea id="setPdfHeader" oninput="saveSettings()" rows="2" style="width:100%;border:2px solid var(--border);border-radius:8px;padding:8px;font-family:inherit;font-size:12px;direction:rtl;resize:vertical;transition:.2s" placeholder="مثال: المملكة العربية السعودية&#10;الاتحاد الرياضي العام" data-fmt="1"></textarea>
                     </div>
                     <div class="fg">
                       <label style="font-size:11px;font-weight:600;color:#4a5568;margin-bottom:5px;display:block">Page Footer</label>
@@ -2270,15 +2404,15 @@ input:checked+.slider:before{transform:translateX(-20px)}
                 <div>
                   <div style="font-size:12px;font-weight:700;color:var(--primary);margin-bottom:8px">🎨 لون الخلفية</div>
                   <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px">
-                    <label style="font-size:11px;color:#4a5568">Color 1</label>
+                    <label style="font-size:11px;color:#4a5568">اللون 1</label>
                     <input type="color" id="loginColor1" value="#0f2444" style="width:40px;height:30px;border:2px solid var(--border);border-radius:6px;cursor:pointer;padding:1px" oninput="saveLoginSettings()">
-                    <label style="font-size:11px;color:#4a5568">Color 2</label>
+                    <label style="font-size:11px;color:#4a5568">اللون 2</label>
                     <input type="color" id="loginColor2" value="#2a5298" style="width:40px;height:30px;border:2px solid var(--border);border-radius:6px;cursor:pointer;padding:1px" oninput="saveLoginSettings()">
                   </div>
                   <div style="font-size:12px;font-weight:700;color:var(--primary);margin-bottom:8px;margin-top:12px">🪟 شكل البطاقة</div>
                   <select id="loginCardStyle" class="set-input" style="width:100%" onchange="saveLoginSettings()">
-                    <option value="classic">Classic (Centered)</option>
-                    <option value="glass">Glass</option>
+                    <option value="classic">كلاسيكي (مركزي)</option>
+                    <option value="glass">زجاجي</option>
                     <option value="side">شريط جانبي</option>
                     <option value="minimal">Simple White</option>
                   </select>
@@ -2371,33 +2505,6 @@ input:checked+.slider:before{transform:translateX(-20px)}
                   <input id="zkSyncTime" type="time" class="set-input" style="width:140px" onchange="saveZkSettings()" title="مزامنة يومية في هذا الوقت">
                   <div style="font-size:11px;color:var(--muted);margin-top:4px">مزامنة تلقائية شاملة كل يوم في هذا الوقت</div>
                 </div>
-              </div>
-              <div>
-                <div class="set-label">👤 الحد الأدنى للانصراف — المشتركين</div>
-                <select id="zkMinSession" class="set-input" onchange="saveZkSettings()" style="width:220px">
-                  <option value="0">بدون حد (فوري)</option>
-                  <option value="5">5 دقائق</option>
-                  <option value="10">10 دقائق</option>
-                  <option value="15">15 دقيقة</option>
-                  <option value="20">20 دقيقة</option>
-                  <option value="30">30 دقيقة</option>
-                  <option value="45">45 دقيقة</option>
-                  <option value="60">ساعة واحدة</option>
-                  <option value="90">ساعة ونصف</option>
-                  <option value="120">ساعتان</option>
-                  <option value="180">3 ساعات</option>
-                  <option value="240">4 ساعات</option>
-                  <option value="300">5 ساعات</option>
-                  <option value="360">6 ساعات</option>
-                  <option value="420">7 ساعات</option>
-                  <option value="480">8 ساعات</option>
-                  <option value="540">9 ساعات</option>
-                  <option value="600">10 ساعات</option>
-                  <option value="720">12 ساعة</option>
-                  <option value="960">16 ساعة</option>
-                  <option value="1200">20 ساعة</option>
-                  <option value="1440">24 ساعة</option>
-                </select>
               </div>
               <div>
                 <div class="set-label">👔 الحد الأدنى للانصراف — الموظفين</div>
@@ -2522,10 +2629,6 @@ input:checked+.slider:before{transform:translateX(-20px)}
                   <label class="toggle"><input type="checkbox" id="feat_auto" onchange="saveFeat(this)"><span class="slider"></span></label>
                 </div>
 
-                <div class="set-row" style="background:#f8faff;border-radius:10px;padding:10px 14px">
-                  <div><div class="set-label">👆 جهاز البصمة</div><div class="set-desc">Record and match fingerprints</div></div>
-                  <label class="toggle"><input type="checkbox" id="feat_fingerprint" onchange="saveFeat(this)"><span class="slider"></span></label>
-                </div>
 
                 <div class="set-row" style="background:#f8faff;border-radius:10px;padding:10px 14px">
                   <div><div class="set-label">🪪 بطاقة العضوية PDF</div><div class="set-desc">Print card per member</div></div>
@@ -2585,46 +2688,6 @@ input:checked+.slider:before{transform:translateX(-20px)}
                   <input type="checkbox" id="setDiagnosticsVisible" onchange="saveDiagnosticsVisibility(this)">
                   <span class="slider"></span>
                 </label>
-              </div>
-            </div>
-          </div>
-
-          <!-- ===== جهاز البصمة ===== -->
-          <div class="set-card" id="setCardFingerprint" data-set-tab="voice" style="grid-column:1/-1">
-            <div class="set-hd">
-              <div class="set-hd-ico" style="background:#ede9fe">👆</div>
-              <div class="set-hd-txt">
-                <div class="set-hd-label" data-i18n="set_fp_title">جهاز البصمة</div>
-                <div class="set-hd-sub" data-i18n="set_fp_sub">إعداد ومطابقة الماسح الضوئي</div>
-              </div>
-            </div>
-            <div class="set-bd">
-              <!-- حالة الجهاز -->
-              <div id="fpSettingsStatus" style="background:#f8faff;border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:14px">
-                <div style="font-size:13px;font-weight:700;color:var(--primary);margin-bottom:8px">📡 Device Status</div>
-                <div id="fpSettingsStatusBody" style="font-size:12px;color:var(--muted)">جاري التحميل...</div>
-              </div>
-
-              <!-- وضع الاختبار -->
-              <div class="set-row" style="margin-bottom:14px">
-                <div>
-                  <div class="set-label">Test Mode (No Device)</div>
-                  <div class="set-desc">When enabled, uses test IDs even if device is connected</div>
-                </div>
-                <label class="toggle">
-                  <input type="checkbox" id="fpForceMockToggle" onchange="fpSetForceMock(this.checked)">
-                  <span class="slider"></span>
-                </label>
-              </div>
-
-              <!-- اختبار المسح -->
-              <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:14px">
-                <div style="font-size:12px;font-weight:700;color:#166534;margin-bottom:10px">🧪 Scan Test</div>
-                <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
-                  <button class="btn bp" id="fpTestScanBtn" onclick="fpRunTestScan()" style="flex:1">👆 Start Test Scan</button>
-                  <button class="btn" onclick="fpLoadStatus()" style="flex:none;padding:8px 14px;background:#e2e8f0;color:#334155">🔄 Update Status</button>
-                </div>
-                <div id="fpTestResult" style="font-size:12px;color:var(--muted);min-height:24px"></div>
               </div>
             </div>
           </div>
@@ -2720,147 +2783,114 @@ input:checked+.slider:before{transform:translateX(-20px)}
 
         <!-- صف 1: الأسماء الأربعة -->
         <div class="fr" style="grid-template-columns:repeat(4,1fr)">
-          <div class="fg"><label>First Name <span class="req">*</span></label><input id="fn1" placeholder="First Name"></div>
-          <div class="fg"><label>Second Name <span class="req">*</span></label><input id="fn2" placeholder="Second Name"></div>
-          <div class="fg"><label>Third Name</label><input id="fn3" placeholder="Third Name"></div>
-          <div class="fg"><label>Last Name <span class="req">*</span></label><input id="fn4" placeholder="Last Name"></div>
+          <div class="fg"><label>الاسم الأول <span class="req">*</span></label><input id="fn1" placeholder="الاسم الأول"></div>
+          <div class="fg"><label>الاسم الثاني <span class="req">*</span></label><input id="fn2" placeholder="الاسم الثاني"></div>
+          <div class="fg"><label>الاسم الثالث</label><input id="fn3" placeholder="الاسم الثالث"></div>
+          <div class="fg"><label>اسم العائلة <span class="req">*</span></label><input id="fn4" placeholder="اسم العائلة"></div>
         </div>
 
-        <!-- صف 2: الهوية ? 3 أعمدة موزعة بشكل أفضل -->
+        <!-- صف 2: الهوية -->
         <div class="fr" style="grid-template-columns:2fr 1fr 1fr">
           <div class="fg">
             <div style="display:flex;gap:8px;align-items:flex-end;margin-bottom:0">
-              <label style="flex:1;margin-bottom:5px">ID Number <span class="req">*</span></label>
-              <label style="width:58px;flex-shrink:0;font-size:10px;color:var(--muted);text-align:center;margin-bottom:5px;white-space:nowrap">Copies</label>
+              <label style="flex:1;margin-bottom:5px">رقم الهوية <span class="req">*</span></label>
+              <label style="width:58px;flex-shrink:0;font-size:10px;color:var(--muted);text-align:center;margin-bottom:5px;white-space:nowrap">النسخ</label>
             </div>
             <div style="display:flex;gap:8px">
-              <input id="fi" placeholder="ID Number" maxlength="10" inputmode="numeric" style="flex:1" oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,10)">
+              <input id="fi" placeholder="رقم الهوية" maxlength="10" inputmode="numeric" style="flex:1" oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,10)">
               <div class="fg" style="margin:0;width:58px;flex-shrink:0">
-                <input id="fidver" placeholder="1" maxlength="2" inputmode="numeric" title="Number of ID copies" style="text-align:center;padding-right:6px;padding-left:6px;font-size:14px;font-weight:700" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                <input id="fidver" placeholder="1" maxlength="2" inputmode="numeric" title="عدد نسخ الهوية" style="text-align:center;padding-right:6px;padding-left:6px;font-size:14px;font-weight:700" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
               </div>
             </div>
           </div>
           <div class="fg">
-            <label>ID Type</label>
+            <label>نوع الهوية</label>
             <select id="fidtype" onchange="updateIdSource()">
-              <option value="">Select Type</option>
-              <option value="بطاقة وطنية">National ID</option>
-              <option value="جواز سفر">Passport</option>
-              <option value="إقامة">Residence</option>
-              <option value="وثيقة عمل">Work Permit</option>
+              <option value="">اختر النوع</option>
+              <option value="بطاقة وطنية">بطاقة وطنية</option>
+              <option value="جواز سفر">جواز سفر</option>
+              <option value="إقامة">إقامة</option>
+              <option value="وثيقة عمل">وثيقة عمل</option>
             </select>
           </div>
           <div class="fg">
-            <label>ID Source</label>
-            <select id="fidsrc"><option value="">Select type first</option></select>
+            <label>مصدر الهوية</label>
+            <select id="fidsrc"><option value="">اختر النوع أولاً</option></select>
           </div>
         </div>
 
         <!-- صف 3: الميلاد + العمر + الجنس + مكان العمل -->
         <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:4px">
           <div class="fg" style="margin:0;flex-shrink:0;width:260px">
-            <label>Date of Birth <span class="req">*</span></label>
+            <label>تاريخ الميلاد <span class="req">*</span></label>
             <input type="hidden" id="fb">
-            <!-- الحقول + زر التبديل في سطر واحد -->
-            <div style="display:flex;gap:6px;align-items:center;width:100%">
-              <!-- وضع ميلادي -->
-              <div id="dateGMode" style="display:flex;gap:4px;flex:1;min-width:0">
-                <select id="fbGDay" onchange="convertGregToDate()" style="font-size:11px;text-align:center;width:46px;flex-shrink:0"><option value="">Day</option></select>
-                <select id="fbGMonth" onchange="updateGDays();convertGregToDate()" style="font-size:11px;flex:1;min-width:0">
-                  <option value="">Month</option>
-                  <option value="1">January</option><option value="2">February</option>
-                  <option value="3">March</option><option value="4">April</option>
-                  <option value="5">May</option><option value="6">June</option>
-                  <option value="7">July</option><option value="8">August</option>
-                  <option value="9">September</option><option value="10">October</option>
-                  <option value="11">November</option><option value="12">December</option>
-                </select>
-                <select id="fbGYear" onchange="updateGDays();convertGregToDate()" style="font-size:11px;text-align:center;width:68px;flex-shrink:0"><option value="">Year</option></select>
-              </div>
-              <!-- وضع هجري -->
-              <div id="dateHMode" style="display:none;gap:4px;flex:1;min-width:0">
-                <select id="fbHDay" onchange="convertHijriToGregorian()" style="font-size:11px;text-align:center;width:46px;flex-shrink:0"><option value="">Day</option></select>
-                <select id="fbHMonth" onchange="updateHDays();convertHijriToGregorian()" style="font-size:11px;flex:1;min-width:0">
-                  <option value="">Month</option>
-                  <option value="1">محرم</option><option value="2">صفر</option>
-                  <option value="3">ربيع الأول</option><option value="4">ربيع الثاني</option>
-                  <option value="5">جمادى الأولى</option><option value="6">جمادى الآخرة</option>
-                  <option value="7">رجب</option><option value="8">شعبان</option>
-                  <option value="9">رمضان</option><option value="10">شوال</option>
-                  <option value="11">ذو القعدة</option><option value="12">ذو الحجة</option>
-                </select>
-                <select id="fbHYear" onchange="updateHDays();convertHijriToGregorian()" style="font-size:11px;text-align:center;width:68px;flex-shrink:0"><option value="">Year</option></select>
-              </div>
-              <!-- زر التبديل الواحد -->
-              <button type="button" id="btnDateToggle" onclick="toggleDateMode()"
-                style="flex-shrink:0;padding:0 9px;height:36px;border:2px solid var(--primary);border-radius:8px;cursor:pointer;font-family:inherit;font-size:11px;font-weight:800;background:var(--primary);color:#fff;white-space:nowrap;transition:.2s">م</button>
-            </div>
+            <div id="fb-dp-wrap"></div>
+            <div id="fbHijri" style="font-size:9px;color:#16a34a;font-weight:700;margin-top:3px;height:13px"></div>
           </div>
           <div class="fg" style="margin:0;flex-shrink:0;width:72px">
-            <label>Age</label>
+            <label>العمر</label>
             <div id="fage" style="background:#f0f4ff;color:var(--primary);font-weight:700;font-size:12px;padding:7px 6px;border-radius:8px;border:2px solid var(--border);text-align:center;cursor:default">?</div>
-            <div id="fbHijri" style="font-size:9px;color:#16a34a;font-weight:700;margin-top:2px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"></div>
           </div>
           <div class="fg" style="margin:0;flex-shrink:0">
-            <label>Gender <span class="req">*</span></label>
+            <label>الجنس <span class="req">*</span></label>
             <select id="fg2" style="width:auto;padding-left:24px"><option value="ذكر">ذكر</option><option value="أنثى">أنثى</option></select>
           </div>
           <div class="fg" style="margin:0;flex:1;min-width:0">
-            <label>Workplace <span class="req">*</span></label>
-            <input id="fwork" placeholder="Company / Organization" style="width:100%">
+            <label>مكان العمل <span class="req">*</span></label>
+            <input id="fwork" placeholder="الشركة / الجهة" style="width:100%">
           </div>
         </div>
         <div id="fbGResult" style="font-size:10px;color:var(--primary);font-weight:700;margin:2px 0 8px;height:14px;padding-right:2px;visibility:hidden"></div>
 
         <!-- قسم العنوان -->
-        <div style="font-size:11px;font-weight:700;color:var(--muted);margin:8px 0 6px;padding-right:2px">📍 Residential Address</div>
+        <div style="font-size:11px;font-weight:700;color:var(--muted);margin:8px 0 6px;padding-right:2px">📍 العنوان السكني</div>
 
         <!-- صف 4: المنطقة + المدينة + رقم الجوال ? أعمدة متساوية -->
         <div class="fr" style="grid-template-columns:repeat(3,1fr)">
           <div class="fg">
-            <label>Region <span class="req">*</span></label>
+            <label>المنطقة <span class="req">*</span></label>
             <select id="fp" onchange="updateCities()">
-              <option value="">Select Region</option>
-              <option value="منطقة الرياض">Riyadh Region</option><option value="منطقة مكة المكرمة">Makkah Region</option>
-              <option value="منطقة المدينة المنورة">Madinah Region</option><option value="منطقة القصيم">Qassim Region</option>
-              <option value="المنطقة الشرقية">Eastern Region</option><option value="منطقة عسير">Asir Region</option>
-              <option value="منطقة تبوك">Tabuk Region</option><option value="منطقة حائل">Hail Region</option>
-              <option value="منطقة الحدود الشمالية">Northern Borders</option><option value="منطقة الجوف">Al-Jouf Region</option>
-              <option value="منطقة جيزان">Jizan Region</option><option value="منطقة نجران">Najran Region</option>
-              <option value="منطقة الباحة">Al-Bahah Region</option>
+              <option value="">اختر المنطقة</option>
+              <option value="منطقة الرياض">منطقة الرياض</option><option value="منطقة مكة المكرمة">منطقة مكة المكرمة</option>
+              <option value="منطقة المدينة المنورة">منطقة المدينة المنورة</option><option value="منطقة القصيم">منطقة القصيم</option>
+              <option value="المنطقة الشرقية">المنطقة الشرقية</option><option value="منطقة عسير">منطقة عسير</option>
+              <option value="منطقة تبوك">منطقة تبوك</option><option value="منطقة حائل">منطقة حائل</option>
+              <option value="منطقة الحدود الشمالية">منطقة الحدود الشمالية</option><option value="منطقة الجوف">منطقة الجوف</option>
+              <option value="منطقة جيزان">منطقة جيزان</option><option value="منطقة نجران">منطقة نجران</option>
+              <option value="منطقة الباحة">منطقة الباحة</option>
             </select>
           </div>
           <div class="fg">
-            <label>City <span class="req">*</span></label>
-            <select id="fcity"><option value="">Select region first</option></select>
+            <label>المدينة <span class="req">*</span></label>
+            <select id="fcity"><option value="">اختر المنطقة أولاً</option></select>
           </div>
           <div class="fg">
-            <label>Phone Number <span class="req">*</span></label>
+            <label>رقم الجوال <span class="req">*</span></label>
             <div style="display:flex;gap:0;border:2px solid var(--border);border-radius:8px;overflow:hidden;background:#f8faff;transition:border-color .2s" id="phoneWrap">
               <select id="fcc" onchange="updatePhonePlaceholder()" style="border:none;border-left:2px solid var(--border);background:transparent;padding:8px 6px;font-size:12px;font-family:inherit;color:var(--primary);font-weight:700;cursor:pointer;flex-shrink:0;outline:none;max-width:130px">
-                <option value="966">🇸🇦 +966 Saudi Arabia</option>
-                <option value="971">🇦🇪 +971 UAE</option>
-                <option value="965">🇰🇼 +965 Kuwait</option>
-                <option value="974">🇶🇦 +974 Qatar</option>
-                <option value="973">🇧🇭 +973 Bahrain</option>
-                <option value="968">🇴🇲 +968 Oman</option>
-                <option value="967">🇾🇪 +967 Yemen</option>
-                <option value="962">🇯🇴 +962 Jordan</option>
-                <option value="961">🇱🇧 +961 Lebanon</option>
-                <option value="963">🇸🇾 +963 Syria</option>
-                <option value="964">🇮🇶 +964 Iraq</option>
-                <option value="20">🇪🇬 +20 Egypt</option>
-                <option value="212">🇲🇦 +212 Morocco</option>
-                <option value="213">🇩🇿 +213 Algeria</option>
-                <option value="216">🇹🇳 +216 Tunisia</option>
-                <option value="218">🇱🇾 +218 Libya</option>
-                <option value="249">🇸🇩 +249 Sudan</option>
-                <option value="92">🇵🇰 +92 Pakistan</option>
-                <option value="91">🇮🇳 +91 India</option>
-                <option value="63">🇵🇭 +63 Philippines</option>
-                <option value="880">🇧🇩 +880 Bangladesh</option>
-                <option value="44">🇬🇧 +44 UK</option>
-                <option value="1">🇺🇸 +1 USA</option>
+                <option value="966">🇸🇦 +966 السعودية</option>
+                <option value="971">🇦🇪 +971 الإمارات</option>
+                <option value="965">🇰🇼 +965 الكويت</option>
+                <option value="974">🇶🇦 +974 قطر</option>
+                <option value="973">🇧🇭 +973 البحرين</option>
+                <option value="968">🇴🇲 +968 عُمان</option>
+                <option value="967">🇾🇪 +967 اليمن</option>
+                <option value="962">🇯🇴 +962 الأردن</option>
+                <option value="961">🇱🇧 +961 لبنان</option>
+                <option value="963">🇸🇾 +963 سوريا</option>
+                <option value="964">🇮🇶 +964 العراق</option>
+                <option value="20">🇪🇬 +20 مصر</option>
+                <option value="212">🇲🇦 +212 المغرب</option>
+                <option value="213">🇩🇿 +213 الجزائر</option>
+                <option value="216">🇹🇳 +216 تونس</option>
+                <option value="218">🇱🇾 +218 ليبيا</option>
+                <option value="249">🇸🇩 +249 السودان</option>
+                <option value="92">🇵🇰 +92 باكستان</option>
+                <option value="91">🇮🇳 +91 الهند</option>
+                <option value="63">🇵🇭 +63 الفلبين</option>
+                <option value="880">🇧🇩 +880 بنغلاديش</option>
+                <option value="44">🇬🇧 +44 بريطانيا</option>
+                <option value="1">🇺🇸 +1 أمريكا</option>
               </select>
               <input id="fph" placeholder="5XXXXXXXX" maxlength="9" inputmode="numeric"
                 style="border:none;background:transparent;flex:1;padding:8px 10px;font-size:13px;font-family:inherit;min-width:0;outline:none"
@@ -2874,32 +2904,24 @@ input:checked+.slider:before{transform:translateX(-20px)}
         <!-- صف 5: السكن (عرض كامل) -->
         <div class="fr" style="grid-template-columns:1fr">
           <div class="fg">
-            <label>Residence Details <span class="req">*</span></label>
-            <input id="fr2" placeholder="District / Street / Building">
+            <label>تفاصيل السكن <span class="req">*</span></label>
+            <input id="fr2" placeholder="الحي / الشارع / رقم المبنى">
           </div>
         </div>
       </div>
 
       <!-- ===== القسم الثاني: بيانات الاشتراك ===== -->
       <div class="form-section">
-        <div class="form-section-title">💪 Subscription Details</div>
+        <div class="form-section-title">💪 بيانات الاشتراك</div>
 
-        <!-- صف 6: رقم العضوية + البصمة + نوع الرياضة -->
+        <!-- صف 6: رقم العضوية + ZKTeco + نوع الرياضة -->
         <div class="fr">
-          <div class="fg"><label>Membership Number</label><input id="fpn" placeholder="Membership Number"></div>
+          <div class="fg"><label>رقم العضوية</label><input id="fpn" placeholder="رقم العضوية"></div>
           <div class="fg">
             <label>🔢 رقم في جهاز البصمة ZKTeco</label>
-            <input id="fzkId" placeholder="User ID في الجهاز" inputmode="numeric" dir="ltr"
+            <input id="fzkId" placeholder="رقم المستخدم في الجهاز" inputmode="numeric" dir="ltr"
               style="text-align:left;font-family:monospace;font-weight:700"
               title="أدخل User ID الخاص بهذا المشترك في جهاز ZKTeco">
-          </div>
-          <div class="fg" id="fpFieldWrapper">
-            <label>Fingerprint ID</label>
-            <div style="display:flex;gap:6px;align-items:center">
-              <input id="ffp" placeholder="e.g. 1001" inputmode="numeric" dir="ltr" style="text-align:left;flex:1">
-              <button type="button" onclick="openFingerprintCapture()" title="Scan fingerprint from device"
-                style="padding:9px 12px;background:linear-gradient(135deg,#6d28d9,#9333ea);color:#fff;border:none;border-radius:10px;cursor:pointer;font-size:14px;white-space:nowrap;flex-shrink:0">👆 Scan</button>
-            </div>
           </div>
           <div class="fg">
             <label>نوع الرياضة</label>
@@ -2939,32 +2961,26 @@ input:checked+.slider:before{transform:translateX(-20px)}
 
         <!-- صف 7: مبلغ الاشتراك -->
         <div class="fr" style="grid-template-columns:1fr">
-          <div class="fg"><label>Amount (SAR) <span class="req">*</span></label><input type="number" id="fam" placeholder="0" min="0"></div>
+          <div class="fg"><label>المبلغ (ريال) <span class="req">*</span></label><input type="number" id="fam" placeholder="0" min="0"></div>
         </div>
 
         <!-- صف 7: تاريخ الاشتراك + المدة + تاريخ الانتهاء -->
         <div class="fr t3">
           <div class="fg">
-            <label>Start Date <span class="req">*</span></label>
-            <input type="date" id="fs" oninput="calcEndDate()">
-
+            <label>تاريخ البداية <span class="req">*</span></label>
+            <input type="hidden" id="fs">
+            <div id="fs-dp-wrap"></div>
           </div>
           <div class="fg">
-            <label>Duration <span class="req">*</span></label>
+            <label>مدة الاشتراك <span class="req">*</span></label>
             <select id="fdur" onchange="calcEndDate()">
-              <option value="">Select duration</option>
-              <option value="1m">1 Month</option>
-              <option value="2m">2 Months</option>
-              <option value="3m">3 Months</option>
-              <option value="6m">6 Months</option>
-              <option value="1y">1 Year</option>
-              <option value="2y">2 Years</option>
-              <option value="custom">Custom</option>
+              <option value="">اختر المدة</option>
             </select>
           </div>
           <div class="fg">
-            <label>End Date</label>
-            <input type="date" id="fe" oninput="updateSubscriptionDateStatus()" style="background:#f0faf4;color:#16a34a;font-weight:700" readonly>
+            <label>تاريخ الانتهاء</label>
+            <input type="hidden" id="fe">
+            <div id="feDisplay" style="background:#f0faf4;color:#16a34a;font-weight:700;padding:9px 12px;border-radius:8px;border:2px solid #a8edce;font-size:13px;min-height:38px;display:flex;align-items:center">—</div>
           </div>
         </div>
 
@@ -2973,7 +2989,7 @@ input:checked+.slider:before{transform:translateX(-20px)}
 
       <input type="hidden" id="fu"><input type="hidden" id="fw">
     </div>
-    <div class="mf"><button class="btn bg" onclick="closeOverlay('formOverlay')">إلغاء</button><button class="btn bp" onclick="saveRecord()">💾 Save</button></div>
+    <div class="mf"><button class="btn bg" onclick="closeOverlay('formOverlay')">إلغاء</button><button class="btn bp" onclick="saveRecord()">💾 حفظ</button></div>
   </div>
 </div>
 </div>
@@ -3136,8 +3152,8 @@ input:checked+.slider:before{transform:translateX(-20px)}
 <!-- IMPORT MODAL -->
 </div>
 
-<!-- FINGERPRINT ENROLL MODAL -->
-<div class="overlay" id="fpEnrollOverlay">
+<!-- fpEnrollOverlay removed -->
+<div class="overlay" id="fpEnrollOverlay" style="display:none!important">
   <div class="modal sm">
     <div class="mh" style="background:linear-gradient(135deg,#6d28d9,#9333ea)">
       <h3>👆 تسجيل بصمة الإصبع</h3>
@@ -3491,10 +3507,10 @@ input:checked+.slider:before{transform:translateX(-20px)}
 //  البريد       : d.llsyanh07@gmail.com
 //  يُحظر نسخ هذا الكود أو توزيعه بدون إذن خطي من المطوّر
 // ══════════════════════════════════════════════════════════════════
-const APP_VERSION = '1.6.2';
+const APP_VERSION = '1.7.0';
 
 // ══ نظام الترجمة ══════════════════════════════════════════════════
-let _lang = localStorage.getItem('app_lang') || 'ar';
+let _lang = 'ar'; // ثابت عربي دائماً
 const _T = {
   ar: {
     nav_dashboard:'لوحة التحكم',nav_customers:'المشتركون',nav_whatsapp:'رسائل واتساب',
@@ -5189,7 +5205,7 @@ function removeDuration(i){
 function rebuildDurationsDropdown(){
   const sel=document.getElementById('fdur'); if(!sel)return;
   const cur=sel.value; const durs=getDurations();
-  sel.innerHTML=`<option value="">Select duration</option>`+durs.map(d=>`<option value="${d.v}"${cur===d.v?' selected':''}>${d.l}</option>`).join('');
+  sel.innerHTML=`<option value="">اختر المدة</option>`+durs.map(d=>`<option value="${d.v}"${cur===d.v?' selected':''}>${d.l}</option>`).join('');
 }
 function rebuildFormDropdowns(){ rebuildSportsDropdown(); rebuildDurationsDropdown(); }
 
@@ -5483,6 +5499,183 @@ function convertGregToDate(){
   if(el) el.textContent=toArabicNum(h.d)+' '+HIJRI_MONTHS[h.m-1]+' '+toArabicNum(h.y)+' هـ';
   updateGregorianBirthResult();
 }
+// ════ CUSTOM DATE PICKER (مشترك) ════
+const _dpState={};
+function _dpLocalDate(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function createDatePicker(id,value,onChange){
+  const today=new Date();today.setHours(0,0,0,0);
+  let selected=value?new Date(value+'T12:00:00'):null;
+  let viewYear=selected?selected.getFullYear():today.getFullYear();
+  let viewMonth=selected?selected.getMonth():today.getMonth();
+  let isHijri=false;
+  function toHijriStr(d){try{return new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura',{year:'numeric',month:'long',day:'numeric'}).format(d);}catch(_){return _dpLocalDate(d);}}
+  function toHijriParts(d){try{const f=new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura',{year:'numeric',month:'long',day:'numeric'});const p=f.formatToParts(d);return{year:p.find(x=>x.type==='year')?.value||'',month:p.find(x=>x.type==='month')?.value||'',day:p.find(x=>x.type==='day')?.value||''};}catch(_){return{year:'',month:'',day:''};}}
+  function displayVal(){if(!selected)return'اختر تاريخاً';return isHijri?toHijriStr(selected):_dpLocalDate(selected);}
+  let _mode='cal'; // 'cal' | 'years'
+  let _yearPage=Math.floor(viewYear/12)*12;
+
+  const wrap=document.createElement('div');wrap.className='dp-wrap';wrap.id='dp-'+id;
+  const inp=document.createElement('div');inp.className='dp-input';
+  inp.innerHTML=`<span id="dp-val-${id}">${displayVal()}</span><span>📅</span>`;
+  inp.onclick=()=>togglePopup();wrap.appendChild(inp);
+  const popup=document.createElement('div');popup.className='dp-popup';popup.id='dp-pop-'+id;wrap.appendChild(popup);
+  function togglePopup(){const isOpen=popup.classList.contains('open');document.querySelectorAll('.dp-popup.open').forEach(p=>p.classList.remove('open'));if(!isOpen){popup.classList.add('open');renderView();}}
+  function renderView(){ _mode==='years'?renderYears():renderCal(); }
+
+  function renderYears(){
+    const startY=_yearPage, endY=_yearPage+11;
+    let html=`<div class="dp-header"><button class="dp-nav" data-act="yp" data-d="-12">‹</button><div class="dp-title">${startY} — ${endY}</div><button class="dp-nav" data-act="yp" data-d="12">›</button></div><div class="dp-year-grid">`;
+    for(let y=startY;y<=endY;y++){
+      html+=`<div class="dp-year-item${y===viewYear?' cur-year':''}" data-y="${y}">${y}</div>`;
+    }
+    html+='</div>';
+    popup.innerHTML=html;
+    popup.querySelector('[data-act="yp"][data-d="-12"]').addEventListener('click',e=>{e.stopPropagation();_yearPage-=12;st._yearPage=_yearPage;renderYears();});
+    popup.querySelector('[data-act="yp"][data-d="12"]').addEventListener('click',e=>{e.stopPropagation();_yearPage+=12;st._yearPage=_yearPage;renderYears();});
+    popup.querySelectorAll('.dp-year-item[data-y]').forEach(el=>{el.addEventListener('click',e=>{e.stopPropagation();viewYear=parseInt(el.dataset.y);st.viewYear=viewYear;_mode='cal';renderCal();});});
+  }
+
+  function renderCal(){
+    const y=viewYear,m=viewMonth;
+    const firstDay=new Date(y,m,1),lastDay=new Date(y,m+1,0);
+    const startDow=firstDay.getDay();
+    const dayNames=['ح','ن','ث','ر','خ','ج','س'];
+    const monthName=isHijri?toHijriParts(firstDay).month:firstDay.toLocaleDateString('ar',{month:'long'});
+    const days=[];
+    for(let i=startDow-1;i>=0;i--)days.push({date:new Date(y,m,1-startDow+i),other:true});
+    for(let d=1;d<=lastDay.getDate();d++)days.push({date:new Date(y,m,d),other:false});
+    const rem=days.length%7;if(rem>0)for(let i=1;i<=7-rem;i++)days.push({date:new Date(y,m+1,i),other:true});
+    popup.innerHTML=`<div class="dp-header"><button class="dp-nav" data-dir="-1">‹</button><div class="dp-title"><span>${monthName}</span> <button class="dp-year-btn" data-act="yr">${isHijri?(toHijriParts(firstDay).year||y):y}</button></div><button class="dp-nav" data-dir="1">›</button></div><div style="display:flex;justify-content:center;margin-bottom:10px"><button class="dp-cal-toggle" data-act="tog">${isHijri?'🌍 ميلادي':'🌙 هجري'}</button></div><div class="dp-grid">${dayNames.map(d=>`<div class="dp-day-name">${d}</div>`).join('')}${days.map(d=>{const isToday=!d.other&&d.date.toDateString()===today.toDateString();const isSel=!d.other&&selected&&d.date.toDateString()===selected.toDateString();const label=isHijri?toHijriParts(d.date).day||d.date.getDate():d.date.getDate();const cls='dp-day'+(d.other?' other-month':'')+(isToday?' today':'')+(isSel?' selected':'');return`<div class="${cls}"${d.other?'':` data-date="${_dpLocalDate(d.date)}"`}>${d.other?'':label}</div>`}).join('')}</div>`;
+    popup.querySelector('[data-dir="-1"]').addEventListener('click',e=>{e.stopPropagation();st.viewMonth--;if(st.viewMonth<0){st.viewMonth=11;st.viewYear--;}viewYear=st.viewYear;viewMonth=st.viewMonth;renderCal();});
+    popup.querySelector('[data-dir="1"]').addEventListener('click',e=>{e.stopPropagation();st.viewMonth++;if(st.viewMonth>11){st.viewMonth=0;st.viewYear++;}viewYear=st.viewYear;viewMonth=st.viewMonth;renderCal();});
+    popup.querySelector('[data-act="tog"]').addEventListener('click',e=>{e.stopPropagation();st.isHijri=!st.isHijri;isHijri=st.isHijri;renderCal();});
+    popup.querySelector('[data-act="yr"]').addEventListener('click',e=>{e.stopPropagation();_yearPage=Math.floor(viewYear/12)*12;st._yearPage=_yearPage;_mode='years';renderYears();});
+    popup.querySelectorAll('.dp-day[data-date]').forEach(el=>{el.addEventListener('click',e=>{e.stopPropagation();const dateStr=el.dataset.date;st.selected=new Date(dateStr+'T12:00:00');selected=st.selected;const valEl=document.getElementById('dp-val-'+id);if(valEl)valEl.textContent=isHijri?toHijriStr(st.selected):dateStr;popup.classList.remove('open');if(st.onChange)st.onChange(dateStr);});});
+  }
+  const st={viewYear,viewMonth,isHijri,_yearPage,onChange,get selected(){return selected;},set selected(v){selected=v;},renderCal};
+  _dpState[id]=st;
+  document.addEventListener('click',e=>{if(!wrap.contains(e.target))popup.classList.remove('open');});
+  return wrap;
+}
+function _mountDp(wrapId,dpId,initVal,onChange){
+  const wrap=document.getElementById(wrapId);if(!wrap)return;
+  wrap.innerHTML='';wrap.appendChild(createDatePicker(dpId,initVal,onChange));
+}
+function _dpGetValue(dpId){const st=_dpState[dpId];return st?.selected?_dpLocalDate(st.selected):'';}
+function _updateFbHijri(dateStr){
+  const el=document.getElementById('fbHijri');if(!el)return;
+  if(!dateStr){el.textContent='';return;}
+  try{const d=new Date(dateStr+'T12:00:00');const h=new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura',{year:'numeric',month:'long',day:'numeric'}).format(d);el.textContent=h+' هـ';}catch(_){el.textContent='';}
+}
+function _dpSetValue(dpId,dateStr){
+  const st=_dpState[dpId];if(!st)return;
+  st.selected=dateStr?new Date(dateStr+'T12:00:00'):null;
+  const valEl=document.getElementById('dp-val-'+dpId);
+  if(valEl)valEl.textContent=dateStr||'اختر تاريخاً';
+}
+
+// ── منتقي تاريخ الاشتراك ──────────────────────────────────────────
+let _subDateMode='g';
+function initSubDateDropdowns(){
+  const gY=document.getElementById('fsGYear');
+  if(gY&&gY.options.length<=1){
+    const now=new Date().getFullYear();
+    for(let y=now+3;y>=2000;y--){const o=document.createElement('option');o.value=y;o.textContent=y;gY.appendChild(o);}
+  }
+  const hY=document.getElementById('fsHYear');
+  if(hY&&hY.options.length<=1){
+    const nowH=gregorianToHijri(new Date().getFullYear(),new Date().getMonth()+1,new Date().getDate());
+    for(let y=nowH.y+2;y>=1420;y--){const o=document.createElement('option');o.value=y;o.textContent=toArabicNum(y)+' هـ';hY.appendChild(o);}
+  }
+  updateSubGDays(); updateSubHDays();
+}
+function updateSubGDays(){
+  const m=parseInt(document.getElementById('fsGMonth')?.value)||0;
+  const y=parseInt(document.getElementById('fsGYear')?.value)||2024;
+  const max=m?new Date(y,m,0).getDate():31;
+  const sel=document.getElementById('fsGDay'); if(!sel)return;
+  const cur=sel.value;
+  sel.innerHTML='<option value="">اليوم</option>';
+  for(let d=1;d<=max;d++){const o=document.createElement('option');o.value=d;o.textContent=d;sel.appendChild(o);}
+  if(cur&&parseInt(cur)<=max)sel.value=cur;
+}
+function updateSubHDays(){
+  const m=parseInt(document.getElementById('fsHMonth')?.value)||0;
+  const y=parseInt(document.getElementById('fsHYear')?.value)||0;
+  const max=getHijriMonthDays(y,m);
+  const sel=document.getElementById('fsHDay'); if(!sel)return;
+  const cur=sel.value;
+  sel.innerHTML='<option value="">اليوم</option>';
+  for(let d=1;d<=max;d++){const o=document.createElement('option');o.value=d;o.textContent=toArabicNum(d);sel.appendChild(o);}
+  if(cur&&parseInt(cur)<=max)sel.value=cur;
+}
+function convertSubGreg(){
+  const d=parseInt(document.getElementById('fsGDay')?.value)||0;
+  const m=parseInt(document.getElementById('fsGMonth')?.value)||0;
+  const y=parseInt(document.getElementById('fsGYear')?.value)||0;
+  const fsEl=document.getElementById('fs');
+  if(d&&m&&y){const v=formatDateParts(y,m,d);if(fsEl)fsEl.value=v;updateSubHijriDisp();calcEndDate();}
+  else{if(fsEl)fsEl.value='';updateSubHijriDisp();}
+}
+function convertSubHijri(){
+  const hd=parseInt(document.getElementById('fsHDay')?.value)||0;
+  const hm=parseInt(document.getElementById('fsHMonth')?.value)||0;
+  const hy=parseInt(document.getElementById('fsHYear')?.value)||0;
+  const fsEl=document.getElementById('fs');
+  if(hd&&hm&&hy){const g=hijriToGregorian(hy,hm,hd);const v=formatDateParts(g.y,g.m,g.d);if(fsEl)fsEl.value=v;updateSubHijriDisp();calcEndDate();}
+  else{if(fsEl)fsEl.value='';updateSubHijriDisp();}
+}
+function updateSubHijriDisp(){
+  const v=document.getElementById('fs')?.value;
+  const el=document.getElementById('fsHijriDisp'); if(!el)return;
+  if(!v){el.textContent='';return;}
+  const [y,m,d]=v.split('-').map(Number);
+  if(!y){el.textContent='';return;}
+  const h=gregorianToHijri(y,m,d);
+  el.textContent=toArabicNum(h.d)+' '+HIJRI_MONTHS[h.m-1]+' '+toArabicNum(h.y)+' هـ';
+}
+function toggleSubDateMode(){ setSubDateMode(_subDateMode==='g'?'h':'g'); }
+function setSubDateMode(mode){
+  _subDateMode=mode;
+  const gM=document.getElementById('subGMode'), hM=document.getElementById('subHMode');
+  const btn=document.getElementById('btnSubToggle');
+  initSubDateDropdowns();
+  if(mode==='g'){
+    if(gM)gM.style.display='flex'; if(hM)hM.style.display='none';
+    if(btn){btn.textContent='هـ';btn.style.background='var(--primary)';btn.style.borderColor='var(--primary)';}
+    const v=document.getElementById('fs')?.value;
+    if(v){const [gy,gm,gd]=v.split('-').map(Number);
+      const gYs=document.getElementById('fsGYear'),gMs=document.getElementById('fsGMonth'),gDs=document.getElementById('fsGDay');
+      if(gYs)gYs.value=gy; if(gMs){gMs.value=gm;updateSubGDays();} if(gDs)gDs.value=gd;}
+  } else {
+    if(gM)gM.style.display='none'; if(hM)hM.style.display='flex';
+    if(btn){btn.textContent='م';btn.style.background='#16a34a';btn.style.borderColor='#16a34a';}
+    const v=document.getElementById('fs')?.value;
+    if(v){const [gy,gm,gd]=v.split('-').map(Number);const h=gregorianToHijri(gy,gm,gd);
+      const hYs=document.getElementById('fsHYear'),hMs=document.getElementById('fsHMonth'),hDs=document.getElementById('fsHDay');
+      if(hYs)hYs.value=h.y; if(hMs){hMs.value=h.m;updateSubHDays();} if(hDs)hDs.value=h.d;}
+  }
+}
+function setSubDateValue(dateStr){
+  if(!dateStr){
+    ['fsGDay','fsGMonth','fsGYear','fsHDay','fsHMonth','fsHYear'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+    const el=document.getElementById('fs');if(el)el.value='';
+    const d=document.getElementById('fsHijriDisp');if(d)d.textContent='';return;
+  }
+  const el=document.getElementById('fs');if(el)el.value=dateStr;
+  initSubDateDropdowns();
+  const [gy,gm,gd]=dateStr.split('-').map(Number);
+  if(_subDateMode==='g'){
+    const gYs=document.getElementById('fsGYear'),gMs=document.getElementById('fsGMonth'),gDs=document.getElementById('fsGDay');
+    if(gYs)gYs.value=gy; if(gMs){gMs.value=gm;updateSubGDays();} if(gDs)gDs.value=gd;
+  } else {
+    const h=gregorianToHijri(gy,gm,gd);
+    const hYs=document.getElementById('fsHYear'),hMs=document.getElementById('fsHMonth'),hDs=document.getElementById('fsHDay');
+    if(hYs)hYs.value=h.y; if(hMs){hMs.value=h.m;updateSubHDays();} if(hDs)hDs.value=h.d;
+  }
+  updateSubHijriDisp();
+}
+
 let _dateMode='g';
 function toggleDateMode(){
   setDateMode(_dateMode==='g'?'h':'g');
@@ -5579,42 +5772,20 @@ function calcAge(){
   if(tm < birth.m || (tm === birth.m && td < birth.d)) age--;
   el.textContent = age >= 0 ? toArabicNum(age) + ' سنة' : '—';
 }
-function updateIdSource(preSelect){
-  const type = document.getElementById('fidtype')?.value;
-  const el   = document.getElementById('fidsrc');
-  if(!el) return;
-  const sources = ID_SOURCES[type] || [];
-  if(!sources.length){ el.innerHTML=`<option value="">${_lang==='en'?'Select type first':'اختر النوع أولاً'}</option>`; return; }
-  const emptyLabel = _lang==='en'
-    ? (type==='جواز سفر' ? 'Select issuing country' : 'Select issuing city')
-    : (type==='جواز سفر' ? 'اختر الدولة المُصدِرة' : 'اختر المدينة المُصدِرة');
-  el.innerHTML = `<option value="">${emptyLabel}</option>` +
-    sources.map(s=>`<option value="${s}"${preSelect===s?' selected':''}>${_sourceLabel(s)}</option>`).join('');
-}
-
 // ============ ID TYPE & SOURCE ============
 function updateIdSource(preSelect){
   const type = document.getElementById('fidtype')?.value;
   const el   = document.getElementById('fidsrc');
   if(!el) return;
   const sources = ID_SOURCES[type] || [];
-  if(!sources.length){ el.innerHTML=`<option value="">${_lang==='en'?'Select type first':'اختر النوع أولاً'}</option>`; return; }
-  const emptyLabel = _lang==='en'
-    ? (type==='جواز سفر' ? 'Select issuing country' : 'Select issuing city')
-    : (type==='جواز سفر' ? 'اختر الدولة المُصدِرة' : 'اختر المدينة المُصدِرة');
+  if(!sources.length){ el.innerHTML=`<option value="">اختر النوع أولاً</option>`; return; }
+  const emptyLabel = type==='جواز سفر' ? 'اختر الدولة المُصدِرة' : 'اختر المدينة المُصدِرة';
   el.innerHTML = `<option value="">${emptyLabel}</option>` +
-    sources.map(s=>`<option value="${s}"${preSelect===s?' selected':''}>${_sourceLabel(s)}</option>`).join('');
+    sources.map(s=>`<option value="${s}"${preSelect===s?' selected':''}>${s}</option>`).join('');
 }
 
 // ============ PHONE PREFIX ============
 const PHONE_PH={'966':'5XXXXXXXX','971':'5XXXXXXXX','965':'XXXXXXXX','974':'XXXXXXXX','973':'XXXXXXXX','968':'XXXXXXXX','967':'7XXXXXXXX','962':'7XXXXXXXX','961':'XXXXXXXX','963':'9XXXXXXXX','964':'7XXXXXXXX','20':'1XXXXXXXX','212':'6XXXXXXXX','213':'5XXXXXXXX','216':'2XXXXXXXX','218':'9XXXXXXXX','249':'9XXXXXXXX','92':'3XXXXXXXXX','91':'9XXXXXXXXX','63':'9XXXXXXXXX','880':'1XXXXXXXXX','44':'7XXXXXXXXX','1':'2XXXXXXXXX'};
-function updatePhonePlaceholder(){
-  const cc=document.getElementById('fcc')?.value||'966';
-  const inp=document.getElementById('fph');
-  if(inp)inp.placeholder=PHONE_PH[cc]||'XXXXXXXXX';
-}
-
-// ============ PHONE PREFIX ============
 function updatePhonePlaceholder(){
   const cc=document.getElementById('fcc')?.value||'966';
   const inp=document.getElementById('fph');
@@ -5667,11 +5838,9 @@ function updateCities(preSelect){
   const region=document.getElementById('fp').value;
   const el=document.getElementById('fcity');
   const cities=CITIES_MAP[region]||[];
-  const p1=_lang==='en'?'Select City':'اختر المدينة';
-  const p2=_lang==='en'?'Select region first':'اختر المنطقة أولاً';
   el.innerHTML=cities.length
-    ?`<option value="">${p1}</option>`+cities.map(c=>`<option value="${c}"${preSelect===c?' selected':''}>${_lang==='en'?(_CITY_EN[c]||c):c}</option>`).join('')
-    :`<option value="">${p2}</option>`;
+    ?`<option value="">اختر المدينة</option>`+cities.map(c=>`<option value="${c}"${preSelect===c?' selected':''}>${c}</option>`).join('')
+    :`<option value="">اختر المنطقة أولاً</option>`;
 }
 
 // ============ PERMISSIONS ============
@@ -5765,6 +5934,129 @@ function getSelectedPerms(){
   return[...document.querySelectorAll('#permGrid input:checked, #settingsPermGrid input:checked')].map(cb=>cb.value);
 }
 
+// ============ OWNER SYSTEM ============
+const KO = 'gym_owner'; // مفتاح التخزين
+
+function getOwnerData(){
+  try{ return JSON.parse(localStorage.getItem(KO)||'{}'); }
+  catch(_){ return {}; }
+}
+function saveOwnerData(d){ localStorage.setItem(KO, JSON.stringify(d)); }
+
+// الأقسام القابلة للإخفاء
+const OWNER_SECTIONS = [
+  { key:'customers',     label:'👥 المشتركون' },
+  { key:'whatsapp',      label:'💬 رسائل واتساب' },
+  { key:'auto',          label:'🤖 الإرسال التلقائي' },
+  { key:'reports',       label:'📈 التقارير' },
+  { key:'attendance',    label:'📋 حضور المشتركين' },
+  { key:'emp-attendance',label:'👔 حضور الموظفين' },
+  { key:'diagnostics',   label:'🛠️ التشخيص' },
+  { key:'help',          label:'📖 دليل الاستخدام' },
+  { key:'settings',      label:'⚙️ الإعدادات' },
+];
+
+// ثلاث نقرات على رقم الإصدار تفتح الإعداد
+let _ownerClickCount=0, _ownerClickTimer=null;
+function ownerVersionClick(){
+  _ownerClickCount++;
+  clearTimeout(_ownerClickTimer);
+  _ownerClickTimer=setTimeout(()=>{ _ownerClickCount=0; }, 800);
+  if(_ownerClickCount>=3){
+    _ownerClickCount=0;
+    openOwnerSetup();
+  }
+}
+
+function openOwnerSetup(){
+  document.getElementById('ownerPassInput').value='';
+  document.getElementById('ownerPassConfirm').value='';
+  document.getElementById('ownerSetupErr').style.display='none';
+  const overlay=document.getElementById('ownerSetupOverlay');
+  overlay.style.display='flex';
+}
+function closeOwnerSetup(){
+  document.getElementById('ownerSetupOverlay').style.display='none';
+}
+async function saveOwnerPassword(){
+  const p1=document.getElementById('ownerPassInput').value;
+  const p2=document.getElementById('ownerPassConfirm').value;
+  const errEl=document.getElementById('ownerSetupErr');
+  if(!p1){ errEl.textContent='أدخل كلمة المرور'; errEl.style.display='block'; return; }
+  if(p1!==p2){ errEl.textContent='كلمتا المرور غير متطابقتين'; errEl.style.display='block'; return; }
+  if(p1.length<4){ errEl.textContent='كلمة المرور قصيرة — 4 أحرف على الأقل'; errEl.style.display='block'; return; }
+  const d=getOwnerData();
+  d.pass=await hashPassword(p1);
+  saveOwnerData(d);
+  closeOwnerSetup();
+  toast('✅ تم حفظ كلمة مرور مسؤول النظام','tok');
+}
+
+function openOwnerPanel(){
+  document.getElementById('loginPage').style.display='none';
+  buildOwnerToggles();
+  document.getElementById('ownerPanelOverlay').style.display='flex';
+}
+function closeOwnerPanel(){
+  document.getElementById('ownerPanelOverlay').style.display='none';
+  document.getElementById('loginPage').style.display='flex';
+  document.getElementById('lu').value='';
+  document.getElementById('lp').value='';
+}
+function buildOwnerToggles(){
+  const d=getOwnerData();
+  const hidden=d.hidden||[];
+  const cont=document.getElementById('ownerSectionToggles');
+  cont.innerHTML=OWNER_SECTIONS.map(s=>{
+    const isHidden=hidden.includes(s.key);
+    return`<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:${isHidden?'#fef2f2':'#f0fdf4'};border-radius:10px;border:1.5px solid ${isHidden?'#fca5a5':'#bbf7d0'}">
+      <div>
+        <div style="font-size:13px;font-weight:700">${s.label}</div>
+        <div style="font-size:11px;color:#64748b;margin-top:2px">${isHidden?'مخفي عن الأدمن العادي':'مرئي للأدمن العادي'}</div>
+      </div>
+      <label style="position:relative;width:44px;height:24px;flex-shrink:0">
+        <input type="checkbox" ${isHidden?'':'checked'} onchange="toggleOwnerSection('${s.key}',this.checked)" style="opacity:0;width:0;height:0">
+        <span style="position:absolute;inset:0;background:${isHidden?'#cbd5e1':'#22c55e'};border-radius:12px;cursor:pointer;transition:.3s">
+          <span style="position:absolute;width:18px;height:18px;background:#fff;border-radius:50%;top:3px;left:${isHidden?'3':'23'}px;transition:.3s"></span>
+        </span>
+      </label>
+    </div>`;
+  }).join('');
+}
+function toggleOwnerSection(key, visible){
+  const d=getOwnerData();
+  if(!d.hidden) d.hidden=[];
+  if(visible){ d.hidden=d.hidden.filter(k=>k!==key); }
+  else { if(!d.hidden.includes(key)) d.hidden.push(key); }
+  saveOwnerData(d);
+  buildOwnerToggles();
+  toast((visible?'✅ أُظهر: ':'🔒 أُخفي: ')+OWNER_SECTIONS.find(s=>s.key===key)?.label,'tok');
+}
+async function changeOwnerPass(){
+  const p=document.getElementById('ownerNewPass').value;
+  if(!p||p.length<4){ toast('⚠️ كلمة المرور قصيرة','ter'); return; }
+  const d=getOwnerData();
+  d.pass=await hashPassword(p);
+  saveOwnerData(d);
+  document.getElementById('ownerNewPass').value='';
+  toast('✅ تم تغيير كلمة المرور الخاصة','tok');
+}
+
+// تطبيق إخفاء الأقسام على الأدمن العادي
+function applyOwnerRestrictions(){
+  const d=getOwnerData();
+  const hidden=d.hidden||[];
+  const navItems=document.querySelectorAll('.nav-item[onclick]');
+  navItems.forEach(el=>{
+    const onclick=el.getAttribute('onclick')||'';
+    const match=onclick.match(/showView\(['"]([^'"]+)['"]\)/);
+    if(match){
+      const view=match[1];
+      el.style.display=hidden.includes(view)?'none':'';
+    }
+  });
+}
+
 // ============ AUTH ============
 let currentUser=null;
 
@@ -5792,6 +6084,16 @@ function loadRemembered(){
 async function doLogin(){
   const u=document.getElementById('lu').value.trim();
   const p=document.getElementById('lp').value;
+
+  // ── فحص كلمة مرور مسؤول النظام ──────────────────────────────
+  if(u==='admin'){
+    const ownerData=getOwnerData();
+    if(ownerData.pass && await passwordMatches(ownerData.pass, p)){
+      openOwnerPanel();
+      return;
+    }
+  }
+
   const users=getUsers();
   let m=null;
   for(const user of users){
@@ -5814,7 +6116,9 @@ async function doLogin(){
     document.getElementById('sideUser').textContent=u;
     document.getElementById('dateBadge').textContent='📅 '+fmtDateAr();
     applyPermissions();
+    applyOwnerRestrictions();
     loadSettings();
+    updateAttModeUI();
     _initNavHoverSound();
     initTheme();
     updateClubDisplay();
@@ -5827,12 +6131,24 @@ async function doLogin(){
     const s=getSettings();
     setTimeout(()=>checkTodayNotification(),500);
     if(s.autoEnabled) setTimeout(()=>checkReminders(true),1400);
-    setTimeout(()=>checkDashWaStatus(),800);
     // hourly check
     if(window._hourlyTimer) clearInterval(window._hourlyTimer);
     if(s.hourly) window._hourlyTimer = setInterval(()=>{if(getSettings().autoEnabled)checkReminders(true);},3600000);
-    // اتصال ZKTeco تلقائي عند تسجيل الدخول
-    if(s.zkIp){ setTimeout(()=>{ zkConnect(); }, 3000); }
+    // فحص فوري لاتصال البوت والبصمة عند الفتح
+    checkDashWaStatus();
+    if(s.zkIp){
+      checkDashZkStatus();
+      setTimeout(()=>zkConnect(true), 500);
+    }
+    // فحص دوري كل 60 ثانية
+    if(window._connCheckTimer) clearInterval(window._connCheckTimer);
+    window._connCheckTimer = setInterval(()=>{
+      checkDashWaStatus();
+      if(getSettings().zkIp){
+        checkDashZkStatus();
+        if(!_zkEventPoller) zkConnect(true);
+      }
+    }, 60000);
   } else {
     document.getElementById('loginErr').style.display='block';
   }
@@ -5865,6 +6181,111 @@ function buildEmpSelect(){
   sel.value = cur;
 }
 
+// ── فترات الدوام ────────────────────────────────────────────────
+const KSP='gym_shift_periods', KHL='gym_holidays';
+function getShiftPeriods(){ try{return JSON.parse(localStorage.getItem(KSP)||'[]');}catch(_){return[];} }
+function saveShiftPeriods(d){ localStorage.setItem(KSP,JSON.stringify(d)); }
+function getHolidays(){ try{return JSON.parse(localStorage.getItem(KHL)||'[]');}catch(_){return[];} }
+function saveHolidays(d){ localStorage.setItem(KHL,JSON.stringify(d)); }
+function isHoliday(date){ return getHolidays().some(h=>h.date===date); }
+
+function renderShiftPeriods(){
+  const el=document.getElementById('shiftPeriodsTable'); if(!el) return;
+  const periods=getShiftPeriods();
+  if(!periods.length){ el.innerHTML='<div style="text-align:center;color:var(--muted);font-size:12px;padding:10px">لا توجد فترات — اضغط إضافة</div>'; return; }
+  el.innerHTML=periods.map(p=>`
+    <div style="display:grid;grid-template-columns:1fr 100px 100px 90px 36px;gap:6px;align-items:center;background:#fff;border:1px solid #bae6fd;border-radius:8px;padding:7px 10px">
+      <input value="${p.name}" onchange="updateShiftField(${p.id},'name',this.value)" class="set-input" style="font-size:12px;padding:5px 8px" placeholder="اسم الفترة">
+      <input type="time" value="${p.start}" onchange="updateShiftField(${p.id},'start',this.value)" class="set-input" style="font-size:12px;padding:5px 8px">
+      <input type="time" value="${p.end}" onchange="updateShiftField(${p.id},'end',this.value)" class="set-input" style="font-size:12px;padding:5px 8px">
+      <select onchange="updateShiftField(${p.id},'grace',this.value)" class="set-input" style="font-size:12px;padding:5px">
+        ${[0,5,10,15,20,30].map(v=>`<option value="${v}" ${p.grace==v?'selected':''}>${v?v+'د':'بدون'}</option>`).join('')}
+      </select>
+      <button onclick="deleteShiftPeriod(${p.id})" style="background:#fee2e2;color:#dc2626;border:none;border-radius:6px;width:32px;height:32px;cursor:pointer;font-size:15px;font-weight:700">×</button>
+    </div>`).join('');
+}
+
+function addShiftPeriod(){
+  const periods=getShiftPeriods();
+  periods.push({id:Date.now(),name:'فترة '+(periods.length+1),start:'08:00',end:'17:00',grace:15});
+  saveShiftPeriods(periods); renderShiftPeriods();
+}
+function updateShiftField(id,field,value){
+  const periods=getShiftPeriods();
+  const p=periods.find(x=>x.id===id); if(!p) return;
+  p[field]=field==='grace'?parseInt(value)||0:value;
+  saveShiftPeriods(periods);
+}
+function deleteShiftPeriod(id){
+  saveShiftPeriods(getShiftPeriods().filter(p=>p.id!==id)); renderShiftPeriods();
+}
+
+function renderHolidays(){
+  const el=document.getElementById('holidaysList'); if(!el) return;
+  const list=getHolidays();
+  if(!list.length){ el.innerHTML='<div style="text-align:center;color:var(--muted);font-size:12px;padding:8px">لا توجد إجازات مضافة</div>'; return; }
+  el.innerHTML=list.map(h=>`
+    <div style="display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #fde68a;border-radius:8px;padding:7px 12px">
+      <span style="font-size:12px;color:#92400e;font-weight:700;flex-shrink:0">${h.date}</span>
+      <span style="flex:1;font-size:12px">${h.name}</span>
+      <button onclick="deleteHoliday(${h.id})" style="background:#fee2e2;color:#dc2626;border:none;border-radius:6px;width:28px;height:28px;cursor:pointer;font-size:14px;font-weight:700;flex-shrink:0">×</button>
+    </div>`).join('');
+}
+function addHoliday(){
+  const date=document.getElementById('holidayDate')?.value;
+  const name=(document.getElementById('holidayName')?.value||'').trim();
+  if(!date){ toast('⚠️ اختر تاريخ الإجازة','ter'); return; }
+  if(!name){ toast('⚠️ أدخل اسم الإجازة','ter'); return; }
+  const list=getHolidays();
+  list.push({id:Date.now(),date,name});
+  list.sort((a,b)=>a.date.localeCompare(b.date));
+  saveHolidays(list); renderHolidays();
+  document.getElementById('holidayDate').value='';
+  document.getElementById('holidayName').value='';
+  toast('✅ تمت إضافة الإجازة','tok');
+}
+function deleteHoliday(id){
+  saveHolidays(getHolidays().filter(h=>h.id!==id)); renderHolidays();
+}
+
+function calcShiftStatus(inTime, outTime){
+  const periods=getShiftPeriods();
+  let shiftStart='', shiftEnd='', grace=0;
+  if(periods.length && inTime){
+    const [ih,im]=inTime.split(':').map(Number);
+    const inMins=ih*60+im;
+    let best=null, bestDiff=Infinity;
+    periods.forEach(p=>{
+      if(!p.start) return;
+      const [sh,sm]=p.start.split(':').map(Number);
+      const diff=Math.abs(inMins-(sh*60+sm));
+      if(diff<bestDiff){ bestDiff=diff; best=p; }
+    });
+    if(best){ shiftStart=best.start; shiftEnd=best.end; grace=parseInt(best.grace)||0; }
+  }
+  let lateIn=0, earlyOut=0;
+  if(inTime && shiftStart){
+    const [sh,sm]=shiftStart.split(':').map(Number);
+    const [ih,im]=inTime.split(':').map(Number);
+    const diff=(ih*60+im)-(sh*60+sm)-grace;
+    if(diff>0) lateIn=diff;
+  }
+  if(outTime && shiftEnd){
+    const [sh,sm]=shiftStart.split(':').map(Number);
+    const [eh,em]=shiftEnd.split(':').map(Number);
+    const [oh,om]=outTime.split(':').map(Number);
+    const startM=sh*60+sm;
+    let endM=eh*60+em;
+    let outM=oh*60+om;
+    // معالجة العبور عند منتصف الليل
+    if(endM<=startM) endM+=24*60;
+    if(outM<startM)  outM+=24*60;
+    const diff=endM-outM;
+    if(diff>0) earlyOut=diff;
+  }
+  return {lateIn, earlyOut};
+}
+
 function empAttIn(){
   const sel = document.getElementById('empAttSelect');
   const emp = sel ? sel.value : '';
@@ -5874,9 +6295,11 @@ function empAttIn(){
   const today = todayStr();
   const exists = data.find(r=>r.emp===emp&&r.date===today&&r.inTime&&!r.outTime);
   if(exists){ toast('⚠️ '+emp+' سجّل حضوره بالفعل اليوم','ter'); return; }
-  data.unshift({id:Date.now(),emp,date:today,inTime:now.toTimeString().slice(0,5),outTime:null});
+  const inT=now.toTimeString().slice(0,5);
+  const {lateIn}=calcShiftStatus(inT,null);
+  data.unshift({id:Date.now(),emp,date:today,inTime:inT,outTime:null,lateIn,earlyOut:0});
   saveEmpAtt(data); renderEmpAtt();
-  toast('✅ تم تسجيل حضور '+emp,'tok');
+  toast((lateIn>0?'⚠️ متأخر '+lateIn+' دقيقة — ':'✅ ')+emp+' — حضور '+inT,'tok');
 }
 
 function empAttOut(){
@@ -5888,9 +6311,14 @@ function empAttOut(){
   const data = getEmpAtt();
   const rec = data.find(r=>r.emp===emp&&r.date===today&&r.inTime&&!r.outTime);
   if(!rec){ toast('⚠️ لا يوجد حضور مسجّل لـ '+emp+' اليوم','ter'); return; }
-  rec.outTime = now.toTimeString().slice(0,5);
+  const outT=now.toTimeString().slice(0,5);
+  if(_checkEmpOutBlock(rec.inTime, outT, emp)) return;
+  rec.outTime=outT;
+  const {lateIn:_lt, earlyOut}=calcShiftStatus(rec.inTime, rec.outTime);
+  if(_lt>0) rec.lateIn=_lt; // تحديث التأخير إن لم يُحسب عند الحضور
+  rec.earlyOut=earlyOut;
   saveEmpAtt(data); renderEmpAtt();
-  toast('✅ تم تسجيل انصراف '+emp,'tok');
+  toast((earlyOut>0?'⚠️ انسحب مبكراً '+earlyOut+' دقيقة — ':'✅ ')+emp+' — انصراف '+rec.outTime,'tok');
 }
 
 function filterEmpAtt(){ renderEmpAtt(); }
@@ -5902,19 +6330,22 @@ function renderEmpAtt(){
   const dt  = document.getElementById('empAttDate')?.value||'';
   if(emp) data = data.filter(r=>r.emp===emp);
   if(dt)  data = data.filter(r=>r.date===dt);
-  if(!data.length){ tb.innerHTML=`<tr><td colspan="8" class="no-data"><div class="ndi">📋</div>لا توجد سجلات</td></tr>`; return; }
+  if(!data.length){ tb.innerHTML=`<tr><td colspan="10" class="no-data"><div class="ndi">📋</div>لا توجد سجلات</td></tr>`; return; }
   tb.innerHTML = data.map((r,i)=>{
     let dur='—';
     if(r.inTime&&r.outTime){
       const [ih,im]=r.inTime.split(':').map(Number);
       const [oh,om]=r.outTime.split(':').map(Number);
       const mins=(oh*60+om)-(ih*60+im);
-      if(mins>0) dur=Math.floor(mins/60)+'س '+( mins%60)+'د';
+      if(mins>0) dur=Math.floor(mins/60)+'س '+(mins%60)+'د';
     }
     const status = r.outTime ? `<span class="badge ba">✅ اكتمل</span>` : `<span class="badge bs">⏳ في العمل</span>`;
+    const late = (r.lateIn>0) ? `<span style="display:inline-block;background:#fee2e2;color:#dc2626;border-radius:6px;padding:2px 7px;font-size:11px;font-weight:700">⚠️ ${r.lateIn}د</span>` : `<span style="color:#16a34a;font-size:11px">—</span>`;
+    const early = (r.earlyOut>0) ? `<span style="display:inline-block;background:#fef3c7;color:#d97706;border-radius:6px;padding:2px 7px;font-size:11px;font-weight:700">🚪 ${r.earlyOut}د</span>` : (r.outTime?`<span style="color:#16a34a;font-size:11px">—</span>`:'');
     return `<tr>
       <td>${i+1}</td><td><strong>${r.emp}</strong></td><td>${r.date}</td>
       <td>${r.inTime||'—'}</td><td>${r.outTime||'—'}</td><td>${dur}</td>
+      <td>${late}</td><td>${early}</td>
       <td>${status}</td>
       <td><button class="ab" style="background:#fee2e2;color:#dc2626" onclick="delEmpAtt('${r.id}')">🗑️</button></td>
     </tr>`;
@@ -5936,11 +6367,108 @@ function delEmpAtt(id){
 function exportEmpAtt(){
   const data = getEmpAtt();
   if(!data.length){ toast('لا توجد بيانات','ter'); return; }
-  const rows = [['الموظف','التاريخ','الحضور','الانصراف'],...data.map(r=>[r.emp,r.date,r.inTime||'',r.outTime||''])];
-  const csv = rows.map(r=>r.join(',')).join('\n');
-  const blob = new Blob(['﻿'+csv],{type:'text/csv'});
+  // تصدير CSV بأعمدة مستقلة
+  const rows = [
+    ['#','الموظف','التاريخ','وقت الحضور','وقت الانصراف','المدة (دقيقة)','تأخير (دقيقة)','انسحاب مبكر (دقيقة)','الحالة'],
+    ...data.map((r,i)=>{
+      let dur='';
+      if(r.inTime&&r.outTime){
+        const[ih,im]=r.inTime.split(':').map(Number);
+        const[oh,om]=r.outTime.split(':').map(Number);
+        const m=(oh*60+om)-(ih*60+im);
+        if(m>0) dur=String(m);
+      }
+      return [i+1, r.emp, r.date, r.inTime||'', r.outTime||'', dur, r.lateIn||0, r.earlyOut||0, r.outTime?'اكتمل':'في العمل'];
+    })
+  ];
+  const th = r=>`<th style="background:#1e3a5f;color:#fff;padding:6px 10px;border:1px solid #ccc;white-space:nowrap">${r}</th>`;
+  const td = r=>`<td style="padding:5px 10px;border:1px solid #ddd;white-space:nowrap">${r}</td>`;
+  const headers=['#','الموظف','التاريخ','وقت الحضور','وقت الانصراف','فرق الوقت (دقيقة)','تأخير (دقيقة)','انسحاب مبكر (دقيقة)','الحالة'];
+  const tableRows=rows.map((r,i)=>i===0?`<tr>${headers.map(h=>th(h)).join('')}</tr>`:`<tr style="background:${i%2===0?'#f8f8f8':'#fff'}">${r.map(c=>td(c)).join('')}</tr>`).join('');
+  const xls=`<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="UTF-8"><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>حضور الموظفين</x:Name><x:WorksheetOptions><x:DisplayRightToLeft/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table dir="rtl">${tableRows}</table></body></html>`;
+  const blob = new Blob(['﻿'+xls],{type:'application/vnd.ms-excel;charset=utf-8'});
   const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
-  a.download=`حضور-الموظفين-${todayStr()}.csv`; a.click();
+  a.download=`حضور-الموظفين-${todayStr()}.xls`; a.click();
+}
+
+async function exportEmpAttPdf(){
+  const data=getEmpAtt();
+  if(!data.length){ toast('لا توجد بيانات','ter'); return; }
+  const s=getSettings();
+  const clubName=s.clubName||'النادي';
+  const clubLogo=s.clubLogo||'';
+  const clubPhone=s.clubPhone||'';
+  const today=new Date().toLocaleDateString('ar-SA',{year:'numeric',month:'long',day:'numeric',weekday:'long'});
+  const logoHtml=clubLogo?`<img src="${clubLogo}" style="width:70px;height:70px;object-fit:cover;border-radius:12px;border:2px solid #e4eaf5">`:`<div style="width:70px;height:70px;background:linear-gradient(135deg,#1e3a5f,#2a5298);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:32px">🏋️</div>`;
+  const rows=data.map((r,i)=>{
+    let dur='—';
+    if(r.inTime&&r.outTime){
+      const[ih,im]=r.inTime.split(':').map(Number);
+      const[oh,om]=r.outTime.split(':').map(Number);
+      const m=(oh*60+om)-(ih*60+im);
+      if(m>0) dur=Math.floor(m/60)+'س '+(m%60)+'د';
+    }
+    const lateCell=r.lateIn>0?`<span style="color:#dc2626;font-weight:700">${r.lateIn}د</span>`:'<span style="color:#16a34a">—</span>';
+    const earlyCell=r.earlyOut>0?`<span style="color:#d97706;font-weight:700">${r.earlyOut}د</span>`:'<span style="color:#16a34a">—</span>';
+    const status=r.outTime?'<span style="background:#d1fae5;color:#065f46;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700">✅ اكتمل</span>':'<span style="background:#fef9c3;color:#854d0e;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700">⏳ في العمل</span>';
+    const bg=i%2===0?'#f8faff':'#fff';
+    return`<tr style="background:${bg}">
+      <td style="text-align:center;padding:8px 6px;border-bottom:1px solid #e4eaf5;color:#6b7280">${i+1}</td>
+      <td style="padding:8px 10px;border-bottom:1px solid #e4eaf5;font-weight:700">${r.emp}</td>
+      <td style="padding:8px 10px;border-bottom:1px solid #e4eaf5;direction:ltr;text-align:center">${r.date}</td>
+      <td style="padding:8px 10px;border-bottom:1px solid #e4eaf5;text-align:center;font-weight:600;color:#1d4ed8">${r.inTime||'—'}</td>
+      <td style="padding:8px 10px;border-bottom:1px solid #e4eaf5;text-align:center;font-weight:600;color:#7c3aed">${r.outTime||'—'}</td>
+      <td style="padding:8px 10px;border-bottom:1px solid #e4eaf5;text-align:center">${dur}</td>
+      <td style="padding:8px 10px;border-bottom:1px solid #e4eaf5;text-align:center">${lateCell}</td>
+      <td style="padding:8px 10px;border-bottom:1px solid #e4eaf5;text-align:center">${earlyCell}</td>
+      <td style="padding:8px 10px;border-bottom:1px solid #e4eaf5;text-align:center">${status}</td>
+    </tr>`;
+  }).join('');
+  const totalLate=data.reduce((s,r)=>s+(r.lateIn||0),0);
+  const totalEarly=data.reduce((s,r)=>s+(r.earlyOut||0),0);
+  const completed=data.filter(r=>r.outTime).length;
+  const html=`<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="UTF-8">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Segoe UI',Tahoma,sans-serif;color:#1e293b;background:#fff;padding:24px}
+    .header{display:flex;align-items:center;gap:20px;padding:20px 24px;background:linear-gradient(135deg,#1e3a5f,#2a5298);border-radius:16px;margin-bottom:20px;color:#fff}
+    .header-info h1{font-size:22px;font-weight:800;margin-bottom:4px}
+    .header-info p{font-size:12px;opacity:.85}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+    .stat{background:#f8faff;border:1.5px solid #e4eaf5;border-radius:12px;padding:12px 16px;text-align:center}
+    .stat-num{font-size:24px;font-weight:800;color:#2a5298}
+    .stat-lbl{font-size:11px;color:#6b7280;margin-top:2px}
+    table{width:100%;border-collapse:collapse;font-size:12px}
+    thead tr{background:linear-gradient(135deg,#1e3a5f,#2a5298);color:#fff}
+    thead th{padding:10px 8px;text-align:center;font-weight:700;font-size:11px}
+    .footer{margin-top:20px;padding:12px 16px;background:#f8faff;border-radius:10px;border:1px solid #e4eaf5;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#6b7280}
+  </style></head><body>
+  <div class="header">
+    ${logoHtml}
+    <div class="header-info">
+      <h1>${clubName}</h1>
+      <p>تقرير حضور وانصراف الموظفين</p>
+      <p>${today}${clubPhone?' &nbsp;|&nbsp; 📞 '+clubPhone:''}</p>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="stat-num">${data.length}</div><div class="stat-lbl">إجمالي السجلات</div></div>
+    <div class="stat"><div class="stat-num">${completed}</div><div class="stat-lbl">اكتمل الدوام</div></div>
+    <div class="stat"><div class="stat-num" style="color:#dc2626">${totalLate}د</div><div class="stat-lbl">إجمالي التأخير</div></div>
+    <div class="stat"><div class="stat-num" style="color:#d97706">${totalEarly}د</div><div class="stat-lbl">إجمالي الانسحاب</div></div>
+  </div>
+  <table>
+    <thead><tr>
+      <th>#</th><th>الموظف</th><th>التاريخ</th><th>الحضور</th><th>الانصراف</th><th>المدة</th><th>تأخير</th><th>انسحاب مبكر</th><th>الحالة</th>
+    </tr></thead>
+    <tbody>${rows}</tbody>
+  </table>
+  <div class="footer">
+    <span>📄 تقرير مُولَّد بواسطة نظام إدارة الاشتراكات</span>
+    <span>📅 ${new Date().toLocaleString('ar-SA')}</span>
+  </div>
+  </body></html>`;
+  await printHtmlInElectron(html, `حضور-الموظفين-${todayStr()}.pdf`);
 }
 
 // ── Override openAddUser/openEditUser/saveUser to include zkId ───
@@ -5980,7 +6508,7 @@ async function saveUser(){
     if(last&&!last.zkId){ last.zkId=zkId; localStorage.setItem(KU,JSON.stringify(newUsers)); }
     // رسالة تأكيد واضحة
     setTimeout(()=>{
-      alert('✅ تم إضافة الموظف بنجاح\n\n🔢 رقم الموظف في جهاز البصمة:\n\n          '+zkId+'\n\nسجّل هذا الرقم كـ User ID في جهاز ZKTeco');
+      toast('✅ تم إضافة الموظف — رقمه في جهاز البصمة: '+zkId,'tok');
     }, 300);
   }
 }
@@ -5988,12 +6516,15 @@ async function saveUser(){
 // ── ZKTeco Real-Time ─────────────────────────────────────────────
 let _zkAutoTimer   = null;
 let _zkEventPoller = null;
+let _attRefreshTimer = null;
 
 // تشغيل/إيقاف المراقبة الفورية
 function zkStartMonitor(){
   if(_zkEventPoller) clearInterval(_zkEventPoller);
   const s=getSettings();
-  const secs=Math.max(1, parseInt(s.zkAutoInterval||5)); // يقبل من ثانية واحدة
+  const secs=Math.max(1, parseInt(s.zkAutoInterval||5));
+  const chip=document.getElementById('zkLiveChip');
+  if(chip) chip.style.display='flex';
   fetch(getStoreServerBase()+'/api/zk/start-monitor',{
     method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({intervalSecs:secs})
@@ -6005,6 +6536,7 @@ function zkStartMonitor(){
 
 function zkStopMonitor(){
   if(_zkEventPoller){clearInterval(_zkEventPoller);_zkEventPoller=null;}
+  const chip=document.getElementById('zkLiveChip'); if(chip) chip.style.display='none';
   fetch(getStoreServerBase()+'/api/zk/stop-monitor',{method:'POST'}).catch(()=>{});
 }
 
@@ -6058,15 +6590,18 @@ function _zkHandleMemberAtt(member, date, time){
       setTimeout(()=>sendAttWa(member,'in',time,null),400);
 
   } else if(rec.in && !rec.out){
-    // بصمة ثانية → فحص الحد الأدنى للجلسة
+    // بصمة ثانية → فحص الحد الأدنى حسب الوضع
     const s=getSettings();
-    const minMins=s.zkMinSession!==undefined ? parseInt(s.zkMinSession) : 30;
+    const _mode=getAttMode();
+    const minMins=_mode==='auto'
+      ?(s.attAutoMinMins!==undefined?parseInt(s.attAutoMinMins):30)
+      :(s.attManualMinMins!==undefined?parseInt(s.attManualMinMins):0);
     const [ih,im]=rec.in.split(':').map(Number);
     const [ch,cm]=time.split(':').map(Number);
     const elapsed=(ch*60+cm)-(ih*60+im);
     if(elapsed<minMins){
       // البصمة الثانية مرفوضة — لم تمضِ المدة الكافية
-      toast('🔒 '+member.name+' — البصمة الثانية مقبولة بعد '+(minMins-elapsed)+' دقيقة','tin');
+      toast('🔒 '+member.name+' — الانصراف من الساعة '+_allowTime(rec.in,minMins)+' (باقي '+_remainLabel(rec.in,minMins)+')','tin');
       return;
     }
     // انصراف
@@ -6127,25 +6662,24 @@ function _zkHandleEmpAtt(empName, date, time){
     data.unshift({id:Date.now(),emp:empName,date,inTime:time,outTime:null,source:'zkteco'});
     saveEmpAtt(data);
     if(document.getElementById('view-emp-attendance')?.classList.contains('active'))renderEmpAtt();
-    toast('✅ حضور موظف: '+empName+' — '+time,'tok');
-    setTimeout(()=>_sendEmpAttWa(empName,'in',time,null),500);
-  } else {
-    // فحص الحد الأدنى للموظف
-    const s=getSettings();
-    const minMins=s.zkMinSessionEmp!==undefined?parseInt(s.zkMinSessionEmp):0;
-    if(minMins>0){
-      const [ih,im]=rec.inTime.split(':').map(Number);
-      const [ch,cm]=time.split(':').map(Number);
-      const elapsed=(ch*60+cm)-(ih*60+im);
-      if(elapsed<minMins){
-        toast('🔒 '+empName+' — الانصراف بعد '+(minMins-elapsed)+' دقيقة','tin');
-        return;
-      }
-    }
-    rec.outTime=time;
+    const {lateIn}=calcShiftStatus(time,null);
+    if(!rec) data.unshift({id:Date.now(),emp:empName,date:today,inTime:time,outTime:null,lateIn,earlyOut:0});
+    else { rec.inTime=time; rec.lateIn=lateIn; }
     saveEmpAtt(data);
     if(document.getElementById('view-emp-attendance')?.classList.contains('active'))renderEmpAtt();
-    toast('🚪 انصراف موظف: '+empName+' — '+time,'tok');
+    toast((lateIn>0?'⚠️ متأخر '+lateIn+'د — ':'✅ ')+' حضور موظف: '+empName+' — '+time,'tok');
+    setTimeout(()=>_sendEmpAttWa(empName,'in',time,null),500);
+  } else {
+    // فحص وقت الانصراف — يستخدم نهاية الفترة إن وُجدت، وإلا الحد الأدنى
+    const blocked=_checkEmpOutBlock(rec.inTime, time, empName);
+    if(blocked) return;
+    rec.outTime=time;
+    const {lateIn:_lt2, earlyOut}=calcShiftStatus(rec.inTime,time);
+    if(_lt2>0) rec.lateIn=_lt2;
+    rec.earlyOut=earlyOut;
+    saveEmpAtt(data);
+    if(document.getElementById('view-emp-attendance')?.classList.contains('active'))renderEmpAtt();
+    toast((earlyOut>0?'⚠️ انسحب مبكراً '+earlyOut+'د — ':'🚪 ')+'انصراف موظف: '+empName+' — '+time,'tok');
     setTimeout(()=>_sendEmpAttWa(empName,'out',rec.inTime,time),500);
   }
 }
@@ -6278,6 +6812,8 @@ function loadZkSettings(){
   const st=document.getElementById('zkSyncTime'); if(st) st.value=s.zkSyncTime||'';
   const ew=document.getElementById('empAttWaEnabled'); if(ew) ew.checked=!!s.empAttWaEnabled;
   const es=document.getElementById('zkEmpSyncInterval'); if(es) es.value=s.zkEmpSyncInterval||0;
+  renderShiftPeriods();
+  renderHolidays();
   startZkEmpAutoSync();
   _startZkDailySync();
 }
@@ -6287,6 +6823,14 @@ function _zkIntervalLabel(secs){
   if(secs<60)  return 'كل '+secs+' ثانية';
   if(secs<3600)return 'كل '+(secs/60)+' دقيقة';
   return 'كل ساعة';
+}
+
+function zkCleanError(err){
+  const msg=String(err||'');
+  if(msg.includes('getInfo')){
+    return 'تم الوصول للجهاز لكن تعذر قراءة معلوماته. أعد المحاولة أو استخدم مزامنة الآن.';
+  }
+  return msg||'خطأ غير معروف';
 }
 
 function startZkAutoSync(){
@@ -6311,16 +6855,18 @@ function startZkAutoSync(){
   }, secs*1000);
 }
 
-function zkConnect(){
+function zkConnect(silent=false){
   const s=getSettings();
   const ip=document.getElementById('zkIp')?.value||s.zkIp;
-  if(!ip){ toast('⚠️ أدخل عنوان IP الجهاز','ter'); return; }
+  if(!ip){ if(!silent) toast('⚠️ أدخل عنوان IP الجهاز','ter'); return; }
   const status=document.getElementById('zkStatus');
   const btn=document.getElementById('zkConnBtn');
-  if(status){status.style.display='block';status.textContent='⏳ جاري الاتصال بـ '+ip+'...';}
-  if(btn) btn.disabled=true;
-  const port=parseInt(document.getElementById('zkPort')?.value)||4370;
-  const pass=parseInt(document.getElementById('zkPass')?.value)||0;
+  if(!silent){
+    if(status){status.style.display='block';status.textContent='⏳ جاري الاتصال بـ '+ip+'...';}
+    if(btn) btn.disabled=true;
+  }
+  const port=parseInt(document.getElementById('zkPort')?.value)||s.zkPort||4370;
+  const pass=parseInt(document.getElementById('zkPass')?.value)||s.zkPass||0;
   fetch(getStoreServerBase()+'/api/zk/connect',{
     method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({ip,port,password:pass})
@@ -6328,16 +6874,28 @@ function zkConnect(){
     if(d.ok){
       if(status){status.style.background='#d1fae5';status.textContent='✅ متصل — '+d.info+' | 🔴 مراقبة فورية نشطة';}
       const sb=document.getElementById('zkSyncBtn');if(sb)sb.disabled=false;
-      toast('✅ تم الاتصال — المراقبة الفورية نشطة','tok');
+      if(!silent) toast('✅ تم الاتصال — المراقبة الفورية نشطة','tok');
       zkStartMonitor();
+      setDashZk('ok','🟢','جهاز البصمة متصل ✅','ZKTeco — '+ip);
+      // تحديث زر الشريط العلوي
+      const tb=document.getElementById('topZkBtn');
+      if(tb){tb.style.background='rgba(34,197,94,.4)';tb.style.borderColor='rgba(34,197,94,.6)';tb.title='البصمة متصلة ✅ — '+ip;}
     } else {
-      if(status){status.style.background='#fee2e2';status.textContent='❌ '+d.error;}
-      toast('❌ فشل الاتصال: '+d.error,'ter');
+      const err=zkCleanError(d.error);
+      if(!silent){
+        if(status){status.style.background='#fee2e2';status.textContent='❌ '+err;}
+        toast('❌ فشل الاتصال: '+err,'ter');
+      }
+      setDashZk('err','🔴','البصمة غير متصلة',err);
+      const tb=document.getElementById('topZkBtn');
+      if(tb){tb.style.background='rgba(220,38,38,.3)';tb.style.borderColor='rgba(220,38,38,.5)';tb.title='البصمة غير متصلة — انقر للمحاولة';}
     }
   }).catch(e=>{
-    if(status){status.style.background='#fee2e2';status.textContent='❌ تعذّر الوصول للجهاز: '+e.message;}
-    toast('❌ تأكد من تشغيل السيرفر','ter');
-  }).finally(()=>{ if(btn) btn.disabled=false; });
+    if(!silent){
+      if(status){status.style.background='#fee2e2';status.textContent='❌ تعذّر الوصول للجهاز: '+e.message;}
+      toast('❌ تأكد من تشغيل السيرفر','ter');
+    }
+  }).finally(()=>{ if(!silent&&btn) btn.disabled=false; });
 }
 
 function zkSync(silent){
@@ -6407,6 +6965,27 @@ function mergeZkAttendance(records){
 }
 // ============ / EMPLOYEE ATTENDANCE ============
 
+// ════ PRINT HTML IN ELECTRON ════
+async function printHtmlInElectron(html,filename){
+  if(window.electronAPI&&window.electronAPI.printToPdf){
+    const name=filename||('تقرير-'+todayStr()+'.pdf');
+    toast('⏳ جاري إنشاء PDF...','tin');
+    const r=await window.electronAPI.printToPdf(html,name);
+    if(r.ok) toast('✅ تم حفظ PDF في مجلد Downloads','tok');
+    else toast('❌ فشل: '+r.error,'ter');
+    return;
+  }
+  var iframe=document.createElement('iframe');
+  iframe.style.cssText='position:fixed;top:-9999px;left:-9999px;width:1px;height:1px;border:none';
+  document.body.appendChild(iframe);
+  var doc=iframe.contentWindow.document;
+  doc.open();doc.write(html);doc.close();
+  setTimeout(function(){
+    iframe.contentWindow.focus();
+    iframe.contentWindow.print();
+    setTimeout(function(){document.body.removeChild(iframe);},2000);
+  },800);
+}
 function closeAppFully(){
   if(window.electronAPI?.closeApp){window.electronAPI.closeApp();return;}
   // متصفح عادي
@@ -6684,16 +7263,24 @@ function showView(v){
   if(v==='auto')renderAutoView();
   if(v==='reports')renderReports();
   if(v==='diagnostics')runDiagnostics();
-  if(v==='settings'){fpLoadStatus();loadFeaturesAdminCard();_syncSettingsToggles();switchSetTab('club',document.querySelector('#setTabsBar .set-tab'));}
+  if(v==='settings'){fpLoadStatus();loadFeaturesAdminCard();_syncSettingsToggles();switchSetTab('club',document.querySelector('#setTabsBar .set-tab'));updateAttModeUI();}
   if(v==='help')renderHelpView();
   if(v==='attendance'){
     renderAttendance();
+    // إعادة اتصال ZKTeco تلقائياً إن لم يكن نشطاً
+    const _zka=getSettings();
+    if(_zka.zkIp && !_zkEventPoller){ setTimeout(()=>zkConnect(true), 1200); }
+    // تحديث تلقائي كل دقيقة لتحديث شارة الحد الأدنى
+    if(_attRefreshTimer) clearInterval(_attRefreshTimer);
+    _attRefreshTimer=setInterval(()=>{ if(document.getElementById('view-attendance')?.classList.contains('active')) renderAttendance(); },60000);
     // ضبط نطاق التاريخ تلقائياً (آخر 7 أيام)
     const t=new Date(), f=new Date(); f.setDate(t.getDate()-6);
     const fmt=d=>d.toISOString().slice(0,10);
     const fr=document.getElementById('attRepFrom'), to=document.getElementById('attRepTo');
     if(fr&&!fr.value) fr.value=fmt(f);
     if(to&&!to.value) to.value=fmt(t);
+  } else {
+    if(_attRefreshTimer){ clearInterval(_attRefreshTimer); _attRefreshTimer=null; }
   }
   if(v==='emp-attendance') initEmpAttView();
   if(v!=='settings'){clearInterval(_botWatchId);}
@@ -6701,7 +7288,7 @@ function showView(v){
     // استئناف مراقبة ZKTeco تلقائياً إذا كان IP محفوظاً
     const _zks=getSettings();
     if(_zks.zkIp && !_zkEventPoller){
-      setTimeout(()=>{ zkConnect(); }, 1500);
+      setTimeout(()=>{ zkConnect(true); }, 1500);
     }
     const _s=getSettings();if(_s.feat_whatsapp===true&&(_s.sendMode==='bot'||_s.sendMode==='baileys')){setTimeout(testBotConnection,400);setTimeout(fetchLiveQR,600);}}
 }
@@ -7101,7 +7688,7 @@ function diagFixDupPhones(){
     const names=data.filter(r=>r.phone===phone).map(r=>r.name||r.id).join('، ');
     return `${phone} (${count} مشتركين): ${names}`;
   });
-  alert('أرقام الجوال المكررة:\n\n'+lines.join('\n'));
+  toast('📱 أرقام مكررة ('+lines.length+'): '+lines.slice(0,3).join(' | ')+(lines.length>3?' و'+(lines.length-3)+' آخرين':''),'tin');
 }
 
 // ============ HELPERS ============
@@ -7135,6 +7722,31 @@ function trainingBadge(calD, trainD){
   
   if(calD<=7)return`<span class="badge bs">⚠️ ${hasRest?trainD+(_lang==='en'?' Training':' تمرين'):calD+(_lang==='en'?' d':' يوم')}</span>`;
   return`<span class="badge ba">💪 ${hasRest?trainD+(_lang==='en'?' Training':' تمرين'):(_lang==='en'?'Active':'فعّال')}</span>`;
+}
+let _waWindowRef=null;
+function reserveWaWindow(){
+  if(window.electronAPI?.openWaLink){
+    window.electronAPI.openWaLink('https://web.whatsapp.com/');
+    return;
+  }
+  try{
+    if(!_waWindowRef || _waWindowRef.closed) _waWindowRef=window.open('about:blank','whatsapp_web');
+  }catch(_){}
+}
+function openWaLink(url){
+  if(window.electronAPI?.openWaLink){
+    window.electronAPI.openWaLink(url);
+    return;
+  }
+  try{
+    if(!_waWindowRef || _waWindowRef.closed) _waWindowRef=window.open('about:blank','whatsapp_web');
+    if(_waWindowRef){
+      _waWindowRef.location.href=url;
+      _waWindowRef.focus();
+      return;
+    }
+  }catch(_){}
+  window.open(url,'whatsapp_web');
 }
 function fmtPhone(p){
   if(!p)return null;
@@ -7177,6 +7789,13 @@ function _rteRestoreSel(){
   const sel=window.getSelection();
   sel.removeAllRanges();
   sel.addRange(_rteSavedRange);
+}
+function _rteInsertLink(){
+  _rteRestoreSel();
+  const u=window._lastLinkUrl||'https://';
+  const newU=u; // في Electron لا prompt — نستخدم آخر رابط أو فارغ
+  if(newU) _rteCmd('createLink',newU);
+  toast('💡 أدخل الرابط في مربع النص ثم حدّده وانقر 🔗','tin');
 }
 function _rteCmd(cmd,val=null){
   _rteRestoreSel();
@@ -7309,7 +7928,7 @@ function buildRichEditor(ta){
       <button type="button" class="rte-btn" title="زيادة مسافة"  ${M} onclick="_rteCmd('indent')">&#x21E5;</button>
       <span class="rte-sep"></span>
       <button type="button" class="rte-btn" title="خط أفقي"      ${M} onclick="_rteCmd('insertHorizontalRule')">─</button>
-      <button type="button" class="rte-btn" title="رابط"          ${M} onclick="(function(){_rteRestoreSel();const u=prompt('رابط URL:');if(u)_rteCmd('createLink',u);})()">🔗</button>
+      <button type="button" class="rte-btn" title="رابط"          ${M} onclick="_rteInsertLink()">🔗</button>
     </div>
   </div>
   <div class="rte-editor" contenteditable="true" dir="rtl" spellcheck="false"
@@ -7377,6 +7996,40 @@ document.addEventListener('mousedown',e=>{
 
 // ============ DASHBOARD WA STATUS ============
 let _lastWaCheck=0;
+
+function setDashZk(type, icon, text, sub){
+  const styles={ok:{bg:'#f0faf4',bd:'#a8edce'},warn:{bg:'#fffbeb',bd:'#fcd34d'},err:{bg:'#fff5f5',bd:'#fac5c5'},loading:{bg:'#f8faff',bd:'var(--border)'}};
+  const s=styles[type]||styles.loading;
+  const card=document.getElementById('dashZkCard');
+  if(!card) return;
+  card.style.display='block';
+  card.style.background=s.bg; card.style.borderColor=s.bd;
+  const iconEl=document.getElementById('dashZkIcon');
+  const textEl=document.getElementById('dashZkText');
+  const subEl =document.getElementById('dashZkSub');
+  if(iconEl) iconEl.textContent=icon;
+  if(textEl) textEl.textContent=text;
+  if(subEl)  subEl.textContent=sub;
+}
+
+async function checkDashZkStatus(){
+  const s=getSettings();
+  if(!s.zkIp){ return; }
+  setDashZk('loading','⏳','جاري التحقق من البصمة...','جهاز ZKTeco — '+s.zkIp);
+  try{
+    const r=await fetch(getStoreServerBase()+'/api/zk/status',{signal:AbortSignal.timeout?AbortSignal.timeout(5000):undefined});
+    const d=await r.json();
+    if(d.connected){
+      setDashZk('ok','🟢','جهاز البصمة متصل ✅','ZKTeco — '+s.zkIp+' — المراقبة نشطة');
+      if(!_zkEventPoller) zkStartMonitor();
+    } else {
+      setDashZk('warn','🔴','البصمة غير متصلة','اضغط للاتصال يدوياً من الإعدادات');
+    }
+  }catch(e){
+    setDashZk('err','❌','تعذر الاتصال بالبصمة','تأكد من تشغيل السيرفر والجهاز');
+  }
+}
+
 function setDashWa(type, icon, text, sub){
   if(_lang==='en'){
     text=_translateText(text,_UI_MAP_EN);
@@ -7392,6 +8045,7 @@ function setDashWa(type, icon, text, sub){
   const textEl=document.getElementById('dashWaText');
   const subEl=document.getElementById('dashWaSub');
   if(!card)return;
+  card.style.display='block';
   card.style.background=s.bg; card.style.borderColor=s.bd;
   if(iconEl) iconEl.textContent=icon;
   if(textEl) textEl.textContent=text;
@@ -7505,21 +8159,8 @@ function checkAllPhones(){
   const data=getData();
   const bad=data.filter(r=>!fmtPhone(r.phone));
   const ok=data.length-bad.length;
-  if(!bad.length){toast('✅ جميع الأرقام ('+ok+') بتنسيق صحيح','tok');return;}
-  let msg='⚠️ '+bad.length+' رقم غير صحيح:\n';
-  bad.slice(0,5).forEach(r=>{ msg+=r.name+': '+r.phone+'\n'; });
-  if(bad.length>5)msg+='... و'+(bad.length-5)+' آخرين';
-  alert(msg);
-}
-function checkAllPhones(){
-  const data=getData();
-  const bad=data.filter(r=>!fmtPhone(r.phone));
-  const ok=data.length-bad.length;
-  if(!bad.length){toast('✅ جميع الأرقام ('+ok+') بتنسيق صحيح','tok');return;}
-  let msg='⚠️ '+bad.length+' رقم غير صحيح:\n';
-  bad.slice(0,5).forEach(r=>{ msg+=r.name+': '+r.phone+'\n'; });
-  if(bad.length>5)msg+='... و'+(bad.length-5)+' آخرين';
-  alert(msg);
+  if(!bad.length){toast('✅ جميع الأرقام ('+ok+') صحيحة','tok');return;}
+  toast('⚠️ '+bad.length+' رقم غير صحيح: '+bad.slice(0,5).map(r=>r.name+': '+r.phone).join('، ')+(bad.length>5?' و'+(bad.length-5)+' آخرين':''),'ter');
 }
 
 // ============ AUTO REMINDERS ============
@@ -7633,7 +8274,7 @@ async function sendAllAr(){
     pending.forEach((p,i)=>{
       const phone=fmtPhone(p.rec.phone);if(!phone)return;
       const msg=fillMsg(s.autoMsg,p.rec);
-      setTimeout(()=>window.open('https://web.whatsapp.com/send?phone='+phone+'&text='+encodeURIComponent(msg),'_blank'),i*700);
+      setTimeout(()=>openWaLink('https://web.whatsapp.com/send?phone='+phone+'&text='+encodeURIComponent(msg)),i*700);
       markSent(p.key,p.rec,'auto');
     });
     toast(`تم فتح ${pending.length} محادثة 💬`,'twa');
@@ -7713,6 +8354,7 @@ function switchSetTab(tab, btn) {
     if (c.dataset.setTab === tab) c.classList.remove('tab-hidden');
     else c.classList.add('tab-hidden');
   });
+  if(tab==='attendance'){ renderShiftPeriods(); renderHolidays(); }
 }
 
 function arrangeAppearanceSettings(){
@@ -7898,8 +8540,7 @@ function updateTemplatePreviews(){
 function saveManualTemplateAsNew(){
   const txt=rteGetText('msgEditor')||document.getElementById('msgEditor')?.value||'';
   if(!txt.trim()){toast('اكتب نص الرسالة أولاً','ter');return;}
-  const name=(prompt('اسم النص المحفوظ:')||'').trim();
-  if(!name)return;
+  const name=('قالب '+new Date().toLocaleString('ar-SA',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'})).trim();
   const list=getManualTemplates();
   const id='custom_'+Date.now();
   list.push({id,name,text:txt});
@@ -8251,13 +8892,14 @@ function calcEndDate(){
 
   feEl.setAttribute('readonly', true);
 
-  if (!start || !dur) { feEl.value=''; updateSubscriptionDateStatus(); return; }
+  if (!start || !dur) { feEl.value=''; _updateFeDisplay(''); updateSubscriptionDateStatus(); return; }
 
   const calc=calcSubscriptionEnd(calcStart,dur);
-  if(!calc){feEl.value='';updateSubscriptionDateStatus();return;}
+  if(!calc){feEl.value='';_updateFeDisplay('');updateSubscriptionDateStatus();return;}
   const baseEnd = calc.baseEnd;
   const endStr  = calc.end;
   feEl.value = endStr;
+  _updateFeDisplay(endStr);
 
   const calDays     = Math.round((new Date(endStr) - new Date(calcStart)) / 86400000);
   const baseDays    = calc.baseDays;
@@ -8268,6 +8910,77 @@ function calcEndDate(){
     + (carryDays>0 ? ` &nbsp;|&nbsp; 🔄 أُضيف المتبقي من الاشتراك السابق: <strong>${carryDays} يوم</strong> حتى <strong>${calcStart}</strong>` : '')
     + (restAdded>0 ? ` &nbsp;|&nbsp; 🏖️ أُضيف <strong>${restAdded} يوم راحة (${restDayName})</strong> &nbsp;|&nbsp; إجمالي <strong>${calDays} يوم</strong>` : ` &nbsp;|&nbsp; إجمالي <strong>${calDays} يوم</strong>`);
   updateSubscriptionDateStatus(details);
+}
+
+// الانصراف بعد الحد الأدنى من وقت الحضور — فترات الدوام للتقرير فقط
+function _checkEmpOutBlock(inTime, nowTime, empName){
+  const s=getSettings();
+  const minMins=s.zkMinSessionEmp!==undefined?parseInt(s.zkMinSessionEmp):0;
+  if(minMins>0){
+    // الحساب من وقت بداية الدوام إن وُجد، وإلا من وقت الحضور
+    const periods=getShiftPeriods();
+    let baseTime=inTime;
+    if(periods.length){
+      const [ih,im]=inTime.split(':').map(Number);
+      const inM=ih*60+im;
+      let best=null,bestDiff=Infinity;
+      periods.forEach(p=>{
+        if(!p.start)return;
+        const [sh,sm]=p.start.split(':').map(Number);
+        const diff=Math.abs(inM-(sh*60+sm));
+        if(diff<bestDiff){bestDiff=diff;best=p;}
+      });
+      if(best&&best.start) baseTime=best.start;
+    }
+    const [bh,bm]=baseTime.split(':').map(Number);
+    const [ch,cm]=nowTime.split(':').map(Number);
+    let elapsed=(ch*60+cm)-(bh*60+bm);
+    if(elapsed<0) elapsed+=24*60;
+    if(elapsed<minMins){
+      const allowT=_allowTime(baseTime,minMins);
+      toast('🔒 '+(empName?empName+' — ':'')+'الانصراف من الساعة '+allowT+' (باقي '+_remainLabelFrom(baseTime,minMins)+')','tin');
+      return true;
+    }
+  }
+  return false;
+}
+function _remainLabelFrom(baseTime, minMins){
+  const [bh,bm]=baseTime.split(':').map(Number);
+  const now=new Date(); const nowMins=now.getHours()*60+now.getMinutes();
+  let elapsed=nowMins-(bh*60+bm);
+  if(elapsed<0) elapsed+=24*60;
+  const remain=minMins-elapsed;
+  if(remain<=0) return '';
+  const rh=Math.floor(remain/60),rm=remain%60;
+  return rh>0?(rh+'س '+(rm?rm+'د':'')):rm+'د';
+}
+
+// حساب وقت السماح بالانصراف وتنسيقه
+function _allowTime(inTime, minMins){
+  const [ih,im]=inTime.split(':').map(Number);
+  const totalMins=ih*60+im+minMins;
+  const h=Math.floor(totalMins/60)%24;
+  const m=totalMins%60;
+  return String(h).padStart(2,'0')+':'+String(m).padStart(2,'0');
+}
+function _remainLabel(inTime, minMins){
+  const [ih,im]=inTime.split(':').map(Number);
+  const now=new Date(); const nowMins=now.getHours()*60+now.getMinutes();
+  let elapsed=nowMins-(ih*60+im);
+  if(elapsed<0) elapsed+=24*60;
+  const remain=minMins-elapsed;
+  if(remain<=0) return '';
+  const rh=Math.floor(remain/60), rm=remain%60;
+  return rh>0?(rh+'س '+(rm?rm+'د':'')):rm+'د';
+}
+
+function _updateFeDisplay(dateStr){
+  const el=document.getElementById('feDisplay'); if(!el)return;
+  if(!dateStr){el.textContent='—';el.style.color='var(--muted)';return;}
+  const [y,m,d]=dateStr.split('-').map(Number);
+  const h=gregorianToHijri(y,m,d);
+  el.style.color='#16a34a';
+  el.textContent=d+' '+['','يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'][m]+' '+y+' م  •  '+toArabicNum(h.d)+' '+HIJRI_MONTHS[h.m-1]+' '+toArabicNum(h.y)+' هـ';
 }
 
 // ============ ADD/EDIT ============
@@ -8370,30 +9083,29 @@ function openAdd(){
   editId=null;
   renewalCarryEnd=null;
   document.getElementById('formTitle').textContent='➕ إضافة مشترك جديد';
-  ['fn1','fn2','fn3','fn4','fi','fidver','fb','fph','fam','fs','fe','fu','fw','fwork','fr2','ffp'].forEach(id=>document.getElementById(id).value='');
-  const _fi=document.getElementById('ffp_image');if(_fi)_fi.value='';
+  ['fn1','fn2','fn3','fn4','fi','fidver','fb','fph','fam','fs','fe','fu','fw','fwork','fr2'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
   document.getElementById('fidtype').value='';
-  document.getElementById('fidsrc').innerHTML='<option value="">Select type first</option>';
+  document.getElementById('fidsrc').innerHTML='<option value="">اختر النوع أولاً</option>';
   document.getElementById('fcc').value='966';
   updatePhonePlaceholder();
   document.getElementById('fg2').value='ذكر';
   document.getElementById('fdur').value='';
   document.getElementById('fpk').value='';
   document.getElementById('fp').value='';
-  document.getElementById('fcity').innerHTML='<option value="">Select region first</option>';
+  document.getElementById('fcity').innerHTML='<option value="">اختر المنطقة أولاً</option>';
   document.getElementById('fpn').value=nextMemberNum();
   document.getElementById('durInfo').style.display='none';
-  const feEl=document.getElementById('fe');
-  feEl.setAttribute('readonly',true);feEl.style.background='#f0faf4';feEl.style.color='#16a34a';feEl.style.fontWeight='700';
-  document.getElementById('fs').value=new Date().toISOString().slice(0,10);
+  _updateFeDisplay('');
+  // تعيين تاريخ البداية لليوم
+  const todayVal=new Date().toISOString().slice(0,10);
   document.getElementById('fage').textContent='—';
-  // reset date dropdowns
-  ['fbGDay','fbGMonth','fbGYear','fbHDay','fbHMonth','fbHYear'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
   document.getElementById('fbHijri')&&(document.getElementById('fbHijri').textContent='');
-  document.getElementById('fbGResult')&&(document.getElementById('fbGResult').textContent='');
   rebuildFormDropdowns();
-  initDateDropdowns();
-  setDateMode('g');
+  // منتقي تاريخ الميلاد
+  _mountDp('fb-dp-wrap','fb-dp','',v=>{document.getElementById('fb').value=v;calcAge();_updateFbHijri(v);});
+  // منتقي تاريخ الاشتراك
+  _mountDp('fs-dp-wrap','fs-dp',todayVal,v=>{document.getElementById('fs').value=v;calcEndDate();});
+  document.getElementById('fs').value=todayVal;
   openOverlay('formOverlay');
 }
 function openEdit(id){
@@ -8420,14 +9132,8 @@ function openEdit(id){
   updateCities(r.city||'');
   document.getElementById('fg2').value=r.gender||'ذكر';
   document.getElementById('fb').value=r.birth||'';
-  // ملء قوائم التاريخ الميلادي
-  if(r.birth){
-    initDateDropdowns();setDateMode('g');
-    const[gy,gm,gd]=r.birth.split('-').map(Number);
-    const gYs=document.getElementById('fbGYear');const gMs=document.getElementById('fbGMonth');const gDs=document.getElementById('fbGDay');
-    if(gYs)gYs.value=gy; if(gMs){gMs.value=gm;updateGDays();} if(gDs)gDs.value=gd;
-    updateHijriDisplay&&updateHijriDisplay();
-  }
+  _mountDp('fb-dp-wrap','fb-dp',r.birth||'',v=>{document.getElementById('fb').value=v;calcAge();_updateFbHijri(v);});
+  _updateFbHijri(r.birth||'');
   calcAge();
   document.getElementById('fr2').value=r.residence||'';
   document.getElementById('fwork').value=r.work||'';
@@ -8446,23 +9152,20 @@ function openEdit(id){
     updatePhonePlaceholder();
   })();
   document.getElementById('fpn').value=r.pkg_num||'';
-  document.getElementById('ffp').value=r.fingerprint_id||'';
+  // ffp field removed
   const _zkm=document.getElementById('fzkId'); if(_zkm) _zkm.value=r.zkId||'';
   document.getElementById('fpk').value=r.pkg_name||'';
   document.getElementById('fam').value=r.amount||'';
-  document.getElementById('fs').value=r.start||'';
-  document.getElementById('fe').value=r.end||'';
   document.getElementById('fu').value=r.username||'';
   document.getElementById('fw').value=r.password||'';
   const dur=r.duration||'custom';
   document.getElementById('fdur').value=dur;
-  const feEl=document.getElementById('fe');
-  if(dur==='custom'){
-    feEl.removeAttribute('readonly');feEl.style.background='#fff';feEl.style.color='var(--text)';feEl.style.fontWeight='normal';
-    updateSubscriptionDateStatus();
-  }else{
-    calcEndDate();
-  }
+  // تعيين تاريخ الاشتراك بالمنتقي المخصص
+  _mountDp('fs-dp-wrap','fs-dp',r.start||'',v=>{document.getElementById('fs').value=v;calcEndDate();});
+  document.getElementById('fs').value=r.start||'';
+  document.getElementById('fe').value=r.end||'';
+  _updateFeDisplay(r.end||'');
+  if(dur!=='custom') calcEndDate();
   openOverlay('formOverlay');
 }
 function saveRecord(){
@@ -8492,7 +9195,7 @@ function saveRecord(){
   if(!start)             {toast('⚠️ أدخل تاريخ الاشتراك','ter');return;}
   if(!dur)               {toast('⚠️ اختر مدة الاشتراك','ter');return;}
   if(!end)               {toast('⚠️ تاريخ الانتهاء غير محدد','ter');return;}
-  const fingerprintId=normalizeFingerprintId(v('ffp'));
+  const fingerprintId=normalizeFingerprintId(document.getElementById('ffp')?.value?.trim()||'');
   if(fingerprintId){
     const dup=getData().find(x=>String(x.id)!==String(editId||'') && normalizeFingerprintId(x.fingerprint_id)===fingerprintId);
     if(dup){toast('⚠️ رقم البصمة مرتبط بالمشترك: '+(dup.name||''),'ter');return;}
@@ -8689,7 +9392,7 @@ async function sendWhatsApp(phone,message){
       return{ok:false,error:e.message,notFound:e.notFound||false,method:'bot'};
     }
   }
-  window.open('https://web.whatsapp.com/send?phone='+fPhone+'&text='+encodeURIComponent(message),'_blank');
+  openWaLink('https://web.whatsapp.com/send?phone='+fPhone+'&text='+encodeURIComponent(message));
   return{ok:true,method:'link'};
 }
 
@@ -8704,6 +9407,7 @@ async function startBotFromSettings(){
     const d=await(await fetch(botUrl+'/api/status',{signal:c.signal})).json();
     if(d.status==='ready'){
       setBotUI('ok','🟢','البوت يعمل ✅','جاهز للإرسال التلقائي');
+      _syncQrBtn(true);
       if(guide) guide.style.display='none';
       return;
     }
@@ -8754,6 +9458,7 @@ function _startBotWatch(){
       if(d.status==='ready'){
         clearInterval(_botWatchId);
         setBotUI('ok','🟢','✅ البوت متصل وجاهز!','الإرسال التلقائي يعمل الآن');
+        _syncQrBtn(true);
         toast('✅ البوت متصل وجاهز!','tok');
         const g=document.getElementById('botStartGuide');if(g)g.style.display='none';
       }else if(d.status==='qr'||d.status==='pairing'){
@@ -8782,36 +9487,63 @@ function reloadBotFrame(){
   const frame=document.getElementById('botFrame');
   if(frame)frame.src=url+'/qr?t='+Date.now();
 }
-function toggleQrPanel(){
+async function toggleQrPanel(){
   const box=document.getElementById('botIframeBox');
-  const frame=document.getElementById('botFrame');
   const btn=document.getElementById('qrToggleBtn');
   if(!box)return;
   const isOpen=box.style.display==='block';
   if(isOpen){
     box.style.display='none';
     if(btn)btn.textContent='📷 عرض QR';
-  }else{
-    box.style.display='block';
-    const url=(document.getElementById('setBotUrl')?.value||'http://localhost:3005').replace(/\/$/,'');
-    if(frame&&(!frame.src||frame.src==='about:blank'||frame.src==='null'))frame.src=url+'/qr';
-    box.scrollIntoView({behavior:'smooth',block:'nearest'});
-    if(btn)btn.textContent='📷 إخفاء QR';
+    return;
   }
+  // فحص الحالة أولاً
+  const url=(document.getElementById('setBotUrl')?.value||'http://localhost:3005').replace(/\/$/,'');
+  let isReady=false;
+  try{
+    const c=new AbortController();setTimeout(()=>c.abort(),3000);
+    const d=await(await fetch(url+'/api/status',{signal:c.signal})).json();
+    isReady=d.status==='ready';
+  }catch(_){}
+  const connPanel=document.getElementById('botConnectedPanel');
+  const qrPanel=document.getElementById('botQrPanel');
+  if(isReady){
+    if(connPanel)connPanel.style.display='block';
+    if(qrPanel)qrPanel.style.display='none';
+  }else{
+    if(connPanel)connPanel.style.display='none';
+    if(qrPanel)qrPanel.style.display='block';
+    const frame=document.getElementById('botFrame');
+    if(frame&&(!frame.src||frame.src==='about:blank'||frame.src==='null'))frame.src=url+'/qr';
+  }
+  box.style.display='block';
+  box.scrollIntoView({behavior:'smooth',block:'nearest'});
+  if(btn)btn.textContent='📷 إخفاء QR';
+}
+function _botForceShowQR(){
+  const connPanel=document.getElementById('botConnectedPanel');
+  const qrPanel=document.getElementById('botQrPanel');
+  if(connPanel)connPanel.style.display='none';
+  if(qrPanel)qrPanel.style.display='block';
+  const url=(document.getElementById('setBotUrl')?.value||'http://localhost:3005').replace(/\/$/,'');
+  const frame=document.getElementById('botFrame');
+  if(frame)frame.src=url+'/qr?t='+Date.now();
 }
 
 async function sendTestMessage(){
-  const phone=prompt('أدخل رقم جوالك لاختبار الإرسال:\n(مثال: 0555123456)');
-  if(!phone)return;
+  // استخدام رقم النادي المحفوظ — بدل prompt المحجوب في Electron
+  const s=getSettings();
+  const phone=s.clubPhone||s.phone||'';
+  if(!phone){toast('⚠️ أدخل رقم النادي في إعدادات النادي أولاً','ter');return;}
   const fPhone=fmtPhone(phone.trim());
-  if(!fPhone){toast('رقم غير صحيح','ter');return;}
+  if(!fPhone){toast('رقم النادي غير صحيح','ter');return;}
   setBotUI('loading','⏳','جاري إرسال رسالة اختبار...','');
   try{
     const url=(document.getElementById('setBotUrl')?.value||'http://localhost:3005').replace(/\/$/,'');
     const res=await fetch(url+'/api/send-message',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({to:phone,message:'✅ اختبار إرسال من برنامج إدارة الاشتراكات — البوت يعمل بشكل صحيح 🎉'})
+      body:JSON.stringify({to:fPhone,message:'✅ اختبار إرسال من برنامج إدارة الاشتراكات — البوت يعمل بشكل صحيح 🎉'})
     });
     const data=await res.json();
     if(data.success){
@@ -8827,6 +9559,27 @@ async function sendTestMessage(){
   }
 }
 
+function _syncQrBtn(isReady){
+  const btn=document.getElementById('qrToggleBtn');
+  if(!btn) return;
+  if(isReady){
+    btn.style.display='none';
+    // أغلق اللوحة إذا كانت مفتوحة على وضع الربط
+    const qrP=document.getElementById('botQrPanel');
+    if(qrP && qrP.style.display!=='none'){
+      const box=document.getElementById('botIframeBox');
+      const conn=document.getElementById('botConnectedPanel');
+      if(box&&box.style.display==='block'){
+        if(conn) conn.style.display='block';
+        if(qrP) qrP.style.display='none';
+      }
+    }
+  } else {
+    btn.style.display='';
+    btn.textContent='📷 ربط الواتساب';
+  }
+}
+
 function setBotUI(type,icon,text,sub){
   const iconEl=document.getElementById('botStatusIcon');
   const textEl=document.getElementById('botStatusText');
@@ -8839,6 +9592,13 @@ function setBotUI(type,icon,text,sub){
   if(iconEl)iconEl.textContent=icon;
   if(textEl){textEl.textContent=text;textEl.style.color=s.cl;textEl.style.fontWeight='700';}
   if(subEl){subEl.textContent=sub;subEl.style.color=type==='ok'?'#16a34a':type==='err'?'#dc2626':'#6b7280';}
+  // تحديث زر الواتساب في الشريط العلوي
+  const wb=document.getElementById('topWaBtn');
+  if(wb){
+    if(type==='ok'){wb.style.background='rgba(34,197,94,.4)';wb.style.borderColor='rgba(34,197,94,.6)';wb.title='واتساب متصل ✅';}
+    else if(type==='err'){wb.style.background='rgba(220,38,38,.3)';wb.style.borderColor='rgba(220,38,38,.5)';wb.title='واتساب غير متصل';}
+    else{wb.style.background='rgba(255,255,255,.15)';wb.style.borderColor='rgba(255,255,255,.3)';wb.title='حالة الواتساب';}
+  }
 }
 
 // ============ WHATSAPP BOT INTEGRATION ============
@@ -8901,7 +9661,7 @@ async function sendWhatsApp(phone,message){
       return{ok:false,error:e.message,notFound:e.notFound||false,method:'bot'};
     }
   }
-  window.open('https://web.whatsapp.com/send?phone='+fPhone+'&text='+encodeURIComponent(message),'_blank');
+  openWaLink('https://web.whatsapp.com/send?phone='+fPhone+'&text='+encodeURIComponent(message));
   return{ok:true,method:'link'};
 }
 
@@ -8922,12 +9682,14 @@ async function testBotConnection(){
     const data=await res.json();
     if(data.status==='ready'){
       setBotUI('ok','🟢','البوت متصل ✅ — واتساب جاهز للإرسال','الإرسال المباشر يعمل الآن');
+      _syncQrBtn(true);
       toast('✅ البوت متصل وجاهز للإرسال المباشر','tok');
       // أغلق QR إذا كان مفتوحاً
       const qrB=document.getElementById('botIframeBox');
       if(qrB&&qrB.style.display==='block')toggleQrPanel();
     }else if(data.status==='qr'){
-      setBotUI('warn','📷','البوت يعمل — اضغط "عرض QR" لربط واتساب','');
+      _syncQrBtn(false);
+      setBotUI('warn','📷','البوت يعمل — اضغط "ربط الواتساب" لربط الحساب','');
     }else if(data.status==='authenticated'){
       setBotUI('warn','🔐','جاري التحقق...','انتظر لحظة ثم أعد الفحص');
     }else{
@@ -8942,20 +9704,6 @@ async function testBotConnection(){
     );
   }
 }
-function setBotUI(type,icon,text,sub){
-  const iconEl=document.getElementById('botStatusIcon');
-  const textEl=document.getElementById('botStatusText');
-  const subEl =document.getElementById('botStatusSub');
-  const bar   =document.getElementById('botStatusBar');
-  if(!bar)return;
-  const styles={ok:'#f0faf4;border-color:#a8edce;color:#16a34a',warn:'#fffbeb;border-color:#fcd34d;color:#d97706',err:'#fff5f5;border-color:#fac5c5;color:#dc2626',loading:'#f8faff;border-color:var(--border);color:var(--muted)'};
-  const s=styles[type]||styles.loading;
-  bar.style.cssText=`margin:14px 0 10px;padding:12px 16px;border-radius:10px;font-size:13px;display:flex;align-items:center;gap:10px;background:${s.split(';')[0].replace('background:','').trim()};border:2px solid ${s.split(';')[1].replace('border-color:','').trim()};color:${s.split(';')[2].replace('color:','').trim()}`;
-  if(iconEl)iconEl.textContent=icon;
-  if(textEl){textEl.textContent=text;textEl.style.color=s.split(';')[2].replace('color:','').trim();textEl.style.fontWeight='700';}
-  if(subEl){subEl.textContent=sub;subEl.style.color=type==='ok'?'#16a34a':type==='err'?'#dc2626':'#6b7280';}
-}
-
 // ============ SINGLE SEND FROM EDITOR ============
 let previewRecId=null;
 function updateEditorPreview(id){
@@ -9277,6 +10025,70 @@ async function sendPaymentNotification(rec, amt, method, note, allPayments){
   }
 }
 
+// ============ ATTENDANCE MODE ============
+function getAttMode(){ return getSettings().attMode||'manual'; }
+
+function setAttMode(mode){
+  const s=getSettings(); s.attMode=mode; _ksSet(s);
+  updateAttModeUI();
+  renderAttendance();
+}
+
+// اختيار الوضع وعرض إعداداته
+function selectAttMode(mode){
+  document.getElementById('attModeManual').checked=(mode==='manual');
+  document.getElementById('attModeAuto').checked=(mode==='auto');
+  const manSet=document.getElementById('attManualSettings');
+  const autSet=document.getElementById('attAutoSettings');
+  const manCard=document.getElementById('attModeManualCard');
+  const autCard=document.getElementById('attModeAutoCard');
+  if(manSet)manSet.style.display=mode==='manual'?'block':'none';
+  if(autSet)autSet.style.display=mode==='auto'?'block':'none';
+  if(manCard){manCard.style.borderColor=mode==='manual'?'var(--primary)':'var(--border)';manCard.style.background=mode==='manual'?'#eff6ff':'';}
+  if(autCard){autCard.style.borderColor=mode==='auto'?'#16a34a':'var(--border)';autCard.style.background=mode==='auto'?'#f0fdf4':'';}
+}
+
+function saveAttModeSettings(mode){
+  const s=getSettings();
+  s.attMode=mode;
+  if(mode==='manual'){
+    s.attManualMinMins=parseInt(document.getElementById('attManualDefaultOut')?.value)||0;
+  } else {
+    s.attAutoMinMins=parseInt(document.getElementById('attAutoMinMins')?.value)||0;
+  }
+  _ksSet(s);
+  updateAttModeUI();
+  renderAttendance();
+  toast(mode==='manual'?'✅ تم حفظ الوضع اليدوي':'✅ تم حفظ الوضع التلقائي','tok');
+}
+
+function updateAttModeUI(){
+  const mode=getAttMode();
+  // تحديث الكروت
+  selectAttMode(mode);
+  // تحميل القيم المحفوظة
+  const s=getSettings();
+  const manOut=document.getElementById('attManualDefaultOut');
+  const autoMin=document.getElementById('attAutoMinMins');
+  if(manOut)manOut.value=s.attManualMinMins||0;
+  if(autoMin)autoMin.value=s.attAutoMinMins||0;
+}
+
+function cancelCheckin(id, date){
+  if(!confirm('إلغاء تسجيل الحضور؟ سيتمكن المشترك من التسجيل مجدداً'))return;
+  const att=getAttendance();
+  if(att[date]&&att[date][id]!==undefined){ delete att[date][id]; saveAttendance(att); renderAttendance(); renderDashboard(); toast('✅ تم الإلغاء — يمكن للمشترك التسجيل من جديد','tok'); }
+}
+
+function cancelCheckout(id, date){
+  if(!confirm('إلغاء تسجيل الانصراف؟'))return;
+  const att=getAttendance();
+  if(att[date]&&att[date][id]){
+    const rec=att[date][id];
+    if(typeof rec==='object'&&rec.out){ rec.out=null; att[date][id]=rec; saveAttendance(att); renderAttendance(); renderDashboard(); toast('✅ تم إلغاء الانصراف','tok'); }
+  }
+}
+
 // ============ ATTENDANCE ============
 function getTrackCheckout(){ return !!(getSettings().trackCheckout); }
 function getAttWaEnabled(){ return getSettings().attWaEnabled === true; }
@@ -9462,6 +10274,13 @@ function renderAttendance(){
     return;
   }
 
+  const _attMode=getAttMode();
+  const _attS=getSettings();
+  const _attMinMins=_attMode==='auto'
+    ?(_attS.attAutoMinMins!==undefined?parseInt(_attS.attAutoMinMins):0)
+    :(_attS.attManualMinMins!==undefined?parseInt(_attS.attManualMinMins):0);
+  const _nowMins=(()=>{const n=new Date();return n.getHours()*60+n.getMinutes();})();
+
   document.getElementById('attList').innerHTML = data.map(r=>{
     const rec     = getAttRec(dayAtt, r.id);
     const isIn    = !!rec;
@@ -9469,19 +10288,40 @@ function renderAttendance(){
     const inTime  = rec && rec.in  ? `<span style="font-size:10px;color:#16a34a;font-weight:600">⏰ دخل: ${rec.in}</span>` : '';
     const outTime = rec && rec.out ? `<span style="font-size:10px;color:#7c3aed;font-weight:600;margin-right:8px">🚪 انصرف: ${rec.out}</span>` : '';
 
+    // مؤشر الحد الأدنى للانصراف
+    let minBadge='';
+    if(isIn && !isOut && rec.in && _attMinMins>0){
+      const [ih,im]=rec.in.split(':').map(Number);
+      const elapsed=_nowMins-(ih*60+im);
+      const remain=_attMinMins-elapsed;
+      if(remain>0){
+        const allowT=_allowTime(rec.in,_attMinMins);
+        const remL=_remainLabel(rec.in,_attMinMins);
+        minBadge=`<div style="margin-top:4px"><span style="display:inline-block;background:#dbeafe;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;font-size:10px;font-weight:700">🔒 الانصراف من ${allowT} — باقي ${remL}</span></div>`;
+      } else {
+        minBadge=`<div style="margin-top:4px"><span style="display:inline-block;background:#dcfce7;color:#15803d;border:1px solid #bbf7d0;border-radius:6px;padding:2px 8px;font-size:10px;font-weight:700">✔ متاح للانصراف</span></div>`;
+      }
+    }
+
     let bg = isOut ? '#f3e8ff' : isIn ? '#d4f7e7' : '#f8faff';
     let icon = isOut ? '🚪' : isIn ? '✅' : '⏳';
 
+    const isManual=_attMode==='manual';
     let btns = `<button class="att-btn ${isIn?'att-present':'att-absent'}" onclick="markCheckin(${r.id},'${today}')">${isIn?'✅ حاضر':'تسجيل حضور'}</button>`;
     if(trackOut && isIn && !isOut)
       btns += `<button class="att-btn" style="background:#ede9fe;color:#7c3aed;border-color:#c4b5fd;margin-right:6px" onclick="markCheckout(${r.id},'${today}')">🚪 انصراف</button>`;
+    if(isManual && isIn && !isOut)
+      btns += `<button class="att-btn" style="background:#fee2e2;color:#dc2626;border-color:#fca5a5;font-size:11px;margin-right:4px" onclick="cancelCheckin(${r.id},'${today}')">✕ إلغاء الحضور</button>`;
+    if(isManual && isOut)
+      btns += `<button class="att-btn" style="background:#fef9c3;color:#d97706;border-color:#fde68a;font-size:11px;margin-right:4px" onclick="cancelCheckout(${r.id},'${today}')">✕ إلغاء الانصراف</button>`;
 
     return`<div class="att-row" id="att-${r.id}" style="background:${bg}">
       <div class="att-avatar" style="background:${isOut?'#ede9fe':isIn?'#d4f7e7':'#e8f0fe'}">${icon}</div>
       <div style="flex:1">
         <div class="att-name">${r.name}</div>
-        <div class="att-sub">💪 ${r.pkg_name||'—'} &nbsp;|&nbsp; 🪪 ${r.id_num||'—'} &nbsp;|&nbsp; 📱 ${r.phone||'—'}${r.fingerprint_id?' &nbsp;|&nbsp; 👆 '+r.fingerprint_id:''}</div>
+        <div class="att-sub">💪 ${r.pkg_name||'—'} &nbsp;|&nbsp; 🪪 ${r.id_num||'—'} &nbsp;|&nbsp; 📱 ${r.phone||'—'}</div>
         ${(inTime||outTime)?`<div style="margin-top:3px">${inTime}${outTime}</div>`:''}
+        ${minBadge}
       </div>
       <div style="display:flex;gap:6px;align-items:center">${btns}</div>
     </div>`;
@@ -9533,13 +10373,22 @@ function markCheckout(id, date){
   const att=getAttendance();
   if(!att[date] || !att[date][id]) return;
   const existing = att[date][id];
-  const outT = nowTime();
   const inT  = (existing===true ? null : existing.in) || null;
+  // فحص الحد الأدنى في الوضع اليدوي
+  const s=getSettings();
+  const manMin=s.attManualMinMins!==undefined?parseInt(s.attManualMinMins):0;
+  if(manMin>0 && inT){
+    const [ih,im]=inT.split(':').map(Number);
+    const now=new Date();const ch=now.getHours();const cm=now.getMinutes();
+    const elapsed=(ch*60+cm)-(ih*60+im);
+    if(elapsed<manMin){ toast('🔒 الانصراف من الساعة '+_allowTime(inT,manMin)+' (باقي '+_remainLabel(inT,manMin)+')','tin'); return; }
+  }
+  const outT = nowTime();
   if(existing === true) att[date][id] = { in: null, out: outT };
   else att[date][id] = { ...existing, out: outT };
   saveAttendance(att);
   renderAttendance();
-  toast('🚪 تم تسجيل الانصراف ? ' + outT,'tok');
+  toast('🚪 تم تسجيل الانصراف — ' + outT,'tok');
   const member2 = getData().find(r=>r.id===id);
   if(member2) setTimeout(()=>sendAttWa(member2,'out',inT,outT),400);
 }
@@ -10056,36 +10905,8 @@ async function exportAttReportPDF(btn){
   const title    = 'تقرير الحضور والانصراف';
   const subtitle = `${from} ? ${to}`;
   const html     = buildReportHTML(title, subtitle, rows, memberStats);
-  const botUrl   = (getSettings().botUrl||'http://localhost:3005').replace(/\/+$/,'');
-  if(btn){ btn.disabled=true; btn.textContent='⏳'; }
-
-  try {
-    const res = await fetch(botUrl+'/api/download-pdf',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({ html, filename:`تقرير-الحضور-${from}-${to}.pdf` })
-    });
-
-    if(res.ok && res.headers.get('content-type')?.includes('pdf')){
-      const blob = await res.blob();
-      const url  = URL.createObjectURL(blob);
-      const a    = document.createElement('a');
-      a.href     = url;
-      a.download = `تقرير-الحضور-${from}-${to}.pdf`;
-      a.click();
-      URL.revokeObjectURL(url);
-      toast('✅ تم تحميل التقرير PDF','tok');
-    } else {
-      throw new Error('فشل التحميل');
-    }
-  } catch(_){
-    // Fallback: فتح في نافذة للطباعة
-    const w = window.open('','_blank','width=900,height=800');
-    if(w){ w.document.write(html); w.document.close(); w.print(); }
-    toast('📄 افتح نافذة الطباعة واختر "حفظ كـ PDF"','tin');
-  } finally {
-    if(btn){ btn.disabled=false; btn.textContent='📄 PDF'; }
-  }
+  printHtmlInElectron(html);
+  if(btn){ btn.disabled=false; btn.textContent='📄 PDF'; }
 }
 
 // ============ TODAY NOTIFICATION ============
@@ -10376,7 +11197,7 @@ async function diagnoseCard(){
     const tr=await fetch(botUrl+'/api/tts?text=test&voice=ar-SA-HaalaNeural',{signal:AbortSignal.timeout(8000)});
     lines.push(tr.ok?'✅ الصوت Edge TTS: يعمل':'⚠️ الصوت Edge TTS: '+(tr.status===502?'خطأ في الاتصال':'خطأ '+tr.status));
   }catch(_){ lines.push('⚠️ الصوت Edge TTS: تعذر الفحص'); }
-  alert(lines.join('\n'));
+  toast(lines.slice(0,4).join(' | '),'tin');
 }
 
 async function sendMemberCardWhatsApp(btn){
@@ -10489,9 +11310,14 @@ function renderAttendance(){
     let bg = isOut ? '#f3e8ff' : isIn ? '#d4f7e7' : '#f8faff';
     let icon = isOut ? '🚪' : isIn ? '✅' : '⏳';
 
+    const isManual=getAttMode()==='manual';
     let btns = `<button class="att-btn ${isIn?'att-present':'att-absent'}" onclick="markCheckin(${r.id},'${today}')">${isIn?'✅ حاضر':'تسجيل حضور'}</button>`;
     if(trackOut && isIn && !isOut)
       btns += `<button class="att-btn" style="background:#ede9fe;color:#7c3aed;border-color:#c4b5fd;margin-right:6px" onclick="markCheckout(${r.id},'${today}')">🚪 انصراف</button>`;
+    if(isManual && isIn && !isOut)
+      btns += `<button class="att-btn" style="background:#fee2e2;color:#dc2626;border-color:#fca5a5;font-size:11px;margin-right:4px" onclick="cancelCheckin(${r.id},'${today}')">✕ إلغاء الحضور</button>`;
+    if(isManual && isOut)
+      btns += `<button class="att-btn" style="background:#fef9c3;color:#d97706;border-color:#fde68a;font-size:11px;margin-right:4px" onclick="cancelCheckout(${r.id},'${today}')">✕ إلغاء الانصراف</button>`;
 
     return`<div class="att-row" id="att-${r.id}" style="background:${bg}">
       <div class="att-avatar" style="background:${isOut?'#ede9fe':isIn?'#d4f7e7':'#e8f0fe'}">${icon}</div>
@@ -11317,28 +12143,7 @@ async function exportReportsPDF(){
   html=applyPdfDecor(html,s);
 
   // إرسال للبوت لتوليد PDF
-  const btn = event?.target;
-  if(btn){ btn.disabled=true; btn.textContent='⏳'; }
-  try {
-    const res = await fetch(botUrl+'/api/download-pdf',{
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({ html })
-    });
-    if(res.ok && res.headers.get('content-type')?.includes('pdf')){
-      const blob=await res.blob();
-      const url=URL.createObjectURL(blob);
-      const a=document.createElement('a');
-      a.href=url; a.download=`تقرير-الاشتراكات-${today}.pdf`; a.click();
-      URL.revokeObjectURL(url);
-      toast('✅ تم تحميل التقرير PDF','tok');
-    } else throw new Error();
-  } catch(_){
-    const w=window.open('','_blank','width=900,height=800');
-    if(w){ w.document.write(html); w.document.close(); w.print(); }
-    toast('📄 افتح نافذة الطباعة واختر "حفظ كـ PDF"','tin');
-  } finally {
-    if(btn){ btn.disabled=false; btn.textContent='📄 PDF'; }
-  }
+  printHtmlInElectron(html);
 }
 
 // ============ IMPORT DATA ============
@@ -12861,9 +13666,8 @@ async function saveTermsSettings(showToast){
 async function previewTermsPDF(){
   await saveTermsSettings(false);
   const rec = getData()[0] || { name:'محمد علي', id_num:'1234567890', phone:'0501234567', residence:'الرياض', city:'الرياض', start: new Date().toISOString().slice(0,10), end:'', pkg_name:'كمال الأجسام' };
-  const w = window.open('','_blank','width=800,height=900');
-  w.document.write(buildTermsHTML(rec));
-  w.document.close();
+  const html = buildTermsHTML(rec);
+  await printHtmlInElectron(html, 'معاينة-شروط-الاشتراك.pdf');
 }
 
 function sendTermsPDFById(id, btn){ sendTermsPDF(getData().find(x=>x.id===id), btn); }
@@ -13333,7 +14137,10 @@ function markCheckin(id, date){
   toast('✅ تم تسجيل الحضور ? ' + inT, 'tok');
 
   const member = getData().find(r => r.id === id);
-  if(member) setTimeout(() => sendAttWa(member, 'in', inT, null), 300);
+  if(member){
+    reserveWaWindow();
+    setTimeout(() => sendAttWa(member, 'in', inT, null), 300);
+  }
 }
 
 function markCheckout(id, date){
@@ -13348,7 +14155,10 @@ function markCheckout(id, date){
   toast('🚪 تم تسجيل الانصراف ? ' + outT, 'tok');
 
   const member = getData().find(r => r.id === id);
-  if(member) setTimeout(() => sendAttWa(member, 'out', inT, outT), 300);
+  if(member){
+    reserveWaWindow();
+    setTimeout(() => sendAttWa(member, 'out', inT, outT), 300);
+  }
 }
 
 function firstNameOf(rec){
@@ -13968,10 +14778,8 @@ function showAvailableVoices(){
   const all=window.speechSynthesis?.getVoices()||[];
   if(!all.length){toast('⚠️ لا توجد أصوات Windows متاحة حتى الآن','ter');return;}
   const ar=all.filter(v=>v.lang.startsWith('ar'));
-  const msg=ar.length
-    ?`✅ أصوات عربية (${ar.length}):\n`+ar.map(v=>`• ${v.name} [${v.lang}]`).join('\n')
-    :`⚠️ لا توجد أصوات عربية.\nإجمالي الأصوات: ${all.length}\nأمثلة: `+all.slice(0,5).map(v=>v.name).join('، ');
-  alert(msg);
+  if(ar.length) toast('✅ أصوات عربية ('+ar.length+'): '+ar.slice(0,3).map(v=>v.name).join('، '),'tok');
+  else toast('⚠️ لا توجد أصوات عربية — إجمالي: '+all.length+' — مثال: '+all.slice(0,2).map(v=>v.name).join('، '),'tin');
 }
 
 // ============ FINGERPRINT ENROLLMENT ============
@@ -14462,12 +15270,7 @@ function applyFeatures(){
   // زر الجرس (يظهر إذا كان واتساب أو تلقائي مفعلاً ولدى المستخدم صلاحية)
   show('bellBtn', hasWa || hasAuto);
 
-  // البصمة — صف المسح (QR + البصمة) للمشرف/الإداري فقط عند تفعيل الميزة
-  const hasFp = f('feat_fingerprint');
-  show('setCardFingerprint', hasFp);
-  show('attScanRow',         hasFp && canDo('settings'));
-  show('fpAutoPanel',        hasFp && canDo('settings'));
-  show('fpFieldWrapper',     hasFp);
+  // البصمة — تمت إزالة عناصر الواجهة المرتبطة بها
 
   // شروط الاشتراك
   show('setCardTerms', f('feat_terms'));
@@ -14518,7 +15321,6 @@ function _syncSettingsToggles(){
   const show=(id,v)=>{const el=document.getElementById(id);if(el)el.style.display=v?'':'none';};
   show('setCardWelcome', f('feat_whatsapp') && canDo('set_welcome'));
   show('setCardVoice',   f('feat_voice'));
-  show('setCardFingerprint', f('feat_fingerprint'));
 }
 
 function loadFeaturesAdminCard(){
@@ -14868,7 +15670,28 @@ async function initApp(){
   selectTpl('welcome');
   loadRemembered();
   loadRemembered();
+  // اتصال ZKTeco تلقائي قبل الدخول
+  _preLoginZkConnect();
 }
+
+function _preLoginZkConnect(){
+  const s=getSettings();
+  if(!s.zkIp) return;
+  const url=getStoreServerBase()+'/api/zk/connect';
+  const secs=Math.max(1,parseInt(s.zkAutoInterval||5));
+  fetch(url,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({ip:s.zkIp, port:s.zkPort||4370, password:s.zkPass||0})
+  }).then(r=>r.json()).then(d=>{
+    if(d.ok){
+      // بدء المراقبة الفورية
+      if(_zkEventPoller) clearInterval(_zkEventPoller);
+      _zkEventPoller=setInterval(_zkFetchEvents, secs*1000);
+    }
+  }).catch(()=>{});
+}
+
 initApp();
 
 </script>
