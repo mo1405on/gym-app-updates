@@ -1861,6 +1861,35 @@ input:checked+.slider:before{transform:translateX(-20px)}
                 </div>
                 <label class="toggle"><input type="checkbox" id="voiceSettingsToggle" onchange="toggleVoice(this);document.getElementById('voiceToggle').checked=this.checked"><span class="slider"></span></label>
               </div>
+              <!-- محرك الصوت -->
+              <div style="background:#f0f4f9;border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:14px">
+                <div style="font-size:13px;font-weight:700;margin-bottom:10px">🔧 Voice Engine</div>
+                <div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:12px">
+                  <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px">
+                    <input type="radio" name="voiceEngine" id="engineEdge" value="edge" onchange="onVoiceEngineChange()">
+                    <span>⚡ Edge TTS <span style="font-size:11px;color:#166534;font-weight:600">(Internet — High Quality)</span></span>
+                  </label>
+                  <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px">
+                    <input type="radio" name="voiceEngine" id="engineSystem" value="system" onchange="onVoiceEngineChange()">
+                    <span>🖥️ Windows TTS <span style="font-size:11px;color:#6b7280">(Offline)</span></span>
+                  </label>
+                </div>
+                <!-- صوت Edge -->
+                <div id="edgeVoiceRow">
+                  <label style="font-size:12px;font-weight:600;display:block;margin-bottom:6px;color:#374151">Arabic Voice:</label>
+                  <select id="edgeVoice" class="set-input" style="margin:0">
+                    <option value="ar-SA-HaalaNeural">🇸🇦 هالة — سعودي نسائي ⭐</option>
+                    <option value="ar-SA-ZariyahNeural">🇸🇦 زارية — سعودي نسائي</option>
+                    <option value="ar-SA-HamedNeural">🇸🇦 حامد — سعودي رجالي</option>
+                    <option value="ar-EG-SalmaNeural">🇪🇬 سلمى — مصري نسائي</option>
+                    <option value="ar-EG-ShakirNeural">🇪🇬 شاكر — مصري رجالي</option>
+                    <option value="ar-AE-FatimaNeural">🇦🇪 فاطمة — خليجي نسائي</option>
+                    <option value="ar-AE-HamdanNeural">🇦🇪 حمدان — خليجي رجالي</option>
+                    <option value="ar-KW-FahedNeural">🇰🇼 فهد — كويتي رجالي</option>
+                    <option value="ar-KW-NouraNeural">🇰🇼 نورة — كويتي نسائي</option>
+                  </select>
+                </div>
+              </div>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
                 <div>
                   <!-- تفعيل فارغ — نقلناه للأعلى -->
@@ -1899,8 +1928,9 @@ input:checked+.slider:before{transform:translateX(-20px)}
                   </div>
                   <!-- أزرار -->
                   <div style="display:flex;gap:8px">
-                    <button class="btn bp" style="font-size:12px;padding:8px 14px" onclick="saveVoiceSettings()">💾 حفظ</button>
-                    <button class="btn" style="font-size:12px;padding:8px 14px;background:#f0fdf4;color:#166534;border:1px solid #bbf7d0" onclick="testVoice()">🔊 اختبار الصوت</button>
+                    <button class="btn bp" style="font-size:12px;padding:8px 14px" onclick="saveVoiceSettings()">💾 Save</button>
+                    <button class="btn" style="font-size:12px;padding:8px 14px;background:#f0fdf4;color:#166534;border:1px solid #bbf7d0" onclick="testVoice()">🔊 Test Voice</button>
+                    <button class="btn" style="font-size:12px;padding:8px 14px;background:#fefce8;color:#854d0e;border:1px solid #fde68a" onclick="showAvailableVoices()">🔍 Available Voices</button>
                   </div>
                 </div>
               </div>
@@ -3597,7 +3627,7 @@ input:checked+.slider:before{transform:translateX(-20px)}
 //  البريد       : d.llsyanh07@gmail.com
 //  يُحظر نسخ هذا الكود أو توزيعه بدون إذن خطي من المطوّر
 // ══════════════════════════════════════════════════════════════════
-const APP_VERSION = '1.7.4';
+const APP_VERSION = '1.7.6';
 
 // ══ نظام الترجمة ══════════════════════════════════════════════════
 let _lang = 'ar'; // ثابت عربي دائماً
@@ -8596,15 +8626,17 @@ function arrangeAppearanceSettings(){
 }
 function loadVoiceSettings(){
   const s=getSettings();
+  const eng=s.voiceEngine||'edge';
+  const eEdge=document.getElementById('engineEdge');
+  const eSys=document.getElementById('engineSystem');
+  if(eEdge) eEdge.checked=(eng==='edge');
+  if(eSys) eSys.checked=(eng==='system');
+  const ev=document.getElementById('edgeVoice'); if(ev) ev.value=s.edgeVoice||'ar-SA-HaalaNeural';
   const vg=document.getElementById('voiceGreeting'); if(vg) vg.value=s.voiceGreeting||'أهلاً وسهلاً {الاسم}، مرحباً بك';
   const vf=document.getElementById('voiceFarewell'); if(vf) vf.value=s.voiceFarewell||'مع السلامة {الاسم}، إلى اللقاء';
-  const vr=document.getElementById('voiceRate');
-  if(vr){ vr.value=s.voiceRate||0.9; const lbl=document.getElementById('voiceRateLbl'); if(lbl) lbl.textContent=parseFloat(vr.value).toFixed(1); }
   const vv=document.getElementById('voiceVolume');
   if(vv){ vv.value=s.voiceVolume||1.0; const lbl=document.getElementById('voiceVolumeLbl'); if(lbl) lbl.textContent=parseFloat(vv.value).toFixed(1); }
-  const vp=document.getElementById('voicePitch');
-  if(vp){ vp.value=s.voicePitch||1.0; const lbl=document.getElementById('voicePitchLbl'); if(lbl) lbl.textContent=parseFloat(vp.value).toFixed(1); }
-  const vt=document.getElementById('voiceSettingsToggle'); if(vt) vt.checked=!!s.voiceEnabled;
+  const er=document.getElementById('edgeVoiceRow'); if(er) er.style.display=(eng==='edge')?'':'none';
 }
 function loadEmployeeSelect(){ buildEmpSelect(); }
 
@@ -8614,30 +8646,65 @@ function toggleVoice(el){
   if(other) other.checked=el.checked;
 }
 function saveNavHoverSound(el){ const s=getSettings(); s.navHoverSound=el.checked; saveSettings(); }
+function onVoiceEngineChange(){
+  const eng=document.querySelector('input[name="voiceEngine"]:checked')?.value||'edge';
+  const s=getSettings(); s.voiceEngine=eng; saveSettings();
+  const er=document.getElementById('edgeVoiceRow'); if(er) er.style.display=(eng==='edge')?'':'none';
+}
 function saveVoiceSettings(){
   const s=getSettings();
+  const eng=document.querySelector('input[name="voiceEngine"]:checked')?.value||s.voiceEngine||'edge';
+  s.voiceEngine=eng;
+  const ev=document.getElementById('edgeVoice'); if(ev) s.edgeVoice=ev.value;
   const vg=document.getElementById('voiceGreeting'); if(vg) s.voiceGreeting=vg.value;
   const vf=document.getElementById('voiceFarewell'); if(vf) s.voiceFarewell=vf.value;
   const vr=document.getElementById('voiceRate'); if(vr) s.voiceRate=parseFloat(vr.value)||0.9;
   const vp=document.getElementById('voicePitch'); if(vp) s.voicePitch=parseFloat(vp.value)||1.0;
   const vv=document.getElementById('voiceVolume'); if(vv) s.voiceVolume=parseFloat(vv.value)||1.0;
-  s.voiceEngine='system';
   saveSettings(); toast('✅ تم حفظ إعدادات الصوت','tok');
 }
-function speak(text){
+async function playEdgeTTS(text){
+  const s=getSettings();
+  const voice=s.edgeVoice||'ar-SA-HaalaNeural';
+  const rate=Math.round((parseFloat(s.voiceRate||0.9)-1)*100);
+  const pitch=Math.round((parseFloat(s.voicePitch||1.0)-1)*50);
+  const vol=Math.round((parseFloat(s.voiceVolume||1.0)-1)*100);
+  try{
+    const url=getStoreServerBase()+'/api/tts?text='+encodeURIComponent(text)+'&voice='+voice+'&rate='+rate+'&pitch='+pitch+'&vol='+vol;
+    const res=await fetch(url);
+    if(!res.ok) throw new Error('TTS error '+res.status);
+    const buf=await res.arrayBuffer();
+    const ctx=new (window.AudioContext||window.webkitAudioContext)();
+    const decoded=await ctx.decodeAudioData(buf);
+    const src=ctx.createBufferSource();
+    src.buffer=decoded; src.connect(ctx.destination); src.start(0);
+  }catch(e){ console.warn('[TTS]',e.message); }
+}
+function showAvailableVoices(){
+  if(!window.speechSynthesis){toast('⚠️ Windows TTS غير مدعوم','ter');return;}
+  const voices=window.speechSynthesis.getVoices().filter(v=>v.lang.startsWith('ar'));
+  if(!voices.length){toast('لا توجد أصوات عربية مثبتة في Windows','ter');return;}
+  toast('الأصوات العربية: '+voices.map(v=>v.name).join(' | '),'tin');
+}
+async function speak(text){
   const s=getSettings();
   if(!s.voiceEnabled||!text) return;
-  if(!window.speechSynthesis) return;
-  window.speechSynthesis.cancel();
-  const utt=new SpeechSynthesisUtterance(text);
-  utt.lang='ar-SA';
-  utt.rate=parseFloat(s.voiceRate??0.9);
-  utt.pitch=parseFloat(s.voicePitch??1.0);
-  utt.volume=parseFloat(s.voiceVolume??1.0);
-  const voices=window.speechSynthesis.getVoices();
-  const arVoice=voices.find(v=>v.lang==='ar-SA')||voices.find(v=>v.lang.startsWith('ar'))||null;
-  if(arVoice) utt.voice=arVoice;
-  window.speechSynthesis.speak(utt);
+  const eng=s.voiceEngine||'edge';
+  if(eng==='edge'){
+    await playEdgeTTS(text);
+  } else {
+    if(!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    const utt=new SpeechSynthesisUtterance(text);
+    utt.lang='ar-SA';
+    utt.rate=parseFloat(s.voiceRate??0.9);
+    utt.pitch=parseFloat(s.voicePitch??1.0);
+    utt.volume=parseFloat(s.voiceVolume??1.0);
+    const voices=window.speechSynthesis.getVoices();
+    const arVoice=voices.find(v=>v.lang==='ar-SA')||voices.find(v=>v.lang.startsWith('ar'))||null;
+    if(arVoice) utt.voice=arVoice;
+    window.speechSynthesis.speak(utt);
+  }
 }
 function loadSettings(){
   // عرض الإصدار الحالي في بطاقة التحديث
@@ -11570,9 +11637,13 @@ async function runDiagnose(){
   if(typeof qrcode==='function') row('✅','مكتبة QR','محمّلة — يعمل بدون إنترنت','#166534');
   else row('⚠️','مكتبة QR','غير محمّلة — يتطلب اتصال بالخادم','#92400e');
 
-  // 3. الصوت (Windows TTS)
-  if(window.speechSynthesis) row('✅','الصوت (Windows TTS)','مدعوم','#166534');
-  else row('⚠️','الصوت (Windows TTS)','غير مدعوم في هذا المتصفح','#92400e');
+  // 3. الصوت Edge TTS
+  try{
+    const tr=await fetch(botUrl+'/api/tts?text='+encodeURIComponent('اختبار'),{signal:AbortSignal.timeout(12000)});
+    if(tr.ok) row('✅','الصوت (Edge TTS)','يعمل — الاتصال بخوادم Microsoft ناجح','#166534');
+    else if(tr.status===502) row('⚠️','الصوت (Edge TTS)','تعذّر الاتصال بخوادم Microsoft — تحقق من الإنترنت','#92400e');
+    else row('⚠️','الصوت (Edge TTS)','خطأ '+tr.status,'#92400e');
+  }catch(_){ row('⚠️','الصوت (Edge TTS)','تعذّر الفحص','#6b7280'); }
 
   // 4. البيانات
   try{
@@ -11634,7 +11705,10 @@ async function diagnoseCard(){
     lines.push(fmtPhone(rec.phone)?'✅ رقم الجوال: '+rec.phone:'❌ رقم الجوال: غير صحيح');
   }
   // 4. TTS
-  lines.push(window.speechSynthesis?'✅ الصوت: Windows TTS مدعوم':'⚠️ الصوت: غير مدعوم');
+  try{
+    const tr=await fetch(botUrl+'/api/tts?text=test&voice=ar-SA-HaalaNeural',{signal:AbortSignal.timeout(8000)});
+    lines.push(tr.ok?'✅ الصوت Edge TTS: يعمل':'⚠️ الصوت Edge TTS: '+(tr.status===502?'خطأ في الاتصال':'خطأ '+tr.status));
+  }catch(_){ lines.push('⚠️ الصوت Edge TTS: تعذر الفحص'); }
   toast(lines.slice(0,4).join(' | '),'tin');
 }
 
@@ -14835,21 +14909,29 @@ function stopFpCapturePoll(){if(_fpCapturePollTimer){clearInterval(_fpCapturePol
 
 let _fingerprintLastEventId=0;
 
-function testVoice(){
+async function testVoice(){
   const s=getSettings();
-  if(!window.speechSynthesis){toast('⚠️ Windows TTS غير مدعوم في هذا المتصفح','ter');return;}
   const name=s.clubName||'مركز اللياقة';
   const text=`أهلاً وسهلاً، مرحباً بك في ${name}`;
-  window.speechSynthesis.cancel();
-  const utt=new SpeechSynthesisUtterance(text);
-  utt.lang='ar-SA';
-  utt.rate=parseFloat(s.voiceRate??0.9);
-  utt.pitch=parseFloat(s.voicePitch??1.0);
-  utt.volume=parseFloat(s.voiceVolume??1.0);
-  const voices=window.speechSynthesis.getVoices();
-  const arVoice=voices.find(v=>v.lang==='ar-SA')||voices.find(v=>v.lang.startsWith('ar'))||null;
-  if(arVoice) utt.voice=arVoice;
-  window.speechSynthesis.speak(utt);
+  const eng=document.querySelector('input[name="voiceEngine"]:checked')?.value||(s.voiceEngine||'edge');
+  if(eng==='edge'){
+    // حفظ مؤقت لصوت الاختبار المختار
+    const selVoice=document.getElementById('edgeVoice')?.value||s.edgeVoice||'ar-SA-HaalaNeural';
+    const orig=s.edgeVoice; s.edgeVoice=selVoice;
+    toast('🔊 جارٍ تحميل الصوت…','');
+    await playEdgeTTS(text);
+    s.edgeVoice=orig;
+  } else {
+    if(!window.speechSynthesis){toast('⚠️ Windows TTS غير مدعوم','ter');return;}
+    window.speechSynthesis.cancel();
+    const utt=new SpeechSynthesisUtterance(text);
+    utt.lang='ar-SA'; utt.rate=parseFloat(s.voiceRate??0.9);
+    utt.pitch=parseFloat(s.voicePitch??1.0); utt.volume=parseFloat(s.voiceVolume??1.0);
+    const voices=window.speechSynthesis.getVoices();
+    const arVoice=voices.find(v=>v.lang==='ar-SA')||voices.find(v=>v.lang.startsWith('ar'))||null;
+    if(arVoice)utt.voice=arVoice;
+    window.speechSynthesis.speak(utt);
+  }
 }
 
 // ============ / VOICE ============
