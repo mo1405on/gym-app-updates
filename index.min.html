@@ -1863,32 +1863,8 @@ input:checked+.slider:before{transform:translateX(-20px)}
               </div>
               <!-- محرك الصوت -->
               <div style="background:#f0f4f9;border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:14px">
-                <div style="font-size:13px;font-weight:700;margin-bottom:10px">🔧 Voice Engine</div>
-                <div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:12px">
-                  <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px">
-                    <input type="radio" name="voiceEngine" id="engineEdge" value="edge" onchange="onVoiceEngineChange()">
-                    <span>⚡ Edge TTS <span style="font-size:11px;color:#166534;font-weight:600">(Internet — High Quality)</span></span>
-                  </label>
-                  <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px">
-                    <input type="radio" name="voiceEngine" id="engineSystem" value="system" onchange="onVoiceEngineChange()">
-                    <span>🖥️ Windows TTS <span style="font-size:11px;color:#6b7280">(Offline)</span></span>
-                  </label>
-                </div>
-                <!-- صوت Edge -->
-                <div id="edgeVoiceRow">
-                  <label style="font-size:12px;font-weight:600;display:block;margin-bottom:6px;color:#374151">Arabic Voice:</label>
-                  <select id="edgeVoice" class="set-input" style="margin:0">
-                    <option value="ar-SA-HaalaNeural">🇸🇦 هالة — سعودي نسائي ⭐</option>
-                    <option value="ar-SA-ZariyahNeural">🇸🇦 زارية — سعودي نسائي</option>
-                    <option value="ar-SA-HamedNeural">🇸🇦 حامد — سعودي رجالي</option>
-                    <option value="ar-EG-SalmaNeural">🇪🇬 سلمى — مصري نسائي</option>
-                    <option value="ar-EG-ShakirNeural">🇪🇬 شاكر — مصري رجالي</option>
-                    <option value="ar-AE-FatimaNeural">🇦🇪 فاطمة — خليجي نسائي</option>
-                    <option value="ar-AE-HamdanNeural">🇦🇪 حمدان — خليجي رجالي</option>
-                    <option value="ar-KW-FahedNeural">🇰🇼 فهد — كويتي رجالي</option>
-                    <option value="ar-KW-NouraNeural">🇰🇼 نورة — كويتي نسائي</option>
-                  </select>
-                </div>
+                <div style="font-size:13px;font-weight:700;margin-bottom:6px">🔧 محرك الصوت</div>
+                <div style="font-size:12px;color:#6b7280">🖥️ Windows TTS (بدون إنترنت)</div>
               </div>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
                 <div>
@@ -2090,7 +2066,7 @@ input:checked+.slider:before{transform:translateX(-20px)}
                   <div class="set-label">🔄 مزامنة تلقائية للموظفين كل</div>
                   <select id="zkEmpSyncInterval" class="set-input" onchange="saveZkSettings();startZkEmpAutoSync()" style="width:220px">
                     <option value="0">بدون مزامنة تلقائية</option>
-                    <option value="1">ثانية واحدة</option>
+                    <option value="3">3 ثوانٍ</option>
                     <option value="10">10 ثوانٍ</option>
                     <option value="30">30 ثانية</option>
                     <option value="60">دقيقة واحدة</option>
@@ -2627,7 +2603,7 @@ input:checked+.slider:before{transform:translateX(-20px)}
                   <div class="set-label">مزامنة تلقائية كل</div>
                   <select id="zkAutoInterval" class="set-input" onchange="saveZkSettings();startZkAutoSync()">
                     <option value="0">بدون مزامنة تلقائية</option>
-                    <option value="1">ثانية واحدة</option>
+                    <option value="3">3 ثوانٍ</option>
                     <option value="10">10 ثوانٍ</option>
                     <option value="30">30 ثانية</option>
                     <option value="45">45 ثانية</option>
@@ -3627,7 +3603,7 @@ input:checked+.slider:before{transform:translateX(-20px)}
 //  البريد       : d.llsyanh07@gmail.com
 //  يُحظر نسخ هذا الكود أو توزيعه بدون إذن خطي من المطوّر
 // ══════════════════════════════════════════════════════════════════
-const APP_VERSION = '1.7.4';
+const APP_VERSION = '1.7.8';
 
 // ══ نظام الترجمة ══════════════════════════════════════════════════
 let _lang = 'ar'; // ثابت عربي دائماً
@@ -4932,7 +4908,7 @@ function getSettings(){
     trackCheckout:false,
     attWaEnabled:false,
     voiceEnabled:false,
-    voiceEngine:'edge',
+    voiceEngine:'system',
     edgeVoice:'ar-SA-HaalaNeural',
     voiceRate:0.9,
     voicePitch:1.0,
@@ -6677,7 +6653,7 @@ let _attRefreshTimer = null;
 function zkStartMonitor(){
   if(_zkEventPoller) clearInterval(_zkEventPoller);
   const s=getSettings();
-  const secs=Math.max(1, parseInt(s.zkAutoInterval||5));
+  const secs=Math.max(3, parseInt(s.zkAutoInterval||5));
   const chip=document.getElementById('zkLiveChip');
   if(chip) chip.style.display='flex';
   fetch(getStoreServerBase()+'/api/zk/start-monitor',{
@@ -7024,7 +7000,7 @@ function loadZkSettings(){
   const pt=document.getElementById('zkPort'); if(pt) pt.value=s.zkPort||4370;
   const pw=document.getElementById('zkPass'); if(pw) pw.value=s.zkPass||0;
   const ct=document.getElementById('zkConnType'); if(ct) ct.value=s.zkConnType||'ethernet';
-  const ai=document.getElementById('zkAutoInterval'); if(ai) ai.value=s.zkAutoInterval||0;
+  const ai=document.getElementById('zkAutoInterval'); if(ai){ const zv=parseInt(s.zkAutoInterval||0); ai.value=(zv>0&&zv<3)?3:zv; }
   const ms=document.getElementById('zkMinSession'); if(ms) ms.value=(s.zkMinSession!==undefined&&s.zkMinSession!==null)?s.zkMinSession:30;
   const me=document.getElementById('zkMinSessionEmp'); if(me) me.value=(s.zkMinSessionEmp!==undefined&&s.zkMinSessionEmp!==null)?s.zkMinSessionEmp:0;
   const ea=document.getElementById('zkEmpEarlyAllow'); if(ea) ea.value=(s.zkEmpEarlyAllow!==undefined&&s.zkEmpEarlyAllow!==null)?s.zkEmpEarlyAllow:0;
@@ -7058,23 +7034,30 @@ function zkCleanError(err){
 function startZkAutoSync(){
   if(_zkAutoTimer){ clearInterval(_zkAutoTimer); _zkAutoTimer=null; }
   const s=getSettings();
-  const secs=parseInt(s.zkAutoInterval||0); // بالثوانٍ
+  const rawSecs=parseInt(s.zkAutoInterval||0); // بالثوانٍ
+  const secs=rawSecs>0?Math.max(3,rawSecs):0;
   const el=document.getElementById('zkAutoStatus');
   if(!secs||secs<=0){
     if(el) el.textContent='⏸ المزامنة التلقائية متوقفة';
     return;
   }
-  if(el) el.textContent='🔴 مزامنة '+_zkIntervalLabel(secs);
-  // تحديث Server poll interval
-  {
-    fetch(getStoreServerBase()+'/api/zk/start-monitor',{
-      method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({intervalSecs:secs})
-    }).catch(()=>{});
-  }
-  _zkAutoTimer=setInterval(()=>{
-    zkSync(true);
-  }, secs*1000);
+  if(el) el.textContent='🔴 مراقبة '+_zkIntervalLabel(secs);
+  let monitorStarted=false;
+  const refresh=()=>{
+    fetch(getStoreServerBase()+'/api/zk/status')
+      .then(r=>r.json())
+      .then(d=>{
+        if(d.connected){
+          if(!monitorStarted||!_zkEventPoller){ zkStartMonitor(); monitorStarted=true; }
+          if(el) el.textContent='🔴 مراقبة '+_zkIntervalLabel(secs);
+        }else if(el){
+          el.textContent='⏳ المزامنة التلقائية تنتظر اتصال الجهاز';
+        }
+      })
+      .catch(()=>{ if(el) el.textContent='⚠️ تعذر التحقق من السيرفر'; });
+  };
+  refresh();
+  _zkAutoTimer=setInterval(refresh, Math.max(10,secs)*1000);
 }
 
 function zkConnect(silent=false){
@@ -7136,13 +7119,20 @@ function zkSync(silent){
       if(d.ok){
         if(status){status.style.background='#d1fae5';status.textContent='✅ تمت المزامنة — '+d.records+' سجل';}
         if(d.attendance&&d.attendance.length){ mergeZkAttendance(d.attendance); }
-        toast('✅ تمت المزامنة','tok');
+        if(!silent) toast('✅ تمت المزامنة','tok');
       } else {
         const syncErr=zkCleanError(d&&d.error)||'فشلت المزامنة';
-        if(status){status.style.background='#fee2e2';status.textContent='❌ '+syncErr;}
-        toast('❌ '+syncErr,'ter');
+        if(!silent){
+          if(status){status.style.background='#fee2e2';status.textContent='❌ '+syncErr;}
+          toast('❌ '+syncErr,'ter');
+        }else{
+          console.warn('[ZK] Silent sync failed:', syncErr);
+        }
       }
-    }).catch(()=>toast('❌ تعذّر الاتصال بالسيرفر','ter'));
+    }).catch(e=>{
+      if(!silent) toast('❌ تعذّر الاتصال بالسيرفر','ter');
+      else console.warn('[ZK] Silent sync request failed:', e.message);
+    });
 }
 
 // توليد رقم موظف تلقائي (يبدأ من 5001 لتمييزه عن أرقام المشتركين)
@@ -8626,19 +8616,82 @@ function arrangeAppearanceSettings(){
 }
 function loadVoiceSettings(){
   const s=getSettings();
-  const eng=s.voiceEngine||'edge';
-  const eEdge=document.getElementById('engineEdge');
-  const eSys=document.getElementById('engineSystem');
-  if(eEdge) eEdge.checked=(eng==='edge');
-  if(eSys) eSys.checked=(eng==='system');
-  const ev=document.getElementById('edgeVoice'); if(ev) ev.value=s.edgeVoice||'ar-SA-HaalaNeural';
   const vg=document.getElementById('voiceGreeting'); if(vg) vg.value=s.voiceGreeting||'أهلاً وسهلاً {الاسم}، مرحباً بك';
   const vf=document.getElementById('voiceFarewell'); if(vf) vf.value=s.voiceFarewell||'مع السلامة {الاسم}، إلى اللقاء';
   const vv=document.getElementById('voiceVolume');
   if(vv){ vv.value=s.voiceVolume||1.0; const lbl=document.getElementById('voiceVolumeLbl'); if(lbl) lbl.textContent=parseFloat(vv.value).toFixed(1); }
-  const er=document.getElementById('edgeVoiceRow'); if(er) er.style.display=(eng==='edge')?'':'none';
 }
 function loadEmployeeSelect(){ buildEmpSelect(); }
+
+function toggleVoice(el){
+  const s=getSettings(); s.voiceEnabled=el.checked; saveSettings();
+  const other=document.getElementById(el.id==='voiceToggle'?'voiceSettingsToggle':'voiceToggle');
+  if(other) other.checked=el.checked;
+}
+function saveNavHoverSound(el){ const s=getSettings(); s.navHoverSound=el.checked; saveSettings(); _initNavHoverSound(); if(el.checked)_playNavHoverSound(); }
+let _navHoverAudioCtx=null,_navHoverLast=null,_navHoverBound=false;
+function _playNavHoverSound(){
+  if(getSettings().navHoverSound===false)return;
+  const AC=window.AudioContext||window.webkitAudioContext;
+  if(!AC)return;
+  try{
+    _navHoverAudioCtx=_navHoverAudioCtx||new AC();
+    if(_navHoverAudioCtx.state==='suspended')_navHoverAudioCtx.resume();
+    const ctx=_navHoverAudioCtx;
+    const osc=ctx.createOscillator();
+    const gain=ctx.createGain();
+    osc.type='sine';
+    osc.frequency.value=740;
+    gain.gain.setValueAtTime(0.0001,ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.035,ctx.currentTime+0.008);
+    gain.gain.exponentialRampToValueAtTime(0.0001,ctx.currentTime+0.055);
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.start(); osc.stop(ctx.currentTime+0.06);
+  }catch(_){}
+}
+function _initNavHoverSound(){
+  if(_navHoverBound)return;
+  _navHoverBound=true;
+  document.addEventListener('pointerover',e=>{
+    const item=e.target.closest?.('.nav-item');
+    if(!item||item===_navHoverLast)return;
+    _navHoverLast=item;
+    _playNavHoverSound();
+  },true);
+}
+function onVoiceEngineChange(){ /* no-op: engine is always Windows TTS */ }
+function saveVoiceSettings(){
+  const s=getSettings();
+  s.voiceEngine='system';
+  const vg=document.getElementById('voiceGreeting'); if(vg) s.voiceGreeting=vg.value;
+  const vf=document.getElementById('voiceFarewell'); if(vf) s.voiceFarewell=vf.value;
+  const vr=document.getElementById('voiceRate'); if(vr) s.voiceRate=parseFloat(vr.value)||0.9;
+  const vp=document.getElementById('voicePitch'); if(vp) s.voicePitch=parseFloat(vp.value)||1.0;
+  const vv=document.getElementById('voiceVolume'); if(vv) s.voiceVolume=parseFloat(vv.value)||1.0;
+  saveSettings(); toast('✅ تم حفظ إعدادات الصوت','tok');
+}
+async function playEdgeTTS(text){ await speak(text); }
+function showAvailableVoices(){
+  if(!window.speechSynthesis){toast('⚠️ Windows TTS غير مدعوم','ter');return;}
+  const voices=window.speechSynthesis.getVoices().filter(v=>v.lang.startsWith('ar'));
+  if(!voices.length){toast('لا توجد أصوات عربية مثبتة في Windows','ter');return;}
+  toast('الأصوات العربية: '+voices.map(v=>v.name).join(' | '),'tin');
+}
+async function speak(text){
+  const s=getSettings();
+  if(!s.voiceEnabled||!text) return;
+  if(!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const utt=new SpeechSynthesisUtterance(text);
+  utt.lang='ar-SA';
+  utt.rate=parseFloat(s.voiceRate??0.9);
+  utt.pitch=parseFloat(s.voicePitch??1.0);
+  utt.volume=parseFloat(s.voiceVolume??1.0);
+  const voices=window.speechSynthesis.getVoices();
+  const arVoice=voices.find(v=>v.lang==='ar-SA')||voices.find(v=>v.lang.startsWith('ar'))||null;
+  if(arVoice) utt.voice=arVoice;
+  window.speechSynthesis.speak(utt);
+}
 function loadSettings(){
   // عرض الإصدار الحالي في بطاقة التحديث
   const vs = document.getElementById('curVerSpan');
@@ -11570,13 +11623,9 @@ async function runDiagnose(){
   if(typeof qrcode==='function') row('✅','مكتبة QR','محمّلة — يعمل بدون إنترنت','#166534');
   else row('⚠️','مكتبة QR','غير محمّلة — يتطلب اتصال بالخادم','#92400e');
 
-  // 3. الصوت Edge TTS
-  try{
-    const tr=await fetch(botUrl+'/api/tts?text='+encodeURIComponent('اختبار'),{signal:AbortSignal.timeout(12000)});
-    if(tr.ok) row('✅','الصوت (Edge TTS)','يعمل — الاتصال بخوادم Microsoft ناجح','#166534');
-    else if(tr.status===502) row('⚠️','الصوت (Edge TTS)','تعذّر الاتصال بخوادم Microsoft — تحقق من الإنترنت','#92400e');
-    else row('⚠️','الصوت (Edge TTS)','خطأ '+tr.status,'#92400e');
-  }catch(_){ row('⚠️','الصوت (Edge TTS)','تعذّر الفحص','#6b7280'); }
+  // 3. الصوت Windows TTS
+  if(window.speechSynthesis) row('✅','الصوت (Windows TTS)','مدعوم على هذا الجهاز','#166534');
+  else row('⚠️','الصوت (Windows TTS)','غير مدعوم في هذه البيئة','#92400e');
 
   // 4. البيانات
   try{
@@ -11638,10 +11687,7 @@ async function diagnoseCard(){
     lines.push(fmtPhone(rec.phone)?'✅ رقم الجوال: '+rec.phone:'❌ رقم الجوال: غير صحيح');
   }
   // 4. TTS
-  try{
-    const tr=await fetch(botUrl+'/api/tts?text=test&voice=ar-SA-HaalaNeural',{signal:AbortSignal.timeout(8000)});
-    lines.push(tr.ok?'✅ الصوت Edge TTS: يعمل':'⚠️ الصوت Edge TTS: '+(tr.status===502?'خطأ في الاتصال':'خطأ '+tr.status));
-  }catch(_){ lines.push('⚠️ الصوت Edge TTS: تعذر الفحص'); }
+  lines.push(window.speechSynthesis?'✅ الصوت Windows TTS: مدعوم':'⚠️ الصوت Windows TTS: غير مدعوم');
   toast(lines.slice(0,4).join(' | '),'tin');
 }
 
@@ -14846,25 +14892,15 @@ async function testVoice(){
   const s=getSettings();
   const name=s.clubName||'مركز اللياقة';
   const text=`أهلاً وسهلاً، مرحباً بك في ${name}`;
-  const eng=document.querySelector('input[name="voiceEngine"]:checked')?.value||(s.voiceEngine||'edge');
-  if(eng==='edge'){
-    // حفظ مؤقت لصوت الاختبار المختار
-    const selVoice=document.getElementById('edgeVoice')?.value||s.edgeVoice||'ar-SA-HaalaNeural';
-    const orig=s.edgeVoice; s.edgeVoice=selVoice;
-    toast('🔊 جارٍ تحميل الصوت…','');
-    await playEdgeTTS(text);
-    s.edgeVoice=orig;
-  } else {
-    if(!window.speechSynthesis){toast('⚠️ Windows TTS غير مدعوم','ter');return;}
-    window.speechSynthesis.cancel();
-    const utt=new SpeechSynthesisUtterance(text);
-    utt.lang='ar-SA'; utt.rate=parseFloat(s.voiceRate??0.9);
-    utt.pitch=parseFloat(s.voicePitch??1.0); utt.volume=parseFloat(s.voiceVolume??1.0);
-    const voices=window.speechSynthesis.getVoices();
-    const arVoice=voices.find(v=>v.lang==='ar-SA')||voices.find(v=>v.lang.startsWith('ar'))||null;
-    if(arVoice)utt.voice=arVoice;
-    window.speechSynthesis.speak(utt);
-  }
+  if(!window.speechSynthesis){toast('⚠️ Windows TTS غير مدعوم','ter');return;}
+  window.speechSynthesis.cancel();
+  const utt=new SpeechSynthesisUtterance(text);
+  utt.lang='ar-SA'; utt.rate=parseFloat(s.voiceRate??0.9);
+  utt.pitch=parseFloat(s.voicePitch??1.0); utt.volume=parseFloat(s.voiceVolume??1.0);
+  const voices=window.speechSynthesis.getVoices();
+  const arVoice=voices.find(v=>v.lang==='ar-SA')||voices.find(v=>v.lang.startsWith('ar'))||null;
+  if(arVoice)utt.voice=arVoice;
+  window.speechSynthesis.speak(utt);
 }
 
 // ============ / VOICE ============
@@ -15457,7 +15493,7 @@ function _preLoginZkConnect(){
   const s=getSettings();
   if(!s.zkIp) return;
   const url=getStoreServerBase()+'/api/zk/connect';
-  const secs=Math.max(1,parseInt(s.zkAutoInterval||5));
+  const secs=Math.max(3,parseInt(s.zkAutoInterval||5));
   fetch(url,{
     method:'POST',
     headers:{'Content-Type':'application/json'},
