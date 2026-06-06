@@ -2013,16 +2013,18 @@ input:checked+.slider:before{transform:translateX(-20px)}
               <div class="set-hd-ico" style="background:#e0f2fe">👔</div>
               <div class="set-hd-txt">
                 <div class="set-hd-label">حضور وانصراف الموظفين</div>
-                <div class="set-hd-sub">فترات الدوام، المزامنة، والإجازات الرسمية</div>
+                <div class="set-hd-sub">فترات الدوام، قواعد البصمة، والإجازات الرسمية</div>
               </div>
             </div>
-            <div class="set-bd" style="display:flex;flex-direction:column;gap:14px">
-              <!-- إعدادات ZKTeco للموظفين -->
-              <div style="display:flex;flex-direction:column;gap:12px">
-                <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <div class="set-bd" style="display:flex;flex-direction:column;gap:16px">
+
+              <!-- ── قواعد البصمة ── -->
+              <div style="background:#f8faff;border:1.5px solid #dbeafe;border-radius:14px;padding:16px">
+                <div style="font-size:12px;font-weight:800;color:#1e40af;margin-bottom:14px;letter-spacing:.4px">⚙️ قواعد البصمة</div>
+                <div style="display:flex;gap:14px;flex-wrap:wrap">
                   <div>
-                    <div class="set-label">🚫 السماح بالحضور قبل بداية الدوام</div>
-                    <select id="zkEmpEarlyAllow" class="set-input" onchange="saveZkSettings()" style="width:220px">
+                    <div class="set-label">🚪 السماح بالحضور قبل البداية</div>
+                    <select id="zkEmpEarlyAllow" class="set-input" onchange="saveZkSettings()" style="width:210px">
                       <option value="0">لا يسمح قبل البداية</option>
                       <option value="5">5 دقائق قبل البداية</option>
                       <option value="10">10 دقائق قبل البداية</option>
@@ -2033,7 +2035,7 @@ input:checked+.slider:before{transform:translateX(-20px)}
                   </div>
                   <div>
                     <div class="set-label">🚪 مهلة الانصراف بعد نهاية الدوام</div>
-                    <select id="zkEmpOutGrace" class="set-input" onchange="saveZkSettings()" style="width:220px">
+                    <select id="zkEmpOutGrace" class="set-input" onchange="saveZkSettings()" style="width:210px">
                       <option value="0">لا يسمح بعد النهاية</option>
                       <option value="5">5 دقائق بعد النهاية</option>
                       <option value="10">10 دقائق بعد النهاية</option>
@@ -2044,76 +2046,66 @@ input:checked+.slider:before{transform:translateX(-20px)}
                       <option value="240">4 ساعات بعد النهاية</option>
                     </select>
                   </div>
-                </div>
-                <div>
-                  <div class="set-label">📡 الحد الأدنى للانصراف — الموظفين</div>
-                  <select id="zkMinSessionEmp" class="set-input" onchange="saveZkSettings()" style="width:220px">
-                    <option value="0">بدون حد (فوري)</option>
-                    <option value="30">30 دقيقة</option>
-                    <option value="60">ساعة واحدة</option>
-                    <option value="120">ساعتان</option>
-                    <option value="180">3 ساعات</option>
-                    <option value="240">4 ساعات</option>
-                    <option value="300">5 ساعات</option>
-                    <option value="360">6 ساعات</option>
-                    <option value="420">7 ساعات</option>
-                    <option value="480">8 ساعات</option>
-                    <option value="600">10 ساعات</option>
-                    <option value="720">12 ساعة</option>
-                  </select>
-                </div>
-                <div>
-                  <div class="set-label">🔄 مزامنة تلقائية للموظفين كل</div>
-                  <select id="zkEmpSyncInterval" class="set-input" onchange="saveZkSettings();startZkEmpAutoSync()" style="width:220px">
-                    <option value="0">بدون مزامنة تلقائية</option>
-                    <option value="3">3 ثوانٍ</option>
-                    <option value="10">10 ثوانٍ</option>
-                    <option value="30">30 ثانية</option>
-                    <option value="60">دقيقة واحدة</option>
-                    <option value="300">5 دقائق</option>
-                    <option value="600">10 دقائق</option>
-                    <option value="1800">30 دقيقة</option>
-                    <option value="3600">ساعة</option>
-                  </select>
-                  <div id="zkEmpSyncStatus" style="font-size:11px;color:var(--muted);margin-top:4px">⏸ متوقفة</div>
-                </div>
-                <div class="set-row" style="background:#f0fdf4;border-radius:10px;padding:10px 14px">
                   <div>
-                    <div class="set-label">📱 إشعار واتساب لحضور الموظفين</div>
-                    <div class="set-desc">يُرسَل لرقم النادي عند حضور/انصراف كل موظف</div>
+                    <div class="set-label">⏱ الحد الأدنى لتسجيل الانصراف</div>
+                    <select id="zkMinSessionEmp" class="set-input" onchange="saveZkSettings()" style="width:210px">
+                      <option value="0">بدون حد (فوري)</option>
+                      <option value="30">30 دقيقة</option>
+                      <option value="60">ساعة واحدة</option>
+                      <option value="120">ساعتان</option>
+                      <option value="180">3 ساعات</option>
+                      <option value="240">4 ساعات</option>
+                      <option value="300">5 ساعات</option>
+                      <option value="360">6 ساعات</option>
+                      <option value="420">7 ساعات</option>
+                      <option value="480">8 ساعات</option>
+                      <option value="600">10 ساعات</option>
+                      <option value="720">12 ساعة</option>
+                    </select>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:10px 14px;margin-top:12px">
+                  <div>
+                    <div class="set-label" style="margin:0">📱 إشعار واتساب لحضور الموظفين</div>
+                    <div class="set-desc" style="margin:2px 0 0">يُرسَل لرقم النادي عند حضور/انصراف كل موظف</div>
                   </div>
                   <label class="toggle"><input type="checkbox" id="empAttWaEnabled" onchange="saveEmpAttWaSetting(this)"><span class="slider"></span></label>
                 </div>
-                <div>
-                  <button class="btn" onclick="saveZkSettings();toast('✅ تم حفظ إعدادات الموظفين','tok')" style="background:#16a34a;color:#fff;border:none">💾 حفظ الإعدادات</button>
+                <div style="margin-top:12px">
+                  <button class="btn" onclick="saveZkSettings();toast('✅ تم حفظ إعدادات الموظفين','tok')" style="background:#1e40af;color:#fff;border:none;padding:8px 20px">💾 حفظ الإعدادات</button>
                 </div>
               </div>
+
+              <!-- ── فترات الدوام + الإجازات ── -->
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start">
-              <!-- فترات دوام الموظفين -->
-              <div style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:12px;padding:14px">
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-                  <div style="font-weight:700;font-size:13px;color:#0369a1">🕐 فترات دوام الموظفين</div>
-                  <button onclick="addShiftPeriod()" style="background:#0369a1;color:#fff;border:none;border-radius:8px;padding:5px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit">+ إضافة فترة</button>
+
+                <!-- فترات الدوام -->
+                <div style="background:#f0f9ff;border:1.5px solid #bae6fd;border-radius:14px;padding:14px">
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+                    <div style="font-weight:800;font-size:13px;color:#0369a1">🕐 فترات الدوام</div>
+                    <button onclick="addShiftPeriod()" style="background:#0369a1;color:#fff;border:none;border-radius:8px;padding:5px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit">+ إضافة فترة</button>
+                  </div>
+                  <div style="display:grid;grid-template-columns:1fr 90px 90px 80px 32px;gap:5px;font-size:11px;font-weight:700;color:var(--muted);padding:0 4px;margin-bottom:6px">
+                    <span>اسم الفترة</span><span>البداية</span><span>النهاية</span><span>السماح</span><span></span>
+                  </div>
+                  <div id="shiftPeriodsTable" style="display:flex;flex-direction:column;gap:5px">
+                    <div style="text-align:center;color:var(--muted);font-size:12px;padding:12px">لا توجد فترات — اضغط إضافة</div>
+                  </div>
                 </div>
-                <div style="display:grid;grid-template-columns:1fr 100px 100px 90px 36px;gap:6px;font-size:11px;font-weight:700;color:var(--muted);padding:0 4px;margin-bottom:4px">
-                  <span>اسم الفترة</span><span>البداية</span><span>النهاية</span><span>السماح</span><span></span>
+
+                <!-- الإجازات الرسمية -->
+                <div style="background:#fefce8;border:1.5px solid #fde68a;border-radius:14px;padding:14px">
+                  <div style="font-weight:800;font-size:13px;color:#92400e;margin-bottom:12px">🗓 الإجازات الرسمية</div>
+                  <div style="display:flex;gap:6px;margin-bottom:10px;align-items:flex-end;flex-wrap:wrap">
+                    <div><div class="set-label" style="font-size:11px">التاريخ</div><input id="holidayDate" type="date" class="set-input" style="width:140px;font-size:12px"></div>
+                    <div style="flex:1;min-width:100px"><div class="set-label" style="font-size:11px">اسم الإجازة</div><input id="holidayName" type="text" class="set-input" placeholder="مثال: اليوم الوطني" style="width:100%;font-size:12px"></div>
+                    <button onclick="addHoliday()" style="background:#d97706;color:#fff;border:none;border-radius:8px;padding:7px 12px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;flex-shrink:0">+ إضافة</button>
+                  </div>
+                  <div id="holidaysList" style="display:flex;flex-direction:column;gap:5px">
+                    <div style="text-align:center;color:var(--muted);font-size:12px;padding:10px">لا توجد إجازات مضافة</div>
+                  </div>
                 </div>
-                <div id="shiftPeriodsTable" style="display:flex;flex-direction:column;gap:6px">
-                  <div style="text-align:center;color:var(--muted);font-size:12px;padding:10px">لا توجد فترات — اضغط إضافة</div>
-                </div>
-              </div>
-              <!-- الإجازات الرسمية -->
-              <div style="background:#fefce8;border:1px solid #fde68a;border-radius:12px;padding:14px">
-                <div style="font-weight:700;font-size:13px;color:#92400e;margin-bottom:10px">🗓 الإجازات الرسمية</div>
-                <div style="display:flex;gap:6px;margin-bottom:10px;align-items:flex-end;flex-wrap:wrap">
-                  <div><div class="set-label" style="font-size:11px">التاريخ</div><input id="holidayDate" type="date" class="set-input" style="width:140px;font-size:12px"></div>
-                  <div style="flex:1;min-width:100px"><div class="set-label" style="font-size:11px">اسم الإجازة</div><input id="holidayName" type="text" class="set-input" placeholder="مثال: اليوم الوطني" style="width:100%;font-size:12px"></div>
-                  <button onclick="addHoliday()" style="background:#d97706;color:#fff;border:none;border-radius:8px;padding:7px 12px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;flex-shrink:0">+ إضافة</button>
-                </div>
-                <div id="holidaysList" style="display:flex;flex-direction:column;gap:6px">
-                  <div style="text-align:center;color:var(--muted);font-size:12px;padding:8px">لا توجد إجازات مضافة</div>
-                </div>
-              </div>
+
               </div><!-- /grid -->
             </div>
           </div>
@@ -3542,33 +3534,76 @@ input:checked+.slider:before{transform:translateX(-20px)}
 <!-- PAYMENTS MODAL -->
 <!-- USER MODAL -->
 <div class="overlay" id="userOverlay">
-  <div class="modal">
-    <div class="mh"><h3 id="userModalTitle">إضافة مستخدم</h3><button class="bx" onclick="closeOverlay('userOverlay')">✕</button></div>
-    <div class="mb">
-      <div class="fr">
-        <div class="fg"><label>اسم المستخدم *</label><input id="uName" placeholder="username" autocomplete="off"></div>
-        <div class="fg"><label>كلمة المرور *</label><input id="uPass" type="password" placeholder="كلمة المرور" autocomplete="new-password"></div>
-        <div class="fg" style="grid-column:1/-1">
-          <label style="font-weight:700;color:var(--primary)">🔢 رقم الموظف في جهاز البصمة</label>
-          <div style="display:flex;align-items:center;gap:10px;margin-top:6px">
-            <input id="uZkId" placeholder="تلقائي" dir="ltr" inputmode="numeric" readonly
-              style="font-family:monospace;font-size:22px;font-weight:800;color:var(--primary);background:#e0f2fe;border:2px solid #0284c7;border-radius:10px;padding:10px 16px;text-align:center;width:130px;letter-spacing:2px">
-            <div style="font-size:12px;color:var(--muted);line-height:1.6">
-              سجّل هذا الرقم في جهاز ZKTeco<br>
-              كـ <strong>User ID</strong> للموظف
-            </div>
-          </div>
-        </div>
-        <div class="fg" style="grid-column:1/-1">
-          <label style="font-weight:700;color:var(--primary)">🕐 فترة دوام الموظف</label>
-          <select id="uShiftId" class="set-input">
-            <option value="">أي فترة / تلقائي</option>
-          </select>
-          <div style="font-size:11px;color:var(--muted);margin-top:4px">اختر الفترة الأولى أو الثانية أو أي فترة تضيفها من إعدادات الموظفين</div>
+  <div class="modal" style="max-width:680px">
+    <div class="mh"><h3 id="userModalTitle">إضافة موظف</h3><button class="bx" onclick="closeOverlay('userOverlay')">✕</button></div>
+    <div class="mb" style="max-height:75vh;overflow-y:auto">
+
+      <!-- ── بيانات الدخول ── -->
+      <div style="background:#f0f9ff;border:1.5px solid #bae6fd;border-radius:12px;padding:14px 16px;margin-bottom:14px">
+        <div style="font-size:11px;font-weight:800;color:#0369a1;margin-bottom:10px;letter-spacing:.5px">🔐 بيانات الدخول</div>
+        <div class="fr">
+          <div class="fg"><label>اسم المستخدم *</label><input id="uName" placeholder="username" autocomplete="off"></div>
+          <div class="fg"><label>كلمة المرور</label><input id="uPass" type="password" placeholder="اتركها فارغة لعدم التغيير" autocomplete="new-password"></div>
         </div>
       </div>
+
+      <!-- ── البيانات الشخصية ── -->
+      <div style="background:#fafafa;border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px">
+        <div style="font-size:11px;font-weight:800;color:var(--primary);margin-bottom:10px;letter-spacing:.5px">👤 البيانات الشخصية</div>
+        <div class="fr">
+          <div class="fg"><label>الاسم الكامل</label><input id="uFullName" placeholder="اسم الموظف كاملاً"></div>
+          <div class="fg"><label>رقم الجوال</label><input id="uPhone" placeholder="05xxxxxxxx" inputmode="tel" dir="ltr"></div>
+          <div class="fg"><label>رقم الهوية الوطنية</label><input id="uIdNum" placeholder="1xxxxxxxxx" inputmode="numeric" dir="ltr"></div>
+          <div class="fg"><label>عنوان السكن</label><input id="uAddress" placeholder="المدينة، الحي"></div>
+        </div>
+      </div>
+
+      <!-- ── المنصب الوظيفي ── -->
+      <div style="background:#fdf4ff;border:1.5px solid #e9d5ff;border-radius:12px;padding:14px 16px;margin-bottom:14px">
+        <div style="font-size:11px;font-weight:800;color:#7c3aed;margin-bottom:10px;letter-spacing:.5px">💼 المنصب الوظيفي <span style="font-weight:400;color:var(--muted)">(يمكن اختيار أكثر من منصب)</span></div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px" id="jobRolesGrid">
+          <label style="display:flex;align-items:center;gap:6px;background:#fff;border:2px solid var(--border);border-radius:8px;padding:7px 12px;cursor:pointer;transition:.2s" id="jrl_manager">
+            <input type="checkbox" value="manager" onchange="_syncJobLabel(this)" style="accent-color:#7c3aed"> 🏢 مدير
+          </label>
+          <label style="display:flex;align-items:center;gap:6px;background:#fff;border:2px solid var(--border);border-radius:8px;padding:7px 12px;cursor:pointer;transition:.2s" id="jrl_supervisor">
+            <input type="checkbox" value="supervisor" onchange="_syncJobLabel(this)" style="accent-color:#7c3aed"> 👔 مشرف
+          </label>
+          <label style="display:flex;align-items:center;gap:6px;background:#fff;border:2px solid var(--border);border-radius:8px;padding:7px 12px;cursor:pointer;transition:.2s" id="jrl_trainer">
+            <input type="checkbox" value="trainer" onchange="_syncJobLabel(this)" style="accent-color:#7c3aed"> 🏋️ مدرب
+          </label>
+          <label style="display:flex;align-items:center;gap:6px;background:#fff;border:2px solid var(--border);border-radius:8px;padding:7px 12px;cursor:pointer;transition:.2s" id="jrl_receptionist">
+            <input type="checkbox" value="receptionist" onchange="_syncJobLabel(this)" style="accent-color:#7c3aed"> 🗂️ موظف استقبال
+          </label>
+          <label style="display:flex;align-items:center;gap:6px;background:#fff;border:2px solid var(--border);border-radius:8px;padding:7px 12px;cursor:pointer;transition:.2s" id="jrl_worker">
+            <input type="checkbox" value="worker" onchange="_syncJobLabel(this)" style="accent-color:#7c3aed"> 🔧 عامل
+          </label>
+        </div>
+      </div>
+
+      <!-- ── البصمة والدوام ── -->
+      <div style="background:#f0fdf4;border:1.5px solid #bbf7d0;border-radius:12px;padding:14px 16px;margin-bottom:14px">
+        <div style="font-size:11px;font-weight:800;color:#16a34a;margin-bottom:10px;letter-spacing:.5px">🕐 البصمة والدوام</div>
+        <div class="fr">
+          <div class="fg">
+            <label>🔢 رقم الموظف في جهاز البصمة</label>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:4px">
+              <input id="uZkId" placeholder="تلقائي" dir="ltr" inputmode="numeric" readonly
+                style="font-family:monospace;font-size:20px;font-weight:800;color:#16a34a;background:#dcfce7;border:2px solid #22c55e;border-radius:10px;padding:8px 14px;text-align:center;width:120px;letter-spacing:2px">
+              <div style="font-size:11px;color:var(--muted);line-height:1.6">سجّله في ZKTeco<br>كـ <strong>User ID</strong></div>
+            </div>
+          </div>
+          <div class="fg">
+            <label>فترة الدوام</label>
+            <select id="uShiftId" class="set-input">
+              <option value="">أي فترة / تلقائي</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── الصلاحيات ── -->
       <div id="permSection">
-        <div class="sl2">🔐 الصلاحيات</div>
+        <div class="sl2">🔐 صلاحيات النظام</div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
           <button class="role-btn" onclick="setRole('employee',this)">👷 موظف</button>
           <button class="role-btn" onclick="setRole('supervisor',this)">👔 مشرف</button>
@@ -3580,7 +3615,7 @@ input:checked+.slider:before{transform:translateX(-20px)}
         <div class="perm-grid" id="settingsPermGrid"></div>
       </div>
     </div>
-    <div class="mf"><button class="btn bg" onclick="closeOverlay('userOverlay')">إلغاء</button><button class="btn bp" onclick="saveUser()">💾 Save</button></div>
+    <div class="mf"><button class="btn bg" onclick="closeOverlay('userOverlay')">إلغاء</button><button class="btn bp" onclick="saveUser()">💾 حفظ</button></div>
   </div>
 </div><div id="waBotBadge" style="display:none;position:fixed;bottom:28px;right:20px;z-index:8000;display:none;align-items:center;gap:8px;padding:9px 16px;border-radius:20px;font-size:12px;font-weight:700;background:#f8faff;border:1px solid var(--border);box-shadow:0 4px 16px rgba(0,0,0,.12);cursor:pointer" onclick="showView('settings')">
   <span class="badge-icon">⏳</span>
@@ -3603,7 +3638,7 @@ input:checked+.slider:before{transform:translateX(-20px)}
 //  البريد       : d.llsyanh07@gmail.com
 //  يُحظر نسخ هذا الكود أو توزيعه بدون إذن خطي من المطوّر
 // ══════════════════════════════════════════════════════════════════
-const APP_VERSION = '1.7.10';
+const APP_VERSION = '1.7.16';
 
 // ══ نظام الترجمة ══════════════════════════════════════════════════
 let _lang = 'ar'; // ثابت عربي دائماً
@@ -4631,7 +4666,6 @@ async function passwordMatches(stored,pass){
 }
 function saveUsers(users){localStorage.setItem(KU,JSON.stringify(users));}
 let _dCache=null;
-function getFullName(r){return r.name||[r.first_name,r.second_name,r.third_name,r.family_name].filter(Boolean).join(' ')||'';}
 function getData(){
   if(_dCache!==null)return _dCache;
   const s=localStorage.getItem(KD);
@@ -6711,7 +6745,6 @@ function _zkProcessEvent(ev){
     _zkHandleEmpAtt(emp.username, ev.date, ev.time);
   } else {
     console.log('[ZK] Unknown device user:', ev.deviceUserId);
-    toast('⚠️ بصمة غير مسجّلة — رقم الجهاز: '+ev.deviceUserId,'tin');
   }
 }
 
@@ -6726,7 +6759,7 @@ function _zkHandleMemberAtt(member, date, time){
     att[date][member.id]={in:time, out:null};
     saveAttendance(att);
     renderAttendance();
-    toast('✅ حضور: '+getFullName(member)+' — '+time,'tok');
+    toast('✅ حضور: '+member.name+' — '+time,'tok');
     if(getSettings().attWaEnabled===true)
       setTimeout(()=>sendAttWa(member,'in',time,null),400);
 
@@ -6742,7 +6775,7 @@ function _zkHandleMemberAtt(member, date, time){
     const elapsed=(ch*60+cm)-(ih*60+im);
     if(elapsed<minMins){
       // البصمة الثانية مرفوضة — لم تمضِ المدة الكافية
-      toast('🔒 '+getFullName(member)+' — الانصراف من الساعة '+_allowTime(rec.in,minMins)+' (باقي '+_remainLabel(rec.in,minMins)+')','tin');
+      toast('🔒 '+member.name+' — الانصراف من الساعة '+_allowTime(rec.in,minMins)+' (باقي '+_remainLabel(rec.in,minMins)+')','tin');
       return;
     }
     // انصراف
@@ -6750,7 +6783,7 @@ function _zkHandleMemberAtt(member, date, time){
     att[date][member.id]=rec;
     saveAttendance(att);
     renderAttendance();
-    toast('🚪 انصراف: '+getFullName(member)+' — '+time,'tok');
+    toast('🚪 انصراف: '+member.name+' — '+time,'tok');
     if(getSettings().attWaEnabled===true)
       setTimeout(()=>sendAttWa(member,'out',rec.in,time),400);
 
@@ -6927,36 +6960,6 @@ function initEmpMsgPanels(){
   if(eout) eout.checked=!!s.empAttWaOutEnabled;
 }
 
-// مزامنة تلقائية مستقلة للموظفين
-let _zkEmpAutoTimer=null;
-function startZkEmpAutoSync(){
-  if(_zkEmpAutoTimer){clearInterval(_zkEmpAutoTimer);_zkEmpAutoTimer=null;}
-  const s=getSettings();
-  const secs=parseInt(s.zkEmpSyncInterval||0);
-  const el=document.getElementById('zkEmpSyncStatus');
-  if(!secs){
-    if(el) el.textContent='⏸ متوقفة';
-    return;
-  }
-  const label=secs<60?'كل '+secs+' ثانية':secs<3600?'كل '+(secs/60)+' دقيقة':'كل ساعة';
-  if(el) el.textContent='🔴 '+label;
-  _zkEmpAutoTimer=setInterval(()=>_zkEmpSync(), secs*1000);
-}
-
-async function _zkEmpSync(){
-  // مزامنة سجلات الموظفين فقط من السيرفر
-  try{
-    const r=await fetch(getStoreServerBase()+'/api/zk/events');
-    const d=await r.json();
-    if(d.ok&&d.events&&d.events.length){
-      d.events.forEach(ev=>{
-        const users=getUsers?getUsers():[];
-        const emp=users.find(u=>String(u.zkId||'')===ev.deviceUserId);
-        if(emp) _zkHandleEmpAtt(emp.username,ev.date,ev.time);
-      });
-    }
-  }catch(_){}
-}
 
 let _zkDailyTimer=null;
 function _startZkDailySync(){
@@ -6992,7 +6995,6 @@ function saveZkSettings(){
   const _zkea=document.getElementById('zkEmpEarlyAllow'); s.zkEmpEarlyAllow=_zkea?parseInt(_zkea.value)||0:(s.zkEmpEarlyAllow||0);
   const _zkeo=document.getElementById('zkEmpOutGrace'); s.zkEmpOutGrace=_zkeo?parseInt(_zkeo.value)||0:(s.zkEmpOutGrace||0);
   const _zkst=document.getElementById('zkSyncTime'); s.zkSyncTime=_zkst?_zkst.value:'';
-  const _zkes=document.getElementById('zkEmpSyncInterval'); s.zkEmpSyncInterval=_zkes?parseInt(_zkes.value)||0:0;
   _ksSet(s);
 }
 
@@ -7009,10 +7011,8 @@ function loadZkSettings(){
   const eo=document.getElementById('zkEmpOutGrace'); if(eo) eo.value=(s.zkEmpOutGrace!==undefined&&s.zkEmpOutGrace!==null)?s.zkEmpOutGrace:0;
   const st=document.getElementById('zkSyncTime'); if(st) st.value=s.zkSyncTime||'';
   const ew=document.getElementById('empAttWaEnabled'); if(ew) ew.checked=!!s.empAttWaEnabled;
-  const es=document.getElementById('zkEmpSyncInterval'); if(es) es.value=s.zkEmpSyncInterval||0;
   renderShiftPeriods();
   renderHolidays();
-  startZkEmpAutoSync();
   _startZkDailySync();
 }
 
@@ -7150,10 +7150,10 @@ function _resolveZkName(deviceId){
   const users=getUsers?getUsers():[];
   const emp=users.find(u=>String(u.zkId||'')===sid);
   if(emp) return{name:emp.username,type:'emp'};
-  // بحث في المشتركين عبر رقم العضوية أو zkId أو fingerprint_id
+  // بحث في المشتركين عبر رقم العضوية (pkg_num)
   const members=getData?getData():[];
-  const mem=members.find(m=>String(m.pkg_num||'')===sid||String(m.zkId||'')===sid||String(m.fingerprint_id||'')===sid);
-  if(mem) return{name:getFullName(mem)||mem.name||'مشترك#'+sid,type:'member',id:mem.id};
+  const mem=members.find(m=>String(m.pkg_num||'')===sid);
+  if(mem) return{name:mem.name,type:'member'};
   return{name:'زائر('+sid+')',type:'unknown'};
 }
 
@@ -10577,18 +10577,28 @@ function updateAttModeUI(){
   if(vT) vT.checked=!!s.voiceEnabled;
 }
 
+function _zkClearCooldownForMember(id){
+  // مسح cooldown البصمة للمشترك حتى يتمكن من البصم فوراً بعد الإلغاء
+  const member=getData().find(r=>r.id===id);
+  if(!member) return;
+  const ids=[String(member.zkId||''),String(member.pkg_num||''),String(member.fingerprint_id||'')].filter(Boolean);
+  Object.keys(_zkEvtCooldown).forEach(k=>{ if(ids.some(i=>k.startsWith(i+'_'))) delete _zkEvtCooldown[k]; });
+}
+
 function cancelCheckin(id, date){
+  if(currentUser!=='admin'){toast('🔒 إلغاء الحضور للمدير فقط','ter');return;}
   if(!confirm('إلغاء تسجيل الحضور؟ سيتمكن المشترك من التسجيل مجدداً'))return;
   const att=getAttendance();
-  if(att[date]&&att[date][id]!==undefined){ delete att[date][id]; saveAttendance(att); renderAttendance(); renderDashboard(); toast('✅ تم الإلغاء — يمكن للمشترك التسجيل من جديد','tok'); }
+  if(att[date]&&att[date][id]!==undefined){ delete att[date][id]; saveAttendance(att); _zkClearCooldownForMember(id); renderAttendance(); renderDashboard(); toast('✅ تم الإلغاء — يمكن للمشترك التسجيل من جديد','tok'); }
 }
 
 function cancelCheckout(id, date){
+  if(currentUser!=='admin'){toast('🔒 إلغاء الانصراف للمدير فقط','ter');return;}
   if(!confirm('إلغاء تسجيل الانصراف؟'))return;
   const att=getAttendance();
   if(att[date]&&att[date][id]){
     const rec=att[date][id];
-    if(typeof rec==='object'&&rec.out){ rec.out=null; att[date][id]=rec; saveAttendance(att); renderAttendance(); renderDashboard(); toast('✅ تم إلغاء الانصراف','tok'); }
+    if(typeof rec==='object'&&rec.out){ rec.out=null; att[date][id]=rec; saveAttendance(att); _zkClearCooldownForMember(id); renderAttendance(); renderDashboard(); toast('✅ تم إلغاء الانصراف','tok'); }
   }
 }
 
@@ -10810,15 +10820,15 @@ function renderAttendance(){
     let btns = `<button class="att-btn ${isIn?'att-present':'att-absent'}" onclick="markCheckin(${r.id},'${today}')">${isIn?'✅ حاضر':'تسجيل حضور'}</button>`;
     if(trackOut && isIn && !isOut)
       btns += `<button class="att-btn" style="background:#ede9fe;color:#7c3aed;border-color:#c4b5fd;margin-right:6px" onclick="markCheckout(${r.id},'${today}')">🚪 انصراف</button>`;
-    if(isManual && isIn && !isOut)
+    if(isManual && isIn && !isOut && currentUser==='admin')
       btns += `<button class="att-btn" style="background:#fee2e2;color:#dc2626;border-color:#fca5a5;font-size:11px;margin-right:4px" onclick="cancelCheckin(${r.id},'${today}')">✕ إلغاء الحضور</button>`;
-    if(isManual && isOut)
+    if(isManual && isOut && currentUser==='admin')
       btns += `<button class="att-btn" style="background:#fef9c3;color:#d97706;border-color:#fde68a;font-size:11px;margin-right:4px" onclick="cancelCheckout(${r.id},'${today}')">✕ إلغاء الانصراف</button>`;
 
     return`<div class="att-row" id="att-${r.id}" style="background:${bg}">
       <div class="att-avatar" style="background:${isOut?'#ede9fe':isIn?'#d4f7e7':'#e8f0fe'}">${icon}</div>
       <div style="flex:1">
-        <div class="att-name">${getFullName(r)||'—'}</div>
+        <div class="att-name">${r.name}</div>
         <div class="att-sub">💪 ${r.pkg_name||'—'} &nbsp;|&nbsp; 🪪 ${r.id_num||'—'} &nbsp;|&nbsp; 📱 ${r.phone||'—'}</div>
         ${(inTime||outTime)?`<div style="margin-top:3px">${inTime}${outTime}</div>`:''}
         ${minBadge}
@@ -10837,7 +10847,7 @@ function renderAttendance(){
       <th style="padding:8px;border-bottom:2px solid var(--border);text-align:center">المجموع</th>
     </tr></thead>
     <tbody>${data.map(r=>`<tr>
-      <td style="padding:8px 14px;border-bottom:1px solid #f5f7fa;font-weight:600">${getFullName(r)||'—'}</td>
+      <td style="padding:8px 14px;border-bottom:1px solid #f5f7fa;font-weight:600">${r.name}</td>
       ${days.map(d=>{
         const rec=getAttRec(att[d],r.id);
         if(!rec) return`<td style="text-align:center;padding:8px;border-bottom:1px solid #f5f7fa"><span style="color:#ddd">○</span></td>`;
@@ -11823,15 +11833,15 @@ function renderAttendance(){
     let btns = `<button class="att-btn ${isIn?'att-present':'att-absent'}" onclick="markCheckin(${r.id},'${today}')">${isIn?'✅ حاضر':'تسجيل حضور'}</button>`;
     if(trackOut && isIn && !isOut)
       btns += `<button class="att-btn" style="background:#ede9fe;color:#7c3aed;border-color:#c4b5fd;margin-right:6px" onclick="markCheckout(${r.id},'${today}')">🚪 انصراف</button>`;
-    if(isManual && isIn && !isOut)
+    if(isManual && isIn && !isOut && currentUser==='admin')
       btns += `<button class="att-btn" style="background:#fee2e2;color:#dc2626;border-color:#fca5a5;font-size:11px;margin-right:4px" onclick="cancelCheckin(${r.id},'${today}')">✕ إلغاء الحضور</button>`;
-    if(isManual && isOut)
+    if(isManual && isOut && currentUser==='admin')
       btns += `<button class="att-btn" style="background:#fef9c3;color:#d97706;border-color:#fde68a;font-size:11px;margin-right:4px" onclick="cancelCheckout(${r.id},'${today}')">✕ إلغاء الانصراف</button>`;
 
     return`<div class="att-row" id="att-${r.id}" style="background:${bg}">
       <div class="att-avatar" style="background:${isOut?'#ede9fe':isIn?'#d4f7e7':'#e8f0fe'}">${icon}</div>
       <div style="flex:1">
-        <div class="att-name">${getFullName(r)||'—'}</div>
+        <div class="att-name">${r.name}</div>
         <div class="att-sub">💪 ${r.pkg_name||'—'} &nbsp;|&nbsp;📱 ${r.phone||'—'}</div>
         ${(inTime||outTime)?`<div style="margin-top:3px">${inTime}${outTime}</div>`:''}
       </div>
@@ -11849,7 +11859,7 @@ function renderAttendance(){
       <th style="padding:8px;border-bottom:2px solid var(--border);text-align:center">المجموع</th>
     </tr></thead>
     <tbody>${data.map(r=>`<tr>
-      <td style="padding:8px 14px;border-bottom:1px solid #f5f7fa;font-weight:600">${getFullName(r)||'—'}</td>
+      <td style="padding:8px 14px;border-bottom:1px solid #f5f7fa;font-weight:600">${r.name}</td>
       ${days.map(d=>{
         const rec=getAttRec(att[d],r.id);
         if(!rec) return`<td style="text-align:center;padding:8px;border-bottom:1px solid #f5f7fa"><span style="color:#ddd">○</span></td>`;
@@ -13969,6 +13979,23 @@ function detectRoleLabel(perms){
   if(p===ROLES.viewer.slice().sort().join(','))     return{l:'عرض فقط',bg:'#f3f4f6',c:'#6b7280'};
   return{l:'مخصص',bg:'#f0fdf4',c:'#16a34a'};
 }
+const JOB_ROLE_LABELS={manager:'مدير',supervisor:'مشرف',trainer:'مدرب',receptionist:'موظف استقبال',worker:'عامل'};
+const JOB_ROLE_ICONS={manager:'🏢',supervisor:'👔',trainer:'🏋️',receptionist:'🗂️',worker:'🔧'};
+function _syncJobLabel(cb){
+  const lbl=cb.closest('label');
+  if(!lbl)return;
+  lbl.style.borderColor=cb.checked?'#7c3aed':'var(--border)';
+  lbl.style.background=cb.checked?'#f3e8ff':'#fff';
+}
+function _getJobRoles(){
+  return Array.from(document.querySelectorAll('#jobRolesGrid input[type=checkbox]')).filter(c=>c.checked).map(c=>c.value);
+}
+function _setJobRoles(roles){
+  document.querySelectorAll('#jobRolesGrid input[type=checkbox]').forEach(c=>{
+    c.checked=Array.isArray(roles)&&roles.includes(c.value);
+    _syncJobLabel(c);
+  });
+}
 function renderUserList(){
   const ul=document.getElementById('userList');if(!ul)return;
   const users=getUsers();
@@ -13976,33 +14003,46 @@ function renderUserList(){
   ul.innerHTML=users.map((u,i)=>{
     const isAdmin=u.username==='admin';
     const perms=isAdmin?Object.keys(PERMS):(u.permissions||[]);
-    const badges=perms.slice(0,5).map(p=>PERMS[p]?`<span class="perm-badge">${PERMS[p].icon} ${PERMS[p].label}</span>`:'').join('')
-      +(perms.length>5?`<span class="perm-badge">+${perms.length-5}</span>`:'');
-    const roleInfo=isAdmin
-      ?{l:'مدير',bg:'#dcfce7',c:'#16a34a'}
-      :detectRoleLabel(perms);
+    const roleInfo=isAdmin?{l:'مدير',bg:'#dcfce7',c:'#16a34a'}:detectRoleLabel(perms);
     const shiftName=u.shiftId?(getShiftPeriods().find(p=>String(p.id)===String(u.shiftId))?.name||'فترة محذوفة'):'أي فترة';
-    return`<div class="usr-row" style="align-items:flex-start">
-      <div style="flex:1;min-width:0">
-        <div class="usr-name">👤 ${u.username}
-          <span class="badge" style="background:${roleInfo.bg};color:${roleInfo.c};font-size:10px;margin-right:6px">${roleInfo.l}</span>
-          ${!isAdmin?`<span class="badge" style="background:#e0f2fe;color:#0369a1;font-size:10px;margin-right:4px">🕐 ${shiftName}</span>`:''}
+    const jobBadges=(u.jobRoles||[]).map(r=>`<span style="display:inline-flex;align-items:center;gap:3px;background:#f3e8ff;color:#7c3aed;border:1px solid #e9d5ff;border-radius:6px;padding:2px 8px;font-size:11px;font-weight:600">${JOB_ROLE_ICONS[r]||'💼'} ${JOB_ROLE_LABELS[r]||r}</span>`).join('');
+    const infoLine=[
+      u.fullName?`<span>👤 ${u.fullName}</span>`:'',
+      u.phone?`<span>📞 ${u.phone}</span>`:'',
+      u.idNum?`<span>🪪 ${u.idNum}</span>`:'',
+      u.address?`<span>📍 ${u.address}</span>`:''
+    ].filter(Boolean).join('<span style="color:var(--border);margin:0 4px">|</span>');
+    return`<div style="background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,.06)">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px">
+            <span style="font-size:15px;font-weight:800;color:var(--text)">🔑 ${u.username}</span>
+            <span class="badge" style="background:${roleInfo.bg};color:${roleInfo.c};font-size:11px">${roleInfo.l}</span>
+            ${!isAdmin?`<span class="badge" style="background:#e0f2fe;color:#0369a1;font-size:11px">🕐 ${shiftName}</span>`:''}
+          </div>
+          ${infoLine?`<div style="font-size:12px;color:var(--muted);margin-bottom:6px;display:flex;flex-wrap:wrap;gap:6px">${infoLine}</div>`:''}
+          ${jobBadges?`<div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px">${jobBadges}</div>`:''}
+          <div style="display:flex;flex-wrap:wrap;gap:4px">${perms.slice(0,5).map(p=>PERMS[p]?`<span class="perm-badge">${PERMS[p].icon} ${PERMS[p].label}</span>`:'').join('')}${perms.length>5?`<span class="perm-badge">+${perms.length-5}</span>`:''}</div>
         </div>
-        <div style="margin-top:5px;flex-wrap:wrap;display:flex">${badges||'<span style="font-size:11px;color:var(--muted)">لا توجد صلاحيات</span>'}</div>
-      </div>
-      <div style="display:flex;gap:7px;margin-top:4px">
-        <button class="ab ab-e" title="تعديل" onclick="openEditUser(${i})">✏️</button>
-        ${!isAdmin?`<button class="ab ab-d" title="حذف" onclick="deleteUser(${i})">🗑️</button>`:''}
+        <div style="display:flex;gap:7px;flex-shrink:0">
+          <button class="ab ab-e" title="تعديل" onclick="openEditUser(${i})">✏️</button>
+          ${!isAdmin?`<button class="ab ab-d" title="حذف" onclick="deleteUser(${i})">🗑️</button>`:''}
+        </div>
       </div>
     </div>`;
   }).join('');
 }
 function openAddUser(){
   editUserId=null;
-  document.getElementById('userModalTitle').textContent='➕ إضافة مستخدم جديد';
+  document.getElementById('userModalTitle').textContent='➕ إضافة موظف جديد';
   document.getElementById('uName').value='';
   document.getElementById('uPass').value='';
   document.getElementById('uName').disabled=false;
+  document.getElementById('uFullName').value='';
+  document.getElementById('uPhone').value='';
+  document.getElementById('uIdNum').value='';
+  document.getElementById('uAddress').value='';
+  _setJobRoles([]);
   document.getElementById('permSection').style.display='block';
   const zkEl=document.getElementById('uZkId');
   if(zkEl) zkEl.value=_nextEmpNum();
@@ -14019,11 +14059,15 @@ function openEditUser(i){
   document.getElementById('uName').value=u.username;
   document.getElementById('uPass').value='';
   document.getElementById('uName').disabled=true;
+  document.getElementById('uFullName').value=u.fullName||'';
+  document.getElementById('uPhone').value=u.phone||'';
+  document.getElementById('uIdNum').value=u.idNum||'';
+  document.getElementById('uAddress').value=u.address||'';
+  _setJobRoles(u.jobRoles||[]);
   const isAdmin=u.username==='admin';
   document.getElementById('permSection').style.display=isAdmin?'none':'block';
   if(!isAdmin)renderPermGrid(u.permissions||[]);
   document.querySelectorAll('.role-btn').forEach(b=>b.classList.remove('sel'));
-  // رقم الموظف
   if(!u.zkId){ u.zkId=_nextEmpNum(); users[i]=u; localStorage.setItem(KU,JSON.stringify(users)); }
   const _zk=document.getElementById('uZkId');if(_zk)_zk.value=u.zkId;
   fillUserShiftSelect(u.shiftId||'');
@@ -14037,19 +14081,25 @@ async function saveUser(){
   const perms=getSelectedPerms();
   const zkId=(document.getElementById('uZkId')?.value||'').trim();
   const shiftId=(document.getElementById('uShiftId')?.value||'').trim();
+  const fullName=(document.getElementById('uFullName')?.value||'').trim();
+  const phone=(document.getElementById('uPhone')?.value||'').trim();
+  const idNum=(document.getElementById('uIdNum')?.value||'').trim();
+  const address=(document.getElementById('uAddress')?.value||'').trim();
+  const jobRoles=_getJobRoles();
   if(editUserId!==null){
     if(pass)users[editUserId].password=await hashPassword(pass);
+    Object.assign(users[editUserId],{fullName,phone,idNum,address,jobRoles});
     if(users[editUserId].username!=='admin'){
       users[editUserId].permissions=perms;
       users[editUserId].zkId=zkId||users[editUserId].zkId||_nextEmpNum();
       users[editUserId].shiftId=shiftId;
     }
-    toast('تم تحديث المستخدم ✅','tok');
+    toast('تم تحديث بيانات الموظف ✅','tok');
   }else{
     if(!pass){toast('أدخل كلمة المرور','ter');return;}
     if(users.find(u=>u.username===name)){toast('اسم المستخدم موجود مسبقاً','ter');return;}
-    users.push({username:name,password:await hashPassword(pass),permissions:perms,zkId:zkId||_nextEmpNum(),shiftId});
-    toast('تم إضافة المستخدم ✅','tok');
+    users.push({username:name,password:await hashPassword(pass),permissions:perms,zkId:zkId||_nextEmpNum(),shiftId,fullName,phone,idNum,address,jobRoles});
+    toast('تم إضافة الموظف ✅','tok');
   }
   localStorage.setItem(KU,JSON.stringify(users));
   applyPermissions();
@@ -15485,6 +15535,7 @@ async function initApp(){
   await loadServerStore();
   await initLoginVersion();
   selectTpl('welcome');
+  loadRemembered();
   loadRemembered();
   // اتصال ZKTeco تلقائي قبل الدخول
   _preLoginZkConnect();
