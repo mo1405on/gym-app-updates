@@ -3603,7 +3603,7 @@ input:checked+.slider:before{transform:translateX(-20px)}
 //  البريد       : d.llsyanh07@gmail.com
 //  يُحظر نسخ هذا الكود أو توزيعه بدون إذن خطي من المطوّر
 // ══════════════════════════════════════════════════════════════════
-const APP_VERSION = '1.7.9';
+const APP_VERSION = '1.7.10';
 
 // ══ نظام الترجمة ══════════════════════════════════════════════════
 let _lang = 'ar'; // ثابت عربي دائماً
@@ -6711,6 +6711,7 @@ function _zkProcessEvent(ev){
     _zkHandleEmpAtt(emp.username, ev.date, ev.time);
   } else {
     console.log('[ZK] Unknown device user:', ev.deviceUserId);
+    toast('⚠️ بصمة غير مسجّلة — رقم الجهاز: '+ev.deviceUserId,'tin');
   }
 }
 
@@ -6725,7 +6726,7 @@ function _zkHandleMemberAtt(member, date, time){
     att[date][member.id]={in:time, out:null};
     saveAttendance(att);
     renderAttendance();
-    toast('✅ حضور: '+member.name+' — '+time,'tok');
+    toast('✅ حضور: '+getFullName(member)+' — '+time,'tok');
     if(getSettings().attWaEnabled===true)
       setTimeout(()=>sendAttWa(member,'in',time,null),400);
 
@@ -6741,7 +6742,7 @@ function _zkHandleMemberAtt(member, date, time){
     const elapsed=(ch*60+cm)-(ih*60+im);
     if(elapsed<minMins){
       // البصمة الثانية مرفوضة — لم تمضِ المدة الكافية
-      toast('🔒 '+member.name+' — الانصراف من الساعة '+_allowTime(rec.in,minMins)+' (باقي '+_remainLabel(rec.in,minMins)+')','tin');
+      toast('🔒 '+getFullName(member)+' — الانصراف من الساعة '+_allowTime(rec.in,minMins)+' (باقي '+_remainLabel(rec.in,minMins)+')','tin');
       return;
     }
     // انصراف
@@ -6749,7 +6750,7 @@ function _zkHandleMemberAtt(member, date, time){
     att[date][member.id]=rec;
     saveAttendance(att);
     renderAttendance();
-    toast('🚪 انصراف: '+member.name+' — '+time,'tok');
+    toast('🚪 انصراف: '+getFullName(member)+' — '+time,'tok');
     if(getSettings().attWaEnabled===true)
       setTimeout(()=>sendAttWa(member,'out',rec.in,time),400);
 
@@ -7149,10 +7150,10 @@ function _resolveZkName(deviceId){
   const users=getUsers?getUsers():[];
   const emp=users.find(u=>String(u.zkId||'')===sid);
   if(emp) return{name:emp.username,type:'emp'};
-  // بحث في المشتركين عبر رقم العضوية (pkg_num)
+  // بحث في المشتركين عبر رقم العضوية أو zkId أو fingerprint_id
   const members=getData?getData():[];
-  const mem=members.find(m=>String(m.pkg_num||'')===sid);
-  if(mem) return{name:mem.name,type:'member'};
+  const mem=members.find(m=>String(m.pkg_num||'')===sid||String(m.zkId||'')===sid||String(m.fingerprint_id||'')===sid);
+  if(mem) return{name:getFullName(mem)||mem.name||'مشترك#'+sid,type:'member',id:mem.id};
   return{name:'زائر('+sid+')',type:'unknown'};
 }
 
