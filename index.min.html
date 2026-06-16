@@ -1389,6 +1389,7 @@ input:checked+.slider:before{transform:translateX(-20px)}
               <button class="btn" style="background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.3)" onclick="renderAttReport()">🔍 عرض</button>
               <button class="btn" style="background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3)" onclick="exportAttReport()">⬇️ CSV</button>
               <button class="btn" style="background:rgba(255,255,255,.25);color:#fff;border:1px solid rgba(255,255,255,.4);font-weight:700" onclick="exportAttReportPDF()">📄 PDF</button>
+              <button class="btn" style="background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.35)" onclick="renderAttendance()">🔄 تحديث</button>
             </div>
           </div>
           <div id="attRepSummary" style="padding:14px 20px;background:#faf5ff;border-bottom:1px solid var(--border);display:flex;gap:24px;flex-wrap:wrap"></div>
@@ -1424,6 +1425,7 @@ input:checked+.slider:before{transform:translateX(-20px)}
           <div class="card-head">
             <h3>👔 حضور وانصراف الموظفين</h3>
             <div class="cc">
+              <button class="btn" style="background:#ede9fe;color:#7c3aed;border:1.5px solid #c4b5fd" onclick="initEmpAttView()">🔄 تحديث</button>
               <button id="clearAllEmpAttBtn" class="btn" style="background:#fee2e2;color:#dc2626;border:1.5px solid #fca5a5" onclick="clearAllEmpAtt()">🗑️ حذف الكل</button>
             </div>
           </div>
